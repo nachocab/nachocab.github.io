@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Force directed</title>
+    <link href="force_directed/external/main.css" rel="stylesheet">
+<script src="force_directed/external/d3.min.js"></script>
+  </head>
+
+  <body>
+    <script type="text/javascript">
+
+      Array.prototype.unique = function() {
+          var o = {}, i, l = this.length, r = [];
+          for(i=0; i<l;i+=1) o[this[i]] = this[i];
+          for(i in o) r.push(o[i]);
+          return r;
+      };
+
+      var links = [{"source":"GENE_4","target":"GENE_19","type":"c"},
+{"source":"GENE_15","target":"GENE_37","type":"a"},
+{"source":"GENE_25","target":"GENE_16","type":"b"},
+{"source":"GENE_26","target":"GENE_25","type":"c"},
+{"source":"GENE_29","target":"GENE_40","type":"b"},
+{"source":"GENE_18","target":"GENE_4","type":"c"},
+{"source":"GENE_33","target":"GENE_17","type":"b"},
+{"source":"GENE_37","target":"GENE_29","type":"c"},
+{"source":"GENE_29","target":"GENE_7","type":"b"},
+{"source":"GENE_16","target":"GENE_19","type":"a"},
+{"source":"GENE_12","target":"GENE_5","type":"c"},
+{"source":"GENE_8","target":"GENE_27","type":"a"},
+{"source":"GENE_40","target":"GENE_30","type":"c"},
+{"source":"GENE_32","target":"GENE_7","type":"c"},
+{"source":"GENE_30","target":"GENE_16","type":"b"},
+{"source":"GENE_9","target":"GENE_19","type":"a"},
+{"source":"GENE_2","target":"GENE_16","type":"b"},
+{"source":"GENE_33","target":"GENE_40","type":"a"},
+{"source":"GENE_40","target":"GENE_13","type":"a"},
+{"source":"GENE_4","target":"GENE_31","type":"c"},
+{"source":"GENE_10","target":"GENE_5","type":"c"},
+{"source":"GENE_35","target":"GENE_39","type":"b"},
+{"source":"GENE_16","target":"GENE_8","type":"b"},
+{"source":"GENE_34","target":"GENE_17","type":"a"},
+{"source":"GENE_4","target":"GENE_21","type":"a"},
+{"source":"GENE_27","target":"GENE_4","type":"c"},
+{"source":"GENE_16","target":"GENE_9","type":"c"},
+{"source":"GENE_6","target":"GENE_8","type":"a"},
+{"source":"GENE_7","target":"GENE_37","type":"b"},
+{"source":"GENE_26","target":"GENE_2","type":"c"}];
+      var nodes = {};
+      var connection_types = links.map(function(x){return x.type}).unique()
+
+      // Compute the distinct nodes from the links.
+      links.forEach(function(link) {
+        link.source = nodes[link.source] || (nodes[link.source] = {name: link.source});
+        link.target = nodes[link.target] || (nodes[link.target] = {name: link.target});
+      });
+
+      var w = 800,
+          h = 800;
+
+      var colors = d3.scale.category10();
+
+      var force = d3.layout.force()
+          .nodes(d3.values(nodes))
+          .links(links)
+          .size([w, h])
+          .linkDistance(60)
+          .charge(-300)
+          .on("tick", tick)
+          .start();
+
+      var svg = d3.select("body").append("svg:svg")
+          .attr("width", w)
+          .attr("height", h);
+
+      // Per-type markers, as they don’t inherit external.
+      svg.append("svg:defs").selectAll("marker")
+          .data(connection_types)
+        .enter().append("svg:marker")
+          .attr("id", String)
+          .attr("viewBox", "0 -5 10 10")
+          .attr("refX", 15)
+          .attr("refY", -1.5)
+          .attr("markerWidth", 6)
+          .attr("markerHeight", 6)
+          .attr("orient", "auto")
+          .attr("fill", function(d) { return colors(d) })
+        .append("svg:path")
+          .attr("d", "M0,-5L10,0L0,5");
+
+      var path = svg.append("svg:g").selectAll("path")
+          .data(force.links())
+        .enter().append("svg:path")
+          .attr("class", function(d) { return "link " + d.type; })
+          .attr("marker-end", function(d) { return "url(#" + d.type + ")"; })
+          .attr("stroke", function(d) { return colors(d.type) })
+
+
+      var circle = svg.append("svg:g").selectAll("circle")
+          .data(force.nodes())
+        .enter().append("svg:circle")
+          .attr("r", 6)
+          .call(force.drag);
+
+      var text = svg.append("svg:g").selectAll("g")
+          .data(force.nodes())
+        .enter().append("svg:g");
+
+      // A copy of the text with a thick white stroke for legibility.
+      text.append("svg:text")
+          .attr("x", 8)
+          .attr("y", ".31em")
+          .attr("class", "shadow")
+          .text(function(d) { return d.name; });
+
+      text.append("svg:text")
+          .attr("x", 8)
+          .attr("y", ".31em")
+          .text(function(d) { return d.name; });
+
+      // Use elliptical arc path segments to doubly-encode directionality.
+      function tick() {
+        path.attr("d", function(d) {
+          var dx = d.target.x - d.source.x,
+              dy = d.target.y - d.source.y,
+              dr = Math.sqrt(dx * dx + dy * dy);
+          return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+        });
+
+        circle.attr("transform", function(d) {
+          return "translate(" + d.x + "," + d.y + ")";
+        });
+
+        text.attr("transform", function(d) {
+          return "translate(" + d.x + "," + d.y + ")";
+        });
+      }
+    </script>
+
+  </body>
+</html>

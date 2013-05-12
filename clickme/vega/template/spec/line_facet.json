@@ -1,0 +1,69 @@
+{
+  "width": {{ opts$params$width }},
+  "height": {{ opts$params$height  }},
+  "padding": {{ get_padding_param(opts) }},
+  "data": [
+    {
+      "name": "table",
+      "format": {"type":"json", "parse":{"date":"date","value":"number"}},
+      "values": {{ get_data_as_json(opts) }}
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "time",
+      "range": "width",
+      "nice": "month",
+      "domain": {"data": "table", "field": "data.date"}
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "domain": {"data": "table", "field": "data.value"}
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category20"
+    }
+  ],
+  "axes": [
+    {"type": "x", "scale": "x"},
+    {"type": "y", "scale": "y"}
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "data": "table",
+        "transform": [
+          {"type": "facet", "keys": ["data.indexname"]}
+        ]
+      },
+      "marks": [
+        {
+          "type": "line",
+          "properties": {
+            "enter": {
+              "interpolate": {"value": "monotone"},
+              "x": {"scale": "x", "field": "data.date"},
+              "y": {"scale": "y", "field": "data.value"},
+              "size": {"value": 50},
+              "stroke": {"scale": "color", "field": "data.indexname"},
+              "strokeWidth": {"value": 2}
+            },
+            "update": {
+              "opacity": {"value": 1}
+            },
+            "hover": {
+              "opacity": {"value": 0.5}
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
