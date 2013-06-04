@@ -15,7 +15,10 @@ original_url: http://syntagmatic.github.com/parallel-coordinates/examples/brushi
 
 demo: |-
     cars <- read_ractive_csv("par_coords", "original_data.csv")
-    clickme(cars, "par_coords", params = list(color_by = "economy"))
+    clickme(cars, "par_coords", list(color_by = "economy")) # quantitative
+
+    cars$cylinders <- factor(cars$cylinders)
+    clickme(cars, "par_coords", list(color_by = "cylinders")) # categorical
 
 data_names:
     required:
@@ -35,7 +38,7 @@ params:
         left: 200
 
 scripts:
-    - d3.min.js
+    - d3.v3.js
     - d3.parcoords.js
 
 styles:

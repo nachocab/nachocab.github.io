@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Force directed</title>
     <link href="force_directed/external/main.css" rel="stylesheet">
-<script src="force_directed/external/d3.min.js"></script>
+<script src="force_directed/external/d3.v3.js"></script>
   </head>
 
   <body>
@@ -17,36 +17,34 @@
           return r;
       };
 
-      var links = [{"source":"GENE_4","target":"GENE_19","type":"c"},
-{"source":"GENE_15","target":"GENE_37","type":"a"},
-{"source":"GENE_25","target":"GENE_16","type":"b"},
-{"source":"GENE_26","target":"GENE_25","type":"c"},
-{"source":"GENE_29","target":"GENE_40","type":"b"},
-{"source":"GENE_18","target":"GENE_4","type":"c"},
-{"source":"GENE_33","target":"GENE_17","type":"b"},
-{"source":"GENE_37","target":"GENE_29","type":"c"},
-{"source":"GENE_29","target":"GENE_7","type":"b"},
-{"source":"GENE_16","target":"GENE_19","type":"a"},
-{"source":"GENE_12","target":"GENE_5","type":"c"},
-{"source":"GENE_8","target":"GENE_27","type":"a"},
-{"source":"GENE_40","target":"GENE_30","type":"c"},
-{"source":"GENE_32","target":"GENE_7","type":"c"},
-{"source":"GENE_30","target":"GENE_16","type":"b"},
-{"source":"GENE_9","target":"GENE_19","type":"a"},
-{"source":"GENE_2","target":"GENE_16","type":"b"},
-{"source":"GENE_33","target":"GENE_40","type":"a"},
-{"source":"GENE_40","target":"GENE_13","type":"a"},
-{"source":"GENE_4","target":"GENE_31","type":"c"},
-{"source":"GENE_10","target":"GENE_5","type":"c"},
-{"source":"GENE_35","target":"GENE_39","type":"b"},
-{"source":"GENE_16","target":"GENE_8","type":"b"},
-{"source":"GENE_34","target":"GENE_17","type":"a"},
-{"source":"GENE_4","target":"GENE_21","type":"a"},
-{"source":"GENE_27","target":"GENE_4","type":"c"},
-{"source":"GENE_16","target":"GENE_9","type":"c"},
-{"source":"GENE_6","target":"GENE_8","type":"a"},
-{"source":"GENE_7","target":"GENE_37","type":"b"},
-{"source":"GENE_26","target":"GENE_2","type":"c"}];
+      var links = [{"source":"Microsoft","target":"Amazon","type":"licensing"},
+{"source":"Microsoft","target":"HTC","type":"licensing"},
+{"source":"Samsung","target":"Apple","type":"suit"},
+{"source":"Motorola","target":"Apple","type":"suit"},
+{"source":"Nokia","target":"Apple","type":"resolved"},
+{"source":"HTC","target":"Apple","type":"suit"},
+{"source":"Kodak","target":"Apple","type":"suit"},
+{"source":"Microsoft","target":"Barnes & Noble","type":"suit"},
+{"source":"Microsoft","target":"Foxconn","type":"suit"},
+{"source":"Oracle","target":"Google","type":"suit"},
+{"source":"Apple","target":"HTC","type":"suit"},
+{"source":"Microsoft","target":"Inventec","type":"suit"},
+{"source":"Samsung","target":"Kodak","type":"resolved"},
+{"source":"LG","target":"Kodak","type":"resolved"},
+{"source":"RIM","target":"Kodak","type":"suit"},
+{"source":"Sony","target":"LG","type":"suit"},
+{"source":"Kodak","target":"LG","type":"resolved"},
+{"source":"Apple","target":"Nokia","type":"resolved"},
+{"source":"Qualcomm","target":"Nokia","type":"resolved"},
+{"source":"Apple","target":"Motorola","type":"suit"},
+{"source":"Microsoft","target":"Motorola","type":"suit"},
+{"source":"Motorola","target":"Microsoft","type":"suit"},
+{"source":"Huawei","target":"ZTE","type":"suit"},
+{"source":"Ericsson","target":"ZTE","type":"suit"},
+{"source":"Kodak","target":"Samsung","type":"resolved"},
+{"source":"Apple","target":"Samsung","type":"suit"},
+{"source":"Kodak","target":"RIM","type":"suit"},
+{"source":"Nokia","target":"Qualcomm","type":"suit"}];
       var nodes = {};
       var connection_types = links.map(function(x){return x.type}).unique()
 

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>Points</title>
+
+    <link href="points/external/bootstrap-tooltip.css" rel="stylesheet">
+<link href="points/external/main.css" rel="stylesheet">
+<script src="points/external/d3.v3.js"></script>
+<script src="points/external/d3_aux.js"></script>
+<script src="points/external/jquery.min.js"></script>
+<script src="points/external/bootstrap-tooltip.v2_3.js"></script>
+
+  </head>
+
+  <body>
+    <script type="text/javascript">
+    (function() {
+      var circles, clip, color_scale, colorize_counts, data, decimal_format, draw_box, g_color_legend, g_point_names, plot, point_names, radius, redraw, sidebar, toggle_point_names, transform, zoom;
+    
+      data = [
+        {
+          "x": 51,
+          "y": -1.48326800763282,
+          "point_name": "46"
+        }, {
+          "x": 52,
+          "y": -1.36266141707671,
+          "point_name": "21"
+        }, {
+          "x": 53,
+          "y": -1.33407556025595,
+          "point_name": "14"
+        }, {
+          "x": 54,
+          "y": -0.997713871248885,
+          "point_name": "30"
+        }, {
+          "x": 55,
+          "y": -0.949632987276625,
+          "point_name": "36"
+        }, {
+          "x": 56,
+          "y": -0.907068118114969,
+          "point_name": "7"
+        }, {
+          "x": 57,
+          "y": -0.838579360523168,
+          "point_name": "44"
+        }, {
+          "x": 58,
+          "y": -0.813906529876113,
+          "point_name": "12"
+        }, {
+          "x": 59,
+          "y": -0.811929514330944,
+          "point_name": "25"
+        }, {
+          "x": 60,
+          "y": -0.803492185552994,
+          "point_name": "17"
+        }, {
+          "x": 61,
+          "y": -0.784504521421034,
+          "point_name": "23"
+        }, {
+          "x": 62,
+          "y": -0.66279110833907,
+          "point_name": "34"
+        }, {
+          "x": 63,
+          "y": -0.637794222884134,
+          "point_name": "32"
+        }, {
+          "x": 64,
+          "y": -0.583749210334859,
+          "point_name": "20"
+        }, {
+          "x": 65,
+          "y": -0.582007021882316,
+          "point_name": "43"
+        }, {
+          "x": 66,
+          "y": -0.571480827618845,
+          "point_name": "9"
+        }, {
+          "x": 67,
+          "y": -0.543807412581066,
+          "point_name": "10"
+        }, {
+          "x": 68,
+          "y": -0.515951879059739,
+          "point_name": "31"
+        }, {
+          "x": 69,
+          "y": -0.429508516660021,
+          "point_name": "8"
+        }, {
+          "x": 70,
+          "y": -0.429324228540505,
+          "point_name": "33"
+        }, {
+          "x": 71,
+          "y": -0.407869945440583,
+          "point_name": "47"
+        }, {
+          "x": 72,
+          "y": -0.339398718169466,
+          "point_name": "40"
+        }, {
+          "x": 73,
+          "y": -0.280795473429081,
+          "point_name": "16"
+        }, {
+          "x": 74,
+          "y": -0.255802048727844,
+          "point_name": "22"
+        }, {
+          "x": 75,
+          "y": -0.206861545179342,
+          "point_name": "48"
+        }, {
+          "x": 76,
+          "y": -0.194032626329822,
+          "point_name": "3"
+        }, {
+          "x": 77,
+          "y": -0.0611013004081866,
+          "point_name": "5"
+        }, {
+          "x": 78,
+          "y": 0.0606907661958355,
+          "point_name": "38"
+        }, {
+          "x": 79,
+          "y": 0.0969839479339059,
+          "point_name": "1"
+        }, {
+          "x": 80,
+          "y": 0.138309556145495,
+          "point_name": "37"
+        }, {
+          "x": 81,
+          "y": 0.244161893934368,
+          "point_name": "24"
+        }, {
+          "x": 82,
+          "y": 0.303431534996283,
+          "point_name": "19"
+        }, {
+          "x": 83,
+          "y": 0.456805537291077,
+          "point_name": "29"
+        }, {
+          "x": 84,
+          "y": 0.470381697383866,
+          "point_name": "13"
+        }, {
+          "x": 85,
+          "y": 0.509192586038568,
+          "point_name": "26"
+        }, {
+          "x": 86,
+          "y": 0.59770261981193,
+          "point_name": "11"
+        }, {
+          "x": 87,
+          "y": 0.627739605326795,
+          "point_name": "15"
+        }, {
+          "x": 88,
+          "y": 0.737559492353924,
+          "point_name": "18"
+        }, {
+          "x": 89,
+          "y": 0.781494163027059,
+          "point_name": "28"
+        }, {
+          "x": 90,
+          "y": 0.790944730828709,
+          "point_name": "50"
+        }, {
+          "x": 91,
+          "y": 0.817495240996398,
+          "point_name": "45"
+        }, {
+          "x": 92,
+          "y": 0.876623344565365,
+          "point_name": "42"
+        }, {
+          "x": 93,
+          "y": 0.895599800421864,
+          "point_name": "27"
+        }, {
+          "x": 94,
+          "y": 0.926383748121238,
+          "point_name": "2"
+        }, {
+          "x": 95,
+          "y": 0.926994350107964,
+          "point_name": "41"
+        }, {
+          "x": 96,
+          "y": 1.15144741375457,
+          "point_name": "6"
+        }, {
+          "x": 97,
+          "y": 1.22294487778157,
+          "point_name": "39"
+        }, {
+          "x": 98,
+          "y": 1.56427806937937,
+          "point_name": "49"
+        }, {
+          "x": 99,
+          "y": 1.68592508991047,
+          "point_name": "35"
+        }, {
+          "x": 100,
+          "y": 2.42078827331122,
+          "point_name": "4"
+        }
+      ];
+    
+      decimal_format = d3.format(".2f");
+    
+      radius = 5;
+    
+      color_scale = d3.scale.ordinal().range(["#000"]);
+    
+      draw_box = null;
+    
+      colorize_counts = [];
+    
+      plot = append_plot({
+        selector: "#container",
+        width: 980,
+        height: 980,
+        padding: {
+          "top": 80,
+          "right": 200,
+          "bottom": 30,
+          "left": 100
+        },
+        x_domain: [51, 100],
+        y_domain: [-1.48326800763282, 2.42078827331122],
+        title: "Points",
+        xlab: "x",
+        ylab: "y"
+      });
+    
+      if (draw_box != null) {
+        plot.append("path").attr({
+          "d": "M0,0L" + plot.width + ",0L" + plot.width + "," + plot.height
+        }).style({
+          "stroke": "black",
+          "stroke-width": "2px",
+          "shape-rendering": "crispEdges",
+          "fill": "none"
+        });
+      }
+    
+      plot.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
+        "width": plot.width,
+        "height": plot.height
+      });
+    
+      clip = plot.append("g").attr("clip-path", "url(#clip)");
+    
+      transform = function(d) {
+        return "translate(" + (plot.scales.x(d.x)) + "," + (plot.scales.y(d.y)) + ")";
+      };
+    
+      zoom = clip.append("rect").attr({
+        "class": "overlay",
+        "width": plot.width,
+        "height": plot.height,
+        "fill": "none",
+        "pointer-events": "all"
+      }).style("cursor", "move").call(d3.behavior.zoom().x(plot.scales.x).y(plot.scales.y).scaleExtent([1, Infinity]).on("zoom", function() {
+        return redraw();
+      }));
+    
+      circles = clip.selectAll("circle").data(data).enter().append("svg:circle").attr({
+        "r": radius,
+        "title": function(d) {
+          return "<strong>" + d.point_name + "</strong><br>x: " + (decimal_format(d.x)) + "<br>y: " + (decimal_format(d.y));
+        },
+        "class": "circle_tooltip",
+        "transform": transform,
+        "fill": function(d) {
+          return color_scale(d.colorize);
+        }
+      });
+    
+      $(".circle_tooltip").tooltip({
+        html: true,
+        container: "body",
+        placement: "top"
+      });
+    
+      point_names = clip.selectAll("text").data(data, function(d) {
+        return d.point_name;
+      }).enter().append("text").text(function(d) {
+        return d.point_name;
+      }).attr({
+        "dy": ".32em",
+        "dx": 8,
+        "text-anchor": "left",
+        "display": "none",
+        "transform": transform
+      }).style({
+        "fill": function(d) {
+          return color_scale(d.colorize);
+        },
+        "font-size": "22px"
+      });
+    
+      redraw = function() {
+        plot.select(".x.axis").call(plot.axes.x);
+        plot.select(".y.axis").call(plot.axes.y);
+        circles.attr("transform", transform);
+        return point_names.attr("transform", transform);
+      };
+    
+      sidebar = plot.append("g").attr("transform", "translate(" + (plot.width + 20) + "," + 0 + ")");
+    
+      g_point_names = sidebar.append("g").style("cursor", "pointer").style("font-size", "22px").on("click", function() {
+        return toggle_point_names();
+      });
+    
+      g_point_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr("fill", "white");
+    
+      g_point_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').text("Show names");
+    
+      toggle_point_names = function() {
+        var showing_point_names;
+        showing_point_names = g_point_names.classed("show_names");
+        point_names.attr("display", function() {
+          if (showing_point_names) {
+            return "none";
+          } else {
+            return "inline";
+          }
+        });
+        return g_point_names.attr("class", function() {
+          if (showing_point_names) {
+            return "";
+          } else {
+            return "show_names";
+          }
+        }).select("circle").attr("fill", function() {
+          if (showing_point_names) {
+            return "white";
+          } else {
+            return "black";
+          }
+        });
+      };
+    
+      if (color_scale.range().length > 1) {
+        sidebar.append("text").attr({
+          "class": "colorize_title",
+          "x": 0,
+          "y": 35,
+          "dy": ".35em"
+        }).style({
+          "font-size": "24px"
+        }).text("");
+        g_color_legend = sidebar.selectAll(".key").data(color_scale.domain().reverse()).enter().append("g").attr({
+          "transform": function(d, i) {
+            return "translate(0, " + (i * (radius * 2 + 15) + 50) + ")";
+          },
+          "class": "key"
+        });
+        g_color_legend.append("circle").attr({
+          "r": radius,
+          "fill": color_scale
+        });
+        g_color_legend.append("text").attr({
+          "x": radius + 10,
+          "y": 0,
+          "dy": ".35em"
+        }).text(function(d) {
+          return "" + d + " (" + colorize_counts[d] + ")";
+        });
+      }
+    
+    }).call(this);
+
+    </script>
+    <div class = "code">
+    clickme_points(51:100, sort(rnorm(50)), point_names = sample(1:50,     50), xlab = "x", ylab = "y", open = FALSE)
+    </div>
+  </body>
+</html>
