@@ -5,8 +5,8 @@
 
     <title>Lines</title>
 
-    <link href="lines/external/bootstrap-tooltip.css" rel="stylesheet">
-<link href="lines/external/main.css" rel="stylesheet">
+    <link href="lines/external/clickme.css" rel="stylesheet">
+<link href="lines/external/bootstrap-tooltip.css" rel="stylesheet">
 <script src="lines/external/d3.v3.js"></script>
 <script src="lines/external/d3_aux.js"></script>
 <script src="lines/external/jquery.min.js"></script>
@@ -25,19 +25,19 @@
           "values": [
             {
               "x": 1,
-              "y": 12.4239947181195
+              "y": -0.631989609110911
             }, {
               "x": 2,
-              "y": 86.6516947979107
+              "y": 0.319520148059276
             }, {
               "x": 3,
-              "y": 65.3530909214169
+              "y": -1.41633572620409
             }, {
               "x": 4,
-              "y": 21.3513048831373
+              "y": -0.105843235231322
             }, {
               "x": 5,
-              "y": 20.4485981725156
+              "y": -1.15479429223676
             }
           ],
           "colorize": "b"
@@ -46,19 +46,19 @@
           "values": [
             {
               "x": 1,
-              "y": 69.5823058020324
+              "y": -0.28538046458509
             }, {
               "x": 2,
-              "y": 93.7015543458983
+              "y": -0.819346969747902
             }, {
               "x": 3,
-              "y": 48.2093082508072
+              "y": 1.23133611699353
             }, {
               "x": 4,
-              "y": 6.00241594947875
+              "y": 0.313997004645397
             }, {
               "x": 5,
-              "y": 86.4285635529086
+              "y": -0.906525517197314
             }
           ],
           "colorize": "b"
@@ -67,19 +67,19 @@
           "values": [
             {
               "x": 1,
-              "y": 96.7861317330971
+              "y": 1.6097671859857
             }, {
               "x": 2,
-              "y": 40.0877693435177
+              "y": 1.37653687491279
             }, {
               "x": 3,
-              "y": 32.9288240522146
+              "y": -0.0424005098535003
             }, {
               "x": 4,
-              "y": 57.40020792
+              "y": 0.947292477931548
             }, {
               "x": 5,
-              "y": 49.7874156106263
+              "y": -1.14758590975331
             }
           ],
           "colorize": "a"
@@ -88,19 +88,19 @@
           "values": [
             {
               "x": 1,
-              "y": 35.7078141532838
+              "y": 0.510620663681464
             }, {
               "x": 2,
-              "y": 40.8323205541819
+              "y": -0.486410629035929
             }, {
               "x": 3,
-              "y": 37.6309586456046
+              "y": -0.804440243531059
             }, {
               "x": 4,
-              "y": 36.1493231961504
+              "y": -0.665580425353077
             }, {
               "x": 5,
-              "y": 94.5336778182536
+              "y": 0.723891050267639
             }
           ],
           "colorize": "a"
@@ -109,19 +109,19 @@
           "values": [
             {
               "x": 1,
-              "y": 85.2871689014137
+              "y": 0.414394611529619
             }, {
               "x": 2,
-              "y": 87.2389463707805
+              "y": -0.312573860693275
             }, {
               "x": 3,
-              "y": 44.504665909335
+              "y": 0.77518801804012
             }, {
               "x": 4,
-              "y": 70.9096571197733
+              "y": -0.498895662988445
             }, {
               "x": 5,
-              "y": 15.6993297627196
+              "y": 0.218793376875411
             }
           ],
           "colorize": "a"
@@ -172,7 +172,7 @@
     
       draw_x_axis_label(plot);
     
-      plot.scales.y = d3.scale.linear().domain([6.00241594947875, 96.7861317330971]).range([plot.height, 0]);
+      plot.scales.y = d3.scale.linear().domain([-1.41633572620409, 1.6097671859857]).range([plot.height, 0]);
     
       plot.scales.y = add_scale_padding(plot.scales.y);
     
@@ -235,9 +235,9 @@
         return toggle_line_names();
       });
     
-      g_line_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr('transform', 'translate(0,200)').attr("fill", "white");
+      g_line_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr("fill", "white");
     
-      g_line_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').attr('transform', 'translate(0,200)').text("Show names");
+      g_line_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').text("Show names");
     
       toggle_line_names = function() {
         var showing_line_names;
@@ -272,7 +272,7 @@
           "dy": ".35em"
         }).style({
           "font-size": "24px"
-        }).text("paco");
+        }).text("");
       }
     
       g_color_legend = sidebar.selectAll(".key").data(color_scale.domain().reverse()).enter().append("g").attr({

@@ -60,7 +60,6 @@ get_d3_color_scale <- function(opts) {
 }
 
 get_data_as_json <- function(opts) {
-    library(df2json)
     json_data <- df2json(opts$data)
 
     json_data
