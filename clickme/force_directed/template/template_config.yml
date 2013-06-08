@@ -32,6 +32,5 @@ styles:
     - main.css
 
 require_packages:
-    - df2json
 
 require_server: no

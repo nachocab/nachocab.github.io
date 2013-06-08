@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Dengue</title>
+
+<style type="text/css">
+#toc_header{
+  display:none
+}
+
+#toc li {
+  list-style-type: none;
+}
+
+#toc li a {
+    display: block;
+    padding: 5px 5px 5px 0.5em;
+    border-left: 5px solid #0292CC;
+    color: #000;
+    text-decoration: none;
+}
+
+
+#toc li a:hover {
+    /*border-left: 5px solid #F14609;*/
+}
+
+a{
+  color: #07C;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:visited{
+  color: #07C;
+}
+
+body, td {
+   font-family: Georgia, serif;
+   background-color: white;
+   color: #000;
+   margin: 50px;
+}
+
+#content_links{
+  margin: 0 auto;
+}
+
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, monospace;
+   font-size: 22px;
+}
+
+p, ul, ol {
+    font-size: 26px;
+    line-height: 1.5em;
+}
+
+h1, h2, h3, h4 {
+    color: #000000;
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, p {
+    padding: 0;
+}
+
+p {
+  margin: 0 0 11px 0;
+}
+
+h1 {
+   font-size:3em;
+   text-align:center;
+   /*text-transform: uppercase;*/
+   /*text-transform: lowercase;*/
+   /*font-variant: small-caps;*/
+   letter-spacing: -1px;
+   line-height: 1em;
+   font-weight: bold;
+   font-family: Georgia, 'Times New Roman', serif;
+   margin: .4em 0 .4em 0;
+}
+
+h2 {
+   color: #0292CC;
+   font-size:2.5em;
+   margin: 20px 0 20px 0;
+   /*font-weight: bold;*/
+}
+
+h3 {
+   margin: 20px 0 20px 0;
+   line-height: 33px;
+   font-size:1.5em;
+   font-weight: bold;
+   color: #F14609;
+}
+
+h4 {
+   font-size:1.5em;
+   font-weight: bold;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+pre {
+   margin-top: 0;
+   overflow: auto;
+   border: 1px solid #ccc;
+   background-color: #F8F8F8;
+}
+
+pre code {
+  display: block;
+  padding: 0.5em;
+  line-height: 1.5em;
+}
+
+table, td, th {
+  border: none;
+}
+
+td, th{
+  padding: 0 10px 0 10px;
+}
+
+table{
+  font-size: 26px;
+  margin: 0 auto 20px auto;
+}
+
+table caption{
+  padding: 20px 0 10px 0;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+p img{
+  padding: 0 20px 0 20px;
+}
+
+@media print {
+ * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<hr>
+
+<h1>Dengue</h1>
+
+<p><a href="dengue-points.html" target = "_blank">Dengue arrays by sample name</a></p>
+
+<p><a href="dengue_count_nas_group-points.html" target = "_blank">Dengue arrays by group</a></p>
+
+<p><a href="dengue_count_nas_collection-points.html" target = "_blank">Dengue arrays collection date</a></p>
+
+<p><a href="dengue_count_nas_scan-points.html" target = "_blank">Dengue arrays by scan date</a></p>
+
+<p><a href="dengue_mds_group-points.html" target = "_blank">Dengue multidimensional scaling by group</a></p>
+
+<p><a href="dengue_mds_scan-points.html" target = "_blank">Dengue multidimensional scaling by scan date</a></p>
+
+<p>The dengue dataset contains 21 monkeys, 4 timepoints each (0, 3, 7, 14 dpi), which is a good experimental design. The 32 samples (8 monkeys) from the DKE group have 10 times more invalid values (mean of 3500 vs 350) than the BU group, so it makes sense to analyze them separately.</p>
+
+<p><a href="dengue_3dpi_bu-points.html" target = "_blank">Top 500 probes 3 dpi (Dengue BU)</a></p>
+
+<p><a href="dengue_7dpi_bu-points.html" target = "_blank">Top 500 probes 7 dpi (Dengue BU)</a></p>
+
+<p><a href="dengue_14dpi_bu-points.html" target = "_blank">Top 500 probes 14 dpi (Dengue BU)</a></p>
+
+<p><a href="dengue_3dpi_bu_lassa_marburg-points.html" target = "_blank">Top 500 probes 3 dpi (Dengue BU, colored by Lassa &amp; Marburg)</a></p>
+
+<p><a href="dengue_3dpi_dke-points.html" target = "_blank">Top 500 probes 3 dpi (Dengue DKE)</a></p>
+
+<p>Questions</p>
+
+<ul>
+<li>Are they cynos?</li>
+</ul>
+
+<!--
+# # # you should set the xlim default to be c(0,12) in both diseases, and show which days are there in bold (but showall)
+# # # allow probe or gene input with cfg, how do I show multiple probes? color_by_probes = T, else color by 3dpe
+# # # use global opts to enable same yaxis? or maybe allow a vector of probes and pause between plots?
+# d$dengue_bu$plot$jitter <- function(probe, center = FALSE,
+#                               col = factor(d$dengue_bu$targets$group),
+#                               bg = factor(d$dengue_bu$targets$group),
+#                               ...){
+#     if (center){
+#         data <- "M_zero"
+#     } else {
+#         data <- "M"
+#     }
+#     plot_jitter(d$dengue_bu[[data]][probe, ], d$dengue_bu$targets$Cy3,
+#                 sd=.1,
+#                 main = paste0("dengue_bu\n", probe),
+#                 xlab = "Days post-exposure",
+#                 ylab = "Expression (log2)",
+#                 pch = 21,
+#                 cex = 1.3,
+#                 lwd = 2,
+#                 col = col,
+#                 bg = bg,
+#                 ...
+#     )
+# }
+# # # d$dengue_bu$plot$jitter( "IFIT1_22_14")
+# d$dengue_bu$plot$jitter( "HERC5_120_37")
+# d$dengue_bu$plot$jitter( "PML_368_49")
+# d$dengue_bu$plot$jitter( "S100A8_525_8")
+# d$dengue_bu$plot$jitter( "PSTPIP1_29_8")
+# d$dengue_bu$plot$jitter( "AIM2_429_64")
+
+# clickme_points(d$dengue_bu$d3[])
+
+# # d$dengue$plot$volcano <- function(probe = NULL, ...){
+# #     plot(d$dengue$d3$visual_pvalue, d$dengue$d3$logFC, col = ifelse(d$dengue$d3_condition, "black", "grey70"), main = paste0("dengue\n", probe), ylab = "3 dpe / uninfected (log2)" , xlab = "Significance (p-value)", xaxt = "n", ...)
+# #     axis(1, at = 0:14, labels = c("1", NA, NA,".001", rep(NA,11)), family = "Rockwell", cex.axis=1.8)
+# #     segments(x0=3, y0=c(-20,1.5), y1=c(-1.5,20), col = "black")
+# #     segments(x0=3, y0=c(-1.5,1.5), x1=16, col = "black")
+# #     if (!is.null(probe)){
+# #         points(d$dengue$d3[probe, "visual_pvalue"], d$dengue$d3[probe, "logFC"], bg = "white", col = palette$red, pch = 24, cex = 2, lwd = 4)
+# #     }
+# # }
+-->
+
+</body>
+
+</html>
