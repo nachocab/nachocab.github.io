@@ -14,9 +14,9 @@ If they do turn out to be useless, you will be covered. If they turn out great, 
 
 Also, you don't know which half will fail, so mix up the replicates. If you have two groups of ten patients, and you can only extract blood from ten patients in a day, don't do one group each day, do five from one group and five from the other each day. If you are sequencing their RNA, don't use one lane for each group. If each lane has samples from both groups, you can correct lane effects and you will be covered in case one lane is faulty.
 
-Here is an interactive (zoomable) version of the plot.
+[Here](http://reasoniamhere.com/clickme/count_nas_by_scan_date.html) is an interactive (zoomable) version of the plot.
 
-<iframe width = 800 height = 600 src="http://reasoniamhere.com/clickme/count_nas_by_scan_date.html"></iframe>
+<iframe width = "900" height = "700" src="http://reasoniamhere.com/clickme/count_nas_by_scan_date.html" frameborder="1"> </iframe>
 
 Half of the samples in this [microarray](http://en.wikipedia.org/wiki/DNA_microarray) experiment turned out to be low quality. I was only able to figure out that the reason might be different scanning dates after looking around for extra information in the array files. It turns out that all the [jev samples](http://reasoniamhere.com/clickme/count_nas_by_initial_challenge.html) were analyzed in the same faulty batch, so they will have to be discarded. Luckily, a few of the denv4 samples were spared because they were done in the high quality arrays.
 
