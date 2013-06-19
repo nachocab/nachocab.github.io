@@ -219,7 +219,7 @@
 
   this.get_scale_type = function(plot, scale_name) {
     var scale_type;
-    if (type(plot.data[scale_name][0]) === "number") {
+    if (type(plot.data_ranges[scale_name][0]) === "number") {
       scale_type = "linear";
     } else {
       scale_type = "ordinal";
@@ -233,10 +233,10 @@
       if (plot.scale_limits[scale_name] != null) {
         domain = plot.scale_limits[scale_name];
       } else {
-        domain = d3.extent(plot.data[scale_name]);
+        domain = plot.data_ranges[scale_name];
       }
     } else {
-      domain = plot.data[scale_name];
+      domain = plot.categorical_domains[scale_name];
     }
     return domain;
   };
@@ -289,7 +289,7 @@
   this.format_property = function(x) {
     var decimal_format;
     decimal_format = d3.format(".2f");
-    if (type(x) === "number") {
+    if (type(x) === "number" && x % 1 !== 0) {
       return decimal_format(x);
     } else {
       return x;

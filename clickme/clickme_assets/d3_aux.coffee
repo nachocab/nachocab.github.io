@@ -228,7 +228,7 @@ my_light_red = "#b90000"
 
 
 @get_scale_type = (plot, scale_name) ->
-    if type(plot.data[scale_name][0]) is "number"
+    if type(plot.data_ranges[scale_name][0]) is "number"
         # TODO: check if plot.log == scale_name and return scale_type = "log"
         scale_type = "linear"
     else
@@ -241,10 +241,9 @@ my_light_red = "#b90000"
         if plot.scale_limits[scale_name]?
             domain = plot.scale_limits[scale_name]
         else
-            domain = d3.extent(plot.data[scale_name])
+            domain = plot.data_ranges[scale_name]
     else
-        # d3 extracts the unique values automatically
-        domain = plot.data[scale_name]
+        domain = plot.categorical_domains[scale_name]
 
     domain
 
@@ -291,7 +290,7 @@ my_light_red = "#b90000"
 @format_property = (x) ->
     decimal_format = d3.format(".2f")
 
-    if type(x) == "number"
+    if type(x) == "number" && x % 1 != 0
         decimal_format(x)
     else
         x
