@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>Dengue multidimensional scaling by group</title>
+
+    <link href="clickme_assets/bootstrap-tooltip.css" rel="stylesheet">
+<link href="clickme_assets/clickme.css" rel="stylesheet">
+<script src="clickme_assets/d3.v3.js"></script>
+<script src="clickme_assets/d3_aux.js"></script>
+<script src="clickme_assets/jquery.min.js"></script>
+<script src="clickme_assets/bootstrap-tooltip.v2_3.js"></script>
+
+  </head>
+
+  <body>
+    <script type="text/javascript">
+    (function() {
+      var clip, color_legend_counts, color_scale, data, g_color_legend, g_points, g_toggle_names, plot, point_names, points, radius, redraw, sidebar, toggle_names, transform;
+    
+      data = [
+        {
+          "x": 1.27186958517703,
+          "y": 0.40564975176069,
+          "point_name": "d53",
+          "group_id": "DKE1",
+          "initial_challenge": "denv1",
+          "sample_name": "78118",
+          "Cy3": 0,
+          "rechallenge_date": "7/10/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.6741903149181,
+          "y": 0.521787983373204,
+          "point_name": "d54",
+          "group_id": "DKE1",
+          "initial_challenge": "denv1",
+          "sample_name": "78118",
+          "Cy3": 3,
+          "rechallenge_date": "7/13/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.61701244127684,
+          "y": 0.460667881892564,
+          "point_name": "d55",
+          "group_id": "DKE1",
+          "initial_challenge": "denv1",
+          "sample_name": "78118",
+          "Cy3": 7,
+          "rechallenge_date": "7/17/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.48346337632122,
+          "y": 0.551321248694392,
+          "point_name": "d56",
+          "group_id": "DKE1",
+          "initial_challenge": "denv1",
+          "sample_name": "78118",
+          "Cy3": 14,
+          "rechallenge_date": "7/24/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.2927638102575,
+          "y": 0.197539415656595,
+          "point_name": "d57",
+          "group_id": "DKE2",
+          "initial_challenge": "denv1",
+          "sample_name": "66185",
+          "Cy3": 0,
+          "rechallenge_date": "7/10/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.7019062157281,
+          "y": 0.46456371037368,
+          "point_name": "d58",
+          "group_id": "DKE2",
+          "initial_challenge": "denv1",
+          "sample_name": "66185",
+          "Cy3": 3,
+          "rechallenge_date": "7/13/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.6140944552689,
+          "y": -0.0764939051114413,
+          "point_name": "d59",
+          "group_id": "DKE2",
+          "initial_challenge": "denv1",
+          "sample_name": "66185",
+          "Cy3": 7,
+          "rechallenge_date": "7/17/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.22543909868839,
+          "y": 0.614116146535906,
+          "point_name": "d60",
+          "group_id": "DKE2",
+          "initial_challenge": "denv1",
+          "sample_name": "66185",
+          "Cy3": 14,
+          "rechallenge_date": "7/24/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.64245417288059,
+          "y": 0.274321301926223,
+          "point_name": "d61",
+          "group_id": "DKE3",
+          "initial_challenge": "denv2",
+          "sample_name": "76192",
+          "Cy3": 0,
+          "rechallenge_date": "7/10/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.52036112967797,
+          "y": 0.597704211570302,
+          "point_name": "d62",
+          "group_id": "DKE3",
+          "initial_challenge": "denv2",
+          "sample_name": "76192",
+          "Cy3": 3,
+          "rechallenge_date": "7/13/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.61942120461987,
+          "y": 0.324921593047642,
+          "point_name": "d63",
+          "group_id": "DKE3",
+          "initial_challenge": "denv2",
+          "sample_name": "76192",
+          "Cy3": 7,
+          "rechallenge_date": "7/17/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.49339209386371,
+          "y": 0.627423440155596,
+          "point_name": "d64",
+          "group_id": "DKE3",
+          "initial_challenge": "denv2",
+          "sample_name": "76192",
+          "Cy3": 14,
+          "rechallenge_date": "7/24/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.71220002322687,
+          "y": 0.288414432128983,
+          "point_name": "d65",
+          "group_id": "DKE4",
+          "initial_challenge": "denv2",
+          "sample_name": "76090",
+          "Cy3": 0,
+          "rechallenge_date": "7/10/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.64688152196619,
+          "y": 0.539542721641031,
+          "point_name": "d66",
+          "group_id": "DKE4",
+          "initial_challenge": "denv2",
+          "sample_name": "76090",
+          "Cy3": 3,
+          "rechallenge_date": "7/13/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.41373246243842,
+          "y": 0.522427219523259,
+          "point_name": "d67",
+          "group_id": "DKE4",
+          "initial_challenge": "denv2",
+          "sample_name": "76090",
+          "Cy3": 7,
+          "rechallenge_date": "7/17/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.41526007137992,
+          "y": 0.779850564294317,
+          "point_name": "d68",
+          "group_id": "DKE4",
+          "initial_challenge": "denv2",
+          "sample_name": "76090",
+          "Cy3": 14,
+          "rechallenge_date": "7/24/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.81086205002998,
+          "y": 0.0985694200325405,
+          "point_name": "d69",
+          "group_id": "DKE7",
+          "initial_challenge": "denv4",
+          "sample_name": "67000",
+          "Cy3": 0,
+          "rechallenge_date": "7/10/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.87518868024062,
+          "y": 0.547114823407397,
+          "point_name": "d70",
+          "group_id": "DKE7",
+          "initial_challenge": "denv4",
+          "sample_name": "67000",
+          "Cy3": 3,
+          "rechallenge_date": "7/13/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.82488155556378,
+          "y": 0.375255117014549,
+          "point_name": "d71",
+          "group_id": "DKE7",
+          "initial_challenge": "denv4",
+          "sample_name": "67000",
+          "Cy3": 7,
+          "rechallenge_date": "7/17/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.41262691613125,
+          "y": 0.621976661975026,
+          "point_name": "d72",
+          "group_id": "DKE7",
+          "initial_challenge": "denv4",
+          "sample_name": "67000",
+          "Cy3": 14,
+          "rechallenge_date": "7/24/12",
+          "scan_date": "1/29/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.94936507348271,
+          "y": -1.31022546939583,
+          "point_name": "d73",
+          "group_id": "DKE8",
+          "initial_challenge": "denv4",
+          "sample_name": "88149",
+          "Cy3": 0,
+          "rechallenge_date": "7/10/12",
+          "scan_date": "4/17/13",
+          "colorize": "DKE"
+        }, {
+          "x": 2.11959854251544,
+          "y": -0.538524134469796,
+          "point_name": "d74",
+          "group_id": "DKE8",
+          "initial_challenge": "denv4",
+          "sample_name": "88149",
+          "Cy3": 3,
+          "rechallenge_date": "7/13/12",
+          "scan_date": "4/17/13",
+          "colorize": "DKE"
+        }, {
+          "x": 2.01515242958075,
+          "y": -0.510894517396462,
+          "point_name": "d75",
+          "group_id": "DKE8",
+          "initial_challenge": "denv4",
+          "sample_name": "88149",
+          "Cy3": 7,
+          "rechallenge_date": "7/17/12",
+          "scan_date": "4/17/13",
+          "colorize": "DKE"
+        }, {
+          "x": 2.36169801289029,
+          "y": -0.506263014350842,
+          "point_name": "d76",
+          "group_id": "DKE8",
+          "initial_challenge": "denv4",
+          "sample_name": "88149",
+          "Cy3": 14,
+          "rechallenge_date": "7/24/12",
+          "scan_date": "4/17/13",
+          "colorize": "DKE"
+        }, {
+          "x": 2.05872739430778,
+          "y": -0.716091285365269,
+          "point_name": "d77",
+          "group_id": "DKE9",
+          "initial_challenge": "jev",
+          "sample_name": "27721",
+          "Cy3": 0,
+          "rechallenge_date": "7/10/12",
+          "scan_date": "4/17/13",
+          "colorize": "DKE"
+        }, {
+          "x": 2.08860286465143,
+          "y": -0.400321144149736,
+          "point_name": "d78",
+          "group_id": "DKE9",
+          "initial_challenge": "jev",
+          "sample_name": "27721",
+          "Cy3": 3,
+          "rechallenge_date": "7/13/12",
+          "scan_date": "4/17/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.82304455181044,
+          "y": -0.506273842985906,
+          "point_name": "d79",
+          "group_id": "DKE9",
+          "initial_challenge": "jev",
+          "sample_name": "27721",
+          "Cy3": 7,
+          "rechallenge_date": "7/17/12",
+          "scan_date": "4/17/13",
+          "colorize": "DKE"
+        }, {
+          "x": 2.18123329976565,
+          "y": -0.532920703179508,
+          "point_name": "d80",
+          "group_id": "DKE9",
+          "initial_challenge": "jev",
+          "sample_name": "27721",
+          "Cy3": 14,
+          "rechallenge_date": "7/24/12",
+          "scan_date": "4/17/13",
+          "colorize": "DKE"
+        }, {
+          "x": 2.067327795259,
+          "y": -1.06907612439618,
+          "point_name": "d81",
+          "group_id": "DKE10",
+          "initial_challenge": "jev",
+          "sample_name": "08806",
+          "Cy3": 0,
+          "rechallenge_date": "7/10/12",
+          "scan_date": "4/17/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.8228338857571,
+          "y": -0.606660489510411,
+          "point_name": "d82",
+          "group_id": "DKE10",
+          "initial_challenge": "jev",
+          "sample_name": "08806",
+          "Cy3": 3,
+          "rechallenge_date": "7/13/12",
+          "scan_date": "4/17/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.72105882831411,
+          "y": -0.431415939102943,
+          "point_name": "d83",
+          "group_id": "DKE10",
+          "initial_challenge": "jev",
+          "sample_name": "08806",
+          "Cy3": 7,
+          "rechallenge_date": "7/17/12",
+          "scan_date": "4/17/13",
+          "colorize": "DKE"
+        }, {
+          "x": 1.80003556750228,
+          "y": -0.2883558854286,
+          "point_name": "d84",
+          "group_id": "DKE10",
+          "initial_challenge": "jev",
+          "sample_name": "08806",
+          "Cy3": 14,
+          "rechallenge_date": "7/24/12",
+          "scan_date": "4/17/13",
+          "colorize": "DKE"
+        }, {
+          "x": -1.18017165854374,
+          "y": 0.0439933575425731,
+          "point_name": "d1",
+          "group_id": "BU1",
+          "initial_challenge": "denv1",
+          "sample_name": "Jelly",
+          "Cy3": 0,
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.07824894169218,
+          "y": 0.0396771841190474,
+          "point_name": "d2",
+          "group_id": "BU1",
+          "initial_challenge": "denv1",
+          "sample_name": "Jelly",
+          "Cy3": 3,
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.09689856376039,
+          "y": 0.02850695603025,
+          "point_name": "d3",
+          "group_id": "BU1",
+          "initial_challenge": "denv1",
+          "sample_name": "Jelly",
+          "Cy3": 7,
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.04416093157707,
+          "y": 0.062585527910732,
+          "point_name": "d4",
+          "group_id": "BU1",
+          "initial_challenge": "denv1",
+          "sample_name": "Jelly",
+          "Cy3": 14,
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.05638249471768,
+          "y": 0.0646079658280332,
+          "point_name": "d5",
+          "group_id": "BU3",
+          "initial_challenge": "denv1",
+          "sample_name": "Chevy",
+          "Cy3": 0,
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.18718939002874,
+          "y": 0.0482094859712463,
+          "point_name": "d6",
+          "group_id": "BU3",
+          "initial_challenge": "denv1",
+          "sample_name": "Chevy",
+          "Cy3": 3,
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.09846279550219,
+          "y": -0.0428614359582335,
+          "point_name": "d7",
+          "group_id": "BU3",
+          "initial_challenge": "denv1",
+          "sample_name": "Chevy",
+          "Cy3": 7,
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.00961134021374,
+          "y": -0.00589819454159257,
+          "point_name": "d8",
+          "group_id": "BU3",
+          "initial_challenge": "denv1",
+          "sample_name": "Chevy",
+          "Cy3": 14,
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.057853949123,
+          "y": -0.122441084260861,
+          "point_name": "d9",
+          "group_id": "BU7",
+          "initial_challenge": "denv2",
+          "sample_name": "Krispy",
+          "Cy3": 0,
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.17578933060706,
+          "y": -0.08065432694865,
+          "point_name": "d10",
+          "group_id": "BU7",
+          "initial_challenge": "denv2",
+          "sample_name": "Krispy",
+          "Cy3": 3,
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.18480603261401,
+          "y": -0.0659625084201482,
+          "point_name": "d11",
+          "group_id": "BU7",
+          "initial_challenge": "denv2",
+          "sample_name": "Krispy",
+          "Cy3": 7,
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.04152957792966,
+          "y": -0.166595904521177,
+          "point_name": "d12",
+          "group_id": "BU7",
+          "initial_challenge": "denv2",
+          "sample_name": "Krispy",
+          "Cy3": 14,
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.18161251902884,
+          "y": -0.0855800326259868,
+          "point_name": "d13",
+          "group_id": "BU8",
+          "initial_challenge": "denv2",
+          "sample_name": "Dunkin",
+          "Cy3": 0,
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.35052607506467,
+          "y": -0.102328151139221,
+          "point_name": "d14",
+          "group_id": "BU8",
+          "initial_challenge": "denv2",
+          "sample_name": "Dunkin",
+          "Cy3": 3,
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.19057531098774,
+          "y": 0.0157244517729708,
+          "point_name": "d15",
+          "group_id": "BU8",
+          "initial_challenge": "denv2",
+          "sample_name": "Dunkin",
+          "Cy3": 7,
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.15547234020534,
+          "y": -0.0847195105493456,
+          "point_name": "d16",
+          "group_id": "BU8",
+          "initial_challenge": "denv2",
+          "sample_name": "Dunkin",
+          "Cy3": 14,
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.977459128770221,
+          "y": 0.156536695088785,
+          "point_name": "d17",
+          "group_id": "BU9",
+          "initial_challenge": "denv3",
+          "sample_name": "Winnie",
+          "Cy3": 0,
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.20874400541836,
+          "y": 0.0654914224638116,
+          "point_name": "d18",
+          "group_id": "BU9",
+          "initial_challenge": "denv3",
+          "sample_name": "Winnie",
+          "Cy3": 3,
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.970355111206782,
+          "y": 0.133133812454811,
+          "point_name": "d19",
+          "group_id": "BU9",
+          "initial_challenge": "denv3",
+          "sample_name": "Winnie",
+          "Cy3": 7,
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.18601066290506,
+          "y": -0.0507213454870808,
+          "point_name": "d20",
+          "group_id": "BU9",
+          "initial_challenge": "denv3",
+          "sample_name": "Winnie",
+          "Cy3": 14,
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.01011025597248,
+          "y": 0.0543024645290851,
+          "point_name": "d21",
+          "group_id": "BU10",
+          "initial_challenge": "denv3",
+          "sample_name": "Squam",
+          "Cy3": 0,
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.11515524352602,
+          "y": 0.0209069712137783,
+          "point_name": "d22",
+          "group_id": "BU10",
+          "initial_challenge": "denv3",
+          "sample_name": "Squam",
+          "Cy3": 3,
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.15938946380954,
+          "y": -0.00892373503073608,
+          "point_name": "d23",
+          "group_id": "BU10",
+          "initial_challenge": "denv3",
+          "sample_name": "Squam",
+          "Cy3": 7,
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.996737500468086,
+          "y": -0.162617142445151,
+          "point_name": "d24",
+          "group_id": "BU10",
+          "initial_challenge": "denv3",
+          "sample_name": "Squam",
+          "Cy3": 14,
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/24/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.913150677235996,
+          "y": -0.0638166744972173,
+          "point_name": "d25",
+          "group_id": "BU11",
+          "initial_challenge": "denv3",
+          "sample_name": "Lambagini",
+          "Cy3": 0,
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.12072487623338,
+          "y": -0.0193573574367237,
+          "point_name": "d26",
+          "group_id": "BU11",
+          "initial_challenge": "denv3",
+          "sample_name": "Lambagini",
+          "Cy3": 3,
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.11786878690175,
+          "y": -0.0168187685841215,
+          "point_name": "d27",
+          "group_id": "BU11",
+          "initial_challenge": "denv3",
+          "sample_name": "Lambagini",
+          "Cy3": 7,
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.02504836754471,
+          "y": -0.0910706168932802,
+          "point_name": "d28",
+          "group_id": "BU11",
+          "initial_challenge": "denv3",
+          "sample_name": "Lambagini",
+          "Cy3": 14,
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.937299729118042,
+          "y": 0.0275387874393388,
+          "point_name": "d29",
+          "group_id": "BU12",
+          "initial_challenge": "denv3",
+          "sample_name": "Lexus",
+          "Cy3": 0,
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.04027348737481,
+          "y": 0.0304926467968323,
+          "point_name": "d30",
+          "group_id": "BU12",
+          "initial_challenge": "denv3",
+          "sample_name": "Lexus",
+          "Cy3": 3,
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.931865143486643,
+          "y": -0.0112801032898149,
+          "point_name": "d31",
+          "group_id": "BU12",
+          "initial_challenge": "denv3",
+          "sample_name": "Lexus",
+          "Cy3": 7,
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.0418496445008,
+          "y": 0.0210142748912299,
+          "point_name": "d32",
+          "group_id": "BU12",
+          "initial_challenge": "denv3",
+          "sample_name": "Lexus",
+          "Cy3": 14,
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.954690120993716,
+          "y": -0.0680452201423048,
+          "point_name": "d33",
+          "group_id": "BU13",
+          "initial_challenge": "denv4",
+          "sample_name": "Franconia",
+          "Cy3": 0,
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.04818625833522,
+          "y": -0.0203799478869127,
+          "point_name": "d34",
+          "group_id": "BU13",
+          "initial_challenge": "denv4",
+          "sample_name": "Franconia",
+          "Cy3": 3,
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.74854681309619,
+          "y": 0.120875490202751,
+          "point_name": "d35",
+          "group_id": "BU13",
+          "initial_challenge": "denv4",
+          "sample_name": "Franconia",
+          "Cy3": 7,
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.2332143110376,
+          "y": -0.0552162176473605,
+          "point_name": "d36",
+          "group_id": "BU13",
+          "initial_challenge": "denv4",
+          "sample_name": "Franconia",
+          "Cy3": 14,
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.04672575856947,
+          "y": -0.106974460864626,
+          "point_name": "d37",
+          "group_id": "BU16",
+          "initial_challenge": "denv4",
+          "sample_name": "Applebee",
+          "Cy3": 0,
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.19685508306182,
+          "y": -0.130442242405137,
+          "point_name": "d38",
+          "group_id": "BU16",
+          "initial_challenge": "denv4",
+          "sample_name": "Applebee",
+          "Cy3": 3,
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.909017439557864,
+          "y": 0.030235753088382,
+          "point_name": "d39",
+          "group_id": "BU16",
+          "initial_challenge": "denv4",
+          "sample_name": "Applebee",
+          "Cy3": 7,
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.23483803301423,
+          "y": -0.0357967691471397,
+          "point_name": "d40",
+          "group_id": "BU16",
+          "initial_challenge": "denv4",
+          "sample_name": "Applebee",
+          "Cy3": 14,
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.793695782196868,
+          "y": -0.00491534430207699,
+          "point_name": "d41",
+          "group_id": "BU21",
+          "initial_challenge": "yfv",
+          "sample_name": "Jeep",
+          "Cy3": 0,
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.11833724114525,
+          "y": 0.00854640398547248,
+          "point_name": "d42",
+          "group_id": "BU21",
+          "initial_challenge": "yfv",
+          "sample_name": "Jeep",
+          "Cy3": 3,
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.922862763812197,
+          "y": 0.0514136767235781,
+          "point_name": "d43",
+          "group_id": "BU21",
+          "initial_challenge": "yfv",
+          "sample_name": "Jeep",
+          "Cy3": 7,
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.11822480273442,
+          "y": -0.00958454273136039,
+          "point_name": "d44",
+          "group_id": "BU21",
+          "initial_challenge": "yfv",
+          "sample_name": "Jeep",
+          "Cy3": 14,
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.03646314998148,
+          "y": -0.119997004127587,
+          "point_name": "d45",
+          "group_id": "BU23",
+          "initial_challenge": "yfv",
+          "sample_name": "Sonic",
+          "Cy3": 0,
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.01597889561961,
+          "y": 0.0403522891322528,
+          "point_name": "d46",
+          "group_id": "BU23",
+          "initial_challenge": "yfv",
+          "sample_name": "Sonic",
+          "Cy3": 3,
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.913457596072354,
+          "y": -0.089313608731003,
+          "point_name": "d47",
+          "group_id": "BU23",
+          "initial_challenge": "yfv",
+          "sample_name": "Sonic",
+          "Cy3": 7,
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.982153973758058,
+          "y": -0.0471697637544982,
+          "point_name": "d48",
+          "group_id": "BU23",
+          "initial_challenge": "yfv",
+          "sample_name": "Sonic",
+          "Cy3": 14,
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/25/13",
+          "colorize": "BU"
+        }, {
+          "x": -0.860263954323436,
+          "y": -0.329619838742555,
+          "point_name": "d49",
+          "group_id": "BU24",
+          "initial_challenge": "yfv",
+          "sample_name": "Tails",
+          "Cy3": 0,
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/29/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.16245451122455,
+          "y": -0.0699350368142693,
+          "point_name": "d50",
+          "group_id": "BU24",
+          "initial_challenge": "yfv",
+          "sample_name": "Tails",
+          "Cy3": 3,
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/29/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.05883286910509,
+          "y": -0.0873833001088725,
+          "point_name": "d51",
+          "group_id": "BU24",
+          "initial_challenge": "yfv",
+          "sample_name": "Tails",
+          "Cy3": 7,
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/29/13",
+          "colorize": "BU"
+        }, {
+          "x": -1.08054673178412,
+          "y": -0.0273766173108385,
+          "point_name": "d52",
+          "group_id": "BU24",
+          "initial_challenge": "yfv",
+          "sample_name": "Tails",
+          "Cy3": 14,
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/29/13",
+          "colorize": "BU"
+        }
+      ];
+    
+      radius = 5;
+    
+      color_scale = d3.scale.ordinal().range(["#d62728", "#24A5F9"]);
+    
+      color_legend_counts = {
+        "BU": 52,
+        "DKE": 32
+      };
+    
+      plot = new_plot({
+        width: 980,
+        height: 980,
+        padding: {
+          "top": 80,
+          "right": 400,
+          "bottom": 30,
+          "left": 100
+        },
+        data_ranges: {
+          x: [-1.35052607506467, 2.36169801289029],
+          y: [-1.31022546939583, 0.779850564294317]
+        },
+        xlab: "",
+        ylab: "",
+        title: "Dengue multidimensional scaling by group",
+        box: null,
+        xlim: null,
+        ylim: null,
+        categorical_domains: {
+          x: null,
+          y: null
+        },
+        jitter: 0,
+        ordinal_scale_padding: 1,
+        linear_scale_padding: 40
+      });
+    
+      plot.tooltip_text = function(d) {
+        return "<strong>" + d.point_name + "</strong><br>: " + (format_property(d.y)) + "<br>: " + (format_property(d.x)) + "<br>group_id: " + (format_property(d["group_id"])) + "<br>initial_challenge: " + (format_property(d["initial_challenge"])) + "<br>sample_name: " + (format_property(d["sample_name"])) + "<br>Cy3: " + (format_property(d["Cy3"])) + "<br>rechallenge_date: " + (format_property(d["rechallenge_date"])) + "<br>scan_date: " + (format_property(d["scan_date"]));
+      };
+    
+      plot.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
+        "width": plot.width,
+        "height": plot.height
+      });
+    
+      clip = plot.append("g").attr("clip-path", "url(#clip)");
+    
+      if (plot.zoom) {
+        clip.append("rect").style({
+          "cursor": "move"
+        }).attr({
+          "class": "overlay",
+          "width": plot.width,
+          "height": plot.height,
+          "fill": "none",
+          "pointer-events": "all"
+        }).call(d3.behavior.zoom().x(plot.scales.x).y(plot.scales.y).scaleExtent([1, Infinity]).on("zoom", function() {
+          return redraw();
+        }));
+        redraw = function() {
+          plot.select(".x.axis").call(plot.axes.x);
+          plot.select(".y.axis").call(plot.axes.y);
+          return g_points.attr("transform", transform);
+        };
+      }
+    
+      transform = function(d) {
+        return "translate(" + (plot.scales.x(d.x) + plot.jitters.x()) + ", " + (plot.scales.y(d.y) + plot.jitters.y()) + ")";
+      };
+    
+      g_points = clip.selectAll(".point").data(data).enter().append("g").attr({
+        "class": "point",
+        "transform": transform
+      });
+    
+      points = g_points.append("svg:circle").attr({
+        "class": "point_tooltip",
+        "r": radius,
+        "fill": function(d) {
+          return color_scale(d.colorize);
+        },
+        "title": function(d) {
+          return plot.tooltip_text(d);
+        }
+      });
+    
+      $(".point_tooltip").tooltip({
+        html: true,
+        container: "body",
+        placement: "top"
+      });
+    
+      point_names = g_points.append("text").text(function(d) {
+        return d.point_name;
+      }).attr({
+        "dy": ".32em",
+        "dx": 8,
+        "text-anchor": "left",
+        "display": "none"
+      }).style({
+        "fill": function(d) {
+          return color_scale(d.colorize);
+        },
+        "font-size": "22px"
+      });
+    
+      sidebar = plot.append("g").attr("transform", "translate(" + (plot.width + 60) + ",0)");
+    
+      g_toggle_names = sidebar.append("g").style("cursor", "pointer").style("font-size", "22px").on("click", function() {
+        return toggle_names();
+      });
+    
+      g_toggle_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr("fill", "white");
+    
+      g_toggle_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').text("Show names (" + data.length + ")");
+    
+      toggle_names = function() {
+        var showing_point_names;
+        showing_point_names = g_toggle_names.classed("show_names");
+        point_names.attr("display", function() {
+          if (showing_point_names) {
+            return "none";
+          } else {
+            return "inline";
+          }
+        });
+        return g_toggle_names.attr("class", function() {
+          if (showing_point_names) {
+            return "";
+          } else {
+            return "show_names";
+          }
+        }).select("circle").attr("fill", function() {
+          if (showing_point_names) {
+            return "white";
+          } else {
+            return "black";
+          }
+        });
+      };
+    
+      if (color_scale.range().length > 1) {
+        sidebar.append("text").attr({
+          "class": "color_title",
+          "x": -radius,
+          "y": 45,
+          "dy": ".35em"
+        }).style({
+          "font-size": "16px",
+          "font-weight": "bold"
+        }).text("Group");
+        g_color_legend = sidebar.selectAll(".key").data(color_scale.domain().reverse()).enter().append("g").attr({
+          "transform": function(d, i) {
+            return "translate(0, " + (i * (radius * 2 + 15) + 70) + ")";
+          },
+          "class": "key"
+        });
+        g_color_legend.append("circle").attr({
+          "r": radius,
+          "fill": color_scale
+        });
+        g_color_legend.append("text").attr({
+          "x": radius + 10,
+          "y": 0,
+          "dy": ".35em"
+        }).text(function(d) {
+          return "" + d + " (" + color_legend_counts[d] + ")";
+        });
+      }
+    
+    }).call(this);
+
+    </script>
+    <div class = "code">
+    knit2html("/Users/nacho/Documents/BU/Connor/projects/dengue/reports/analysis.Rmd",     stylesheet = "/Users/nacho/Documents/Code/knitr_reports/bin/../stylesheets/report.css",     options = c("base64_images", "mathjax", "highlight_code"))
+    </div>
+  </body>
+</html>

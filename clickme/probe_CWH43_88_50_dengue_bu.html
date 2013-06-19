@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <title>CWH43_88_50</title>
+
+    <link href="clickme_assets/bootstrap-tooltip.css" rel="stylesheet">
+<link href="clickme_assets/clickme.css" rel="stylesheet">
+<script src="clickme_assets/d3.v3.js"></script>
+<script src="clickme_assets/d3_aux.js"></script>
+<script src="clickme_assets/jquery.min.js"></script>
+<script src="clickme_assets/bootstrap-tooltip.v2_3.js"></script>
+
+  </head>
+
+  <body>
+    <script type="text/javascript">
+    (function() {
+      var clip, color_legend_counts, color_scale, data, g_color_legend, g_points, g_toggle_names, plot, point_names, points, radius, redraw, sidebar, toggle_names, transform;
+    
+      data = [
+        {
+          "x": "14",
+          "y": 0.0695072817843037,
+          "point_name": "d52",
+          "group_id": "BU24",
+          "initial_challenge": "yfv",
+          "sample_name": "Tails",
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/29/13",
+          "colorize": "YFV + DENV5"
+        }, {
+          "x": "7",
+          "y": 0.551787814072406,
+          "point_name": "d51",
+          "group_id": "BU24",
+          "initial_challenge": "yfv",
+          "sample_name": "Tails",
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/29/13",
+          "colorize": "YFV + DENV5"
+        }, {
+          "x": "3",
+          "y": -0.280663724973154,
+          "point_name": "d50",
+          "group_id": "BU24",
+          "initial_challenge": "yfv",
+          "sample_name": "Tails",
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/29/13",
+          "colorize": "YFV + DENV5"
+        }, {
+          "x": "0",
+          "y": 0.640958424019133,
+          "point_name": "d49",
+          "group_id": "BU24",
+          "initial_challenge": "yfv",
+          "sample_name": "Tails",
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/29/13",
+          "colorize": "YFV + DENV5"
+        }, {
+          "x": "14",
+          "y": 0.193992041352369,
+          "point_name": "d48",
+          "group_id": "BU23",
+          "initial_challenge": "yfv",
+          "sample_name": "Sonic",
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/25/13",
+          "colorize": "YFV + DENV5"
+        }, {
+          "x": "7",
+          "y": 0.253748094933143,
+          "point_name": "d47",
+          "group_id": "BU23",
+          "initial_challenge": "yfv",
+          "sample_name": "Sonic",
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/25/13",
+          "colorize": "YFV + DENV5"
+        }, {
+          "x": "3",
+          "y": 0.0234687194316481,
+          "point_name": "d46",
+          "group_id": "BU23",
+          "initial_challenge": "yfv",
+          "sample_name": "Sonic",
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/25/13",
+          "colorize": "YFV + DENV5"
+        }, {
+          "x": "0",
+          "y": 0.318251755418539,
+          "point_name": "d45",
+          "group_id": "BU23",
+          "initial_challenge": "yfv",
+          "sample_name": "Sonic",
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/25/13",
+          "colorize": "YFV + DENV5"
+        }, {
+          "x": "14",
+          "y": 0.221508529041901,
+          "point_name": "d44",
+          "group_id": "BU21",
+          "initial_challenge": "yfv",
+          "sample_name": "Jeep",
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/25/13",
+          "colorize": "YFV + DENV5"
+        }, {
+          "x": "7",
+          "y": 0.205620624171303,
+          "point_name": "d43",
+          "group_id": "BU21",
+          "initial_challenge": "yfv",
+          "sample_name": "Jeep",
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/25/13",
+          "colorize": "YFV + DENV5"
+        }, {
+          "x": "3",
+          "y": 0.638010982017591,
+          "point_name": "d42",
+          "group_id": "BU21",
+          "initial_challenge": "yfv",
+          "sample_name": "Jeep",
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/25/13",
+          "colorize": "YFV + DENV5"
+        }, {
+          "x": "0",
+          "y": -0.350094987802539,
+          "point_name": "d41",
+          "group_id": "BU21",
+          "initial_challenge": "yfv",
+          "sample_name": "Jeep",
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/25/13",
+          "colorize": "YFV + DENV5"
+        }, {
+          "x": "14",
+          "y": 0.0329299211673284,
+          "point_name": "d40",
+          "group_id": "BU16",
+          "initial_challenge": "denv4",
+          "sample_name": "Applebee",
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV4 + DENV5"
+        }, {
+          "x": "7",
+          "y": 0.33313540302777,
+          "point_name": "d39",
+          "group_id": "BU16",
+          "initial_challenge": "denv4",
+          "sample_name": "Applebee",
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV4 + DENV5"
+        }, {
+          "x": "3",
+          "y": 0.429587229871057,
+          "point_name": "d38",
+          "group_id": "BU16",
+          "initial_challenge": "denv4",
+          "sample_name": "Applebee",
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV4 + DENV5"
+        }, {
+          "x": "0",
+          "y": 0.320029119199847,
+          "point_name": "d37",
+          "group_id": "BU16",
+          "initial_challenge": "denv4",
+          "sample_name": "Applebee",
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV4 + DENV5"
+        }, {
+          "x": "14",
+          "y": 0.303351781927778,
+          "point_name": "d36",
+          "group_id": "BU13",
+          "initial_challenge": "denv4",
+          "sample_name": "Franconia",
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV4 + DENV5"
+        }, {
+          "x": "7",
+          "y": 0.445312938738401,
+          "point_name": "d35",
+          "group_id": "BU13",
+          "initial_challenge": "denv4",
+          "sample_name": "Franconia",
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV4 + DENV5"
+        }, {
+          "x": "3",
+          "y": 0.2333580310828,
+          "point_name": "d34",
+          "group_id": "BU13",
+          "initial_challenge": "denv4",
+          "sample_name": "Franconia",
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV4 + DENV5"
+        }, {
+          "x": "0",
+          "y": -0.242583278700559,
+          "point_name": "d33",
+          "group_id": "BU13",
+          "initial_challenge": "denv4",
+          "sample_name": "Franconia",
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV4 + DENV5"
+        }, {
+          "x": "14",
+          "y": 0.0621893014389432,
+          "point_name": "d32",
+          "group_id": "BU12",
+          "initial_challenge": "denv3",
+          "sample_name": "Lexus",
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "7",
+          "y": 0.278569672431472,
+          "point_name": "d31",
+          "group_id": "BU12",
+          "initial_challenge": "denv3",
+          "sample_name": "Lexus",
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "3",
+          "y": -0.114464056204905,
+          "point_name": "d30",
+          "group_id": "BU12",
+          "initial_challenge": "denv3",
+          "sample_name": "Lexus",
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "0",
+          "y": 0.0998011606752289,
+          "point_name": "d29",
+          "group_id": "BU12",
+          "initial_challenge": "denv3",
+          "sample_name": "Lexus",
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "14",
+          "y": 0.213432863391101,
+          "point_name": "d28",
+          "group_id": "BU11",
+          "initial_challenge": "denv3",
+          "sample_name": "Lambagini",
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "7",
+          "y": -0.00156399066282065,
+          "point_name": "d27",
+          "group_id": "BU11",
+          "initial_challenge": "denv3",
+          "sample_name": "Lambagini",
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "3",
+          "y": -0.10065980716265,
+          "point_name": "d26",
+          "group_id": "BU11",
+          "initial_challenge": "denv3",
+          "sample_name": "Lambagini",
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "0",
+          "y": 1.0212934098456,
+          "point_name": "d25",
+          "group_id": "BU11",
+          "initial_challenge": "denv3",
+          "sample_name": "Lambagini",
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/25/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "7",
+          "y": 0.239964379888824,
+          "point_name": "d23",
+          "group_id": "BU10",
+          "initial_challenge": "denv3",
+          "sample_name": "Squam",
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "3",
+          "y": 0.35732634012985,
+          "point_name": "d22",
+          "group_id": "BU10",
+          "initial_challenge": "denv3",
+          "sample_name": "Squam",
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "0",
+          "y": 0.354860854301928,
+          "point_name": "d21",
+          "group_id": "BU10",
+          "initial_challenge": "denv3",
+          "sample_name": "Squam",
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "14",
+          "y": 0.275157354955514,
+          "point_name": "d20",
+          "group_id": "BU9",
+          "initial_challenge": "denv3",
+          "sample_name": "Winnie",
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "7",
+          "y": -0.0560831044456815,
+          "point_name": "d19",
+          "group_id": "BU9",
+          "initial_challenge": "denv3",
+          "sample_name": "Winnie",
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "3",
+          "y": -0.5660817416964,
+          "point_name": "d18",
+          "group_id": "BU9",
+          "initial_challenge": "denv3",
+          "sample_name": "Winnie",
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "0",
+          "y": -0.0215422646487808,
+          "point_name": "d17",
+          "group_id": "BU9",
+          "initial_challenge": "denv3",
+          "sample_name": "Winnie",
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV3 + DENV5"
+        }, {
+          "x": "14",
+          "y": 0.527297397317571,
+          "point_name": "d16",
+          "group_id": "BU8",
+          "initial_challenge": "denv2",
+          "sample_name": "Dunkin",
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV2 + DENV5"
+        }, {
+          "x": "7",
+          "y": 0.108379913291097,
+          "point_name": "d15",
+          "group_id": "BU8",
+          "initial_challenge": "denv2",
+          "sample_name": "Dunkin",
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV2 + DENV5"
+        }, {
+          "x": "3",
+          "y": 0.525737847476945,
+          "point_name": "d14",
+          "group_id": "BU8",
+          "initial_challenge": "denv2",
+          "sample_name": "Dunkin",
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV2 + DENV5"
+        }, {
+          "x": "0",
+          "y": 0.736840435828729,
+          "point_name": "d13",
+          "group_id": "BU8",
+          "initial_challenge": "denv2",
+          "sample_name": "Dunkin",
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV2 + DENV5"
+        }, {
+          "x": "14",
+          "y": 1.03352269751125,
+          "point_name": "d12",
+          "group_id": "BU7",
+          "initial_challenge": "denv2",
+          "sample_name": "Krispy",
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV2 + DENV5"
+        }, {
+          "x": "7",
+          "y": 0.446241320921117,
+          "point_name": "d11",
+          "group_id": "BU7",
+          "initial_challenge": "denv2",
+          "sample_name": "Krispy",
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV2 + DENV5"
+        }, {
+          "x": "3",
+          "y": 1.04305192032008,
+          "point_name": "d10",
+          "group_id": "BU7",
+          "initial_challenge": "denv2",
+          "sample_name": "Krispy",
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV2 + DENV5"
+        }, {
+          "x": "0",
+          "y": 0.757427588302862,
+          "point_name": "d9",
+          "group_id": "BU7",
+          "initial_challenge": "denv2",
+          "sample_name": "Krispy",
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV2 + DENV5"
+        }, {
+          "x": "14",
+          "y": 0.0670707989241803,
+          "point_name": "d8",
+          "group_id": "BU3",
+          "initial_challenge": "denv1",
+          "sample_name": "Chevy",
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV1 + DENV5"
+        }, {
+          "x": "7",
+          "y": 2.01252074019658,
+          "point_name": "d7",
+          "group_id": "BU3",
+          "initial_challenge": "denv1",
+          "sample_name": "Chevy",
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV1 + DENV5"
+        }, {
+          "x": "3",
+          "y": -2.72200181573594,
+          "point_name": "d6",
+          "group_id": "BU3",
+          "initial_challenge": "denv1",
+          "sample_name": "Chevy",
+          "rechallenge_date": "12/7/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV1 + DENV5"
+        }, {
+          "x": "14",
+          "y": -0.645788491015928,
+          "point_name": "d4",
+          "group_id": "BU1",
+          "initial_challenge": "denv1",
+          "sample_name": "Jelly",
+          "rechallenge_date": "12/18/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV1 + DENV5"
+        }, {
+          "x": "7",
+          "y": 0.0656705986345242,
+          "point_name": "d3",
+          "group_id": "BU1",
+          "initial_challenge": "denv1",
+          "sample_name": "Jelly",
+          "rechallenge_date": "12/11/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV1 + DENV5"
+        }, {
+          "x": "0",
+          "y": 3.08610818706047,
+          "point_name": "d1",
+          "group_id": "BU1",
+          "initial_challenge": "denv1",
+          "sample_name": "Jelly",
+          "rechallenge_date": "12/4/12",
+          "scan_date": "1/24/13",
+          "colorize": "DENV1 + DENV5"
+        }
+      ];
+    
+      radius = 5;
+    
+      color_scale = d3.scale.ordinal().range(["black", "#ff7f0e", "#9467bd", "#d62728", "#24A5F9"]);
+    
+      color_legend_counts = {
+        "DENV1 + DENV5": 8,
+        "DENV2 + DENV5": 8,
+        "DENV3 + DENV5": 16,
+        "DENV4 + DENV5": 8,
+        "YFV + DENV5": 12
+      };
+    
+      plot = new_plot({
+        width: 980,
+        height: 980,
+        padding: {
+          "top": 80,
+          "right": 400,
+          "bottom": 30,
+          "left": 100
+        },
+        data_ranges: {
+          x: ["0", "7"],
+          y: [-2.72200181573594, 3.08610818706047]
+        },
+        xlab: "Days post-infection",
+        ylab: "Expression (log2 R/G)",
+        title: "CWH43_88_50",
+        box: null,
+        xlim: null,
+        ylim: null,
+        categorical_domains: {
+          x: ["0", "3", "7", "14"],
+          y: null
+        },
+        jitter: 0.2,
+        ordinal_scale_padding: 1,
+        linear_scale_padding: 40
+      });
+    
+      plot.tooltip_text = function(d) {
+        return "<strong>" + d.point_name + "</strong><br>Expression (log2 R/G): " + (format_property(d.y)) + "<br>Days post-infection: " + (format_property(d.x)) + "<br>group_id: " + (format_property(d["group_id"])) + "<br>initial_challenge: " + (format_property(d["initial_challenge"])) + "<br>sample_name: " + (format_property(d["sample_name"])) + "<br>rechallenge_date: " + (format_property(d["rechallenge_date"])) + "<br>scan_date: " + (format_property(d["scan_date"]));
+      };
+    
+      plot.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
+        "width": plot.width,
+        "height": plot.height
+      });
+    
+      clip = plot.append("g").attr("clip-path", "url(#clip)");
+    
+      if (plot.zoom) {
+        clip.append("rect").style({
+          "cursor": "move"
+        }).attr({
+          "class": "overlay",
+          "width": plot.width,
+          "height": plot.height,
+          "fill": "none",
+          "pointer-events": "all"
+        }).call(d3.behavior.zoom().x(plot.scales.x).y(plot.scales.y).scaleExtent([1, Infinity]).on("zoom", function() {
+          return redraw();
+        }));
+        redraw = function() {
+          plot.select(".x.axis").call(plot.axes.x);
+          plot.select(".y.axis").call(plot.axes.y);
+          return g_points.attr("transform", transform);
+        };
+      }
+    
+      transform = function(d) {
+        return "translate(" + (plot.scales.x(d.x) + plot.jitters.x()) + ", " + (plot.scales.y(d.y) + plot.jitters.y()) + ")";
+      };
+    
+      g_points = clip.selectAll(".point").data(data).enter().append("g").attr({
+        "class": "point",
+        "transform": transform
+      });
+    
+      points = g_points.append("svg:circle").attr({
+        "class": "point_tooltip",
+        "r": radius,
+        "fill": function(d) {
+          return color_scale(d.colorize);
+        },
+        "title": function(d) {
+          return plot.tooltip_text(d);
+        }
+      });
+    
+      $(".point_tooltip").tooltip({
+        html: true,
+        container: "body",
+        placement: "top"
+      });
+    
+      point_names = g_points.append("text").text(function(d) {
+        return d.point_name;
+      }).attr({
+        "dy": ".32em",
+        "dx": 8,
+        "text-anchor": "left",
+        "display": "none"
+      }).style({
+        "fill": function(d) {
+          return color_scale(d.colorize);
+        },
+        "font-size": "22px"
+      });
+    
+      sidebar = plot.append("g").attr("transform", "translate(" + (plot.width + 60) + ",0)");
+    
+      g_toggle_names = sidebar.append("g").style("cursor", "pointer").style("font-size", "22px").on("click", function() {
+        return toggle_names();
+      });
+    
+      g_toggle_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr("fill", "white");
+    
+      g_toggle_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').text("Show names (" + data.length + ")");
+    
+      toggle_names = function() {
+        var showing_point_names;
+        showing_point_names = g_toggle_names.classed("show_names");
+        point_names.attr("display", function() {
+          if (showing_point_names) {
+            return "none";
+          } else {
+            return "inline";
+          }
+        });
+        return g_toggle_names.attr("class", function() {
+          if (showing_point_names) {
+            return "";
+          } else {
+            return "show_names";
+          }
+        }).select("circle").attr("fill", function() {
+          if (showing_point_names) {
+            return "white";
+          } else {
+            return "black";
+          }
+        });
+      };
+    
+      if (color_scale.range().length > 1) {
+        sidebar.append("text").attr({
+          "class": "color_title",
+          "x": -radius,
+          "y": 45,
+          "dy": ".35em"
+        }).style({
+          "font-size": "16px",
+          "font-weight": "bold"
+        }).text("Initial challenge");
+        g_color_legend = sidebar.selectAll(".key").data(color_scale.domain().reverse()).enter().append("g").attr({
+          "transform": function(d, i) {
+            return "translate(0, " + (i * (radius * 2 + 15) + 70) + ")";
+          },
+          "class": "key"
+        });
+        g_color_legend.append("circle").attr({
+          "r": radius,
+          "fill": color_scale
+        });
+        g_color_legend.append("text").attr({
+          "x": radius + 10,
+          "y": 0,
+          "dy": ".35em"
+        }).text(function(d) {
+          return "" + d + " (" + color_legend_counts[d] + ")";
+        });
+      }
+    
+    }).call(this);
+
+    </script>
+    <div class = "code">
+    knit2html("/Users/nacho/Documents/BU/Connor/projects/dengue/reports/analysis.Rmd",     stylesheet = "/Users/nacho/Documents/Code/knitr_reports/bin/../stylesheets/report.css",     options = c("base64_images", "mathjax", "highlight_code"))
+    </div>
+  </body>
+</html>
