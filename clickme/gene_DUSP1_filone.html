@@ -23,23 +23,28 @@
         {
           "x": "hpi_0",
           "y": 0,
-          "point_name": "1"
+          "point_name": "1",
+          "normalized_counts": 329.097237815875
         }, {
           "x": "hpi_0_5",
           "y": 0.846014876076962,
-          "point_name": "2"
+          "point_name": "2",
+          "normalized_counts": 591.561759026802
         }, {
           "x": "hpi_2",
           "y": 0.996505406986249,
-          "point_name": "3"
+          "point_name": "3",
+          "normalized_counts": 656.602082059916
         }, {
           "x": "hpi_6",
           "y": 0.484282516480842,
-          "point_name": "4"
+          "point_name": "4",
+          "normalized_counts": 460.370833117172
         }, {
           "x": "hpi_18",
           "y": 1.49244601358241,
-          "point_name": "5"
+          "point_name": "5",
+          "normalized_counts": 925.966455864163
         }
       ];
     
@@ -63,7 +68,7 @@
           y: [0, 1.49244601358241]
         },
         xlab: "Hours post-infection",
-        ylab: "Normalized counts",
+        ylab: "log2 fold change",
         title: "DUSP1",
         box: null,
         xlim: null,
@@ -78,7 +83,7 @@
       });
     
       plot.tooltip_text = function(d) {
-        return "<strong>" + d.point_name + "</strong><br>Normalized counts: " + (format_property(d.y)) + "<br>Hours post-infection: " + (format_property(d.x));
+        return "<strong>" + d.point_name + "</strong><br>log2 fold change: " + (format_property(d.y)) + "<br>Hours post-infection: " + (format_property(d.x)) + "<br>normalized_counts: " + (format_property(d["normalized_counts"]));
       };
     
       plot.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
@@ -215,7 +220,7 @@
 
     </script>
     <div class = "code">
-    clickme_points(colnames(filone$log2_fold_changes), as.numeric(filone$log2_fold_changes[gene_name,     ]), xlab = "Hours post-infection", ylab = "Normalized counts",     title = paste0(gene_name), dir = cb, file_name = paste0("gene_",         gene_name, "_filone.html"), link = TRUE, open = TRUE)
+    clickme_points(colnames(filone$log2_fold_changes), as.numeric(filone$log2_fold_changes[gene_name,     ]), xlab = "Hours post-infection", ylab = "log2 fold change",     title = paste0(gene_name), dir = cb, extra = data.frame(normalized_counts = unname(t(filone$normalized_counts[gene_name,         ]))), file_name = paste0("gene_", gene_name, "_filone.html"),     link = TRUE, open = TRUE)
     </div>
   </body>
 </html>
