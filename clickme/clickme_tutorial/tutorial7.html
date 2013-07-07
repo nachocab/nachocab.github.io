@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <base target="_blank"> <!-- open all links on a new tab -->
+
+    <title>Points</title>
+
+    <link href="clickme_assets/bootstrap-tooltip.css" rel="stylesheet">
+<link href="clickme_assets/clickme.css" rel="stylesheet">
+<script src="clickme_assets/d3.v3.js"></script>
+<script src="clickme_assets/d3_aux.js"></script>
+<script src="clickme_assets/jquery.min.js"></script>
+<script src="clickme_assets/bootstrap-tooltip.v2_3.js"></script>
+
+  </head>
+
+  <body>
+    <script type="text/javascript">
+    (function() {
+      var clip, color_legend_counts, color_scale, color_title, data, g_color_legend, g_points, g_toggle_names, plot, point_names, points, radius, redraw, sidebar, toggle_names, transform;
+    
+      data = [{"x":"e","y":0.830373167981674,"point_name":"94","group":"Somewhat"},
+{"x":"e","y":-0.766081999604665,"point_name":"88","group":"Somewhat"},
+{"x":"e","y":-1.46725002909224,"point_name":"84","group":"Somewhat"},
+{"x":"e","y":0.219924803660651,"point_name":"83","group":"Somewhat"},
+{"x":"e","y":0.983895570053379,"point_name":"82","group":"Somewhat"},
+{"x":"e","y":-1.23132342155804,"point_name":"81","group":"Somewhat"},
+{"x":"d","y":0.787639605630162,"point_name":"77","group":"Somewhat"},
+{"x":"d","y":-0.077152935356531,"point_name":"74","group":"Somewhat"},
+{"x":"d","y":0.456998805423414,"point_name":"73","group":"Somewhat"},
+{"x":"d","y":2.20610246454047,"point_name":"66","group":"Somewhat"},
+{"x":"d","y":1.05848304870902,"point_name":"63","group":"Somewhat"},
+{"x":"c","y":1.86929062242358,"point_name":"60","group":"Somewhat"},
+{"x":"b","y":-0.750819001193448,"point_name":"46","group":"Somewhat"},
+{"x":"b","y":-0.0568967778473925,"point_name":"40","group":"Somewhat"},
+{"x":"b","y":-0.528279904445006,"point_name":"38","group":"Somewhat"},
+{"x":"b","y":0.306557860789766,"point_name":"35","group":"Somewhat"},
+{"x":"b","y":-1.51839408178679,"point_name":"34","group":"Somewhat"},
+{"x":"b","y":0.531496192632572,"point_name":"33","group":"Somewhat"},
+{"x":"b","y":-0.0376341714670479,"point_name":"28","group":"Somewhat"},
+{"x":"b","y":-0.214579408546869,"point_name":"23","group":"Somewhat"},
+{"x":"a","y":-0.392807929441984,"point_name":"16","group":"Somewhat"},
+{"x":"a","y":1.68217608051942,"point_name":"10","group":"Somewhat"},
+{"x":"a","y":0.910174229495227,"point_name":"8","group":"Somewhat"},
+{"x":"a","y":0.716707476017206,"point_name":"7","group":"Somewhat"},
+{"x":"a","y":1.76728726937265,"point_name":"6","group":"Somewhat"},
+{"x":"a","y":-0.910921648552446,"point_name":"3","group":"Somewhat"},
+{"x":"e","y":-1.01584746530465,"point_name":"98","group":"A lot"},
+{"x":"e","y":1.44115770684428,"point_name":"97","group":"A lot"},
+{"x":"e","y":-1.04798441280774,"point_name":"96","group":"A lot"},
+{"x":"e","y":0.402011779486338,"point_name":"92","group":"A lot"},
+{"x":"e","y":-0.17710396143654,"point_name":"91","group":"A lot"},
+{"x":"e","y":0.521022742648139,"point_name":"85","group":"A lot"},
+{"x":"d","y":2.07524500865228,"point_name":"78","group":"A lot"},
+{"x":"d","y":-0.334000842366544,"point_name":"75","group":"A lot"},
+{"x":"d","y":0.105802367893711,"point_name":"72","group":"A lot"},
+{"x":"d","y":2.30797839905936,"point_name":"71","group":"A lot"},
+{"x":"d","y":-0.144399601954219,"point_name":"69","group":"A lot"},
+{"x":"d","y":-0.255027030141015,"point_name":"67","group":"A lot"},
+{"x":"d","y":-0.619243048231147,"point_name":"65","group":"A lot"},
+{"x":"c","y":-1.48746031014148,"point_name":"55","group":"A lot"},
+{"x":"c","y":-0.929362147453702,"point_name":"54","group":"A lot"},
+{"x":"c","y":-0.318068374543844,"point_name":"53","group":"A lot"},
+{"x":"c","y":0.450187101272656,"point_name":"51","group":"A lot"},
+{"x":"c","y":-1.28630053043433,"point_name":"49","group":"A lot"},
+{"x":"b","y":-1.11592010504285,"point_name":"45","group":"A lot"},
+{"x":"b","y":-1.664972436212,"point_name":"43","group":"A lot"},
+{"x":"b","y":-0.652094780680999,"point_name":"39","group":"A lot"},
+{"x":"b","y":0.0601604404345152,"point_name":"31","group":"A lot"},
+{"x":"b","y":0.712666307051405,"point_name":"26","group":"A lot"},
+{"x":"b","y":-0.100190741213562,"point_name":"25","group":"A lot"},
+{"x":"b","y":-0.179556530043387,"point_name":"24","group":"A lot"},
+{"x":"b","y":1.34303882517041,"point_name":"22","group":"A lot"},
+{"x":"a","y":-0.177330482269606,"point_name":"20","group":"A lot"},
+{"x":"a","y":-0.279113302976559,"point_name":"18","group":"A lot"},
+{"x":"a","y":-0.207380743601965,"point_name":"15","group":"A lot"},
+{"x":"a","y":-0.650696353310367,"point_name":"14","group":"A lot"},
+{"x":"a","y":-0.461644730360566,"point_name":"12","group":"A lot"},
+{"x":"a","y":0.384185357826345,"point_name":"9","group":"A lot"},
+{"x":"a","y":-0.620366677224124,"point_name":"1","group":"A lot"},
+{"x":"e","y":-0.38107605110892,"point_name":"100","group":"A little"},
+{"x":"e","y":0.411974712317515,"point_name":"99","group":"A little"},
+{"x":"e","y":-1.20808278630446,"point_name":"95","group":"A little"},
+{"x":"e","y":-0.731748173119606,"point_name":"93","group":"A little"},
+{"x":"e","y":-0.926109497377437,"point_name":"90","group":"A little"},
+{"x":"e","y":-0.430211753928547,"point_name":"89","group":"A little"},
+{"x":"e","y":1.4645873119698,"point_name":"87","group":"A little"},
+{"x":"e","y":-0.158754604716016,"point_name":"86","group":"A little"},
+{"x":"e","y":1.2079083983867,"point_name":"80","group":"A little"},
+{"x":"e","y":1.02739243876377,"point_name":"79","group":"A little"},
+{"x":"d","y":-0.0347260283112762,"point_name":"76","group":"A little"},
+{"x":"d","y":0.207538339232345,"point_name":"70","group":"A little"},
+{"x":"d","y":-1.42449465021281,"point_name":"68","group":"A little"},
+{"x":"d","y":0.886422651374936,"point_name":"64","group":"A little"},
+{"x":"d","y":-0.238647100913033,"point_name":"62","group":"A little"},
+{"x":"c","y":0.425100377372448,"point_name":"61","group":"A little"},
+{"x":"c","y":-1.38442684738449,"point_name":"59","group":"A little"},
+{"x":"c","y":-0.621266694796823,"point_name":"58","group":"A little"},
+{"x":"c","y":1.00002880371391,"point_name":"57","group":"A little"},
+{"x":"c","y":-1.07519229661568,"point_name":"56","group":"A little"},
+{"x":"c","y":-0.018559832714638,"point_name":"52","group":"A little"},
+{"x":"c","y":-1.64060553441858,"point_name":"50","group":"A little"},
+{"x":"c","y":0.0173956196932517,"point_name":"48","group":"A little"},
+{"x":"c","y":2.08716654562835,"point_name":"47","group":"A little"},
+{"x":"b","y":-0.463530401472386,"point_name":"44","group":"A little"},
+{"x":"b","y":1.17658331201856,"point_name":"42","group":"A little"},
+{"x":"b","y":-1.91435942568001,"point_name":"41","group":"A little"},
+{"x":"b","y":-0.300976126836611,"point_name":"37","group":"A little"},
+{"x":"b","y":-1.53644982353759,"point_name":"36","group":"A little"},
+{"x":"b","y":-0.588894486259664,"point_name":"32","group":"A little"},
+{"x":"b","y":-0.324270272246319,"point_name":"30","group":"A little"},
+{"x":"b","y":-0.681660478755657,"point_name":"29","group":"A little"},
+{"x":"b","y":-0.0735644041263263,"point_name":"27","group":"A little"},
+{"x":"a","y":-0.505957462114257,"point_name":"21","group":"A little"},
+{"x":"a","y":0.494188331267827,"point_name":"19","group":"A little"},
+{"x":"a","y":-0.319992868548507,"point_name":"17","group":"A little"},
+{"x":"a","y":1.43228223854166,"point_name":"13","group":"A little"},
+{"x":"a","y":-0.635736453948977,"point_name":"11","group":"A little"},
+{"x":"a","y":-0.654584643918818,"point_name":"5","group":"A little"},
+{"x":"a","y":0.158028772404075,"point_name":"4","group":"A little"},
+{"x":"a","y":0.0421158731442352,"point_name":"2","group":"A little"}];
+    
+      radius = 5;
+    
+      color_scale = d3.scale.ordinal().range(["#9467bd","#d62728","#24A5F9"]);;
+    
+      color_title = "How much I like each point";
+    
+      color_legend_counts = {"A little":41,"A lot":33,"Somewhat":26};
+    
+      plot = new_plot({
+        width: 500,
+        height: 500,
+        padding: {"top":100,"right":400,"bottom":100,"left":100},
+        xlab: "Letter",
+        ylab: "y",
+        rotate_label: {
+          y: true
+        },
+        title: "Points",
+        box: false,
+        xlim: null,
+        ylim: null,
+        data_ranges: {
+          x: ["e","d","c","b","a"],
+          y: [-1.91435942568001,2.30797839905936]
+        },
+        categorical_domains: {
+          x: ["e","d","c","b","a"],
+          y: null
+        },
+        jitter: 0.2,
+        ordinal_scale_padding: 1,
+        linear_scale_padding: 40
+      });
+    
+      plot.tooltip_text = function(d) {
+        return "<strong>" + d.point_name + "</strong>" + "<br>" + "y: " + format_property(d.y) + "<br>" + "Letter: " + format_property(d.x) + "<br>" + "group: " + format_property(d["group"]);
+      };
+    
+      plot.center.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
+        "width": plot.width,
+        "height": plot.height
+      });
+    
+      clip = plot.center.append("g").attr("clip-path", "url(#clip)");
+    
+      if (plot.zoom) {
+        clip.append("rect").style({
+          "cursor": "move"
+        }).attr({
+          "class": "overlay",
+          "width": plot.width,
+          "height": plot.height,
+          "fill": "none",
+          "pointer-events": "all"
+        }).call(d3.behavior.zoom().x(plot.scales.x).y(plot.scales.y).scaleExtent([1, Infinity]).on("zoom", function() {
+          return redraw();
+        }));
+        redraw = function() {
+          plot.select(".x.axis").call(plot.axes.x);
+          plot.select(".y.axis").call(plot.axes.y);
+          return g_points.attr("transform", transform);
+        };
+      }
+    
+      transform = function(d) {
+        return "translate(" + (plot.scales.x(d.x) + plot.jitters.x()) + ", " + (plot.scales.y(d.y) + plot.jitters.y()) + ")";
+      };
+    
+      g_points = clip.selectAll(".point").data(data).enter().append("g").attr({
+        "class": "point",
+        "transform": transform
+      });
+    
+      points = g_points.append("svg:circle").attr({
+        "class": "point_tooltip",
+        "r": radius,
+        "fill": function(d) {
+          return color_scale(d.group);
+        },
+        "title": function(d) {
+          return plot.tooltip_text(d);
+        }
+      });
+    
+      $(".point_tooltip").tooltip({
+        html: true,
+        container: "body",
+        placement: "top"
+      });
+    
+      point_names = g_points.append("text").text(function(d) {
+        return d.point_name;
+      }).attr({
+        "dy": ".32em",
+        "dx": 8,
+        "text-anchor": "left",
+        "display": "none"
+      }).style({
+        "fill": function(d) {
+          return color_scale(d.group);
+        },
+        "font-size": "22px"
+      });
+    
+      if (true) {
+        sidebar = plot.right_margin.append("g").attr("transform", "translate(60,0)");
+        g_toggle_names = sidebar.append("g").style("cursor", "pointer").style("font-size", "22px").on("click", function() {
+          return toggle_names();
+        });
+        g_toggle_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr("fill", "white");
+        g_toggle_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').text("Show names (" + data.length + ")");
+        toggle_names = function() {
+          var showing_point_names;
+          showing_point_names = g_toggle_names.classed("show_names");
+          point_names.attr("display", function() {
+            if (showing_point_names) {
+              return "none";
+            } else {
+              return "inline";
+            }
+          });
+          return g_toggle_names.attr("class", function() {
+            if (showing_point_names) {
+              return "";
+            } else {
+              return "show_names";
+            }
+          }).select("circle").attr("fill", function() {
+            if (showing_point_names) {
+              return "white";
+            } else {
+              return "black";
+            }
+          });
+        };
+        if (color_scale.range().length > 1) {
+          sidebar.append("text").attr({
+            "class": "color_title",
+            "x": -radius,
+            "y": 45,
+            "dy": ".35em"
+          }).style({
+            "font-size": "16px",
+            "font-weight": "bold"
+          }).text(color_title);
+          g_color_legend = sidebar.selectAll(".key").data(color_scale.domain().reverse()).enter().append("g").attr({
+            "transform": function(d, i) {
+              return "translate(0, " + (i * (radius * 2 + 15) + 70) + ")";
+            },
+            "class": "key"
+          });
+          g_color_legend.append("circle").attr({
+            "r": radius,
+            "fill": color_scale
+          });
+          g_color_legend.append("text").attr({
+            "x": radius + 10,
+            "y": 0,
+            "dy": ".35em"
+          }).text(function(d) {
+            return "" + d + " (" + color_legend_counts[d] + ")";
+          });
+        }
+      }
+    
+    }).call(this);
+
+    </script>
+    <div class = "code">
+        Code:<br><br>clickme("points", data, jitter = 0.2, xlab = "Letter", color_groups = data$category, color_title = "How much I like each point")
+    </div>
+  </body>
+</html>

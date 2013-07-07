@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <base target="_blank"> <!-- open all links on a new tab -->
+
+    <title>Points</title>
+
+    <link href="clickme_assets/bootstrap-tooltip.css" rel="stylesheet">
+<link href="clickme_assets/clickme.css" rel="stylesheet">
+<script src="clickme_assets/d3.v3.js"></script>
+<script src="clickme_assets/d3_aux.js"></script>
+<script src="clickme_assets/jquery.min.js"></script>
+<script src="clickme_assets/bootstrap-tooltip.v2_3.js"></script>
+
+  </head>
+
+  <body>
+    <script type="text/javascript">
+    (function() {
+      var clip, color_legend_counts, color_scale, color_title, data, g_color_legend, g_points, g_toggle_names, plot, point_names, points, radius, redraw, sidebar, toggle_names, transform;
+    
+      data = [{"x":-0.38107605110892,"y":-0.473400636439312,"point_name":"100","group":"negative"},
+{"x":0.411974712317515,"y":-1.22461261489836,"point_name":"99","group":"negative"},
+{"x":-1.01584746530465,"y":-0.573265414236886,"point_name":"98","group":"negative"},
+{"x":1.44115770684428,"y":-1.27659220845804,"point_name":"97","group":"negative"},
+{"x":-0.17710396143654,"y":-0.54252003099165,"point_name":"91","group":"negative"},
+{"x":-0.766081999604665,"y":-0.304183923634301,"point_name":"88","group":"negative"},
+{"x":-1.46725002909224,"y":-1.52356680042976,"point_name":"84","group":"negative"},
+{"x":0.983895570053379,"y":-0.135178615123832,"point_name":"82","group":"negative"},
+{"x":-1.23132342155804,"y":-0.568668732818502,"point_name":"81","group":"negative"},
+{"x":1.2079083983867,"y":-0.589520946188072,"point_name":"80","group":"negative"},
+{"x":0.787639605630162,"y":-0.443291873218433,"point_name":"77","group":"negative"},
+{"x":-0.334000842366544,"y":-1.2536334002391,"point_name":"75","group":"negative"},
+{"x":-0.077152935356531,"y":-0.934097631644252,"point_name":"74","group":"negative"},
+{"x":0.105802367893711,"y":-0.709946430921815,"point_name":"72","group":"negative"},
+{"x":-0.255027030141015,"y":-1.80495862889104,"point_name":"67","group":"negative"},
+{"x":-0.619243048231147,"y":-0.743273208882405,"point_name":"65","group":"negative"},
+{"x":-0.238647100913033,"y":-0.0392400027331692,"point_name":"62","group":"negative"},
+{"x":1.86929062242358,"y":-0.135054603880824,"point_name":"60","group":"negative"},
+{"x":-0.621266694796823,"y":-1.04413462631653,"point_name":"58","group":"negative"},
+{"x":1.00002880371391,"y":-0.367221476466509,"point_name":"57","group":"negative"},
+{"x":-0.929362147453702,"y":-1.12936309608079,"point_name":"54","group":"negative"},
+{"x":-0.018559832714638,"y":-0.612026393250771,"point_name":"52","group":"negative"},
+{"x":-1.28630053043433,"y":-0.112346212150228,"point_name":"49","group":"negative"},
+{"x":-0.750819001193448,"y":-0.70749515696212,"point_name":"46","group":"negative"},
+{"x":-1.11592010504285,"y":-0.68875569454952,"point_name":"45","group":"negative"},
+{"x":1.17658331201856,"y":-0.253361680136508,"point_name":"42","group":"negative"},
+{"x":-1.91435942568001,"y":-0.164523596253587,"point_name":"41","group":"negative"},
+{"x":-0.528279904445006,"y":-0.0593133967111857,"point_name":"38","group":"negative"},
+{"x":-0.300976126836611,"y":-0.394289953710349,"point_name":"37","group":"negative"},
+{"x":-1.53644982353759,"y":-0.41499456329968,"point_name":"36","group":"negative"},
+{"x":0.306557860789766,"y":-1.37705955682861,"point_name":"35","group":"negative"},
+{"x":-1.51839408178679,"y":-0.0538050405829051,"point_name":"34","group":"negative"},
+{"x":-0.588894486259664,"y":-0.102787727342996,"point_name":"32","group":"negative"},
+{"x":-0.681660478755657,"y":-0.47815005510862,"point_name":"29","group":"negative"},
+{"x":-0.0376341714670479,"y":-1.47075238389927,"point_name":"28","group":"negative"},
+{"x":-0.0735644041263263,"y":-0.155795506705329,"point_name":"27","group":"negative"},
+{"x":0.712666307051405,"y":-0.0561287395290008,"point_name":"26","group":"negative"},
+{"x":-0.179556530043387,"y":-1.98935169586337,"point_name":"24","group":"negative"},
+{"x":-0.319992868548507,"y":-0.0161902630989461,"point_name":"17","group":"negative"},
+{"x":-0.392807929441984,"y":-0.0449336090152309,"point_name":"16","group":"negative"},
+{"x":-0.650696353310367,"y":-2.2146998871775,"point_name":"14","group":"negative"},
+{"x":1.43228223854166,"y":-0.621240580541804,"point_name":"13","group":"negative"},
+{"x":1.68217608051942,"y":-0.305388387156356,"point_name":"10","group":"negative"},
+{"x":1.76728726937265,"y":-0.820468384118015,"point_name":"6","group":"negative"},
+{"x":-0.910921648552446,"y":-0.835628612410047,"point_name":"3","group":"negative"},
+{"x":-0.620366677224124,"y":-0.626453810742332,"point_name":"1","group":"negative"},
+{"x":-1.04798441280774,"y":0.558486425565304,"point_name":"96","group":"positive"},
+{"x":-1.20808278630446,"y":1.58683345454085,"point_name":"95","group":"positive"},
+{"x":0.830373167981674,"y":0.700213649514998,"point_name":"94","group":"positive"},
+{"x":-0.731748173119606,"y":1.16040261569495,"point_name":"93","group":"positive"},
+{"x":0.402011779486338,"y":1.20786780598317,"point_name":"92","group":"positive"},
+{"x":-0.926109497377437,"y":0.267098790772231,"point_name":"90","group":"positive"},
+{"x":-0.430211753928547,"y":0.370018809916288,"point_name":"89","group":"positive"},
+{"x":1.4645873119698,"y":1.06309983727636,"point_name":"87","group":"positive"},
+{"x":-0.158754604716016,"y":0.332950371213518,"point_name":"86","group":"positive"},
+{"x":0.521022742648139,"y":0.593946187628422,"point_name":"85","group":"positive"},
+{"x":0.219924803660651,"y":1.1780869965732,"point_name":"83","group":"positive"},
+{"x":1.02739243876377,"y":0.0743413241516641,"point_name":"79","group":"positive"},
+{"x":2.07524500865228,"y":0.00110535163162413,"point_name":"78","group":"positive"},
+{"x":-0.0347260283112762,"y":0.291446235517463,"point_name":"76","group":"positive"},
+{"x":0.456998805423414,"y":0.610726353489055,"point_name":"73","group":"positive"},
+{"x":2.30797839905936,"y":0.475509528899663,"point_name":"71","group":"positive"},
+{"x":0.207538339232345,"y":2.17261167036215,"point_name":"70","group":"positive"},
+{"x":-0.144399601954219,"y":0.153253338211898,"point_name":"69","group":"positive"},
+{"x":-1.42449465021281,"y":1.46555486156289,"point_name":"68","group":"positive"},
+{"x":2.20610246454047,"y":0.188792299514343,"point_name":"66","group":"positive"},
+{"x":0.886422651374936,"y":0.0280021587806661,"point_name":"64","group":"positive"},
+{"x":1.05848304870902,"y":0.689739362450777,"point_name":"63","group":"positive"},
+{"x":0.425100377372448,"y":2.40161776050478,"point_name":"61","group":"positive"},
+{"x":-1.38442684738449,"y":0.569719627442413,"point_name":"59","group":"positive"},
+{"x":-1.07519229661568,"y":1.98039989850586,"point_name":"56","group":"positive"},
+{"x":-1.48746031014148,"y":1.43302370170104,"point_name":"55","group":"positive"},
+{"x":-0.318068374543844,"y":0.341119691424425,"point_name":"53","group":"positive"},
+{"x":0.450187101272656,"y":0.398105880367068,"point_name":"51","group":"positive"},
+{"x":-1.64060553441858,"y":0.881107726454215,"point_name":"50","group":"positive"},
+{"x":0.0173956196932517,"y":0.768532924515416,"point_name":"48","group":"positive"},
+{"x":2.08716654562835,"y":0.36458196213683,"point_name":"47","group":"positive"},
+{"x":-0.463530401472386,"y":0.556663198673657,"point_name":"44","group":"positive"},
+{"x":-1.664972436212,"y":0.696963375404737,"point_name":"43","group":"positive"},
+{"x":-0.0568967778473925,"y":0.763175748457544,"point_name":"40","group":"positive"},
+{"x":-0.652094780680999,"y":1.10002537198388,"point_name":"39","group":"positive"},
+{"x":0.531496192632572,"y":0.387671611559369,"point_name":"33","group":"positive"},
+{"x":0.0601604404345152,"y":1.35867955152904,"point_name":"31","group":"positive"},
+{"x":-0.324270272246319,"y":0.417941560199702,"point_name":"30","group":"positive"},
+{"x":-0.100190741213562,"y":0.61982574789471,"point_name":"25","group":"positive"},
+{"x":-0.214579408546869,"y":0.0745649833651906,"point_name":"23","group":"positive"},
+{"x":1.34303882517041,"y":0.782136300731067,"point_name":"22","group":"positive"},
+{"x":-0.505957462114257,"y":0.918977371608218,"point_name":"21","group":"positive"},
+{"x":-0.177330482269606,"y":0.593901321217509,"point_name":"20","group":"positive"},
+{"x":0.494188331267827,"y":0.821221195098089,"point_name":"19","group":"positive"},
+{"x":-0.279113302976559,"y":0.943836210685299,"point_name":"18","group":"positive"},
+{"x":-0.207380743601965,"y":1.12493091814311,"point_name":"15","group":"positive"},
+{"x":-0.461644730360566,"y":0.389843236411431,"point_name":"12","group":"positive"},
+{"x":-0.635736453948977,"y":1.51178116845085,"point_name":"11","group":"positive"},
+{"x":0.384185357826345,"y":0.575781351653492,"point_name":"9","group":"positive"},
+{"x":0.910174229495227,"y":0.738324705129217,"point_name":"8","group":"positive"},
+{"x":0.716707476017206,"y":0.487429052428485,"point_name":"7","group":"positive"},
+{"x":-0.654584643918818,"y":0.329507771815361,"point_name":"5","group":"positive"},
+{"x":0.158028772404075,"y":1.59528080213779,"point_name":"4","group":"positive"},
+{"x":0.0421158731442352,"y":0.183643324222082,"point_name":"2","group":"positive"}];
+    
+      radius = 5;
+    
+      color_scale = d3.scale.ordinal().range(["green","orange"]);;
+    
+      color_title = "Sign of x";
+    
+      color_legend_counts = {"negative":46,"positive":54};
+    
+      plot = new_plot({
+        width: 500,
+        height: 500,
+        padding: {"top":100,"right":400,"bottom":100,"left":100},
+        xlab: "x",
+        ylab: "y",
+        rotate_label: {
+          y: true
+        },
+        title: "Points",
+        box: false,
+        xlim: null,
+        ylim: null,
+        data_ranges: {
+          x: [-1.91435942568001,2.30797839905936],
+          y: [-2.2146998871775,2.40161776050478]
+        },
+        categorical_domains: {
+          x: null,
+          y: null
+        },
+        jitter: 0,
+        ordinal_scale_padding: 1,
+        linear_scale_padding: 40
+      });
+    
+      plot.tooltip_text = function(d) {
+        return "<strong>" + d.point_name + "</strong>" + "<br>" + "y: " + format_property(d.y) + "<br>" + "x: " + format_property(d.x) + "<br>" + "group: " + format_property(d["group"]);
+      };
+    
+      plot.center.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
+        "width": plot.width,
+        "height": plot.height
+      });
+    
+      clip = plot.center.append("g").attr("clip-path", "url(#clip)");
+    
+      if (plot.zoom) {
+        clip.append("rect").style({
+          "cursor": "move"
+        }).attr({
+          "class": "overlay",
+          "width": plot.width,
+          "height": plot.height,
+          "fill": "none",
+          "pointer-events": "all"
+        }).call(d3.behavior.zoom().x(plot.scales.x).y(plot.scales.y).scaleExtent([1, Infinity]).on("zoom", function() {
+          return redraw();
+        }));
+        redraw = function() {
+          plot.select(".x.axis").call(plot.axes.x);
+          plot.select(".y.axis").call(plot.axes.y);
+          return g_points.attr("transform", transform);
+        };
+      }
+    
+      transform = function(d) {
+        return "translate(" + (plot.scales.x(d.x) + plot.jitters.x()) + ", " + (plot.scales.y(d.y) + plot.jitters.y()) + ")";
+      };
+    
+      g_points = clip.selectAll(".point").data(data).enter().append("g").attr({
+        "class": "point",
+        "transform": transform
+      });
+    
+      points = g_points.append("svg:circle").attr({
+        "class": "point_tooltip",
+        "r": radius,
+        "fill": function(d) {
+          return color_scale(d.group);
+        },
+        "title": function(d) {
+          return plot.tooltip_text(d);
+        }
+      });
+    
+      $(".point_tooltip").tooltip({
+        html: true,
+        container: "body",
+        placement: "top"
+      });
+    
+      point_names = g_points.append("text").text(function(d) {
+        return d.point_name;
+      }).attr({
+        "dy": ".32em",
+        "dx": 8,
+        "text-anchor": "left",
+        "display": "none"
+      }).style({
+        "fill": function(d) {
+          return color_scale(d.group);
+        },
+        "font-size": "22px"
+      });
+    
+      if (true) {
+        sidebar = plot.right_margin.append("g").attr("transform", "translate(60,0)");
+        g_toggle_names = sidebar.append("g").style("cursor", "pointer").style("font-size", "22px").on("click", function() {
+          return toggle_names();
+        });
+        g_toggle_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr("fill", "white");
+        g_toggle_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').text("Show names (" + data.length + ")");
+        toggle_names = function() {
+          var showing_point_names;
+          showing_point_names = g_toggle_names.classed("show_names");
+          point_names.attr("display", function() {
+            if (showing_point_names) {
+              return "none";
+            } else {
+              return "inline";
+            }
+          });
+          return g_toggle_names.attr("class", function() {
+            if (showing_point_names) {
+              return "";
+            } else {
+              return "show_names";
+            }
+          }).select("circle").attr("fill", function() {
+            if (showing_point_names) {
+              return "white";
+            } else {
+              return "black";
+            }
+          });
+        };
+        if (color_scale.range().length > 1) {
+          sidebar.append("text").attr({
+            "class": "color_title",
+            "x": -radius,
+            "y": 45,
+            "dy": ".35em"
+          }).style({
+            "font-size": "16px",
+            "font-weight": "bold"
+          }).text(color_title);
+          g_color_legend = sidebar.selectAll(".key").data(color_scale.domain().reverse()).enter().append("g").attr({
+            "transform": function(d, i) {
+              return "translate(0, " + (i * (radius * 2 + 15) + 70) + ")";
+            },
+            "class": "key"
+          });
+          g_color_legend.append("circle").attr({
+            "r": radius,
+            "fill": color_scale
+          });
+          g_color_legend.append("text").attr({
+            "x": radius + 10,
+            "y": 0,
+            "dy": ".35em"
+          }).text(function(d) {
+            return "" + d + " (" + color_legend_counts[d] + ")";
+          });
+        }
+      }
+    
+    }).call(this);
+
+    </script>
+    <div class = "code">
+        
+    </div>
+  </body>
+</html>
