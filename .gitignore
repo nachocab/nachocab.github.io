@@ -1,5 +1,7 @@
 _site/*
 _theme_packages/*
+*.Rmd
+*.md
 
 Thumbs.db
 .DS_Store

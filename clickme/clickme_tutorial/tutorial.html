@@ -331,7 +331,7 @@ clickme(&quot;points&quot;, x, data)
 
 <p>Like we saw before, the <code>x</code> and <code>y</code> variables can contain numbers (quantitative variables) as well as strings (categorical variables). Because categorical variables can be ordered in different ways (unlike numbers, which have a defined order), we have more options on how we display our data.</p>
 
-<pre><code>set.seed(1)
+<pre><code class="r">set.seed(1)
 x &lt;- sample_r(letters[1:5], 100)
 y &lt;- rnorm(100)
 clickme(&quot;points&quot;, x, y,
@@ -342,7 +342,7 @@ clickme(&quot;points&quot;, x, y,
 
 <p>This is not very useful because of overplotting. We can minimize it by introducing a small jitter.</p>
 
-<pre><code>clickme(&quot;points&quot;, x, y,
+<pre><code class="r">clickme(&quot;points&quot;, x, y,
         xlab = &quot;Letter&quot;,
         jitter = .2)
 </code></pre>
@@ -351,7 +351,7 @@ clickme(&quot;points&quot;, x, y,
 
 <p>We can change the ordering of the x axis is by using a factor.</p>
 
-<pre><code>x &lt;- factor(sample_r(letters[1:5], 100), levels = letters[1:5])
+<pre><code class="r">x &lt;- factor(sample_r(letters[1:5], 100), levels = letters[1:5])
 clickme(&quot;points&quot;, x, y,
         xlab = &quot;Letter&quot;,
         jitter = .2)
@@ -380,7 +380,7 @@ clickme(&quot;points&quot;, data,
 
 <p>Let’s change the color palette</p>
 
-<pre><code>clickme(&quot;points&quot;, data,
+<pre><code class="r">clickme(&quot;points&quot;, data,
         color_groups = positives_and_negatives,
         color_title = &quot;Sign of x&quot;,
         palette = c(negative = &quot;green&quot;, positive = &quot;orange&quot;))
@@ -390,7 +390,7 @@ clickme(&quot;points&quot;, data,
 
 <p>What if we wanted to ensure that the positives appeared on top of the negatives in the color legend? Instead of reordering the data manually, we can just change the order of the palette.</p>
 
-<pre><code>clickme(&quot;points&quot;, data,
+<pre><code class="r">clickme(&quot;points&quot;, data,
         color_groups = positives_and_negatives,
         color_title = &quot;Sign of x&quot;,
         palette = c(positive = &quot;orange&quot;, negative = &quot;green&quot;))
