@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <base target="_blank"> <!-- open all links on a new tab -->
+
+    <title>BCL2L14 - Sequencing</title>
+
+    <link href="clickme_assets/bootstrap-tooltip.css" rel="stylesheet">
+<link href="clickme_assets/clickme.css" rel="stylesheet">
+<script src="clickme_assets/d3.v3.js"></script>
+<script src="clickme_assets/d3_aux.js"></script>
+<script src="clickme_assets/jquery.min.js"></script>
+<script src="clickme_assets/bootstrap-tooltip.v2_3.js"></script>
+
+  </head>
+
+  <body>
+    <script type="text/javascript">
+(function() {
+  var clip, color_legend_counts, color_scale, color_title, data, g_color_legend, g_points, g_toggle_names, opacity, plot, point_names, points, radius, redraw, sidebar, toggle_names, toggle_points, transform;
+
+  data = [{"x":0.0170781738124788,"y":0.832065097036524,"point_name":"l1_d0_m7"},
+{"x":2.84786705824547,"y":2.29925419227659,"point_name":"l1_d3_m2"},
+{"x":6.01821461487561,"y":3.41264673845753,"point_name":"l1_d6_m3"},
+{"x":9.99346017092466,"y":2.9256563683647,"point_name":"l1_d10_m4"},
+{"x":-0.0604513579700142,"y":0.915806877741126,"point_name":"l2_d0_m5"},
+{"x":2.97691146969795,"y":1.90102098875512,"point_name":"l2_d3_m1"},
+{"x":2.85482591860928,"y":2.24288186138054,"point_name":"l2_d3_m3"},
+{"x":6.15797025234439,"y":3.28013527248368,"point_name":"l2_d6_m2"},
+{"x":-0.17066259666346,"y":0.863818493368176,"point_name":"l3_d0_m3"},
+{"x":0.0981872988492251,"y":0.528229299034387,"point_name":"l3_d0_m2"},
+{"x":2.82704196089879,"y":2.81051336481271,"point_name":"l3_d3_m5"},
+{"x":10.0099853306543,"y":3.39369881711075,"point_name":"l3_d10_m6"}];
+
+  radius = 5;
+
+  color_scale = d3.scale.ordinal().range(["#000"]);;
+
+  opacity = null;
+
+  color_title = null;
+
+  color_legend_counts = [];
+
+  plot = new_plot({
+    width: 500,
+    height: 500,
+    padding: {"top":150,"right":400,"bottom":70,"left":100},
+    xlab: "Day post-infection",
+    ylab: "Normalized counts (log10)",
+    rotate_label: {
+      y: true
+    },
+    title: "BCL2L14 - Sequencing",
+    subtitle: "(BCL2-like 14 (apoptosis facilitator))",
+    box: false,
+    xlim: null,
+    ylim: null,
+    data_ranges: {
+          x: [-0.17066259666346,10.0099853306543],
+          y: [0.528229299034387,3.41264673845753]
+        },
+    categorical_domains: {
+          x: null,
+          y: null
+        },
+    jitter: 0,
+    ordinal_scale_padding: 1,
+    linear_scale_padding: 40
+  });
+
+  plot.tooltip_text = function(d) {
+    return "<strong>" + d.point_name + "</strong>" + "<br>" + "Normalized counts (log10): " + format_property(d.y) + "<br>" + "Day post-infection: " + format_property(d.x);
+  };
+
+  plot.center.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
+    "width": plot.width,
+    "height": plot.height
+  });
+
+  clip = plot.center.append("g").attr("clip-path", "url(#clip)");
+
+  if (plot.zoom) {
+    clip.append("rect").style({
+      "cursor": "move"
+    }).attr({
+      "class": "overlay",
+      "width": plot.width,
+      "height": plot.height,
+      "fill": "none",
+      "pointer-events": "all"
+    }).call(d3.behavior.zoom().x(plot.scales.x).y(plot.scales.y).scaleExtent([1, Infinity]).on("zoom", function() {
+      return redraw();
+    }));
+    redraw = function() {
+      plot.select(".x.axis").call(plot.axes.x);
+      plot.select(".y.axis").call(plot.axes.y);
+      return g_points.attr("transform", transform);
+    };
+  }
+
+  transform = function(d) {
+    return "translate(" + (plot.scales.x(d.x) + plot.jitters.x()) + ", " + (plot.scales.y(d.y) + plot.jitters.y()) + ")";
+  };
+
+  g_points = clip.selectAll(".point").data(data).enter().append("g").attr({
+    "class": "point",
+    "transform": transform
+  });
+
+  points = g_points.append("svg:circle").attr({
+    "class": "point_tooltip",
+    "r": radius,
+    "fill": function(d) {
+      return color_scale(d.group);
+    },
+    "opacity": function(d, i) {
+      return opacity;
+    },
+    "title": function(d) {
+      return plot.tooltip_text(d);
+    }
+  });
+
+  $(".point_tooltip").tooltip({
+    html: true,
+    container: "body",
+    placement: "top"
+  });
+
+  point_names = g_points.append("text").text(function(d) {
+    return d.point_name;
+  }).attr({
+    "dy": ".32em",
+    "dx": 8,
+    "text-anchor": "left",
+    "display": "none"
+  }).style({
+    "fill": function(d) {
+      return color_scale(d.group);
+    },
+    "font-size": "22px"
+  });
+
+  if (true) {
+    sidebar = plot.right_margin.append("g").attr("transform", "translate(60,0)");
+    g_toggle_names = sidebar.append("g").style("cursor", "pointer").style("font-size", "22px").on("click", function() {
+      return toggle_names();
+    });
+    g_toggle_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr("fill", "white");
+    g_toggle_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').text("Show names (" + data.length + ")");
+    toggle_names = function() {
+      var showing_point_names;
+      showing_point_names = g_toggle_names.classed("show_names");
+      point_names.attr("display", function() {
+        if (showing_point_names) {
+          return "none";
+        } else {
+          return "inline";
+        }
+      });
+      return g_toggle_names.attr("class", function() {
+        if (showing_point_names) {
+          return "";
+        } else {
+          return "show_names";
+        }
+      }).select("circle").attr("fill", function() {
+        if (showing_point_names) {
+          return "white";
+        } else {
+          return "black";
+        }
+      });
+    };
+    if (color_scale.range().length > 1) {
+      sidebar.append("text").attr({
+        "class": "color_title",
+        "x": -radius,
+        "y": 45,
+        "dy": ".35em"
+      }).style({
+        "font-size": "16px",
+        "font-weight": "bold"
+      }).text(color_title);
+      g_color_legend = sidebar.selectAll(".key").data(color_scale.domain().reverse()).enter().append("g").attr({
+        "transform": function(d, i) {
+          return "translate(0, " + (i * (radius * 2 + 15) + 70) + ")";
+        },
+        "class": "key"
+      }).style("cursor", "pointer");
+      g_color_legend.append("circle").attr({
+        "r": radius,
+        "fill": color_scale
+      }).on("click", function(d) {
+        return toggle_points(d);
+      });
+      g_color_legend.append("text").attr({
+        "x": radius + 10,
+        "y": 0,
+        "dy": ".35em"
+      }).text(function(d) {
+        return "" + d + " (" + color_legend_counts[d] + ")";
+      }).on("click", function(d) {
+        return toggle_points(d);
+      });
+    }
+  }
+
+  toggle_points = function(category) {
+    g_points.filter(function(d) {
+      return d.group === category;
+    }).classed("hide", function() {
+      return !d3.select(this).classed("hide");
+    });
+    return g_points.filter(function(d) {
+      return d.group !== category;
+    }).classed("hide", false);
+  };
+
+}).call(this);
+
+
+    </script>
+    <div class = "code">
+        
+    </div>
+  </body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <base target="_blank"> <!-- open all links on a new tab -->
+
+    <title>THAP2 - Array</title>
+
+    <link href="clickme_assets/bootstrap-tooltip.css" rel="stylesheet">
+<link href="clickme_assets/clickme.css" rel="stylesheet">
+<script src="clickme_assets/d3.v3.js"></script>
+<script src="clickme_assets/d3_aux.js"></script>
+<script src="clickme_assets/jquery.min.js"></script>
+<script src="clickme_assets/bootstrap-tooltip.v2_3.js"></script>
+
+  </head>
+
+  <body>
+    <script type="text/javascript">
+(function() {
+  var clip, color_legend_counts, color_scale, color_title, data, g_color_legend, g_points, g_toggle_names, opacity, plot, point_names, points, radius, redraw, sidebar, toggle_names, toggle_points, transform;
+
+  data = [{"x":-0.0410884203203022,"y":1.83884909073726,"point_name":"1"},
+{"x":0.0117423102166504,"y":1.82607480270083,"point_name":"2"},
+{"x":0.033231111606583,"y":1.79934054945358,"point_name":"3"},
+{"x":-0.033286080379039,"y":1.79239168949825,"point_name":"4"},
+{"x":0.00354263504035771,"y":1.74036268949424,"point_name":"5"},
+{"x":0.0563836777489632,"y":1.78532983501077,"point_name":"6"},
+{"x":-0.0369184364844114,"y":1.70329137811866,"point_name":"7"},
+{"x":-0.0589605691842735,"y":1.7481880270062,"point_name":"8"},
+{"x":0.0103395154885948,"y":1.93449845124357,"point_name":"9"},
+{"x":0.000580719122663137,"y":1.7481880270062,"point_name":"10"},
+{"x":0.00381542310118675,"y":1.80617997398389,"point_name":"11"},
+{"x":-0.0249895018525422,"y":1.84509804001426,"point_name":"12"},
+{"x":0.0109496476035565,"y":1.82607480270083,"point_name":"13"},
+{"x":0.0288692333735526,"y":1.88649072517248,"point_name":"14"},
+{"x":-0.0367820276599377,"y":1.88649072517248,"point_name":"15"},
+{"x":1.05910806491971,"y":2.23299611039215,"point_name":"16"},
+{"x":1.05620636878535,"y":2.36267092972567,"point_name":"17"},
+{"x":1.00667221738026,"y":2.17897694729317,"point_name":"18"},
+{"x":2.97661626739427,"y":2.29776051109913,"point_name":"19"},
+{"x":2.9754120030161,"y":2.12710479836481,"point_name":"20"},
+{"x":3.05561027417891,"y":2.24303804868629,"point_name":"21"},
+{"x":5.03457871021703,"y":2.29003461136252,"point_name":"22"},
+{"x":4.97128770804033,"y":2.03140846425162,"point_name":"23"},
+{"x":5.01323455982842,"y":2.38738982633873,"point_name":"24"},
+{"x":6.97093208836392,"y":2.17897694729317,"point_name":"25"},
+{"x":6.98582699977793,"y":2.21879799811174,"point_name":"26"},
+{"x":7.01004376534373,"y":2.01494034979294,"point_name":"27"},
+{"x":8.94741525437683,"y":2.30427505047713,"point_name":"28"},
+{"x":8.97993344787508,"y":2.17753649992986,"point_name":"29"},
+{"x":8.96479715656489,"y":1.7160033436348,"point_name":"30"}];
+
+  radius = 5;
+
+  color_scale = d3.scale.ordinal().range(["#000"]);;
+
+  opacity = null;
+
+  color_title = null;
+
+  color_legend_counts = [];
+
+  plot = new_plot({
+    width: 500,
+    height: 500,
+    padding: {"top":150,"right":400,"bottom":70,"left":100},
+    xlab: "Day post-infection",
+    ylab: "Expression (log2)",
+    rotate_label: {
+      y: true
+    },
+    title: "THAP2 - Array",
+    subtitle: "(THAP domain containing, apoptosis associated protein 2)",
+    box: false,
+    xlim: null,
+    ylim: null,
+    data_ranges: {
+          x: [-0.0589605691842735,8.97993344787508],
+          y: [1.70329137811866,2.38738982633873]
+        },
+    categorical_domains: {
+          x: null,
+          y: null
+        },
+    jitter: 0,
+    ordinal_scale_padding: 1,
+    linear_scale_padding: 40
+  });
+
+  plot.tooltip_text = function(d) {
+    return "<strong>" + d.point_name + "</strong>" + "<br>" + "Expression (log2): " + format_property(d.y) + "<br>" + "Day post-infection: " + format_property(d.x);
+  };
+
+  plot.center.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
+    "width": plot.width,
+    "height": plot.height
+  });
+
+  clip = plot.center.append("g").attr("clip-path", "url(#clip)");
+
+  if (plot.zoom) {
+    clip.append("rect").style({
+      "cursor": "move"
+    }).attr({
+      "class": "overlay",
+      "width": plot.width,
+      "height": plot.height,
+      "fill": "none",
+      "pointer-events": "all"
+    }).call(d3.behavior.zoom().x(plot.scales.x).y(plot.scales.y).scaleExtent([1, Infinity]).on("zoom", function() {
+      return redraw();
+    }));
+    redraw = function() {
+      plot.select(".x.axis").call(plot.axes.x);
+      plot.select(".y.axis").call(plot.axes.y);
+      return g_points.attr("transform", transform);
+    };
+  }
+
+  transform = function(d) {
+    return "translate(" + (plot.scales.x(d.x) + plot.jitters.x()) + ", " + (plot.scales.y(d.y) + plot.jitters.y()) + ")";
+  };
+
+  g_points = clip.selectAll(".point").data(data).enter().append("g").attr({
+    "class": "point",
+    "transform": transform
+  });
+
+  points = g_points.append("svg:circle").attr({
+    "class": "point_tooltip",
+    "r": radius,
+    "fill": function(d) {
+      return color_scale(d.group);
+    },
+    "opacity": function(d, i) {
+      return opacity;
+    },
+    "title": function(d) {
+      return plot.tooltip_text(d);
+    }
+  });
+
+  $(".point_tooltip").tooltip({
+    html: true,
+    container: "body",
+    placement: "top"
+  });
+
+  point_names = g_points.append("text").text(function(d) {
+    return d.point_name;
+  }).attr({
+    "dy": ".32em",
+    "dx": 8,
+    "text-anchor": "left",
+    "display": "none"
+  }).style({
+    "fill": function(d) {
+      return color_scale(d.group);
+    },
+    "font-size": "22px"
+  });
+
+  if (true) {
+    sidebar = plot.right_margin.append("g").attr("transform", "translate(60,0)");
+    g_toggle_names = sidebar.append("g").style("cursor", "pointer").style("font-size", "22px").on("click", function() {
+      return toggle_names();
+    });
+    g_toggle_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr("fill", "white");
+    g_toggle_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').text("Show names (" + data.length + ")");
+    toggle_names = function() {
+      var showing_point_names;
+      showing_point_names = g_toggle_names.classed("show_names");
+      point_names.attr("display", function() {
+        if (showing_point_names) {
+          return "none";
+        } else {
+          return "inline";
+        }
+      });
+      return g_toggle_names.attr("class", function() {
+        if (showing_point_names) {
+          return "";
+        } else {
+          return "show_names";
+        }
+      }).select("circle").attr("fill", function() {
+        if (showing_point_names) {
+          return "white";
+        } else {
+          return "black";
+        }
+      });
+    };
+    if (color_scale.range().length > 1) {
+      sidebar.append("text").attr({
+        "class": "color_title",
+        "x": -radius,
+        "y": 45,
+        "dy": ".35em"
+      }).style({
+        "font-size": "16px",
+        "font-weight": "bold"
+      }).text(color_title);
+      g_color_legend = sidebar.selectAll(".key").data(color_scale.domain().reverse()).enter().append("g").attr({
+        "transform": function(d, i) {
+          return "translate(0, " + (i * (radius * 2 + 15) + 70) + ")";
+        },
+        "class": "key"
+      }).style("cursor", "pointer");
+      g_color_legend.append("circle").attr({
+        "r": radius,
+        "fill": color_scale
+      }).on("click", function(d) {
+        return toggle_points(d);
+      });
+      g_color_legend.append("text").attr({
+        "x": radius + 10,
+        "y": 0,
+        "dy": ".35em"
+      }).text(function(d) {
+        return "" + d + " (" + color_legend_counts[d] + ")";
+      }).on("click", function(d) {
+        return toggle_points(d);
+      });
+    }
+  }
+
+  toggle_points = function(category) {
+    g_points.filter(function(d) {
+      return d.group === category;
+    }).classed("hide", function() {
+      return !d3.select(this).classed("hide");
+    });
+    return g_points.filter(function(d) {
+      return d.group !== category;
+    }).classed("hide", false);
+  };
+
+}).call(this);
+
+
+    </script>
+    <div class = "code">
+        
+    </div>
+  </body>
+</html>

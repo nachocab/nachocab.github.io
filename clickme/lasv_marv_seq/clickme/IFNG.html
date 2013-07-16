@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <base target="_blank"> <!-- open all links on a new tab -->
+
+    <title>IFNG - Array</title>
+
+    <link href="clickme_assets/bootstrap-tooltip.css" rel="stylesheet">
+<link href="clickme_assets/clickme.css" rel="stylesheet">
+<script src="clickme_assets/d3.v3.js"></script>
+<script src="clickme_assets/d3_aux.js"></script>
+<script src="clickme_assets/jquery.min.js"></script>
+<script src="clickme_assets/bootstrap-tooltip.v2_3.js"></script>
+
+  </head>
+
+  <body>
+    <script type="text/javascript">
+(function() {
+  var clip, color_legend_counts, color_scale, color_title, data, g_color_legend, g_points, g_toggle_names, opacity, plot, point_names, points, radius, redraw, sidebar, toggle_names, toggle_points, transform;
+
+  data = [{"x":-0.0875427046045661,"y":2.52504480703685,"point_name":"1"},
+{"x":0.105994789805263,"y":2.31910605930978,"point_name":"2"},
+{"x":0.118426392227411,"y":2.25163822044821,"point_name":"3"},
+{"x":0.0558957433886826,"y":2.72997428569956,"point_name":"4"},
+{"x":0.0713753168843687,"y":2.60042832573213,"point_name":"5"},
+{"x":0.0638344127498567,"y":2.49276038902684,"point_name":"6"},
+{"x":0.00996217120438814,"y":2.18041263283832,"point_name":"7"},
+{"x":-0.0590485883317888,"y":2.58883172559421,"point_name":"8"},
+{"x":-0.088308944106102,"y":2.72304499164344,"point_name":"9"},
+{"x":0.0314667541533709,"y":2.30749603791321,"point_name":"10"},
+{"x":-0.022989500015974,"y":2.37291200297011,"point_name":"11"},
+{"x":0.0212141078151762,"y":2.63548374681491,"point_name":"12"},
+{"x":0.0252148240618408,"y":2.29003461136252,"point_name":"13"},
+{"x":0.0120465580746532,"y":2.50379068305718,"point_name":"14"},
+{"x":0.0754461042769253,"y":2.15685190107001,"point_name":"15"},
+{"x":0.0859848819673061,"y":2.03342375548695,"point_name":"16"},
+{"x":-0.0432043466158211,"y":2.02530586526477,"point_name":"17"},
+{"x":-0.0791131198592484,"y":2.29003461136252,"point_name":"18"},
+{"x":3.02631196919829,"y":2.38021124171161,"point_name":"19"},
+{"x":2.99323132518679,"y":2.01703333929878,"point_name":"20"},
+{"x":2.96619045585394,"y":1.93951925261862,"point_name":"21"},
+{"x":3.07479236120358,"y":2.34635297445064,"point_name":"22"},
+{"x":5.9281638949737,"y":2.00860017176192,"point_name":"23"},
+{"x":6.05461852189153,"y":1.89762709129044,"point_name":"24"},
+{"x":5.97921338874847,"y":2.21218760440396,"point_name":"25"},
+{"x":6.0612369486317,"y":2.29114676173189,"point_name":"26"},
+{"x":5.90662363758311,"y":1.91381385238372,"point_name":"27"},
+{"x":5.96690027972683,"y":2.06632592536204,"point_name":"28"},
+{"x":7.92639957733452,"y":2.3654879848909,"point_name":"29"},
+{"x":8.05457540554926,"y":2.43933269383026,"point_name":"30"},
+{"x":7.93600769292563,"y":2.0899051114394,"point_name":"31"},
+{"x":7.90536347990856,"y":2.28555730900777,"point_name":"32"},
+{"x":10.0907495486178,"y":2.71767050300226,"point_name":"33"},
+{"x":9.95245343985036,"y":2.38291713508753,"point_name":"34"},
+{"x":9.98064111592248,"y":2.35793484700045,"point_name":"35"},
+{"x":9.97219557633623,"y":2.20951501454263,"point_name":"36"},
+{"x":9.91252257516608,"y":2.20002926655377,"point_name":"37"},
+{"x":10.066760047432,"y":2.34044411484012,"point_name":"38"},
+{"x":12.0580069697835,"y":2.37383114507383,"point_name":"39"},
+{"x":12.1050965839997,"y":3.05918461763137,"point_name":"40"},
+{"x":11.9198184680566,"y":2.59933713299249,"point_name":"41"}];
+
+  radius = 5;
+
+  color_scale = d3.scale.ordinal().range(["#000"]);;
+
+  opacity = null;
+
+  color_title = null;
+
+  color_legend_counts = [];
+
+  plot = new_plot({
+    width: 500,
+    height: 500,
+    padding: {"top":150,"right":400,"bottom":70,"left":100},
+    xlab: "Day post-infection",
+    ylab: "Expression (log2)",
+    rotate_label: {
+      y: true
+    },
+    title: "IFNG - Array",
+    subtitle: "(interferon, gamma)",
+    box: false,
+    xlim: null,
+    ylim: null,
+    data_ranges: {
+          x: [-0.088308944106102,12.1050965839997],
+          y: [1.89762709129044,3.05918461763137]
+        },
+    categorical_domains: {
+          x: null,
+          y: null
+        },
+    jitter: 0,
+    ordinal_scale_padding: 1,
+    linear_scale_padding: 40
+  });
+
+  plot.tooltip_text = function(d) {
+    return "<strong>" + d.point_name + "</strong>" + "<br>" + "Expression (log2): " + format_property(d.y) + "<br>" + "Day post-infection: " + format_property(d.x);
+  };
+
+  plot.center.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
+    "width": plot.width,
+    "height": plot.height
+  });
+
+  clip = plot.center.append("g").attr("clip-path", "url(#clip)");
+
+  if (plot.zoom) {
+    clip.append("rect").style({
+      "cursor": "move"
+    }).attr({
+      "class": "overlay",
+      "width": plot.width,
+      "height": plot.height,
+      "fill": "none",
+      "pointer-events": "all"
+    }).call(d3.behavior.zoom().x(plot.scales.x).y(plot.scales.y).scaleExtent([1, Infinity]).on("zoom", function() {
+      return redraw();
+    }));
+    redraw = function() {
+      plot.select(".x.axis").call(plot.axes.x);
+      plot.select(".y.axis").call(plot.axes.y);
+      return g_points.attr("transform", transform);
+    };
+  }
+
+  transform = function(d) {
+    return "translate(" + (plot.scales.x(d.x) + plot.jitters.x()) + ", " + (plot.scales.y(d.y) + plot.jitters.y()) + ")";
+  };
+
+  g_points = clip.selectAll(".point").data(data).enter().append("g").attr({
+    "class": "point",
+    "transform": transform
+  });
+
+  points = g_points.append("svg:circle").attr({
+    "class": "point_tooltip",
+    "r": radius,
+    "fill": function(d) {
+      return color_scale(d.group);
+    },
+    "opacity": function(d, i) {
+      return opacity;
+    },
+    "title": function(d) {
+      return plot.tooltip_text(d);
+    }
+  });
+
+  $(".point_tooltip").tooltip({
+    html: true,
+    container: "body",
+    placement: "top"
+  });
+
+  point_names = g_points.append("text").text(function(d) {
+    return d.point_name;
+  }).attr({
+    "dy": ".32em",
+    "dx": 8,
+    "text-anchor": "left",
+    "display": "none"
+  }).style({
+    "fill": function(d) {
+      return color_scale(d.group);
+    },
+    "font-size": "22px"
+  });
+
+  if (true) {
+    sidebar = plot.right_margin.append("g").attr("transform", "translate(60,0)");
+    g_toggle_names = sidebar.append("g").style("cursor", "pointer").style("font-size", "22px").on("click", function() {
+      return toggle_names();
+    });
+    g_toggle_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr("fill", "white");
+    g_toggle_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').text("Show names (" + data.length + ")");
+    toggle_names = function() {
+      var showing_point_names;
+      showing_point_names = g_toggle_names.classed("show_names");
+      point_names.attr("display", function() {
+        if (showing_point_names) {
+          return "none";
+        } else {
+          return "inline";
+        }
+      });
+      return g_toggle_names.attr("class", function() {
+        if (showing_point_names) {
+          return "";
+        } else {
+          return "show_names";
+        }
+      }).select("circle").attr("fill", function() {
+        if (showing_point_names) {
+          return "white";
+        } else {
+          return "black";
+        }
+      });
+    };
+    if (color_scale.range().length > 1) {
+      sidebar.append("text").attr({
+        "class": "color_title",
+        "x": -radius,
+        "y": 45,
+        "dy": ".35em"
+      }).style({
+        "font-size": "16px",
+        "font-weight": "bold"
+      }).text(color_title);
+      g_color_legend = sidebar.selectAll(".key").data(color_scale.domain().reverse()).enter().append("g").attr({
+        "transform": function(d, i) {
+          return "translate(0, " + (i * (radius * 2 + 15) + 70) + ")";
+        },
+        "class": "key"
+      }).style("cursor", "pointer");
+      g_color_legend.append("circle").attr({
+        "r": radius,
+        "fill": color_scale
+      }).on("click", function(d) {
+        return toggle_points(d);
+      });
+      g_color_legend.append("text").attr({
+        "x": radius + 10,
+        "y": 0,
+        "dy": ".35em"
+      }).text(function(d) {
+        return "" + d + " (" + color_legend_counts[d] + ")";
+      }).on("click", function(d) {
+        return toggle_points(d);
+      });
+    }
+  }
+
+  toggle_points = function(category) {
+    g_points.filter(function(d) {
+      return d.group === category;
+    }).classed("hide", function() {
+      return !d3.select(this).classed("hide");
+    });
+    return g_points.filter(function(d) {
+      return d.group !== category;
+    }).classed("hide", false);
+  };
+
+}).call(this);
+
+
+    </script>
+    <div class = "code">
+        
+    </div>
+  </body>
+</html>
