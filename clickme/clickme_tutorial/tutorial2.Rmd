@@ -1,0 +1,56 @@
+```{r global_setup, echo=FALSE, cache=FALSE, warning=FALSE}
+
+    opts_chunk$set(cache=FALSE, cache.path='cache/clickme_tutorial/', fig.path='figure/clickme_tutorial/', autodep=TRUE, fig.cap="", fig.width=8, fig.height=8, dev = c("svg", "cairo_pdf"), echo=FALSE, warning=FALSE, message=FALSE)
+    dep_auto()
+
+```
+
+# Clickme Points Example
+
+```{r  results="asis"}
+
+    library(clickme)
+    data(microarray)
+    clickme(points, x = microarray$significance, y = microarray$logFC,
+            color_groups = ifelse(microarray$adj.P.Val < 1e-4, "Significant", "Noise"),
+            names = microarray$gene_name,
+            xlab = "Significance (-log10)", ylab = "Fold-change (log2)",
+            extra = list(Probe = microarray$probe_name),
+            dir = "/Users/nacho/Documents/Blog/nachocab.github.io/clickme/clickme_tutorial", file = "tutorial2-points")$iframe(height = 760)
+
+```
+
+
+Things you can do with the chart above:
+
+* Search by gene name
+* Zoom in and out using your mouse wheel or trackpad.
+* Click and drag the whitespace between points to move around.
+* Click on `Show names` to toggle the name of each point.
+* Hover over individual points to see additional information.
+* Click on the groups to show/hide them.
+
+I’m still working on the documentation. If you want to learn more, check out the [source code](https://github.com/nachocab/clickme).
+
+## Code
+
+You can reproduce the example by running the following in R
+
+```r
+# you don't need to run this line if you already have the devtools package installed.
+install.packages("devtools")
+
+# every time you run these two lines you update to the latest version of Clickme. Feel free to do so as often as you like.
+library(devtools)
+install_github("clickme", "nachocab")
+
+# this line loads Clickme. You can put it in your .Rprofile so it is always ready to use.
+library(clickme)
+data(microarray)
+clickme(points, x = microarray$significance, y = microarray$logFC,
+        color_groups = ifelse(microarray$adj.P.Val < 1e-4, "Significant", "Noise"),
+        names = microarray$gene_name,
+        xlab = "Significance (-log10)", ylab = "Fold-change (log2)",
+        extra = list(Probe = microarray$probe_name))
+
+```

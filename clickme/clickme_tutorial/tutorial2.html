@@ -1,296 +1,350 @@
 <!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <base target="_blank"> <!-- open all links on a new tab -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title>Points</title>
+<title>Clickme Points Example</title>
 
-    <link href="clickme_assets/bootstrap-tooltip.css" rel="stylesheet">
-<link href="clickme_assets/clickme.css" rel="stylesheet">
-<script src="clickme_assets/d3.v3.js"></script>
-<script src="clickme_assets/d3_aux.js"></script>
-<script src="clickme_assets/jquery.min.js"></script>
-<script src="clickme_assets/bootstrap-tooltip.v2_3.js"></script>
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
 
-  </head>
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
 
-  <body>
-    <script type="text/javascript">
-    (function() {
-      var clip, color_legend_counts, color_scale, color_title, data, g_color_legend, g_points, g_toggle_names, plot, point_names, points, radius, redraw, sidebar, toggle_names, transform;
-    
-      data = [{"x":0.558486425565304,"y":-1.04798441280774,"point_name":"96","group":"positive"},
-{"x":1.58683345454085,"y":-1.20808278630446,"point_name":"95","group":"positive"},
-{"x":0.700213649514998,"y":0.830373167981674,"point_name":"94","group":"positive"},
-{"x":1.16040261569495,"y":-0.731748173119606,"point_name":"93","group":"positive"},
-{"x":1.20786780598317,"y":0.402011779486338,"point_name":"92","group":"positive"},
-{"x":0.267098790772231,"y":-0.926109497377437,"point_name":"90","group":"positive"},
-{"x":0.370018809916288,"y":-0.430211753928547,"point_name":"89","group":"positive"},
-{"x":1.06309983727636,"y":1.4645873119698,"point_name":"87","group":"positive"},
-{"x":0.332950371213518,"y":-0.158754604716016,"point_name":"86","group":"positive"},
-{"x":0.593946187628422,"y":0.521022742648139,"point_name":"85","group":"positive"},
-{"x":1.1780869965732,"y":0.219924803660651,"point_name":"83","group":"positive"},
-{"x":0.0743413241516641,"y":1.02739243876377,"point_name":"79","group":"positive"},
-{"x":0.00110535163162413,"y":2.07524500865228,"point_name":"78","group":"positive"},
-{"x":0.291446235517463,"y":-0.0347260283112762,"point_name":"76","group":"positive"},
-{"x":0.610726353489055,"y":0.456998805423414,"point_name":"73","group":"positive"},
-{"x":0.475509528899663,"y":2.30797839905936,"point_name":"71","group":"positive"},
-{"x":2.17261167036215,"y":0.207538339232345,"point_name":"70","group":"positive"},
-{"x":0.153253338211898,"y":-0.144399601954219,"point_name":"69","group":"positive"},
-{"x":1.46555486156289,"y":-1.42449465021281,"point_name":"68","group":"positive"},
-{"x":0.188792299514343,"y":2.20610246454047,"point_name":"66","group":"positive"},
-{"x":0.0280021587806661,"y":0.886422651374936,"point_name":"64","group":"positive"},
-{"x":0.689739362450777,"y":1.05848304870902,"point_name":"63","group":"positive"},
-{"x":2.40161776050478,"y":0.425100377372448,"point_name":"61","group":"positive"},
-{"x":0.569719627442413,"y":-1.38442684738449,"point_name":"59","group":"positive"},
-{"x":1.98039989850586,"y":-1.07519229661568,"point_name":"56","group":"positive"},
-{"x":1.43302370170104,"y":-1.48746031014148,"point_name":"55","group":"positive"},
-{"x":0.341119691424425,"y":-0.318068374543844,"point_name":"53","group":"positive"},
-{"x":0.398105880367068,"y":0.450187101272656,"point_name":"51","group":"positive"},
-{"x":0.881107726454215,"y":-1.64060553441858,"point_name":"50","group":"positive"},
-{"x":0.768532924515416,"y":0.0173956196932517,"point_name":"48","group":"positive"},
-{"x":0.36458196213683,"y":2.08716654562835,"point_name":"47","group":"positive"},
-{"x":0.556663198673657,"y":-0.463530401472386,"point_name":"44","group":"positive"},
-{"x":0.696963375404737,"y":-1.664972436212,"point_name":"43","group":"positive"},
-{"x":0.763175748457544,"y":-0.0568967778473925,"point_name":"40","group":"positive"},
-{"x":1.10002537198388,"y":-0.652094780680999,"point_name":"39","group":"positive"},
-{"x":0.387671611559369,"y":0.531496192632572,"point_name":"33","group":"positive"},
-{"x":1.35867955152904,"y":0.0601604404345152,"point_name":"31","group":"positive"},
-{"x":0.417941560199702,"y":-0.324270272246319,"point_name":"30","group":"positive"},
-{"x":0.61982574789471,"y":-0.100190741213562,"point_name":"25","group":"positive"},
-{"x":0.0745649833651906,"y":-0.214579408546869,"point_name":"23","group":"positive"},
-{"x":0.782136300731067,"y":1.34303882517041,"point_name":"22","group":"positive"},
-{"x":0.918977371608218,"y":-0.505957462114257,"point_name":"21","group":"positive"},
-{"x":0.593901321217509,"y":-0.177330482269606,"point_name":"20","group":"positive"},
-{"x":0.821221195098089,"y":0.494188331267827,"point_name":"19","group":"positive"},
-{"x":0.943836210685299,"y":-0.279113302976559,"point_name":"18","group":"positive"},
-{"x":1.12493091814311,"y":-0.207380743601965,"point_name":"15","group":"positive"},
-{"x":0.389843236411431,"y":-0.461644730360566,"point_name":"12","group":"positive"},
-{"x":1.51178116845085,"y":-0.635736453948977,"point_name":"11","group":"positive"},
-{"x":0.575781351653492,"y":0.384185357826345,"point_name":"9","group":"positive"},
-{"x":0.738324705129217,"y":0.910174229495227,"point_name":"8","group":"positive"},
-{"x":0.487429052428485,"y":0.716707476017206,"point_name":"7","group":"positive"},
-{"x":0.329507771815361,"y":-0.654584643918818,"point_name":"5","group":"positive"},
-{"x":1.59528080213779,"y":0.158028772404075,"point_name":"4","group":"positive"},
-{"x":0.183643324222082,"y":0.0421158731442352,"point_name":"2","group":"positive"},
-{"x":-0.473400636439312,"y":-0.38107605110892,"point_name":"100","group":"negative"},
-{"x":-1.22461261489836,"y":0.411974712317515,"point_name":"99","group":"negative"},
-{"x":-0.573265414236886,"y":-1.01584746530465,"point_name":"98","group":"negative"},
-{"x":-1.27659220845804,"y":1.44115770684428,"point_name":"97","group":"negative"},
-{"x":-0.54252003099165,"y":-0.17710396143654,"point_name":"91","group":"negative"},
-{"x":-0.304183923634301,"y":-0.766081999604665,"point_name":"88","group":"negative"},
-{"x":-1.52356680042976,"y":-1.46725002909224,"point_name":"84","group":"negative"},
-{"x":-0.135178615123832,"y":0.983895570053379,"point_name":"82","group":"negative"},
-{"x":-0.568668732818502,"y":-1.23132342155804,"point_name":"81","group":"negative"},
-{"x":-0.589520946188072,"y":1.2079083983867,"point_name":"80","group":"negative"},
-{"x":-0.443291873218433,"y":0.787639605630162,"point_name":"77","group":"negative"},
-{"x":-1.2536334002391,"y":-0.334000842366544,"point_name":"75","group":"negative"},
-{"x":-0.934097631644252,"y":-0.077152935356531,"point_name":"74","group":"negative"},
-{"x":-0.709946430921815,"y":0.105802367893711,"point_name":"72","group":"negative"},
-{"x":-1.80495862889104,"y":-0.255027030141015,"point_name":"67","group":"negative"},
-{"x":-0.743273208882405,"y":-0.619243048231147,"point_name":"65","group":"negative"},
-{"x":-0.0392400027331692,"y":-0.238647100913033,"point_name":"62","group":"negative"},
-{"x":-0.135054603880824,"y":1.86929062242358,"point_name":"60","group":"negative"},
-{"x":-1.04413462631653,"y":-0.621266694796823,"point_name":"58","group":"negative"},
-{"x":-0.367221476466509,"y":1.00002880371391,"point_name":"57","group":"negative"},
-{"x":-1.12936309608079,"y":-0.929362147453702,"point_name":"54","group":"negative"},
-{"x":-0.612026393250771,"y":-0.018559832714638,"point_name":"52","group":"negative"},
-{"x":-0.112346212150228,"y":-1.28630053043433,"point_name":"49","group":"negative"},
-{"x":-0.70749515696212,"y":-0.750819001193448,"point_name":"46","group":"negative"},
-{"x":-0.68875569454952,"y":-1.11592010504285,"point_name":"45","group":"negative"},
-{"x":-0.253361680136508,"y":1.17658331201856,"point_name":"42","group":"negative"},
-{"x":-0.164523596253587,"y":-1.91435942568001,"point_name":"41","group":"negative"},
-{"x":-0.0593133967111857,"y":-0.528279904445006,"point_name":"38","group":"negative"},
-{"x":-0.394289953710349,"y":-0.300976126836611,"point_name":"37","group":"negative"},
-{"x":-0.41499456329968,"y":-1.53644982353759,"point_name":"36","group":"negative"},
-{"x":-1.37705955682861,"y":0.306557860789766,"point_name":"35","group":"negative"},
-{"x":-0.0538050405829051,"y":-1.51839408178679,"point_name":"34","group":"negative"},
-{"x":-0.102787727342996,"y":-0.588894486259664,"point_name":"32","group":"negative"},
-{"x":-0.47815005510862,"y":-0.681660478755657,"point_name":"29","group":"negative"},
-{"x":-1.47075238389927,"y":-0.0376341714670479,"point_name":"28","group":"negative"},
-{"x":-0.155795506705329,"y":-0.0735644041263263,"point_name":"27","group":"negative"},
-{"x":-0.0561287395290008,"y":0.712666307051405,"point_name":"26","group":"negative"},
-{"x":-1.98935169586337,"y":-0.179556530043387,"point_name":"24","group":"negative"},
-{"x":-0.0161902630989461,"y":-0.319992868548507,"point_name":"17","group":"negative"},
-{"x":-0.0449336090152309,"y":-0.392807929441984,"point_name":"16","group":"negative"},
-{"x":-2.2146998871775,"y":-0.650696353310367,"point_name":"14","group":"negative"},
-{"x":-0.621240580541804,"y":1.43228223854166,"point_name":"13","group":"negative"},
-{"x":-0.305388387156356,"y":1.68217608051942,"point_name":"10","group":"negative"},
-{"x":-0.820468384118015,"y":1.76728726937265,"point_name":"6","group":"negative"},
-{"x":-0.835628612410047,"y":-0.910921648552446,"point_name":"3","group":"negative"},
-{"x":-0.626453810742332,"y":-0.620366677224124,"point_name":"1","group":"negative"}];
-    
-      radius = 5;
-    
-      color_scale = d3.scale.ordinal().range(["#d62728","#24A5F9"]);;
-    
-      color_title = "Sign of x";
-    
-      color_legend_counts = {"negative":46,"positive":54};
-    
-      plot = new_plot({
-        width: 500,
-        height: 500,
-        padding: {"top":100,"right":400,"bottom":100,"left":100},
-        xlab: "x",
-        ylab: "y",
-        rotate_label: {
-          y: true
-        },
-        title: "Points",
-        box: false,
-        xlim: null,
-        ylim: null,
-        data_ranges: {
-          x: [-2.2146998871775,2.40161776050478],
-          y: [-1.91435942568001,2.30797839905936]
-        },
-        categorical_domains: {
-          x: null,
-          y: null
-        },
-        jitter: 0,
-        ordinal_scale_padding: 1,
-        linear_scale_padding: 40
-      });
-    
-      plot.tooltip_text = function(d) {
-        return "<strong>" + d.point_name + "</strong>" + "<br>" + "y: " + format_property(d.y) + "<br>" + "x: " + format_property(d.x) + "<br>" + "group: " + format_property(d["group"]);
-      };
-    
-      plot.center.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
-        "width": plot.width,
-        "height": plot.height
-      });
-    
-      clip = plot.center.append("g").attr("clip-path", "url(#clip)");
-    
-      if (plot.zoom) {
-        clip.append("rect").style({
-          "cursor": "move"
-        }).attr({
-          "class": "overlay",
-          "width": plot.width,
-          "height": plot.height,
-          "fill": "none",
-          "pointer-events": "all"
-        }).call(d3.behavior.zoom().x(plot.scales.x).y(plot.scales.y).scaleExtent([1, Infinity]).on("zoom", function() {
-          return redraw();
-        }));
-        redraw = function() {
-          plot.select(".x.axis").call(plot.axes.x);
-          plot.select(".y.axis").call(plot.axes.y);
-          return g_points.attr("transform", transform);
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<style type="text/css">
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/***************************** END RESET *****************************/
+
+body {
+   background-color: white;
+   color: #333;
+   display: block;
+}
+
+#content{
+  margin: 75px auto 75px auto;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 20px;
+  line-height: 2;
+  position: relative;
+  max-width: 1120px;
+}
+
+p {
+  max-width: 900px;
+  margin-bottom: 31px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+   font-family: Helvetica, Arial, sans-serif;
+   font-weight: bold;
+}
+
+h1 {
+   font-size: 52px;
+   line-height: 1;
+   margin-bottom: 4px;
+   /*text-align: center;*/
+}
+
+h2 {
+   color: #0292CC;
+   font-size: 32px;
+   line-height: 1.2;
+   padding-top: 25px;
+   margin-bottom: 10px;
+   /*font-weight: bold;*/
+}
+
+h3 {
+   color: #F14609;
+   font-size: 26px;
+   line-height: 1.2;
+}
+
+h4 {
+   font-size: 22px;
+}
+
+iframe {
+     display: block;
+     margin: 0 auto;
+     border: 0;
+}
+
+hr {
+  display: block;
+  width: 250px;
+  position: relative;
+  margin: 50px 475px 40px 235px; /*960 - 720 = 240; (720-250)/2 = 235; 240 + 235 = 475*/
+  border: 1px solid #dededc;
+}
+
+a{
+  color: #07C;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:visited{
+  color: #07C;
+}
+
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, monospace;
+   font-size: 22px;
+}
+
+p > ul {
+  margin-bottom: 0px;
+}
+
+li {
+  max-width: 680px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+aside {
+  font-size: small;
+  right: 0;
+  position: absolute;
+  width: 180px;
+}
+
+aside code {
+  font-size: small;
+  background: #eee;
+  padding: 2px;
+}
+
+#toc_header{
+  display:none
+}
+
+#toc li {
+  list-style-type: none;
+}
+
+#toc li a {
+    display: block;
+    padding: 5px 5px 5px 0.5em;
+    border-left: 5px solid #0292CC;
+    color: #000;
+    text-decoration: none;
+}
+
+pre {
+   margin-top: 0;
+   overflow: auto;
+   border: 1px solid #ccc;
+   background-color: #F8F8F8;
+}
+
+pre code {
+  display: block;
+  padding: 0.5em;
+  line-height: 1.5em;
+}
+
+table, td, th {
+  border: none;
+}
+
+td, th{
+  padding: 0 10px 0 10px;
+}
+
+table{
+  font-size: 26px;
+  margin: 0 auto 20px auto;
+}
+
+table caption{
+  padding: 20px 0 10px 0;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+p img{
+  padding: 0;
+}
+</style>
+
+
+
+</head>
+
+<body>
+<div id = "content">
+<h1>Clickme Points Example</h1>
+
+<iframe width = "1050" height = "850" src="tutorial2-points.html"> </iframe>
+
+<p>Things you can do with the chart above:</p>
+
+<ul>
+<li>Search by gene name</li>
+<li>Zoom in and out using your mouse wheel or trackpad.</li>
+<li>Click and drag the whitespace between points to move around.</li>
+<li>Click on <code>Show names</code> to toggle the name of each point.</li>
+<li>Hover over individual points to see additional information.</li>
+<li>Click on the groups to show/hide them.</li>
+</ul>
+
+<p>I’m still working on the documentation. If you want to learn more, check out the <a href="https://github.com/nachocab/clickme">source code</a>.</p>
+
+<h2>Code</h2>
+
+<p>You can reproduce the example by running the following in R</p>
+
+<pre><code class="r"># you don&#39;t need to run this line if you already have the devtools package installed.
+install.packages(&quot;devtools&quot;)
+
+# every time you run these two lines you update to the latest version of Clickme. Feel free to do so as often as you like.
+library(devtools)
+install_github(&quot;clickme&quot;, &quot;nachocab&quot;)
+
+# this line loads Clickme. You can put it in your .Rprofile so it is always ready to use.
+library(clickme)
+data(microarray)
+clickme(points, x = microarray$significance, y = microarray$logFC,
+        color_groups = ifelse(microarray$adj.P.Val &lt; 1e-4, &quot;Significant&quot;, &quot;Noise&quot;),
+        names = microarray$gene_name,
+        xlab = &quot;Significance (-log10)&quot;, ylab = &quot;Fold-change (log2)&quot;,
+        extra = list(Probe = microarray$probe_name))
+
+</code></pre>
+
+</div>
+
+<!-- Lazy load iframes -->
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+(function() {
+    var iframes = d3.selectAll("iframe[data-src]").datum(function() {
+        return {
+            visible: false,
+            src: this.getAttribute("data-src")
         };
-      }
-    
-      transform = function(d) {
-        return "translate(" + (plot.scales.x(d.x) + plot.jitters.x()) + ", " + (plot.scales.y(d.y) + plot.jitters.y()) + ")";
-      };
-    
-      g_points = clip.selectAll(".point").data(data).enter().append("g").attr({
-        "class": "point",
-        "transform": transform
-      });
-    
-      points = g_points.append("svg:circle").attr({
-        "class": "point_tooltip",
-        "r": radius,
-        "fill": function(d) {
-          return color_scale(d.group);
-        },
-        "title": function(d) {
-          return plot.tooltip_text(d);
-        }
-      });
-    
-      $(".point_tooltip").tooltip({
-        html: true,
-        container: "body",
-        placement: "top"
-      });
-    
-      point_names = g_points.append("text").text(function(d) {
-        return d.point_name;
-      }).attr({
-        "dy": ".32em",
-        "dx": 8,
-        "text-anchor": "left",
-        "display": "none"
-      }).style({
-        "fill": function(d) {
-          return color_scale(d.group);
-        },
-        "font-size": "22px"
-      });
-    
-      if (true) {
-        sidebar = plot.right_margin.append("g").attr("transform", "translate(60,0)");
-        g_toggle_names = sidebar.append("g").style("cursor", "pointer").style("font-size", "22px").on("click", function() {
-          return toggle_names();
+    });
+
+    // refactor this so iframes only load when the window isn't scrolling
+    function load_iframes() {
+        console.log(iframes)
+        iframes.filter(function(d) {
+            if (d.visible){
+                return false;
+            } else {
+                d.visible = true;
+                return true;
+            }
+        }).attr("src", function(d) {
+            return d.visible ? d.src : null;
         });
-        g_toggle_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr("fill", "white");
-        g_toggle_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').text("Show names (" + data.length + ")");
-        toggle_names = function() {
-          var showing_point_names;
-          showing_point_names = g_toggle_names.classed("show_names");
-          point_names.attr("display", function() {
-            if (showing_point_names) {
-              return "none";
-            } else {
-              return "inline";
-            }
-          });
-          return g_toggle_names.attr("class", function() {
-            if (showing_point_names) {
-              return "";
-            } else {
-              return "show_names";
-            }
-          }).select("circle").attr("fill", function() {
-            if (showing_point_names) {
-              return "white";
-            } else {
-              return "black";
-            }
-          });
-        };
-        if (color_scale.range().length > 1) {
-          sidebar.append("text").attr({
-            "class": "color_title",
-            "x": -radius,
-            "y": 45,
-            "dy": ".35em"
-          }).style({
-            "font-size": "16px",
-            "font-weight": "bold"
-          }).text(color_title);
-          g_color_legend = sidebar.selectAll(".key").data(color_scale.domain().reverse()).enter().append("g").attr({
-            "transform": function(d, i) {
-              return "translate(0, " + (i * (radius * 2 + 15) + 70) + ")";
-            },
-            "class": "key"
-          });
-          g_color_legend.append("circle").attr({
-            "r": radius,
-            "fill": color_scale
-          });
-          g_color_legend.append("text").attr({
-            "x": radius + 10,
-            "y": 0,
-            "dy": ".35em"
-          }).text(function(d) {
-            return "" + d + " (" + color_legend_counts[d] + ")";
-          });
-        }
-      }
-    
-    }).call(this);
+    }
 
-    </script>
-    <div class = "code">
-        
-    </div>
-  </body>
+    load_iframes()
+
+}).call(this);
+</script>
+
+</body>
+
 </html>

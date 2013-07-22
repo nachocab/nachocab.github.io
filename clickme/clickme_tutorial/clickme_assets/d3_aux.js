@@ -24,15 +24,15 @@
     if ((_ref4 = opts.height) == null) {
       opts.height = 200;
     }
-    if ((_ref5 = opts.margin) == null) {
-      opts.margin = 10;
+    if ((_ref5 = opts.padding) == null) {
+      opts.padding = 10;
     }
     main = d3.select(opts.selector).append(opts.element).attr({
       "width": opts.width,
       "height": opts.height
     }).style({
       'background': opts.background,
-      'margin': opts.margin
+      'padding': opts.padding
     });
     if (opts.id) {
       main.attr("id", opts.id);
@@ -88,7 +88,7 @@
       width: opts.total_width,
       height: opts.total_height,
       background: opts.background,
-      margin: 20
+      padding: 0
     }).append("svg:g");
     for (key in opts) {
       value = opts[key];
@@ -142,6 +142,15 @@
       });
       return plot;
     };
+    plot.add_subtitle = function() {
+      plot.top_margin.append("text").text(plot.subtitle).attr({
+        "class": "subtitle",
+        "text-anchor": "middle",
+        "x": plot.width / 2,
+        "y": plot.padding.top / 2 + 30
+      });
+      return plot;
+    };
     plot.add_box = function() {
       plot.append("path").attr({
         "d": "M0,0L" + plot.width + ",0L" + plot.width + "," + plot.height
@@ -165,6 +174,9 @@
         plot.orientation_x = "bottom";
       }
       plot.axes.x = d3.svg.axis().scale(plot.scales.x).orient(plot.orientation_x);
+      if (plot.hide_x_tick_labels === true) {
+        plot.axes.x.tickFormat("");
+      }
       plot.bottom_margin.append("g").attr("class", "x axis").call(plot.axes.x);
       plot.bottom_margin.selectAll(".x.axis line, .x.axis path").style({
         "fill": "none",
@@ -225,6 +237,7 @@
       plot.add_box();
     }
     plot.add_title();
+    plot.add_subtitle();
     plot.get_scales();
     if (plot.scale_types.x === "ordinal" || plot.scale_types.y === "ordinal") {
       plot.zoom = false;

@@ -6,7 +6,7 @@ my_light_red = "#b90000"
     opts.background ?= "#fff"
     opts.width ?= 200
     opts.height ?= 200
-    opts.margin ?= 10
+    opts.padding ?= 10
 
     main = d3.select(opts.selector)
         .append(opts.element)
@@ -20,7 +20,7 @@ my_light_red = "#b90000"
             "height": opts.height
         }).style({
             'background': opts.background
-            'margin': opts.margin
+            'padding': opts.padding
         })
 
     if (opts.id)
@@ -61,7 +61,7 @@ my_light_red = "#b90000"
             width: opts.total_width
             height: opts.total_height
             background: opts.background
-            margin: 20
+            padding: 0
         ).append("svg:g")
             # .attr("transform", "translate(#{opts.padding.left},#{opts.padding.top})")
 
@@ -137,6 +137,18 @@ my_light_red = "#b90000"
 
         plot
 
+    plot.add_subtitle = () ->
+        plot.top_margin.append("text")
+            .text(plot.subtitle)
+            .attr(
+                "class": "subtitle"
+                "text-anchor": "middle"
+                "x": plot.width / 2
+                "y": plot.padding.top / 2 + 30
+            )
+
+        plot
+
     plot.add_box = () ->
         plot.append("path")
             .attr(
@@ -163,6 +175,9 @@ my_light_red = "#b90000"
         plot.axes.x = d3.svg.axis()
             .scale(plot.scales.x)
             .orient(plot.orientation_x)
+
+        if plot.hide_x_tick_labels is true
+            plot.axes.x.tickFormat("")
 
         # if tick_values?
             # plot.axes.x.tickValues(tick_values)
@@ -243,6 +258,7 @@ my_light_red = "#b90000"
         plot.add_box()
 
     plot.add_title()
+    plot.add_subtitle()
 
     plot.get_scales()
     if plot.scale_types.x is "ordinal" or plot.scale_types.y is "ordinal"
