@@ -23,7 +23,7 @@
     <script type="text/javascript">
     (function() {
       var clip, color_legend_counts, color_scale, color_title, data, distance_between_show_names_and_color_groups, g_color_group_keys, g_points, g_toggle_names, keyuped, mouseout, mouseover, opacity, plot, point_names, points, radius, redraw, search, search_clear, search_input, sidebar, toggle_names, toggle_points, transform;
-    
+
       data = [{"x":4.00437625022375,"y":1.66365568276128,"point_name":"MOCOS","Probe":"A_23_P67042","color_group":"Significant"},
 {"x":4.01583033254004,"y":1.47625777359398,"point_name":"C22ORF34","Probe":"A_33_P3380793","color_group":"Significant"},
 {"x":4.01583033254004,"y":-1.09961696937142,"point_name":"ZNF770","Probe":"A_23_P65733","color_group":"Significant"},
@@ -524,24 +524,24 @@
 {"x":3.99697801549509,"y":1.75086833553357,"point_name":"TNFSF10","Probe":"A_23_P121253","color_group":"Noise"},
 {"x":3.99697801549509,"y":-0.788425810512593,"point_name":"HNRNPH3","Probe":"A_23_P115824","color_group":"Noise"},
 {"x":3.99911136073354,"y":-1.58352920183001,"point_name":"ATP2B1","Probe":"A_33_P3267185","color_group":"Noise"}];
-    
+
       radius = 5;
-    
+
       color_scale = d3.scale.ordinal().range(["#d62728","#24A5F9"]);;
-    
+
       opacity = null;
-    
+
       color_title = "Group";
-    
+
       color_legend_counts = {"Noise":279,"Significant":221};
-    
+
       distance_between_show_names_and_color_groups = 80;
-    
+
       plot = new_plot({
         width: 500,
         height: 500,
         padding: {"top":150,"right":400,"bottom":70,"left":100},
-        title: "Points",
+        title: "Gene Expression",
         subtitle: null,
         xlab: "Significance (-log10)",
         ylab: "Fold-change (log2)",
@@ -564,14 +564,14 @@
         ordinal_scale_padding: 1,
         linear_scale_padding: 40
       });
-    
+
       plot.center.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
         "width": plot.width,
         "height": plot.height
       });
-    
+
       clip = plot.center.append("g").attr("clip-path", "url(#clip)");
-    
+
       if (plot.zoom) {
         clip.append("rect").style({
           "cursor": "move"
@@ -590,16 +590,16 @@
           return g_points.attr("transform", transform);
         };
       }
-    
+
       transform = function(d) {
         return "translate(" + (plot.scales.x(d.x) + plot.jitters.x()) + ", " + (plot.scales.y(d.y) + plot.jitters.y()) + ")";
       };
-    
+
       g_points = clip.selectAll(".point").data(data).enter().append("g").attr({
         "class": "point",
         "transform": transform
       });
-    
+
       points = g_points.append("svg:circle").attr({
         "r": radius,
         "fill": function(d) {
@@ -612,13 +612,13 @@
           return "<table><tr><td colspan='2' class='tooltip-title'>" + d.point_name + "</td></tr><tr class='tooltip-metric'><td class='tooltip-metric-name'>Significance (-log10)</td><td class='tooltip-metric-value'>" + d3.format('.2f')(d.x) + "</td></tr><tr class='tooltip-metric'><td class='tooltip-metric-name'>Fold-change (log2)</td><td class='tooltip-metric-value'>" + d3.format('.2f')(d.y) + "</td></tr><tr class='tooltip-metric'><td class='tooltip-metric-name'>Probe</td><td class='tooltip-metric-value'>" + d.color_group + "</td></tr><tr class='tooltip-metric'><td class='tooltip-metric-name'>Group</td><td class='tooltip-metric-value'>" + d['Probe'] + "</td></tr></table>";
         }
       });
-    
+
       $(".point circle").tooltip({
         html: true,
         container: "body",
         placement: "top"
       });
-    
+
       point_names = g_points.append("text").text(function(d) {
         return d.point_name;
       }).attr({
@@ -632,7 +632,7 @@
         },
         "font-size": "22px"
       });
-    
+
       if (true) {
         sidebar = plot.right_margin.append("g").attr("transform", "translate(60,0)");
         g_toggle_names = sidebar.append("g").style("cursor", "pointer").style("font-size", "22px").on("click", function() {
@@ -697,7 +697,7 @@
           });
         }
       }
-    
+
       toggle_points = function(category) {
         g_points.filter(function(d) {
           return d.color_group === category;
@@ -714,19 +714,19 @@
           return g_points.classed("hide", false);
         }
       };
-    
+
       d3.select(".g-search").style({
         "top": "" + (g_toggle_names.node().getBoundingClientRect().top + distance_between_show_names_and_color_groups / 2) + "px",
         "left": "" + (g_toggle_names.node().getBoundingClientRect().left) + "px"
       });
-    
+
       keyuped = function() {
         if (d3.event.keyCode === 27) {
           this.value = "";
         }
         return search(this.value.trim());
       };
-    
+
       search = function(value) {
         var matches, re;
         if (value) {
@@ -754,26 +754,26 @@
           return search_clear.style("display", "none");
         }
       };
-    
+
       mouseover = function(d) {
         points.filter(function(c) {
           return c === d;
         }).classed("g-active", true);
         return $(".g-active").tooltip("show");
       };
-    
+
       mouseout = function() {
         $(".g-active").tooltip("hide");
         return points.filter(".g-active").classed("g-active", false);
       };
-    
+
       search_input = d3.select(".g-search input").on("keyup", keyuped);
-    
+
       search_clear = d3.select(".g-search .g-search-clear").on("click", function() {
         search_input.property("value", "");
         return search();
       });
-    
+
     }).call(this);
 
     </script>
