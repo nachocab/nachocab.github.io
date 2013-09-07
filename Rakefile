@@ -62,7 +62,8 @@ task :post do
   open(filename, 'w') do |post|
     post.puts "---"
     post.puts "layout: post"
-    post.puts "title: \"#{title}\""
+    # post.puts "title: \"#{title}\""
+    post.puts "title: \"\""
     post.puts "published: false"
     post.puts "category: "
     post.puts "tags:"

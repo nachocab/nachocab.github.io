@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Your experiment is going to fail"
+title: "Pretend Your Next Experiment Is Going to Fail"
 published: true
 category:
 ---
