@@ -1,5 +1,3 @@
----
-
 ```{r global_setup, echo=FALSE, cache=FALSE, warning=FALSE}
 
     opts_chunk$set(cache=FALSE, cache.path='cache/clickme_tutorial/', fig.path='figure/clickme_tutorial/', autodep=TRUE, fig.cap="", fig.width=8, fig.height=8, dev = c("svg", "cairo_pdf"), echo=FALSE, warning=FALSE, message=FALSE)
@@ -11,7 +9,9 @@
 
 This example showcases some of the features of the Clickme template Points.
 
-Clickme is an R package to create interactive visualizations. Each visualization is defined in a modified HTML file called a template. To generate a new visualization, we call the `clickme` function, passing it the name of a template and the data we want to visualize:
+Clickme is an R package to create interactive visualizations. Each visualization is defined in a modified HTML file called a template. To generate a new visualization, we call the `clickme` function, passing it the name of a template and the data we want to visualize.
+
+Let’s see an example
 
 ```r
 library(clickme)
@@ -26,7 +26,7 @@ clickme("points", rnorm(10))
 
 ```
 
-Things you can do:
+Things you can do with the chart above:
 
 * Zoom in and out using your mouse wheel or trackpad.
 * Click and drag to move around.

@@ -1,0 +1,9 @@
+.content p{
+    margin-top:25px;
+    margin-bottom:30px;
+    *zoom:1;
+    font-family:"ff-tisa-web-pro",Georgia,Cambria,"Times New Roman",Times,serif;
+    font-weight:400;
+    font-size:22px;
+    line-height:1.45
+}

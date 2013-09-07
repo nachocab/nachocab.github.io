@@ -44,8 +44,10 @@ install.packages("devtools")
 library(devtools)
 install_github("clickme", "nachocab")
 
-# this line loads Clickme. You can put it in your .Rprofile so it is always ready to use.
+# Load Clickme. You can copy this line into your .Rprofile so it is always ready to use.
 library(clickme)
+
+# Run the example
 data(microarray)
 clickme(points, x = microarray$significance, y = microarray$logFC,
         color_groups = ifelse(microarray$adj.P.Val < 1e-4, "Significant", "Noise"),
