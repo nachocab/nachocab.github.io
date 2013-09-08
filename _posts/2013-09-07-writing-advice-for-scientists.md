@@ -9,7 +9,7 @@ tags: writing
 
 My appreciation for anyone who has ever written a research paper has skyrocketed during the past few weeks. I had to start writing my own article to realize how mind-numbingly hard it is. Sometimes I feel like words refuse to leave my brain unless I force them with a corkscrew. Other times I stumble over booby-trapped paragraphs that kill whatever train of thought I had going.
 
-Whenever I manage to write something coherent is because I take it one paragraph at a time, and when that doesn't work, one sentence at a time. This [article on scientific writing](http://www.americanscientist.org/issues/id.877,y.0,no.,content.true,page.1,css.print/issue.aspx) shares some of the most eye-opening insights I have ever read for crafting understandable sentences. I spent a couple of hours poring over it and distilled two main guidelines:
+Whenever I manage to write something coherent is because I take it one paragraph at a time, and when that doesn't work, one sentence at a time. In his [article on scientific writing](http://www.americanscientist.org/issues/id.877,y.0,no.,content.true,page.1,css.print/issue.aspx), George Gopen and Judith Swan share some of the most eye-opening insights I have ever read for crafting understandable sentences. I have spent a couple of hours poring over it and distilled it into two main guidelines:
 
 ## 1. Use strong verbs, and place them close to their subjects
 
