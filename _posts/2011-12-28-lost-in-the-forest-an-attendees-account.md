@@ -4,7 +4,7 @@ title: "Lost in the Forest: An Attendee's Account"
 published: true
 categories:
 tags:
-    - presenting data
+    - telling stories
 ---
 You enter the conference room. Your fellow attendees are holding a slice of pizza with one hand, and typing on their laptops with the other. You're hoping this *attendance-required* presentation won't be like the previous one. You wish the hour you are about to invest is worth it. You skip the pizza and you sit down with a notepad in your lap.
 
