@@ -19,4 +19,4 @@ I hope you catch yourself drawing emphatic curvy arrows and triple underscores n
 
 Here are some of the scribbles I drew while brainstorming old presentations, along with the digital version they eventually became.
 
-![Before after](/assets/before_after_presentations.jpg)
+![Before after]({{ site.url }}/assets/before_after_presentations.jpg)
