@@ -15,7 +15,7 @@ When I read great sentences, I am always surprised at how graceful they seem and
 
 Now read a variation I won't publicly confess to having written:
 
-> Even though these paintings are almost five centuries old, they are still striking. The sea is usually stormy and full of tall green waves. In the background there is usually a calm meadow and a village.
+> Even though these paintings are almost five centuries old, they are still striking. The sea is usually stormy and full of tall green waves. It seems very different from the calm meadow and the village that are usually in the background.
 
 The first sentence resonates with my monkey brain; the second one is entirely unremarkable. When I first read Simon's sentence I didn't know why I liked it so much, so I decided to geek it out until I understood what made it so appealing. I'm still not sure I uncovered all its secrets, but here's what I have so far:
 
@@ -31,7 +31,9 @@ The first sentence resonates with my monkey brain; the second one is entirely un
 * there is a nice simmetry between *its waves translucent* and *the troughs between them* (*them* refers to the waves). *troughs* is precisely the right word to describe the negative space between two waves. They also each have five syllables, which helps.
 * there is a nice alliteration with *and*: *translucent and green*, *deep and dangerous and all providing*
 * *savage contrast*: another unlikely adjective-noun combination. It perfectly describes the feeling of comparing a dangerous sea with a quiet meadow.
+* *distant comforts* is a better mental image than *in the background*
 * I like the three adjective-nouns in a row: *savage contrast*, *distant comforts*, *cow-grazed meadows*
+* the *all providing* rounds up the description better than *it seems*.
 * describing a meadow as *cow-grazed* is brilliant, and more vivid than a *calm meadow*
 * a *church steeple* gives a crisper mental image than a *village*
 
