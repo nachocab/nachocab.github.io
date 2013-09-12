@@ -29,7 +29,7 @@ Twenty four years later, crying is no longer an issue, but whining about not wan
 
 Writing about something you are planning to do feels, in a way, like you have already done it. Ask any travel guide fanatic. Sometimes thinking about doing something feels even *better* than actually doing it. Ask anyone that just ate at a McDonald's.
 
-The majority of the things that you write in your list will instantly lose their appeal the moment you finish working—they were part of the reality distorsion field built by your brain to savotage your attempts at accomplishing difficult tasks.
+The majority of the things that you write in your list will instantly lose their appeal the moment you finish working—they were part of the reality distortion field built by your brain to sabotage your attempts at accomplishing difficult tasks.
 
-Spending a few seconds writing down what you crave, and getting back to work, can mean the difference between spending hours browsing the newsfeeds and finishing that damm report in time for salsa class.
+Spending a few seconds writing down what you crave, and getting back to work, can mean the difference between spending hours browsing the newsfeeds and finishing that damn report in time for salsa class.
 
