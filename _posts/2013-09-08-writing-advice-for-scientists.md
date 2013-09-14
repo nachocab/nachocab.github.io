@@ -27,7 +27,7 @@ I split the first sentence into two to make the connection between the "While...
 
 The reworked sentence above starts by talking about a *familiar* topic (the current diagnostics) and ends on emphasis-worthy information (there is an alternative method). The next sentence describes the previous developments that led to the new method and ends on the new method's key idea (using host gene expression profiles). An additional sentence could begin by describing how signatures of disease can be extracted from host gene expression profiles and end on why this is important (emphasis-worthy).
 
-Going through the examples in the [article](http://www.americanscientist.org/issues/id.877,y.0,no.,content.true,page.1,css.print/issue.aspx) helped me lay out my ideas a sentence at a time. I have found that arranging sentences into familiar topics and emphasis-worth information helps me isolate ideas much more effectively and I no longer have to fret over fixing messy paragraphs.
+Going through the examples in the [article](http://www.americanscientist.org/issues/id.877,y.0,no.,content.true,page.1,css.print/issue.aspx) helped me lay out my ideas a sentence at a time. I have found that arranging sentences into familiar topics and emphasis-worthy information helps me isolate ideas much more effectively and I no longer have to fret over fixing messy paragraphs.
 
 Unfortunately, I'm still not done writing, argh. Back to work!
 

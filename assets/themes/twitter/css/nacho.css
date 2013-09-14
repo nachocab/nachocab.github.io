@@ -42,3 +42,7 @@ blockquote {
     border: 0;
     padding: 0;
 }
+
+iframe {
+     border: 0;
+}

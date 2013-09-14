@@ -151,17 +151,6 @@
       });
       return plot;
     };
-    plot.add_box = function() {
-      plot.append("path").attr({
-        "d": "M0,0L" + plot.width + ",0L" + plot.width + "," + plot.height
-      }).style({
-        "stroke": "black",
-        "stroke-width": "2px",
-        "shape-rendering": "crispEdges",
-        "fill": "none"
-      });
-      return plot;
-    };
     plot.add_axes = function() {
       plot.axes = {};
       plot.add_x_axis();
@@ -233,9 +222,6 @@
       }
       return plot;
     };
-    if (plot.box === true) {
-      plot.add_box();
-    }
     plot.add_title();
     plot.add_subtitle();
     plot.get_scales();
@@ -378,6 +364,22 @@
       div.attr("class", opts["class"]);
     }
     return div;
+  };
+
+  Array.prototype.unique = function() {
+    var i, l, o, r;
+    o = {};
+    l = this.length;
+    r = [];
+    i = 0;
+    while (i < l) {
+      o[this[i]] = this[i];
+      i += 1;
+    }
+    for (i in o) {
+      r.push(o[i]);
+    }
+    return r;
   };
 
 }).call(this);
