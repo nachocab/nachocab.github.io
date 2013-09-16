@@ -64,6 +64,21 @@ People don't stop watching TV because they don't like a show, they change the ch
 
 
 
+Dear me from the future,
+
+Since you have had much more experience at being me, I won't try to second-guess if you decided to have kids, if you accepted a six figure industry position, or if your writing got good enough to deserve a paycheck. My only advantage is that I remember better than you who you wanted to become.
+
+##
+
+## You never stopped asking questions
+
+got into science because you liked learning new things about the world
+
+## Putting yourself out there has always brought you positive things
+
+Maybe you managed to got good enough at writing to convince enough people to pay your salary
+
+
 
 
 
