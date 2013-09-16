@@ -66,7 +66,7 @@ People don't stop watching TV because they don't like a show, they change the ch
 
 Dear me from the future,
 
-Since you have had much more experience at being me, I won't try to second-guess if you decided to have kids, if you accepted a six figure industry position, or if your writing got good enough to deserve a paycheck. My only advantage is that I remember better than you who you wanted to become.
+Since you have had much more experience at being me, I won't try to second-guess if you decided to have kids, if you accepted a six figure industry position, or if your writing got good enough to deserve a paycheck. My only advantage is that I remember better than you what it was like to be you.
 
 ##
 
