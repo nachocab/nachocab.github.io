@@ -4,6 +4,8 @@ title: "Twitter is Full of Interesting Strangers"
 published: true
 category:
 tags:
+    - advice
+    - twitter
 ---
 {% include JB/setup %}
 

@@ -3,7 +3,7 @@ layout: post
 title: "Advice to Me From the Past"
 published: true
 category:
-tags:
+tags: advice
 ---
 {% include JB/setup %}
 
@@ -20,7 +20,7 @@ You have a limited amount of time, energy and brain cells; invest them on work y
 
 ## What other people think of you is irrelevant
 
-I hate to break it to you, but not everybody is going to like you. As long as you are not hurting anybody, what people think of you pales in comparison to what you think of you. You are probably doing something wrong if everybody likes you. Everyone who has ever lived a remarkable life has been criticized at some point, because of their personality, their beliefs, or their work.
+I hate to break it to you, but not everybody is going to like you. As long as you are not hurting anybody, what people think of you pales in comparison to what *you* think of you. Anyway, if everybody likes you, you're probably doing something wrong. Everyone who has ever lived a remarkable life has been criticized at some point, because of their personality, their beliefs, or their work.
 
 Never let the fear of being judged or looking like an idiot stop you from doing the things you want. If an opportunity to travel comes up and your friends can't make it, go by yourself. If you see a cute girl you want to meet, go up and talk to her. If you have to speak to a room full of people, feel the fear, and do it anyway.
 
