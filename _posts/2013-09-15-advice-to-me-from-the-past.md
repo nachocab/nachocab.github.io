@@ -7,6 +7,7 @@ tags: advice
 ---
 {% include JB/setup %}
 
+![Me from the past]({{ site.url }}/assets/me_from_the_past.jpg)
 
 Dear me from the past,
 
