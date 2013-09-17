@@ -16,10 +16,10 @@ The tutorial has been carefully designed to make it easy for you to play along. 
 ## Get the data
 
 <pre><code>
-# I recommend using this small dataset...
-wget github.com/nachocab/transcriptome.gtf
+# I recommend using this smaller file...
+wget https://raw.github.com/nachocab/nachocab.github.io/master/assets/transcriptome.gtf
 
-# ...but feel free to download the real thing if you're feeling bold
+# ...but if you're feeling bold, go ahead and download the whole enchilada
 wget ftp://ftp.sanger.ac.uk/pub/gencode/release_18/gencode.v18.annotation.gtf.gz
 gzip -dc gencode.v18.annotation.gtf.gz > transcriptome.gtf
 </code></pre>
