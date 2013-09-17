@@ -47,14 +47,27 @@ iframe {
      border: 0;
 }
 
-code,pre {
+code, pre{
     display: block;
     padding: 0;
     margin: 0 0 0;
     font-size: 18px;
     line-height: 25px;
-    word-break: break-all;
-    word-wrap: break-word;
-    white-space: pre-wrap;
     background-color: "none";
+    overflow: auto;
+    word-wrap: normal;
+    white-space: pre;
+}
+
+p code{
+    display: inline;
+    padding: 0 5px;
+}
+
+pre code{
+    white-space: pre;
+}
+
+code.wrap{
+    white-space: pre-wrap;
 }

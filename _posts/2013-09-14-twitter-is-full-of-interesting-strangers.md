@@ -9,7 +9,7 @@ tags:
 ---
 {% include JB/setup %}
 
-![Twitter]({{ site.url }}/assets/twitter_logo.jpg)
+![Twitter](https://lh3.googleusercontent.com/-rq6qrUqPQlw/UjTDtDxWnaI/AAAAAAAAEF0/fitQJCPPdik/w1024/IMG_20130914_161213.jpg)
 
 I signed up for a Twitter sometime in 2007, but it wasn't until a few years ago that I understood its utility. Now, I use it to discover interesting strangers and share ideas that I am passionate about.
 
