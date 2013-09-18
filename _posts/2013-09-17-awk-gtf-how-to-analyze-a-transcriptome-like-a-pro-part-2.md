@@ -130,7 +130,7 @@ AL645608.2
 AL645608.2
 </code></pre>
 
-Run `awk -F "\t" '$3 == "exon" { print $9 }' transcriptome.gtf | tr -d ";\"" | head | less -S` to understand what the input to the second AWK call looks like. It's just words separated by spaces; the sixth word corresponds to the gene type, and the tenth word to the gene name.
+Run `awk -F "\t" '$3 == "exon" { print $9 }' transcriptome.gtf | tr -d ";\"" | head` to understand what the input to the second AWK call looks like. It's just words separated by spaces; the sixth word corresponds to the gene type, and the tenth word to the gene name.
 
 ## Counting genes
 
@@ -155,9 +155,9 @@ c
 Done with letters!
 </code></pre>
 
-The `-e` option tells `echo` to convert each `\n` into a new line (that is just a convenient way of printing multiple lines from a single character string).
+The `-e` option tells `echo` to convert each `\n` into a new line, which is a convenient way of printing multiple lines from a single character string.
 
-In AWK, anything between the initial and the final quote `'` can contain all the whitespace we want, so I separated the first rule from the `END` rule to make them easier to read.
+In AWK, any amount of whitespace is allowed between the initial and the final quote `'`. I separated the first rule from the `END` rule to make them easier to read.
 
 Now we are ready for counting.
 
@@ -181,11 +181,13 @@ c 1
 
 Wow, what is all that madness?
 
-Instead of printing each letter, we add 1 to a special variable that we called `counter`. This variable has a slot for each value that we put between the brackets `[ ]`. In this case we put the first column `$1` between the brackets (we say that $1 is the key), so `counter` has 3 values; one for each letter. The values are initialized to 0. We added 1 to each value by using the addition operator `+=`, which is a shortcut for `counter[$1] = counter[$1] + 1`.
+Instead of printing each letter, we manipulate a variable that we called `counter`. This variable is special because it is followed by brackets `[ ]`, which makes it an **associative array**, a fancy way of calling a variable that stores key-value pairs.
 
-When all the lines are read, the `END` rule becomes true, and the code between the curly braces `{ }` is executed. `letter` is the name that we chose for the variable that has all the keys in counter (in this case, "a", "b", and "c"), and `counter[letter]` gives the values for each letter (which we we calculated in the previous curly brace chunk).
+In this case we chose the values of the first column `$1` to be the keys of the `counter` variable, which means there are 3 keys ("a", "b" and "c"). The values are initialized to 0. For every line in the input, we add a 1 to the value in the array whose key is equal to `$1`. We use the addition operator `+=`, a shortcut for `counter[$1] = counter[$1] + 1`.
 
-Now we can apply this to the real example
+When all the lines are read, the `END` rule becomes true, and the code between the curly braces `{ }` is executed. The structure `for (key in associate_array) { some_code }` is called a **for loop**, and it executes `some_code` as many times as there are keys in the array. `letter` is the name that we chose for the variable that cycles through all the keys in `counter`, and `counter[letter]` gives the value stored in `counter` for each `letter` (which we we calculated in the previous curly brace chunk).
+
+Now we can apply this to the real example:
 
 <pre><code>
 awk -F "\t" '$3 == "exon" { print $9 }' transcriptome.gtf | \
