@@ -179,4 +179,4 @@ gene_id "ENSG00000239945.1"; transcript_id "ENSG00000239945.1"; gene_type "lincR
 gene_id "ENSG00000233750.3"; transcript_id "ENSG00000233750.3"; gene_type "pseudogene"; gene_status "KNOWN"; gene_name "CICP27"; transcript_type "pseudogene"; transcript_status "KNOWN"; transcript_name "CICP27"; level 1; tag "pseudo_consens"; havana_gene "OTTHUMG00000001257.3";
 </code></pre>
 
-Now we have all the genes, but how do we filter for protein-coding genes? The answer, in Part 2.
+Now we have all the genes, but how do we filter for protein-coding genes? The answer, in [Part 2](http://reasoniamhere.com/2013/09/17/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-2).
