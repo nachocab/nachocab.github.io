@@ -4,8 +4,19 @@ title: "AWK GTF! How to Analyze a Transcriptome Like a Pro - Part 2"
 published: true
 category:
 tags:
+    - tutorial
+    - bioinformatics
+    - awk
 ---
 {% include JB/setup %}
+
+This post belongs to a 3-part series on AWK:
+
+* [Part 1](http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1)
+* **Part 2**
+* [Part 3](http://reasoniamhere.com/2013/09/18/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-3)
+
+<hr>
 
 Back in [Part 1](http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1), we learned how to tell AWK to select specific lines from a tab-separated [transcriptome file](http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1/#get_the_data) (using the rule `'$3 == "gene"'`) and return a specific column (using the `print` statement inside the curly braces `{ }`).
 
@@ -185,7 +196,7 @@ Instead of printing each letter, we manipulate a variable that we called `counte
 
 In this case we chose the values of the first column `$1` to be the keys of the `counter` variable, which means there are 3 keys ("a", "b" and "c"). The values are initialized to 0. For every line in the input, we add a 1 to the value in the array whose key is equal to `$1`. We use the addition operator `+=`, a shortcut for `counter[$1] = counter[$1] + 1`.
 
-When all the lines are read, the `END` rule becomes true, and the code between the curly braces `{ }` is executed. The structure `for (key in associate_array) { some_code }` is called a **for loop**, and it executes `some_code` as many times as there are keys in the array. `letter` is the name that we chose for the variable that cycles through all the keys in `counter`, and `counter[letter]` gives the value stored in `counter` for each `letter` (which we we calculated in the previous curly brace chunk).
+When all the lines are read, the `END` rule becomes true, and the code between the curly braces `{ }` is executed. The structure `for (key in associate_array) { some_code }` is called a `for` loop, and it executes `some_code` as many times as there are keys in the array. `letter` is the name that we chose for the variable that cycles through all the keys in `counter`, and `counter[letter]` gives the value stored in `counter` for each `letter` (which we we calculated in the previous curly brace chunk).
 
 Now we can apply this to the real example:
 

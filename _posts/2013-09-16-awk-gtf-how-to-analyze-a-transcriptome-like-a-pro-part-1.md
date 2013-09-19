@@ -6,8 +6,17 @@ category:
 tags:
     - tutorial
     - bioinformatics
+    - awk
 ---
 {% include JB/setup %}
+
+This post belongs to a 3-part series on AWK:
+
+* **Part 1**
+* [Part 2](http://reasoniamhere.com/2013/09/17/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-2)
+* [Part 3](http://reasoniamhere.com/2013/09/18/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-3)
+
+<hr>
 
 The goal of this tutorial is to show a few of the cool things that the Unix tool AWK can do with tabular data. We will focus on extracting useful information from a [transcriptome](https://en.wikipedia.org/wiki/Transcriptome)—because bioinformatics is cool—, but AWK can do its wonders with any kind of text file.
 

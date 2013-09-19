@@ -72,3 +72,9 @@ pre code{
 code.wrap{
     white-space: pre-wrap;
 }
+
+hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 3px solid #eeeeee;
+}
