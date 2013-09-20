@@ -46,6 +46,10 @@ Select the text objects you want to merge, go to `File | Scripts | MergeText_AI`
 
 ![fixed text](https://lh4.googleusercontent.com/-ynagHNH10d4/Ujuk-reHuoI/AAAAAAAAERM/rPQSQk5v8hg/w228-h62-no/Screen+Shot+2013-09-19+at+4.39.40+PM.png)
 
+This is the final edited image:
+
+![final](https://lh3.googleusercontent.com/-C0ERSw4jSvY/Uju_pEhIJmI/AAAAAAAAESk/3OdpBuAx4_c/w488-h451-no/Screen+Shot+2013-09-19+at+11.22.48+PM.png)
+
 ## Automating and troubleshooting
 
 There are a few gotchas. The first is that all the layers in the current document must be visible and unlocked, otherwise you will get `Error 8705: Target layer cannot be modified` when you try to run MergeText_AI:
