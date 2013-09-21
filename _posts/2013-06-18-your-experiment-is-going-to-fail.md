@@ -17,7 +17,7 @@ Also, you don't know which half will fail, so mix up the replicates. If you have
 
 [Here](http://reasoniamhere.com/clickme/count_nas_by_group.html) is an interactive (zoomable) version of the plot.
 
-<iframe width = "900" height = "700" src="http://reasoniamhere.com/clickme/count_nas_by_group.html" frameborder="1"> </iframe>
+<iframe width = "1100" height = "850" src="http://reasoniamhere.com/clickme/count_nas_by_group.html" frameborder="1"> </iframe>
 
 Half of the samples in this [microarray](http://en.wikipedia.org/wiki/DNA_microarray) experiment turned out to be low quality. I was only able to figure out that the reason might be different scanning dates after looking around for extra information in the array files. It turns out that all the [jev samples](http://reasoniamhere.com/clickme/count_nas_by_initial_challenge.html) were analyzed in the same faulty batch, so they will have to be discarded. Luckily, a few of the denv4 samples were spared because they were done in the high quality arrays.
 
