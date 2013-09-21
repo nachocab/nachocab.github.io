@@ -7,11 +7,12 @@ tags:
     - advice
     - twitter
 ---
-{% include JB/setup %}
 
 ![Twitter](https://lh3.googleusercontent.com/-rq6qrUqPQlw/UjTDtDxWnaI/AAAAAAAAEF0/fitQJCPPdik/w1024/IMG_20130914_161213.jpg)
 
 I signed up for a Twitter sometime in 2007, but it wasn't until a few years ago that I understood its utility. Now, I use it to discover interesting strangers and share ideas that I am passionate about.
+
+<!--excerpt-->
 
 ## Twitter lets me discover people I would want to meet in person
 

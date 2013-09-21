@@ -1,17 +1,18 @@
 ---
 layout: post
-title: "Advice to Me From the Past"
+title: "Advice to Me from the Past"
 published: true
 category:
 tags: advice
 ---
-{% include JB/setup %}
 
 ![Me from the past](https://lh4.googleusercontent.com/zLhbTgmF7N85eYvgMQx9YRASObCSCeqcaUfPSmeNo0s=w1024)
 
 Dear me from the past,
 
 You'll be glad to know that in a few years, high school will be over. You will go out drinking with your friends every weekend, you will travel to twenty different countries, and the number of women that are willing to kiss you will increase by an order of magnitude.
+
+<!--excerpt-->
 
 ## Work on projects you'd be willing to do for free
 

@@ -8,17 +8,12 @@ tags:
     - bioinformatics
     - awk
 ---
-{% include JB/setup %}
 
-This post belongs to a 3-part series on AWK:
-
-* [Part 1](http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1)
-* [Part 2](http://reasoniamhere.com/2013/09/17/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-2)
-* **Part 3**
-
-<hr>
+This post belongs to a 3-part series on AWK: [Part 1](http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1) - [Part 2](http://reasoniamhere.com/2013/09/17/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-2) - **Part 3**
 
 We finished [Part 2](http://reasoniamhere.com/2013/09/17/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-2) by creating an associative array, increasing the value of each of its keys for every line that contained a matching key, and used the `END` rule to print each key's final count.
+
+<!--excerpt-->
 
 In this post, we will apply the translator pattern to turn the gene symbols used in the [transcriptome](http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1/#get_the_data) we have been working with into official [HGNC symbols](http://www.genenames.org/cgi-bin/hgnc_stats).
 

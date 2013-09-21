@@ -5,7 +5,6 @@ published: true
 category:
 tags: writing
 ---
-{% include JB/setup %}
 
 Crafting a sentence is just like solving a puzzle. Except that puzzles are solved by arranging every piece in the box until they form the picture that appears on the cover, and sentences are solved by fumbling with the limited set of words in your repertoire until the shifting idea in your head stops moving.
 
@@ -16,6 +15,8 @@ When I read great sentences, I am always surprised at how graceful they seem and
 Now read a variation I won't publicly confess to having written:
 
 > Even though these paintings are almost five centuries old, they are still striking. The sea is usually stormy and full of tall green waves. It seems very different from the calm meadow and the village that are usually in the background.
+
+<!--excerpt-->
 
 The first sentence resonates with my monkey brain; the second one is entirely unremarkable. When I first read Simon's sentence I didn't know why I liked it so much, so I decided to geek it out until I understood what made it so appealing. I'm still not sure I uncovered all its secrets, but here's what I have so far:
 

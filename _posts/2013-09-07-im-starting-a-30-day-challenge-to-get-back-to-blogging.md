@@ -4,10 +4,10 @@ title: "I'm Starting a 30 Day Challenge to Get Back to Blogging"
 published: true
 category:
 tags: writing
+excerpt:
 ---
-{% include JB/setup %}
 
-I randomly found [this](http://jamimmunology.blogspot.com/2012/11/deletor-T-cells-singh-immunology-journal-club.html) blog post about T cells. It's written by Jamie Heather, an immunology PhD student in London, who posts his science thoughts online. He posts a few times a month, but he's keep it up for a few years. I only had to read a couple of his [older](http://jamimmunology.blogspot.com/2013/05/up-goer-five-phd-description.html) [posts](http://jamimmunology.blogspot.com/2013/08/Decombinator-TCR-repertoire-analysis.html) to realize that *this is a guy I could grab a beer with*.
+I randomly found [this](http://jamimmunology.blogspot.com/2012/11/deletor-T-cells-singh-immunology-journal-club.html) blog post about T cells. It's written by Jamie Heather, an immunology PhD student in London, who posts his science thoughts online. He posts a few times a month, but he has kept it up for a few years. I only had to read a couple of his [older](http://jamimmunology.blogspot.com/2013/05/up-goer-five-phd-description.html) [posts](http://jamimmunology.blogspot.com/2013/08/Decombinator-TCR-repertoire-analysis.html) to realize that *this is a guy I could grab a beer with*.
 
 Then I realized that the only content in my blog was four badly formatted posts with broken links, and that I hadn't posted anything new in two months. If browsing a few posts from a total stranger living in London made me think he was a cool guy, why am I not making it easy for other people to reach the same conclusion about me?
 

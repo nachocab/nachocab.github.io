@@ -8,9 +8,10 @@ tags:
     - Clickme
     - visualization
 ---
-{% include JB/setup %}
 
 I just released an [update](https://github.com/nachocab/clickme/releases/tag/0.3.1) that makes it easy to hide all the color groups in a scatterplot except one. Simply click on "Show one". This is very useful to carry out exploratory analyses when there are many color groups. You can zoom around the plot by scrolling up and down with the mouse wheel.
+
+<!--excerpt-->
 
 <iframe width = "1000" height = "840" src="{{site.url}}/clickme/iris_mds.html"> </iframe>
 

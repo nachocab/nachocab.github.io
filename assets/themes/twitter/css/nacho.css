@@ -24,6 +24,12 @@ p > img {
     line-height:1.45
 }
 
+.pagination ul, .pagination p {
+    display: inline-block;
+    margin-left: 0;
+    margin-bottom: 0;
+}
+
 .content li {
     margin:20px 0;
     line-height:1.45
@@ -59,7 +65,7 @@ code, pre{
     white-space: pre;
 }
 
-p code{
+p code, ul code{
     display: inline;
     white-space: pre-line;
     padding: 0 5px;

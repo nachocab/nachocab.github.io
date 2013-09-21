@@ -13,6 +13,10 @@ exclude:
 markdown: kramdown
 pygments: true
 
+paginate: 5
+
+include: ['.htaccess', 'JB/setup']
+
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
 #

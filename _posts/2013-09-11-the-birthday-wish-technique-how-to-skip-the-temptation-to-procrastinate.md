@@ -4,8 +4,8 @@ title: "The Birthday Wish Technique: How to Skip the Temptation to Procrastinate
 published: true
 category:
 tags: productivity
+excerpt:
 ---
-{% include JB/setup %}
 
 I remember being six years old and crying in my bed one night. I was outraged about something, and wanted my parents to come check on me. Eventually my dad came and did something completely unexpected. He asked me what I wanted for my birthday.
 

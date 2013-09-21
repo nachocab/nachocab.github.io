@@ -6,9 +6,12 @@ category:
 tags:
     - visualization
 ---
-{% include JB/setup %}
 
 [D3](http://d3js.org/) is an awesome tool to build interactive visualizations. I use it extensively for the initial stages of my research projects, but converting D3 charts from SVG to PDF and polishing them for publication can be a harrowing experience. This post describes a few techniques that make this process more pleasant. If you have any additional ideas, please leave a comment at the bottom of the post.
+
+<!--excerpt-->
+
+**UPDATE**: After I published this post, a couple of people pointed me to [SVG Crowbar](http://nytimes.github.io/svg-crowbar/), a Chrome-specific bookmarklet that extracts an SVG from an HTML page and downloads it as a properly formatted SVG file (CSS styles included), which can be opened in Illustrator. The only shortcoming is that some CSS rules (like descendent rules: `svg > text`) crash Illustrator, so they are removed from the final SVG file. Still, it is a much simpler workflow than the one I present here. If you can't use Chrome, or if you need all your CSS styles to remain unchanged, read on.
 
 ## From SVG to PDF
 

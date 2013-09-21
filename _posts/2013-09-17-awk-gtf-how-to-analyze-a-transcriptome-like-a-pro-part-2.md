@@ -7,20 +7,16 @@ tags:
     - tutorial
     - bioinformatics
     - awk
+excerpt:
 ---
-{% include JB/setup %}
 
-This post belongs to a 3-part series on AWK:
-
-* [Part 1](http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1)
-* **Part 2**
-* [Part 3](http://reasoniamhere.com/2013/09/18/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-3)
-
-<hr>
+This post belongs to a 3-part series on AWK: [Part 1](http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1) - **Part 2** - [Part 3](http://reasoniamhere.com/2013/09/18/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-3)
 
 Back in [Part 1](http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1), we learned how to tell AWK to select specific lines from a tab-separated [transcriptome file](http://reasoniamhere.com/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1/#get_the_data) (using the rule `'$3 == "gene"'`) and return a specific column (using the `print` statement inside the curly braces `{ }`).
 
 In this post, we are going to count how many exons make up each protein-coding gene.
+
+<!--excerpt-->
 
 ## Chaining AWK calls
 

@@ -1,18 +1,20 @@
 ---
 layout: post
-title: "Turning Bacteria into Genetic Circuits Without Them Noticing"
+title: "Turning Bacteria into Genetic Circuits (Without Them Noticing)"
 published: true
 category:
 tags:
     - science
 ---
-{% include JB/setup %}
 
-Lately I have been summarizing every paper I read on a single piece of paper. Before I started doing that I would invest a lot of time reading a paper, and two months later it would completely disappear from my brain. The only thing I would remember is if I had found it interesting or not (not the most important information when trying to compile a bibliography). Limiting myself to a single piece of paper ensures that I only record what is important, and the fact that the notes are handwritten lets me [triple underscore and use all the curvy arrows](http://reasoniamhere.com/2013/09/09/good-presentations-begin-on-paper/) I need to make  important ideas stand out. My two-month recall has become pretty decent.
+Lately I have been summarizing every paper I read on a single piece of paper. Before I started doing that I would invest a lot of time reading a paper, and two months later it would completely disappear from my brain. The only thing I would remember is if I had found it interesting or not (not the most important information when trying to compile a bibliography). Limiting myself to a single piece of paper ensures that I only record what is important, and the fact that the notes are handwritten lets me [triple underscore and use all the curvy arrows](http://reasoniamhere.com/2013/09/09/good-presentations-begin-on-paper/) I need to make  important ideas stand out. My two-month recall is now pretty decent.
 
 I'm going to a seminar tomorrow presented by Tim Lu, one of the authors of a Nature Biotechnology paper titled [Synthetic circuits integrating logic and memory in living cells](http://www.rle.mit.edu/sbg/wp-content/uploads/2013/03/synthetic-circuits-integrating-logic-and-memory-in-living-cells.pdf). I decided to read the paper and write up a quick summary.
 
 ![Synthetic Circuits]({{ site.url }}/assets/synthetic_circuits.jpg)
+
+<!--excerpt-->
+
 
 The paper describes a new technique to arrange the genome of a bacterium (*E. coli*) and turn it into the biological equivalent of an electronic circuit. This approach is much more scalable than previous techniques because using it to build complex circuits like an XOR gate doesn't require joining universal gates together, which means that instead of assembling this madness:
 

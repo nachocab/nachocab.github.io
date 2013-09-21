@@ -6,7 +6,6 @@ category:
 tags:
     - science
 ---
-{% include JB/setup %}
 
 I gave a presentation today in the Microbiology departmental retreat at Boston University, so I though I'd share it.
 
@@ -17,6 +16,8 @@ The goal of the research project I have been working on for the past two years, 
 Traditional diagnostic methods, like detection by [ELISA](https://en.wikipedia.org/wiki/ELISA), are only effective after the virus has had enough time to replicate in the blood of the patient. However, for some viral infections, when this happens it is already too late for the treatment to be effective.
 
 The approach that we have taken in my lab is to measure the transcriptional changes that take place in the peripheral blood cells, and identify patterns of expression that are unique for each type of infection. This indirect way of viral detection has the potential to reduce diagnosis time by several days, since it is known that these transcriptional changes precede the appearance of virus particles in the blood, and we believe that they are specific enough to discriminate between viruses.
+
+<!--excerpt-->
 
 To test our hypothesis, we sequenced the RNA from [PBMCs](https://en.wikipedia.org/wiki/PBMC) that were extracted from two groups of monkeys; one infected with Lassa virus, and the other with Marburg virus.
 

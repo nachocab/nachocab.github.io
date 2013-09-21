@@ -6,13 +6,10 @@ category:
 tags:
     - productivity
 ---
-{% include JB/setup %}
 
-I use a [spreadsheet][track_me_now] to track my work hours; without it, I would never get anything done.
+I have been working from home since 2008 and I love everything about it: the freedom to set my own work hours, the lack of interruptions, the life-transcending 20-minute [power naps][power_nap] after lunch. Working without adult supervision is empowering, but it can also be stressful. I remember the anxiety I had at the beginning, when I didn't know if I was working enough or too much, and struggled through work marathons that left me feeling tired and unproductive. Everything changed when I started tracking my work hours on a [spreadsheet][track_me_now]. Seeing how much I was slacking or working took away all the guiltiness and stress of my workday.
 
----
-
-I have been working from home since 2008 and I love everything about it: the freedom to set my own work hours, the lack of interruptions, the life-transcending 20-minute [power naps][power_nap] after lunch. Working without adult supervision is empowering, but it can also be stressful. I remember the anxiety I had at the beginning, when I didn't know if I was working enough or too much, and struggled through work marathons that left me feeling tired and unproductive. Everything changed when I started tracking my work hours on a spreadsheet. Seeing how much I was slacking or working took away all the guiltiness and stress of my workday.
+<!--excerpt-->
 
 ## Plan
 
