@@ -20,7 +20,7 @@ include: ['.htaccess', 'JB/setup']
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
 #
-title : The reason I am here
+title : Reason I am here - Nacho Caballero
 author :
   name : Nacho Caballero
   email : nachocab@gmail.com
