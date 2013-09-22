@@ -84,3 +84,11 @@ hr {
     border: 0;
     border-top: 3px solid #eeeeee;
 }
+
+.navbar .brand {
+    font-weight: 700;
+}
+
+.nav {
+    font-size: 18px;
+}
