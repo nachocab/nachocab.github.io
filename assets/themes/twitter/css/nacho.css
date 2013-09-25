@@ -73,6 +73,8 @@ p code, ul code{
 
 pre {
     margin: 30px 0;
+    background-color:transparent;
+    border:0;
 }
 
 pre code{
@@ -95,4 +97,9 @@ hr {
 
 .nav {
     font-size: 18px;
+}
+
+.caption {
+    font-style: italic;
+    font-size: 85%;
 }
