@@ -25,7 +25,7 @@ A location of the genome is said to contain a SNP when a significant fraction of
 The OR6A2 receptor has high binding specificity for several of the [aldehydes](https://en.wikipedia.org/wiki/Aldehyde) contained in cilantro. When these molecules enter the nose, they come into contact with the olfactory sensory neurons located in the upper region of the nasal cavity. Each of these cells expresses only one odorant receptor, and when the right chemical binds to the right receptor, an electrical signal is sent upwards—through the bone—to the olfactory bulb, where it is further relayed by other cells until it reaches the olfactory cortex region of the brain.
 
 ![How smell works](https://lh6.googleusercontent.com/-_4YSK2rRkKQ/UkJfV9EdeNI/AAAAAAAAEYk/hRNqVOwTHAE/w500-no/Screen+Shot+2013-09-24+at+11.09.05+PM.png)
-<span class="caption">A figure from [The scent of life](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1905909/pdf/7401029.pdf) detailing how smell works.</span>
+<span class="caption">A figure from [The scent of life](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1905909/pdf/7401029.pdf), detailing how smell works.</span>
 
 The nucleotide that you have in the location of the rs72921001 SNP is thought to influence how the OR6A2 receptor perceives the presence of cilantro. If you are among the 10% of humans who have a C instead of an A in that location, when confronted with cilantro, instead of the misleading "Gee, I smell cilantro, lalala, happiness" your brain will warn you of the real danger coming your way: "I smell the disgusting herb that poisons everything that is good and loveworthy in the world. Run for your life!" Now you know why.
 
