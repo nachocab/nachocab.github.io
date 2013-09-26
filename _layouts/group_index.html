@@ -1,0 +1,40 @@
+---
+layout: default
+---
+{% if page.grouptype == 'tag' %}
+<div class="page-header">
+    <h2>Tag: '{{page.tag}}'</h2>
+</div>
+{% elsif page.grouptype == 'category' %}
+<div class="page-header">
+    <h2>Category: '{{page.category}}'</h2>
+</div>
+{% endif %}
+
+{% for post in paginator.posts %}
+    {% include post_row.html %}
+{% endfor %}
+
+{% if page.grouptype == 'tag' %}
+    {% capture paging_root %}/tag/{{page.tag}}/{% endcapture %}
+{% elsif page.grouptype == 'category' %}
+    {% capture paging_root %}/category/{{page.category}}/{% endcapture %}
+{% else %}
+    {% capture paging_root %}/{% endcapture %}
+{% endif %}
+
+<div class="pagination">
+      <ul>
+      {% if page.previous %}
+        <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; Previous</a></li>
+      {% else %}
+        <li class="prev disabled"><a>&larr; Previous</a></li>
+      {% endif %}
+        <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Article Index</a></li>
+      {% if page.next %}
+        <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Next &rarr;</a></li>
+      {% else %}
+        <li class="next disabled"><a>Next &rarr;</a>
+      {% endif %}
+      </ul>
+    </div>
