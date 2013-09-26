@@ -2,7 +2,7 @@
 layout: post
 title: "An Update to Clickme: Interactive Visualizations in R"
 published: true
-category:
+category: R
 tags:
     - R
     - Clickme

@@ -2,9 +2,9 @@
 layout: post
 title: Bioinformaticians need lab notebooks too
 published: true
-category:
+category: R
 tags:
-    - r
+    - R
     - knitr
     - productivity
 ---
