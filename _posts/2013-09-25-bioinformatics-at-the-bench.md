@@ -4,6 +4,7 @@ title: "Bioinformatics at the Bench"
 published: true
 category:
 tags:
+    - science
 ---
 
 Most bioinformaticians don't like to do experiments. We love the biological stories, but give us a pipette and we will quickly groan. I have spent the past two years in a virology lab, mainly working on computational problems, and eternally debating if I should plunge into the pool of experimental biology. Up until now, I have only dipped my toes in a few basic experiments, but I have recently decided to stop working on purely computational projects and transition to ones that require experimental skills. Here are my reasons.
