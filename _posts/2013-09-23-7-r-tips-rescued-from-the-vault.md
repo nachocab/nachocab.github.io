@@ -2,7 +2,7 @@
 layout: post
 title: "7 R Tips Rescued from the Vault"
 published: true
-category: R
+category:
 tags:
     - R
 ---
