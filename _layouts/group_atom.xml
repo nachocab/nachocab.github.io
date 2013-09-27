@@ -6,25 +6,25 @@ title: nil
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
    {% if page.grouptype == 'tag' %}
-    <title>RealJenius.com - Tag: {{page.tag}}</title>
+    <title>reasoniamhere.com - Tag: {{page.tag}}</title>
    {% elsif page.grouptype == 'category' %}
-    <title>RealJenius.com - Category: {{page.category}}</title>
+    <title>reasoniamhere.com - Category: {{page.category}}</title>
    {% else %}
-    <title>RealJenius.com</title>
+    <title>reasoniamhere.com</title>
    {% endif %}
-   <link>http://realjenius.com</link>
-   <description>I'm a software developer in the game industry, and have been (for better or worse) coding on the Java platform for the last decade. I also do all my own stunts.</description>
+   <link>http://reasoniamhere.com</link>
+   <description>I am a Spanish-born bioinformatics PhD student living in Boston</description>
    <language>en-us</language>
-   <managingEditor>R.J. Lorimer</managingEditor>
+   <managingEditor>Nacho Caballero</managingEditor>
    <atom:link href="rss" rel="self" type="application/rss+xml" />
 
     {% for post in page.posts %}
       <item>
         <title>{{ post.title }}</title>
-        <link>http://realjenius.com{{ post.url }}</link>
-        <author>R.J. Lorimer</author>
+        <link>http://reasoniamhere.com{{ post.url }}</link>
+        <author>Nacho Caballero</author>
         <pubDate>{{ post.date | date_to_xmlschema }}</pubDate>
-        <guid>http://realjenius.com{{ post.url }}</guid>
+        <guid>http://reasoniamhere.com{{ post.url }}</guid>
         <description><![CDATA[
            {{ post.content | expand_urls : site.url }}
         ]]></description>
