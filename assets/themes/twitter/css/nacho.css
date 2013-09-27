@@ -79,6 +79,7 @@ pre {
 
 pre code{
     white-space: pre;
+    padding: 1em;
 }
 
 code.wrap{

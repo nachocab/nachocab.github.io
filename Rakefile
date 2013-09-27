@@ -2,6 +2,10 @@ require "rubygems"
 require 'rake'
 require 'yaml'
 require 'time'
+require "tmpdir"
+
+require "bundler/setup"
+require "jekyll"
 
 SOURCE = "."
 CONFIG = {
@@ -63,10 +67,11 @@ task :post do
     post.puts "---"
     post.puts "layout: post"
     # post.puts "title: \"#{title}\""
-    post.puts "title: \"Title\""
+    post.puts "title: Title"
     post.puts "published: true"
     post.puts "category: "
     post.puts "tags:"
+    post.puts
     post.puts "---"
     post.puts
     post.puts "<!--excerpt-->"
@@ -75,6 +80,36 @@ task :post do
 
   system("subl #{filename}")
 end # task :post
+
+GITHUB_REPONAME = "nachocab/nachocab.github.io"
+
+desc "Generate blog files"
+task :generate do
+  Jekyll::Site.new(Jekyll.configuration({
+    "source"      => ".",
+    "destination" => "_site"
+  })).process
+end
+
+
+desc "Generate and publish blog to gh-pages"
+task :publish => [:generate] do
+  Dir.mktmpdir do |tmp|
+    cp_r "_site/.", tmp
+    Dir.chdir tmp
+    system "git init"
+    system "git add ."
+    message = "Site updated at #{Time.now.utc}"
+    system "git commit -m #{message.inspect}"
+    system "git remote add origin git@github.com:#{GITHUB_REPONAME}.git"
+    system "git push origin master --force"
+  end
+end
+
+
+
+
+
 
 desc 'List all draft posts'
 task :drafts do

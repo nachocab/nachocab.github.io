@@ -21,13 +21,13 @@ I think these types of plots are much more usable than the static ones that R ge
 
 You can read more about Clickme at [rclickme.com](http://rclickme.com). To install (or update to) the latest version, run the following in R:
 
-<pre><code>
-    install.packages("devtools")
+``` r
+install.packages("devtools")
 
-    library(devtools)
-    install_github("clickme", "nachocab")
+library(devtools)
+install_github("clickme", "nachocab")
 
-    library(clickme)
-    clickme(points, 1:10)
-</code></pre>
+library(clickme)
+clickme(points, 1:10)
+```
 

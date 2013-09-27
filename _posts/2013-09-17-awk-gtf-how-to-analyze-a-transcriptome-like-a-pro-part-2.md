@@ -22,7 +22,7 @@ In this post, we are going to count how many exons make up each protein-coding g
 
 We will start with the AWK call that we were using before, and we will append a pipe `|` so it can be used as input for the next AWK call, this time using a space and a semicolon as the delimiter to define what a column is:
 
-<pre><code>
+``` bash
 awk -F "\t" '$3 == "gene" { print $9 }' transcriptome.gtf | awk -F "; " '{ print $3 }' | head | less -S
 
 gene_type "pseudogene"
@@ -35,11 +35,11 @@ gene_type "protein_coding"
 gene_type "lincRNA"
 gene_type "lincRNA"
 gene_type "pseudogene"
-</code></pre>
+```
 
 Now that we see what the third column looks like, we can filter for protein-coding genes
 
-<pre><code>
+``` bash
 awk -F "\t" '$3 == "gene" { print $9 }' transcriptome.gtf | \
 awk -F "; " '$3 == "gene_type \"protein_coding\""' | \
 head | less -S head | less -S
@@ -54,23 +54,23 @@ gene_id "ENSG00000187634.6"; transcript_id "ENSG00000187634.6"; gene_type "prote
 gene_id "ENSG00000268179.1"; transcript_id "ENSG00000268179.1"; gene_type "protein_coding"; gene_status "NOVEL"; gene_name "AL645608.1"; transcript_type "protein_coding"; transcript_status "NOVEL"; transcript_name "AL645608.1"; level 3;
 gene_id "ENSG00000188976.6"; transcript_id "ENSG00000188976.6"; gene_type "protein_coding"; gene_status "KNOWN"; gene_name "NOC2L"; transcript_type "protein_coding"; transcript_status "KNOWN"; transcript_name "NOC2L"; level 2; havana_gene "OTTHUMG00000040720.1";
 gene_id "ENSG00000187961.9"; transcript_id "ENSG00000187961.9"; gene_type "protein_coding"; gene_status "KNOWN"; gene_name "KLHL17"; transcript_type "protein_coding"; transcript_status "KNOWN"; transcript_name "KLHL17"; level 2; havana_gene "OTTHUMG00000040721.6";
-</code></pre>
+```
 
 I added a space and a backslash `\` (not to be confused with the regular slash `/`) after the first and second pipes to split the code into two lines; this makes it easier to read and it highlights that we are taking two separate steps.
 
 The double quotes around `protein_coding` are escaped (also with a backslash `\"`) because they are already contained inside double quotes. To avoid the backslashing drama we can use the partial matching operator `~` instead of the total equality operator `==`.
 
-<pre><code>
+``` bash
 awk -F "\t" '$3 == "gene" { print $9 }' transcriptome.gtf | \
 awk -F "; " '$3 ~ "protein_coding"' | \
 head | less -S
-</code></pre>
+```
 
 The output is the same as before: those lines that contain a `protein_coding` somewhere in their third column make the partial matching rule true, and they get printed (which is the default behavior when there are no curly braces).
 
 Now we have all the protein-coding genes, but how do we get to the genes that only have one exon? Well, we have to revisit our initial AWK call: we selected lines that corresponded to genes, but we actually wanted lines that corresponded to *exons*. That's an easy fix, we just change the word "gene" for the word "exon". Everything else stays the same.
 
-<pre><code>
+``` bash
 awk -F "\t" '$3 == "exon" { print $9 }' transcriptome.gtf | \
 awk -F "; " '$3 ~ "protein_coding"' | \
 head | less -S
@@ -85,14 +85,14 @@ gene_id "ENSG00000269831.1"; transcript_id "ENST00000599533.1"; gene_type "prote
 gene_id "ENSG00000269831.1"; transcript_id "ENST00000599533.1"; gene_type "protein_coding"; gene_status "NOVEL"; gene_name "AL669831.1"; transcript_type "protein_coding"; transcript_status "NOVEL"; transcript_name "AL669831.1-201"; exon_number 3;  exon_id "ENSE00003138540.1";  level 3; tag "basic";
 gene_id "ENSG00000269308.1"; transcript_id "ENST00000594233.1"; gene_type "protein_coding"; gene_status "NOVEL"; gene_name "AL645608.2"; transcript_type "protein_coding"; transcript_status "NOVEL"; transcript_name "AL645608.2-201"; exon_number 1;  exon_id "ENSE00003079649.1";  level 3; tag "basic";
 gene_id "ENSG00000269308.1"; transcript_id "ENST00000594233.1"; gene_type "protein_coding"; gene_status "NOVEL"; gene_name "AL645608.2"; transcript_type "protein_coding"; transcript_status "NOVEL"; transcript_name "AL645608.2-201"; exon_number 2;  exon_id "ENSE00003048391.1";  level 3; tag "basic";
-</code></pre>
+```
 
 
 ## Cleaning up the output
 
 Before we try to count how many exons belong to the same protein-coding gene, let's simplify the output so we only get the gene names (which are in column 5).
 
-<pre><code>
+``` bash
 awk -F "\t" '$3 == "exon" { print $9 }' transcriptome.gtf | \
 awk -F "; " '$3 ~ "protein_coding" {print $5}' | \
 head
@@ -107,19 +107,19 @@ gene_name "AL669831.1"
 gene_name "AL669831.1"
 gene_name "AL645608.2"
 gene_name "AL645608.2"
-</code></pre>
+```
 
 This is sort of what we want. We could chain another AWK call using `-F " "`, and pick the second column (which would get rid of the `gene_name`). Feel free to try that approach if you are curious.
 
 We can also take a shortcut by using the `tr -d` command, which deletes whatever characters appear in double quotes. For example, to remove every vowel from a sentence:
 
-<pre><code>
+``` bash
 echo "This unix thing is cool" | tr -d "aeiou" # Ths nx thng s cl
-</code></pre>
+```
 
 Let's try deleting all the semicolons and quotes before the second AWK call:
 
-<pre><code>
+``` bash
 awk -F "\t" '$3 == "exon" { print $9 }' transcriptome.gtf | \
 tr -d ";\"" | \
 awk -F " " '$6 == "protein_coding" {print $10}' | \
@@ -135,7 +135,7 @@ AL669831.1
 AL669831.1
 AL645608.2
 AL645608.2
-</code></pre>
+```
 
 Run `awk -F "\t" '$3 == "exon" { print $9 }' transcriptome.gtf | tr -d ";\"" | head` to understand what the input to the second AWK call looks like. It's just words separated by spaces; the sixth word corresponds to the gene type, and the tenth word to the gene name.
 
@@ -143,7 +143,7 @@ Run `awk -F "\t" '$3 == "exon" { print $9 }' transcriptome.gtf | tr -d ";\"" | h
 
 There is one more concept we need to introduce before we start counting. AWK uses a special rule called `END`, which is only true once the input is over. See an example:
 
-<pre><code>
+``` bash
 echo -e "a\na\nb\nb\nb\nc" | \
 awk '
 
@@ -160,7 +160,7 @@ b
 b
 c
 Done with letters!
-</code></pre>
+```
 
 The `-e` option tells `echo` to convert each `\n` into a new line, which is a convenient way of printing multiple lines from a single character string.
 
@@ -168,7 +168,7 @@ In AWK, any amount of whitespace is allowed between the initial and the final qu
 
 Now we are ready for counting.
 
-<pre><code>
+``` bash
 echo -e "a\na\nb\nb\nb\nc" | \
 awk '
 
@@ -184,7 +184,7 @@ END {
 a 2
 b 3
 c 1
-</code></pre>
+```
 
 Wow, what is all that madness?
 
@@ -196,7 +196,7 @@ When all the lines are read, the `END` rule becomes true, and the code between t
 
 Now we can apply this to the real example:
 
-<pre><code>
+``` bash
 awk -F "\t" '$3 == "exon" { print $9 }' transcriptome.gtf | \
 tr -d ";\"" | \
 awk -F " " '
@@ -221,15 +221,15 @@ DACH2 84
 IFNA14 1
 LARS 188
 CAPN8 78
-</code></pre>
+```
 
 If you are using the real transcriptome, it takes less than a minute to count up one million exons. Pretty impressive.
 
 We saved the output to a file, so now we can use AWK to see how many genes are made up of a single exon.
 
-<pre><code>
+``` bash
 awk '$2 == 1' number_of_exons_by_gene.txt | wc -l # 1362
-</code></pre>
+```
 
 In the next post we will use AWK to translate old gene symbols into official HGNC gene symbols.
 

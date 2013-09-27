@@ -21,7 +21,7 @@ In this post, we will apply the translator pattern to turn the gene symbols used
 
 We have been calling AWK directly from the command line, but this approach can be limiting sometimes. The alternative is to use the `-f` option to tell AWK where the code is (in this case, in the `source_counter.awk` file).
 
-<pre><code>
+``` bash
 # create the instructions for AWK
 echo 'NR > 5 {
     source_counter[$2] += 1
@@ -38,7 +38,7 @@ awk -f source_counter.awk transcriptome.gtf
 
 HAVANA 2257550
 ENSEMBL 357012
-</code></pre>
+```
 
 `NR` is a special variable that contains the current line number (AWK calls lines records, which explains the R). `NR > 5` tells AWK to execute the code between the curly braces only when the line number is greater than 5, so it skips the first 5 lines. We do this to get rid of the header lines that appear at the beginning of the Gencode transcriptome file.
 
@@ -48,7 +48,7 @@ Remember you still have to provide AWK with an input file (`transcriptome.gtf`) 
 
 The following two commands create the files that we will use for the rest of the post. Run them so you can play along.
 
-<pre><code>
+``` bash
 echo '
 ZYX_CTSL 40
 WVU_CTSV 21
@@ -77,13 +77,13 @@ CXXC7 MLL
 TET1-MLL MLL
 MLL1A MLL
 FLJ11783 MLL' > translator.txt
-</code></pre>
+```
 
 Imagine that you found `exon_counts.txt` in the supplementary materials section of a paper from a rival lab, and you want to compare their results with yours. Unfortunately, they seem to enjoy prepending their gene symbols with a strange (but vaguely familiar) code followed by an underscore. How do we get rid of it?
 
 AWK to the rescue. We can use `split`, one of its [functions](http://www.gnu.org/software/gawk/manual/html_node/String-Functions.html) to manipulate strings:
 
-<pre><code>
+``` bash
 echo "HOLY-GUACAMOLE" | awk '{ split($1, words, "-"); print words[2] }' # GUACAMOLE
 echo "HOLY-GUACAMOLE" | awk '{ split($1, words, "-"); print words[1] }' # HOLY
 echo "HOLY-GUACAMOLE-CHIMICHANGA" | awk '
@@ -91,7 +91,7 @@ echo "HOLY-GUACAMOLE-CHIMICHANGA" | awk '
     split($1, words, "-")
     print "I would like", words[2], "in my", words[3] ", please"
 }' # I would like GUACAMOLE in my CHIMICHANGA, please
-</code></pre>
+```
 
 Its first argument is the **string** that we want to split, the second is the name of the **array** variable that will contain the pieces of the string that we split, and the third is the **delimiter** that we want to use to separate the string into pieces. In this case, we chose to call the array variable `words`. An array can be considered as a special case of the associative array, where the keys are numbers, instead of words.
 
@@ -101,7 +101,7 @@ Notice a small subtlety hidden among the Tex-Mex: there is no comma between `wor
 
 Now we are ready to get rid of the reverse-alphabetical madness.
 
-<pre><code class="bash">
+``` bash
 awk '{
     split($1, words, "_")
     print words[2], $2
@@ -117,13 +117,13 @@ HSP90AB1 36
 CAPN7 52
 DACH2 84
 IFNA14 1
-</code></pre>
+```
 
 ## Building a translation dictionary
 
 Watch the magic unfold:
 
-<pre><code class="bash">
+``` bash
 awk -v translations_file="translator.txt" '
 BEGIN{
     while (getline < translations_file) {
@@ -151,36 +151,36 @@ HSP90AB1 36 untranslated
 CAPN7 52 untranslated
 DACH2 84 untranslated
 IFNA14 1 untranslated
-</code></pre>
+```
 
 I always have to look up the exact syntax for the translator pattern because I never remember, but it's so useful that I keep it in an easily accessible [text file](https://github.com/nachocab/tips_and_tricks/blob/master/bash_tricks.sh), along with all the other useful-but-impossible-to-remember commands.
 
 A lot is going on here.
 
-<pre><code>
+``` bash
 awk -v translations_file="translator.txt" '...' exon_counts2.txt
-</code></pre>
+```
 
 The `-v` option is used to create variables that can be used by AWK in the code that goes between the single quotes. In this case we are creating a variable called `translations_file` with value `"translator.txt"`. Due to the Holy UNIX Commandments, no spaces are allowed around the equals sign (this rule doesn't apply inside AWK, though).
 
-<pre><code>
+``` bash
 BEGIN{ ... }
-</code></pre>
+```
 
 The `BEGIN` rule does the opposite of the `END` rule: it is true before the input file (`exon_counts2.txt`) is read, and false thereafter.
 
-<pre><code>
+``` bash
 while (condition) { ... }
-</code></pre>
+```
 
 Similar to the `for` loop that we saw in the previous post, there is also a `while` loop, which runs until the condition between the parentheses stops being true.
 
-<pre><code>
+``` bash
 while (getline < translations_file) {
     translations[$1] = $2
 }
 close(translations_file)
-</code></pre>
+```
 
 `getline < some_file` is an [internal](http://www.gnu.org/software/gawk/manual/html_node/Getline.html#Getline) AWK command that lets you read the next line from a different file than the standard input file. After the line is read, the dollar `$` variables are updated, so we can use `$1` and `$2` just like we usually do. The file must then be closed to avoid angering the UNIX gods.
 
@@ -189,14 +189,14 @@ close(translations_file)
 `translations` is an associative array that has the bad gene symbols as keys, and the official gene symbols as values. The `translator.txt` file doesn't have any repeats in column one, so we can be sure that each bad symbol only has one good translation. But our toy translator file doesn't have all the gene symbols that appear in `exon_counts2.txt` (HSP90AB1 is missing, for example).
 
 
-<pre><code>
+``` bash
 if (translations[$1] != ""){
    $1 = translations[$1]
    $3 = "translated"
 } else {
    $3 = "untranslated"
 }
-</code></pre>
+```
 
 We check this by using an `if` statement, which only executes the code inside the braces if what is between the parentheses is true. In our example, `translations[$1]` will equal the empty string `""` for genes genes that don't have a translation. In those cases, we won't overwrite `$1`.
 

@@ -14,12 +14,14 @@ This is a basic tutorial in R for switching between the two most common data for
 
 
 Download the file by running this in your command line:
-<pre><code>
+
+``` bash
 wget https://raw.github.com/nachocab/nachocab.github.io/master/assets/pcr.txt
-</code></pre>
+```
 
 Once you have the file, open up an R session and load it in a variable. Instead of creating multiple variables, we will be proactive and create a list variable `d` that will hold them all. This makes them much easier to manage.
-<pre><code>
+
+``` r
 d <- list()
 d$wide <- read.csv("pcr.txt", sep = "\t") # columns are separated by tabs
 d$wide
@@ -35,14 +37,15 @@ d$wide
 # 9   GENE_9 26.58 22.87 31.14 30.57
 # 10 GENE_10 26.05 25.18 31.03 29.99
 # 11 CONTROL 26.60 25.60 26.03 25.79
-</code></pre>
+```
 
 This variable is formatted in the typical style used in spreadsheets (it is known as *wide format* because each data group corresponds to a different column), but for some calculations it is easier to use a more redundant format called a *long format* because each data item corresponds to a different row.
 
 The easiest way to convert from wide to long is to use the `reshape2` package.
-<pre><code>
-# Inslong the package
-inslong.packages("reshape2")
+
+``` r
+# Install the package
+install.packages("reshape2")
 
 # And use it
 library(reshape2)
@@ -74,12 +77,11 @@ d$long
 # 20  GENE_9        A2    22.87
 # 21 GENE_10        A2    25.18
 # ...
-
-</code></pre>
+```
 
 The long format makes it easy to perform operations on subsets of the data. For example, say we want to calculate the mean of the A samples for each gene. First we will need an extra variable to distinguish between the sample groups. We can create it by simply removing the numbers from `sample_id`.
 
-<pre><code>
+``` r
 # The `gsub` function has three arguments: the pattern, the replacement and the input. Run ?gsub for more info.
 d$long$sample_group <- gsub("\\d", "", d$long$sample_id)
 d$long
@@ -96,13 +98,13 @@ d$long
 # 26  GENE_4        B1    31.66            B
 # 27  GENE_5        B1    31.39            B
 # ...
-</code></pre>
+```
 
 *NOTE*: In R, backslashes `\` in [regular expressions](http://www.regular-expressions.info/quickstart.html) must be escaped with an extra backslash (for example, `\\d`).
 
 Now we can use the `aggregate` function to calculate the mean Ct value and standard deviation for each gene under each condition.
 
-<pre><code>
+``` r
 d$long_by_group <- aggregate(ct_value ~ sample_group + gene, data = d$long, mean)
 colnames(d$long_by_group)[3] <- "mean_ct_value"
 d$long_by_group$sd <- aggregate(ct_value ~ sample_group + gene, data = d$long, sd)[,3]
@@ -116,13 +118,13 @@ d$long_by_group
 # 5             A GENE_10        25.615  0.615183
 # 6             B GENE_10        30.510  0.735391
 # ...
-</code></pre>
+```
 
 This function is a bit unwieldy (for example, it reorders the rows and changes the column names), so it's worth to pay attention to what the output looks like. The tilde `~` expression is called a formula, you can read more about it [here](http://ww2.coastal.edu/kingw/statistics/R-tutorials/formulae.html).
 
 Now that we have calculated the mean and standard deviation for each gene-sample_group pair, it is easy to convert them back to wide format using `dcast`, a function from the `reshape2` package.
 
-<pre><code>
+``` r
 d$wide_mean_by_group <- dcast(d$long_by_group, gene ~ sample_group, value.var = "mean_ct_value")
 
 d$wide_mean_by_group
@@ -154,6 +156,6 @@ d$wide_sd_by_group
 # 9   GENE_7  8.160012 4.037580
 # 10  GENE_8  7.120565 3.712311
 # 11  GENE_9  2.623366 0.403051
-</code></pre>
+```
 
-An easy way to remember how to use the formula in `dcast` is to think `row ~ column`. In our case, we have a row for each gene, and a column for each sample group
+An easy way to remember how to use the formula in `dcast` is to think `row ~ column`. In our case, we have a row for each gene, and a column for each sample group.
