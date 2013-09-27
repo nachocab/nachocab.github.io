@@ -85,6 +85,7 @@ GITHUB_REPONAME = "nachocab/nachocab.github.io"
 
 desc "Generate blog files"
 task :generate do
+  system "git commit -m 'update'"
   Jekyll::Site.new(Jekyll.configuration({
     "source"      => ".",
     "destination" => "_site"
@@ -105,11 +106,6 @@ task :publish => [:generate] do
     system "git push origin master --force"
   end
 end
-
-
-
-
-
 
 desc 'List all draft posts'
 task :drafts do
