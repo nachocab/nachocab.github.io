@@ -9,7 +9,7 @@ tags:
 
 
 ![oecomys](https://lh3.googleusercontent.com/-itApYj3iVm4/UkdibZAnTbI/AAAAAAAAEdE/uG-5SBIlkao/w400-no/Oecomys+marmorae+22jan11+lag+bla+full.JPG)
-<span class="caption">I don't know who that is, but it ain't me.</span>
+<span class="caption">I don't know who that is, but it sure ain't me.</span>
 
 The International Division of the Pasteur Institute has generously awarded me a grant to carry out a 4-month research internship in its branch located in French Guiana. The goal of the project is to determine the viral biodiversity of multiple species of rodents living in different habitats in the region.
 
