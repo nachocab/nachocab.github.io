@@ -71,7 +71,7 @@ task :post do
     post.puts "published: true"
     post.puts "category: "
     post.puts "tags:"
-    post.puts
+    post.puts "    - "
     post.puts "---"
     post.puts
     post.puts "<!--excerpt-->"
