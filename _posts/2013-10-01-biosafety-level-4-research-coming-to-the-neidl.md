@@ -7,6 +7,8 @@ tags:
     - science
 ---
 
+![neidl](http://www.bu.edu/today/files/2012/07/t_12-5378-BUILDINGS-008.jpg)
+
 The National Emerging Infectious Diseases Laboratories (NEIDL) is a $200 million research facility built by Boston University. The National Institutes of Health (NIH) agreed to co-fund the project in 2006, but several court injunctions have kept most of its brand-new highly equipped laboratories ridiculously empty.
 
 A recent [federal ruling](http://www.bu.edu/neidl/files/2013/10/Judge-Saris-Ruling.pdf) by US District Court Chief Judge Patti Saris determined that the risks to the public associated with the NEIDL are "extremely low, or beyond reasonably foreseeable" and that its current location in Boston's South End neighborhood poses no greater threat than if it were located in a different suburban or rural area. One more state court lawsuit (which will be decided later this year) stands as the last major obstacle before [BSL-3 and BSL-4 research](https://en.wikipedia.org/wiki/Biosafety_level) starts taking place at the NEIDL.
