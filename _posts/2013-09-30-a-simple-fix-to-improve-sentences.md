@@ -19,6 +19,8 @@ This type of sentences are almost always improved by removing the *there is/are*
 
 Matt Might has a nice [post](http://matt.might.net/articles/shell-scripts-for-passive-voice-weasel-words-duplicates/) with advice on avoiding weasel words and lexical illusions.
 
+<!--excerpt-->
+
 <hr>
 
 Tips that improve grammar are great, but I'm still trying to figure out what I need to incorporate to my writing arsenal to [craft sentences like Simon Winchester](http://reasoniamhere.com/2013/09/10/tearing-down-powerful-sentences/). I keep coming back to this one, where he describes an ocean liner:
