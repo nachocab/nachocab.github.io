@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Becoming Grittier
+title: Becoming Grittier: Mindset Changes to Achieve Long-Term Goals
 published: true
 category:
 tags:
