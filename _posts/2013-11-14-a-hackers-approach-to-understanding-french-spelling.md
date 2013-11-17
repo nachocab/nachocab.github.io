@@ -10,6 +10,8 @@ tags:
 
 ---
 
+![Paroles](https://lh5.googleusercontent.com/-Ni7oJ-kyPZ0/UolG2TLQBII/AAAAAAAAGk0/8FHuV8Z_4yk/w700/IMG_20131117_194308.jpg)
+
 Non-native French speakers like myself have a hard time grappling with the French spelling system. It may seem arbitrary to write **seconde** and pronounce it **segond**, or frustrating that there is no rule to define why **déçu** has an accent on the **e**, but **reçu** doesn't.
 
 >C'est la vie, mon ami.— say the French
