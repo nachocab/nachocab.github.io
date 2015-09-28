@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Working with D3 Visualizations in Adobe Illustrator - Blog - Reason I Am Here - Nacho Caballero</title>
+    
+    <meta name="author" content="Nacho Caballero">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/css/mailchimp.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!--highlight-->
+    <link rel="stylesheet" href="/assets/themes/twitter/highlight.js/styles/tomorrow-night-eighties.css">
+
+    <link href="/assets/themes/twitter/css/nacho.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <script src="/assets/themes/twitter/highlight.js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+    <script src="/assets/themes/twitter/jquery/jquery-1.11.1.min.js"></script>
+    <script src="/assets/themes/twitter/jquery/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(function() {
+          $("img.lazy").show().lazyload({
+            effect: "fadeIn",
+            threshold : 200
+          });
+        });
+    </script>
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">Reason I am here</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">Nacho Caballero</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Article Index</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+        
+
+<div class="page-header">
+  <h1>Working with D3 Visualizations in Adobe Illustrator </h1>
+</div>
+
+<div class="row-fluid post-full">
+  <div class="span12">
+      <span class="date">19 September 2013</span>
+    <div class="content">
+      <p><a href="http://d3js.org/">D3</a> is an awesome tool to build interactive visualizations. I use it extensively for the initial stages of my research projects, but converting D3 charts from SVG to PDF and polishing them for publication can be a harrowing experience. This post describes a few techniques that make this process more pleasant. If you have any additional ideas, please leave a comment at the bottom of the post.</p>
+
+<!--excerpt-->
+
+<p><strong>UPDATE</strong>: After I published this post, a couple of people pointed me to <a href="http://nytimes.github.io/svg-crowbar/">SVG Crowbar</a>, a Chrome-specific bookmarklet that extracts an SVG from an HTML page and downloads it as a properly formatted SVG file (CSS styles included), which can be opened in Illustrator. The only shortcoming is that some CSS rules (like descendent rules: <code>svg &gt; text</code>) crash Illustrator, so they are removed from the final SVG file. Still, it is a much simpler workflow than the one I present here. If you can&rsquo;t use Chrome, or if you need all your CSS styles to remain unchanged, read on.</p>
+
+<h2>From SVG to PDF</h2>
+
+<p>I usually create D3 visualizations through the <a href="http://rclickme.com">Clickme</a> R package. <a href="http://reasoniamhere.com/clickme/pileup_IFIT1_gene.html">This one</a>, for example, represents the amount of transcription that the IFIT1 gene experiences under two different types of viral infection. D3&rsquo;s interactivity helps me narrow down the many charts that I generate during the data exploration process into the ones that will appear in the final scientific article.</p>
+
+<p>Once I select a chart that I want to convert to PDF, I open it in Chrome, I choose <code>File | Print</code> and save it as a PDF. I usually leave the <code>Headers and footers</code> option unchecked. If the chart spans more than one page, you can also scroll down and click the link <code>Print using system dialog</code>. From there, you can change the paper size and than choose <code>PDF | Save as PDF...</code></p>
+
+<p><img src="https://lh5.googleusercontent.com/-Yp3Ypxgod0I/UjumEJRJCwI/AAAAAAAAER8/lw1Nc6WyiVc/w600-no/Screen+Shot+2013-09-19+at+4.29.24+PM.png" alt="print"></p>
+
+<h2>From PDF to Illustrator</h2>
+
+<p>You can open the PDF directly in Illustrator, or you can create a new Illustrator document and drag the PDF into it. I usually use the second option because I want to see how the chart fits a letter-sized sheet of paper. If you use this option, the image will have a big X going through it, which is Illustrator&rsquo;s way of telling you the image is a linked file. To be able to edit it properly you need to select it and press the <code>Embed</code> button in the Control toolbar (select <code>Window | Control</code> if you don&rsquo;t see the button).</p>
+
+<p><img src="https://lh6.googleusercontent.com/-O0-rdjo0DR8/Ujuk8pqNqdI/AAAAAAAAEQ4/0ZPl8lAShFE/w800-no/Screen+Shot+2013-09-19+at+4.31.30+PM.png" alt="embed"></p>
+
+<p>Once the file is embedded, open the Layers panel (<code>Window | Layers</code>) and click the triangle next to Layer 1. You&rsquo;ll see a string of Groups, Clip Groups, and Clipping Paths going on to infinity. This is caused by the <code>&lt;g&gt;</code> SVG elements, which are really useful to manipulate SVGs with JavaScript, but a nightmare to work with in Illustrator. Getting rid of them will allow you to select individual paths and objects directly, and from there it is easy to set up your own groupings.</p>
+
+<p><img src="https://lh6.googleusercontent.com/-oCFE7nhLEDI/Ujuk8o9bujI/AAAAAAAAEQ8/d2OZ8KEe-2I/w407-h355-no/Screen+Shot+2013-09-19+at+4.32.50+PM.png" alt="clipping"></p>
+
+<p>To get rid of the clip groups, select the entire layer by pressing on the circle at the right of Layer 1, and go to <code>Object | Clipping Mask | Release</code> or press <code>Command Option 7</code>. Do this until you get rid of all the clip groups. You may also ungroup objects using <code>Object | Ungroup</code> or pressing <code>Command Shift G</code>, and delete any remaining empty objects and paths. When you are done, you should have all the important objects without any groupings in Layer 1.</p>
+
+<h2>Fixing the text objects</h2>
+
+<p>The biggest annoyance of printing an SVG as a PDF using Chrome is that the text objects get broken up into individual letters, which means you cannot change the font without messing everything up.</p>
+
+<p><img src="https://lh4.googleusercontent.com/-hZ_4yYPxyiE/Ujuk8tXZHHI/AAAAAAAAEQw/PPiazo4kU24/w214-h69-no/Screen+Shot+2013-09-19+at+4.34.13+PM.png" alt="multiple text objects"></p>
+
+<p>Fortunately, Justin Putney developed an <a href="http://ajarproductions.com/blog/2008/11/23/merge-text-extension-for-illustrator/">Illustrator extension</a> to merge individual text objects into a combined object.</p>
+
+<p><img src="https://lh4.googleusercontent.com/-6ls9twKKJB4/Ujuk9xMUP7I/AAAAAAAAERY/DYClNALyKPk/w414-h281-no/Screen+Shot+2013-09-19+at+4.39.25+PM.png" alt="merge extension"></p>
+
+<p>You can download it from his website or get my <a href="https://raw.github.com/nachocab/nachocab.github.io/master/assets/MergeText_AI.jsx">modified version</a> if you want to save an extra click: my version has the default <code>Sort by</code> radio button changed to <code>left</code> instead of <code>top</code> (since 99% of the text I need to merge is written from left to right). Save the file in <code>/Applications/Adobe Illustrator CS4/Presets/en_US/Scripts</code> if you are on a Mac, or in <code>C:\Program Files\Adobe\Adobe Illustrator CS4\Presets\en_US\Scripts</code> if you are on Windows. That way, Illustrator will show the script under <code>File | Scripts | MergeText_AI</code> instead of <code>File | Scripts | Other script...</code></p>
+
+<p>Select the text objects you want to merge, go to <code>File | Scripts | MergeText_AI</code>, choose the order in which they should be merged (typically left) and press enter.</p>
+
+<p><img src="https://lh4.googleusercontent.com/-ynagHNH10d4/Ujuk-reHuoI/AAAAAAAAERM/rPQSQk5v8hg/w228-h62-no/Screen+Shot+2013-09-19+at+4.39.40+PM.png" alt="fixed text"></p>
+
+<p>This is the final edited image:</p>
+
+<p><img src="https://lh3.googleusercontent.com/-C0ERSw4jSvY/Uju_pEhIJmI/AAAAAAAAESk/3OdpBuAx4_c/w488-h451-no/Screen+Shot+2013-09-19+at+11.22.48+PM.png" alt="final"></p>
+
+<h2>Automating and troubleshooting</h2>
+
+<p>There are a few gotchas. The first is that all the layers in the current document must be visible and unlocked, otherwise you will get <code>Error 8705: Target layer cannot be modified</code> when you try to run MergeText_AI:</p>
+
+<p><img src="https://lh4.googleusercontent.com/-SzGz7m_VtHk/Ujuk_v9Yq1I/AAAAAAAAERc/f33siJcEzP4/w363-h140-no/Screen+Shot+2013-09-19+at+4.46.47+PM.png" alt="error"></p>
+
+<p>To get around this, I recommend selecting the objects you want to edit, pressing <code>Command X</code>, creating a new document, pasting the objects in place (<code>Edit | Paste in Place</code>) and doing all your editing there. Once you are done, you can paste in place again in the old document and get rid of the new one.</p>
+
+<p>The other gotcha is that you can easily run MergeText_AI by assigning a shortcut, but you must reassign it every time you reopen Illustrator (apparently it is a long-standing Ai <a href="http://graphicdesign.stackexchange.com/a/21338/9419">bug</a>). If you do your editing in chunks, it is still worth it, though.</p>
+
+<p>Here is how to do it. Go to <code>Window|Actions</code>, click on the panel menu (the top right corner, where the little down arrow next to the horizontal lines is), and press <code>New Action</code>, name it <code>Merge text</code>, choose a function key (for example, <code>F2</code>), and press <code>Record</code>. Press the panel menu again and choose <code>Insert Menu Item</code>, go to <code>File | Scripts | MergeText_AI</code> and press OK.</p>
+
+<p><img src="https://lh5.googleusercontent.com/-kT1M1ocsO10/Ujuk98Y2o2I/AAAAAAAAERI/QAbShshiqcc/w400-no/Screen+Shot+2013-09-19+at+4.36.39+PM.png" alt="action"></p>
+
+<p>Now you should be able to select multiple text objects, press the function key, and see the MergeText_AI panel.</p>
+
+<p>If you know of any improvements to this workflow, please share them in the comments.</p>
+
+    </div>
+
+   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+   <!-- cilantro -->
+   <ins class="adsbygoogle"
+        style="display:inline-block;width:300px;height:250px"
+        data-ad-client="ca-pub-9441199102473745"
+        data-ad-slot="6108086510"></ins>
+   <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+   </script>
+
+  
+
+  
+    <hr>
+
+    <div class="related">
+      <h3>Related posts</h3>
+      <ul>
+        
+          <li><a href="/2013/10/06/visualizing-love">Visualizing Love</a></li>
+        
+          <li><a href="/2013/09/13/an-update-to-clickme-interactive-visualizations-in-r">An Update to Clickme: Interactive Visualizations in R</a></li>
+        
+      </ul>
+    </div>
+  
+
+  <hr>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="icon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#visualization-ref">visualization <span>3</span></a></li>
+    
+  
+
+
+
+    </ul>
+  
+
+  
+  </div>
+</div>
+
+
+
+
+      </div>
+
+      <footer>
+        <p class="copyright">&copy; 2015 Nacho Caballero</p>
+        <p>
+          <a href="http://feeds.feedburner.com/TheReasonIAmHere">RSS</a> •
+          <a href="https://twitter.com/nachocaballero">Twitter</a> •
+          <a href="http://reasoniamhere.com/about.html">About</a>
+        </p>
+      </footer>
+
+    </div>
+    <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42664204-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+  </body>
+</html>
+

@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Turning Bacteria into Genetic Circuits (Without Them Noticing) - Blog - Reason I Am Here - Nacho Caballero</title>
+    
+    <meta name="author" content="Nacho Caballero">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/css/mailchimp.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!--highlight-->
+    <link rel="stylesheet" href="/assets/themes/twitter/highlight.js/styles/tomorrow-night-eighties.css">
+
+    <link href="/assets/themes/twitter/css/nacho.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <script src="/assets/themes/twitter/highlight.js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+    <script src="/assets/themes/twitter/jquery/jquery-1.11.1.min.js"></script>
+    <script src="/assets/themes/twitter/jquery/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(function() {
+          $("img.lazy").show().lazyload({
+            effect: "fadeIn",
+            threshold : 200
+          });
+        });
+    </script>
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">Reason I am here</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">Nacho Caballero</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Article Index</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+        
+
+<div class="page-header">
+  <h1>Turning Bacteria into Genetic Circuits (Without Them Noticing) </h1>
+</div>
+
+<div class="row-fluid post-full">
+  <div class="span12">
+      <span class="date">12 September 2013</span>
+    <div class="content">
+      <p>Lately I have been summarizing every paper I read on a single piece of paper. Before I started doing that I would invest a lot of time reading a paper, and two months later it would completely disappear from my brain. The only thing I would remember is if I had found it interesting or not (not the most important information when trying to compile a bibliography). Limiting myself to a single piece of paper ensures that I only record what is important, and the fact that the notes are handwritten lets me <a href="http://reasoniamhere.com/2013/09/09/good-presentations-begin-on-paper/">triple underscore and use all the curvy arrows</a> I need to make  important ideas stand out. My two-month recall is now pretty decent.</p>
+
+<p>I&rsquo;m going to a seminar tomorrow presented by Tim Lu, one of the authors of a Nature Biotechnology paper titled <a href="http://www.rle.mit.edu/sbg/wp-content/uploads/2013/03/synthetic-circuits-integrating-logic-and-memory-in-living-cells.pdf">Synthetic circuits integrating logic and memory in living cells</a>. I decided to read the paper and write up a quick summary.</p>
+
+<p><img src="/assets/synthetic_circuits.jpg" alt="Synthetic Circuits"></p>
+
+<!--excerpt-->
+
+<p>The paper describes a new technique to arrange the genome of a bacterium (<em>E. coli</em>) and turn it into the biological equivalent of an electronic circuit. This approach is much more scalable than previous techniques because using it to build complex circuits like an XOR gate doesn&rsquo;t require joining universal gates together, which means that instead of assembling this madness:</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/NOR_from_NAND.svg/280px-NOR_from_NAND.svg.png" alt="An XOR gate using NANDs"></p>
+
+<p>you can assemble the XOR gate directly:</p>
+
+<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/0/01/XOR_ANSI.svg/100px-XOR_ANSI.svg.png" alt="An XOR gate"></p>
+
+<p>(By the way, a gate is just a way to convert two inputs into one output. Inputs and outputs can be either 1s or 0s. The type of gate (AND, OR, XOR, etc.) describes the rule that is used to make this conversion. For example, check out the table rule for the <a href="http://en.wikipedia.org/wiki/AND_gate">AND gate</a>)</p>
+
+<p>Stinginess is important because you can use as many components as you can fit in a circuit boards, but cells are much more puritan about the number of resources they allow.</p>
+
+<p>The paper&rsquo;s magic sauce is in the use of <strong>inducible recombinases</strong>—recombinases that become active when their inducer (a riboregulator) is added to the media. An activated recombinase can bind specific regions of DNA and flip their orientation, which in turn switches on or off the expression of their downstream gene.</p>
+
+<p><img src="/assets/and_gate.png" alt="An AND gate"></p>
+
+<p>For example, the blue brackets in the figure above represent the DNA binding site of a recombinase that, once activated by its inducer (input A), flips that region of DNA, making the promoter (black arrow) accessible to the RNA polymerase. But the RNA polymerase has nothing to transcribe unless the region between the red triangles is also flipped by a different recombinase. When this recombinase gets activated by its inducer (input B), the Green Fluorescent Protein gene can be transcribed and the cell starts making enough GFPs to turn the bacterium into a swimming Christmas tree. As the barplot shows, when both inputs are not present, the amount of GFP that is made is minimal (no biological circuit will ever be perfect).</p>
+
+<p>(Just to clarify, GFP is an example, any gene can be integrated into this type of circuit. It&rsquo;s just that a glowing bacterium is easier to detect than one that expresses the blond-hair gene)</p>
+
+<p>That is just one possibility out of the 16 that appear in Figure 2 (<a href="http://www.rle.mit.edu/sbg/wp-content/uploads/2013/03/synthetic-circuits-integrating-logic-and-memory-in-living-cells.pdf">check out</a> the especially clever technique used to build the XOR and XNOR gates).</p>
+
+<p>Because the recombinases modify the information that is stored in the bacterial chromosome, after a bacterium divides, the two daughter cells have the same genetic information, which means that next generations of bacteria will keep synthesizing GFP for centuries (days, in bacterium-years). DNA is what Nature uses as a hard drive, which means that coming up with clever ways to store information in it will bring us ever closer to genetically engineering the bionic pets we have all been dreaming about.</p>
+
+<p>The <a href="(http://www.rle.mit.edu/sbg/wp-content/uploads/2013/03/synthetic-circuits-integrating-logic-and-memory-in-living-cells.pdf)">paper</a> is blissfully short, and worth a read if you think synthetic biology is cool.</p>
+
+    </div>
+
+   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+   <!-- cilantro -->
+   <ins class="adsbygoogle"
+        style="display:inline-block;width:300px;height:250px"
+        data-ad-client="ca-pub-9441199102473745"
+        data-ad-slot="6108086510"></ins>
+   <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+   </script>
+
+  
+
+  
+    <hr>
+
+    <div class="related">
+      <h3>Related posts</h3>
+      <ul>
+        
+          <li><a href="/2013/10/05/the-truth-about-hair-conditioners-and-blue-eyes">The Truth About Hair Conditioners and Blue Eyes</a></li>
+        
+          <li><a href="/2013/10/01/biosafety-level-4-research-coming-to-the-neidl">Biosafety Level 4 Research Coming to the NEIDL</a></li>
+        
+          <li><a href="/2013/09/29/what-happens-inside-of-a-mosquito-bite">What Happens Inside of a Mosquito Bite</a></li>
+        
+          <li><a href="/2013/09/28/hunting-for-viruses-in-french-guiana">Hunting for Viruses in French Guiana</a></li>
+        
+          <li><a href="/2013/09/27/teach-ignorance">Teach Ignorance!</a></li>
+        
+      </ul>
+    </div>
+  
+
+  <hr>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="icon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#science-ref">science <span>10</span></a></li>
+    
+  
+
+
+
+    </ul>
+  
+
+  
+  </div>
+</div>
+
+
+
+
+      </div>
+
+      <footer>
+        <p class="copyright">&copy; 2015 Nacho Caballero</p>
+        <p>
+          <a href="http://feeds.feedburner.com/TheReasonIAmHere">RSS</a> •
+          <a href="https://twitter.com/nachocaballero">Twitter</a> •
+          <a href="http://reasoniamhere.com/about.html">About</a>
+        </p>
+      </footer>
+
+    </div>
+    <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42664204-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+  </body>
+</html>
+

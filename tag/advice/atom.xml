@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+   
+    <title>reasoniamhere.com - Tag: advice</title>
+   
+   <link>http://reasoniamhere.com</link>
+   <description>I am a Spanish-born bioinformatics PhD student living in Boston</description>
+   <language>en-us</language>
+   <managingEditor>Nacho Caballero</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+
+    
+      <item>
+        <title>What it Takes to Give a Great Presentation</title>
+        <link>http://reasoniamhere.com/2013/12/07/what-it-takes-to-give-a-great-presentation</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2013-12-07T00:00:00-05:00</pubDate>
+        <guid>http://reasoniamhere.com/2013/12/07/what-it-takes-to-give-a-great-presentation</guid>
+        <description><![CDATA[
+           <p>A talk is an opportunity to share an idea with your audience. If the audience gets lost, bored, or overwhelmed, the idea doesn&rsquo;t get shared. To give a great presentation you must condense the fog that surrounds your idea, craft a compelling narrative around it, illustrate it visually, and care enough to guide the audience every step of the way.</p>
+
+<!--excerpt-->
+
+<h2>Condensing the fog that surrounds your idea</h2>
+
+<p>You have either offered or been invited to give a talk. Maybe it&rsquo;s your weekly lab meeting, maybe it&rsquo;s your dissertation defense. Now, you face the challenge of putting yourself in the mental shoes of the people in your audience and figuring out what you are going to share with them.</p>
+
+<p>This is <strong>hard</strong>. The mind of someone who is unfamiliar with your topic is unknown territory to you (although, ironically, it used to be you). If you are not willing to commit the time and emotional labor required to tell a story that your audience will be able to follow, you should not agree to give the talk.</p>
+
+<p>Every creative process starts with a rough draft. Pianists improvise melody lines, illustrators doodle and sketch, and rappers freestyle. People that have to give presentations, unfortunately, open up PowerPoint. This is such an effective way of sabotaging your creativity that it should be illegal. Close that laptop lid, and grab a piece of <strong>paper</strong> instead.</p>
+
+<p>Paper is an expressive medium, it makes failing cheap, and it encourages you to go crazy and try out new stuff. Fumbling with mouse cursors and text boxes conditions your brain to think that experimenting is expensive and unpleasant. Paper lets you triple underscore the stuff you like, and crumple up everything else. No guilt.</p>
+
+<p>Start writing tentative titles, important concepts, supporting ideas, and the connections between them. Look out for natural ways to structure them, visualize them, and transition between them. The more you write, the more ideas you create. <strong>Forget criticism</strong> at this stage, you are just getting rid of the fog that clouds your main idea, and studying it from all possible angles.</p>
+
+<p>Once you get started, you&rsquo;ll find it hard to stop. New strokes of insight will continue to trickle down unannounced, they will pop up when you&rsquo;re chopping onions, on your way to the gym, or in the middle of the night. Carry a notebook everywhere and write everything down.</p>
+
+<p><img src="https://lh5.googleusercontent.com/NXwGy9VeLEoIIupRGyV_4P8A7MV95oIg13U-4gOBgS8=w700" alt="notes">
+<span class="caption">PowerPoint won&rsquo;t let you do this</span></p>
+
+<h2>Crafting a compelling narrative</h2>
+
+<p>Give yourself some pillow time before revisiting the ideas you collected. A clear head makes it easy to see which ones deflated overnight, and which ones are worth saving. You can let your ruthless editor come out now. Your brain needs time to switch from free-associating to critic mode. If you only give yourself 24 hours to prepare your presentation, you will undermine your ability to do good work.</p>
+
+<p>Arrange the ideas that pass your initial filter into <strong>a word-for-word script that walks from title to conclusion</strong>. There is nothing like trying to explain something we think we understand, to realize that we really don&rsquo;t. As you write the script, you will run across awkward concepts that need rewording, unconnected ideas that need bridging, and unrelated topics that need pruning. Notice them and fix them.</p>
+
+<p>Alongside the script, draw Post-It-sized mock-ups of what your tentative slides will look like. Don&rsquo;t fret the visual details (there will be time for that later), focus on making the script crisp and natural. It should sound like the way you speak.</p>
+
+<p>Once you are happy with the script, take a moment to revisit the transitions you are using to move your story along. When moving from one slide to the next, you will sometimes be tempted to interrupt the narrative:</p>
+
+<blockquote>
+<p>Oh, and this is just a plot of concentration versus yield&hellip;</p>
+</blockquote>
+
+<p>Instead of giving the impression that the slide caught you by surprise, prepare a transition that verbalizes the connection with what you said previously. For example:</p>
+
+<blockquote>
+<p>&hellip;and this led us to wonder the effects that changing the concentration would have on our experiment. We repeated it multiple times and saw that an increase in concentration produces a linear decrease in yield.</p>
+</blockquote>
+
+<p>Treating the graph like it is a track running parallel to the main script makes it easier to follow along. It&rsquo;s also more satisfying for the audience; instead of simply hearing the punch line, they can build the connection between what they are seeing and what you are saying.</p>
+
+<p>Every time you add something to the script ask yourself: <strong>is this helping my audience understand?</strong> For example, you might consider adding an outline slide, but think about it: 99% of presentations follow the same <em>intro-meat-conclusions</em> structure, you don&rsquo;t need to spend any time explaining it. On the other hand, you might consider splitting a non-trivial graph into two slides—one explaining the axes, another revealing the data. This is very likely to help your audience understand the significance of the graph. Do it.</p>
+
+<h2>Illustrating ideas visually</h2>
+
+<p>A good narrative is enough to effectively convey most ideas, but images can also provide additional layers of meaning that complement and clarify the original words. The combination of words and images is always more memorable than words alone. Think about what you remember from the last presentation you attended. It&rsquo;s probably not the words.</p>
+
+<p>The two previous stages helped you identify the most important aspects of your initial idea, and arrange them in a logical narrative. You might even have accompanying figures for most of the script (if that&rsquo;s not the case, go back to paper; digitizing images is a painful way of experimenting). Now it&rsquo;s time to open up your favorite presentation software (unless you&rsquo;re giving a chalk talk).</p>
+
+<p>PowerPoint and Keynote come loaded with default options that were not designed to meet your goals. If your notes have big white letters on a black background, don&rsquo;t settle for the small black-on-white text that PowerPoint will give you by default. If your thumbnails show full-page illustrations, don&rsquo;t let Keynote shrink your images when you drag them in, resize them. You know better than your tools.</p>
+
+<p>When coming up with a title for your presentation, remember that talks and scientific articles have different goals. Articles tend to have long descriptive titles so they can be discovered through casual glances and keyword searches. Presentation titles are closer to advertising, their goal is not thoroughness, but maximizing the chances that a distracted conference attendee will close her laptop lid and lean in to hear what you have to say. Choose something that you would want to pay attention to.</p>
+
+<p><a href="http://www.slideshare.net/nachocab/viral-biodiversity-in-rodents" target="_blank">
+<img src="https://lh3.googleusercontent.com/-9Up8l0C8c6U/UqNDyrpwbhI/AAAAAAAAGw4/RSmjehoqcW8/w700/Screen+Shot+2013-12-07+at+12.49.17+PM.png" alt="viral biodiversity">
+</a>
+<span class="caption">Not one of Keynote&rsquo;s default slides</span></p>
+
+<p>It&rsquo;s natural for people to get distracted. To anchor their attention you can come up with <strong>titles for each slide</strong> (they also serve as reminders for you, in case you forget your next point). Full sentences trump short labels. For example, if you are showing a plot that represents the differences between two methods, and you title the slide with &ldquo;Method A vs. method B,&rdquo; someone that got distracted might miss the point. A full sentence like &ldquo;Method A reports smaller fold changes than method B&rdquo; will help them get back on track.</p>
+
+<p>There is a guy sitting at the back of the room who wishes everything about your presentation were bigger. Make the text as large as you can get away with. Blow up your images to cover the entire slide. You never want to have to say &ldquo;you can&rsquo;t really see it here, but&hellip;&rdquo;</p>
+
+<p><img src="https://lh3.googleusercontent.com/-qvNiMOmj_ug/Tvf0nNKTxNI/AAAAAAAABGw/zsQBu5rDdiY/s800/peroxidase%252520sizes.png" alt="Horseradish">
+<span class="caption">Don&rsquo;t just show an image, showcase it.</span></p>
+
+<h2>Guiding the audience along the way</h2>
+
+<p>You have your idea, you have your story, and you have your slide deck. Time to start rehearsing.</p>
+
+<p>Go through the entire presentation out loud, get a feel for the words, notice which ones feel natural and which ones seem awkward. Pay attention to sections that make you stumble, your audience will probably find them difficult as well. Pave the way for them (and for yourself) by rewriting the script and simplifying the slides.</p>
+
+<p>When you rehearse the presentation for the second time, avoid looking at the slides or the script. You should have them almost memorized by now, which means that you can practice your talk during your morning run, or on the way to the grocery store. Also, when the time comes to give the actual presentation, you will be less tempted to turn your back to the audience, and you&rsquo;ll have an easier time looking at them in the eye.</p>
+
+<p>What about <strong>fear</strong>? Fear creeps in when you imagine yourself standing in front of an actual audience. It is the mechanism used by your lizard brain to warn you of imminent danger. You should acknowledge it, and push on.</p>
+
+<blockquote>
+<p>Hi Fear,</p>
+
+<p>Thank you for showing up. I am going to give my talk now. In five minutes you will accept the fact that I&rsquo;m not going to run away, and you will stop complaining.</p>
+
+<p>I hope next time it only takes you four minutes to realize that my life is not in danger.</p>
+
+<p>Love,</p>
+
+<p>Nacho</p>
+</blockquote>
+
+<p>The more speaking opportunities you seek out, the more exposure you will gain, the greater control you will have over your fear. You always look 90% less nervous than you actually feel (ask your friends, they&rsquo;ll back that up).</p>
+
+<h2>Is investing so much effort worth it?</h2>
+
+<p>It&rsquo;s up to you. The amount of effort you invest will depend on your goal. Presenting all the work you have done takes less time than helping your audience understand an idea. Choosing to focus on the latter will make you notice things like axes labels that are too small, or crowded slides that need splitting. Nobody is going to force you to do these things. You either care or you don&rsquo;t.</p>
+
+<p>You might consider that three or four days of emotional labor are overkill for a lab meeting presentation, but probably worth it when giving the opening keynote at a conference. When you are running, your body doesn&rsquo;t care if you are on a treadmill or being chased by a lion; it ends up getting better at running. Likewise, when you are doing the work to prepare a presentation, your brain doesn&rsquo;t care how many people will be in the audience or how high the stakes are; it ends up getting better at doing the work.</p>
+
+<p>Seek out every opportunity to get better at doing the work.</p>
+
+<p><hr></p>
+
+<p>I love reading your comments and <a href="mailto:nachocab@gmail.com">your email</a>. Don&rsquo;t hesitate if you have something you want to share.</p>
+
+<p>Thanks!</p>
+
+        ]]></description>
+      </item>
+    
+      <item>
+        <title>What I Learned from 30-Days of Blogging</title>
+        <link>http://reasoniamhere.com/2013/10/08/what-i-learned-from-30-days-of-blogging</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2013-10-08T00:00:00-04:00</pubDate>
+        <guid>http://reasoniamhere.com/2013/10/08/what-i-learned-from-30-days-of-blogging</guid>
+        <description><![CDATA[
+           <p><img src="https://lh3.googleusercontent.com/zCGUtA-SO5XF5rf3Q0BCC60moLZbGJ2S_EDPPCxINug=s540-no" alt="sacrifice">
+<span class="caption">Art by <a href="http://seanwes.com/podcast/016-making-sure-things-get-done-are-you-setting-the-right-goals/">Sean Wes</a></span></p>
+
+<p>One month ago, I decided to start blogging once a day, for 30 days. Here are some of the tips that helped me reach post #30 in one piece. I hope you will use them to start your own 30-day challenge.</p>
+
+<!--excerpt-->
+
+<h2>Tell your friends, so they hold you accountable</h2>
+
+<p>During the past few years, I made several weak attempts to write a blog but I would invariably fail. What made the difference this time was that, instead of writing in solitude, I made a public commitment to write: I told my friends, I published it on my Facebook wall, and I tweeted about it.</p>
+
+<p>If I had kept it quiet, whenever I was feeling too tired to write, or couldn&rsquo;t come up with an idea for a post, my brain would have convinced me that skipping one day wasn&rsquo;t a big deal. Luckily, I told everyone, and the fear of public humiliation loomed large every time I thought about copping out.</p>
+
+<h2>Verbalize what you want to do and why you want to do it</h2>
+
+<p>I picked blogging, but you pick anything. Choose something from the list of things you always wanted to do but never had time. Determine your daily deliverable and your time frame. My deliverable was a blog post, but it can also be a workout, a foreign language lesson, a drawing, or anything else. I found that doing something for 30 days is ideal because it is long enough to develop a habit, but not so long that the activity becomes a burden. Instead of every day, you could also do it every other day—but whatever you choose, make sure the rules are clear before you begin.</p>
+
+<p>Another factor that helped me make it to the end of the month was that I crafted a <a href="http://reasoniamhere.com/2013/09/07/im-starting-a-30-day-challenge-to-get-back-to-blogging/">story</a> that explained why I was investing the emotional labor: I wanted to tell others what my interests were, and I wanted to get better at <a href="http://blog.bwagy.com/steve-jobs-real-artists-ship/">shipping</a>.</p>
+
+<h2>Decide what you need to sacrifice to make time</h2>
+
+<p>Reading my morning news every morning was a two-hour activity. I knew that writing a post would take me about that long, so I decided to stop reading news (surprisingly, after having gone cold turkey for a month, I don&rsquo;t miss it at all).</p>
+
+<p>There were a few things that I was willing to give up (news, TV, Facebook), and others that I wasn&rsquo;t (salsa dancing, 30-minute power naps, email). That&rsquo;s why verbalizing your reasons for getting started is so important. If you come to the conclusion that learning a foreign language is vitally important, skipping on Breaking Bad episodes for a month won&rsquo;t feel like a heart-wrenching sacrifice.</p>
+
+<h2>Keep a notebook handy</h2>
+
+<p>Some ideas will come at you out of nowhere; make sure you write them down before they slip away. I like to keep a notebook handy because the act of putting pen on paper can set off an idea cascade that helps improve the original idea. Also, lazily flipping through my notebook has helped me turn old tentative ideas into fully fledged posts.</p>
+
+<p>I&rsquo;m always scrounging around for topic ideas. I get them from conversations, lectures, articles, and rare fleeting strokes of inspiration. Anytime you think of something interesting, write it down. Don&rsquo;t worry about quality; at this point, the only criteria is that <em>you</em> think it is worth exploring. Once you start writing, everything will start shifting and morphing, some stuff will make more sense, and other stuff will turn into drivel. Capture your raw thoughts first, there will always be time for editing later.</p>
+
+<h2>Express your true self</h2>
+
+<p>Criticism kills creativity. Ignore the voice in your head that whines &ldquo;Nobody cares about your opinion. You are not good enough to share your work.&rdquo; You don&rsquo;t need the New York Times or the Museum of Modern Art to decide you are good enough, all you need is an Internet connection.</p>
+
+<p>Once you give yourself permission to create, you will be surprised by what you are capable of.</p>
+
+<p><hr></p>
+
+<p>If you decide to start your own 30-day challenge, please <a href="mailto:nachocab@gmail.com">let me know</a>.</p>
+
+        ]]></description>
+      </item>
+    
+      <item>
+        <title>Seth Godin On Being an Artist</title>
+        <link>http://reasoniamhere.com/2013/10/07/seth-godin-on-being-an-artist</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2013-10-07T00:00:00-04:00</pubDate>
+        <guid>http://reasoniamhere.com/2013/10/07/seth-godin-on-being-an-artist</guid>
+        <description><![CDATA[
+           <p><a href="http://sethgodin.typepad.com/">Seth Godin</a> says that you don&rsquo;t need a paintbrush to be an artist. Your tools can just as easily be a spreadsheet, a text editor, or a pipette. Art is an expression of your creativity, your passion, and your personality, regardless of the medium you use to convey it.</p>
+
+<p>I love this definition. I wish it was taught in schools. Imagine kids figuring out how the Pythagorean theorem <a href="https://www.khanacademy.org/math/recreational-math/vi-hart/vi-cool-stuff/v/what-was-up-with-pythagoras">works</a> instead of memorizing the formula. Or kids that don&rsquo;t ask &ldquo;when am I ever going to use this?&rdquo; because they have to spend time grappling with the <a href="http://reasoniamhere.com/2013/09/27/teach-ignorance">questions</a> before they are given the answers.</p>
+
+<p><a href="http://www.goodreads.com/work/quotes/7421862-linchpin-are-you-indispensable">Here</a> are some of the jucier quotes from Seth&rsquo;s book <a href="http://www.amazon.com/Linchpin-Indispensable-career-remarkable-ebook/dp/B00354Y9ZU/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1381186407&amp;sr=1-1&amp;keywords=linchpin">Linchpin: Are You Indispensable?</a>. This is the kind of book that will make your highlighter run out of ink.</p>
+
+        ]]></description>
+      </item>
+    
+      <item>
+        <title>Becoming Grittier: Mindset Changes to Achieve Long-Term Goals</title>
+        <link>http://reasoniamhere.com/2013/10/07/becoming-grittier-mindset-changes-to-achieve-long-term-goals</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2013-10-07T00:00:00-04:00</pubDate>
+        <guid>http://reasoniamhere.com/2013/10/07/becoming-grittier-mindset-changes-to-achieve-long-term-goals</guid>
+        <description><![CDATA[
+           <p>Grit is the willingness to do whatever is needed to achieve long-term goals. <a href="http://www.ted.com/talks/angela_lee_duckworth_the_key_to_success_grit.html">Angela Duckworth</a> at the University of Pennsylvania has been researching how grit correlates with activities like reaching the final rounds of the U.S. National Spelling Bee, or surviving the grueling first summer of training at West Point. She has found that being gritty is a better predictor of success than high IQ or SAT scores.</p>
+
+<p>So, how do we become grittier? Is it even possible? Yes, it&rsquo;s possible. How do I know this? I don&rsquo;t, but I&rsquo;m putting my money on the two techniques that I have used in my grittiest moments: outsourcing the decision to get started, and crafting an epic narrative.</p>
+
+<!--excerpt-->
+
+<h2>Outsourcing the decision to get started</h2>
+
+<p>Angela Duckworth says that self-control and grit are correlated, but that gritty people can lack self-control, and vice versa. I&rsquo;m not entirely convinced. I think that self-control—the ability to momentarily resist temptation—is a pre-requisite to becoming gritty; since you need to get started before you can sustain your efforts over months or years. The easiest way to get started is by not having to make the decision to do so.</p>
+
+<p>Overcoming temptation, resistance, procrastination, or whatever you want to call it requires playing tricks on your brain. Being rational is of little use. You can short-circuit the part of your brain that weighs the pros and cons of doing uncomfortable work by making sure that taking the easy way out is no longer easy.</p>
+
+<p>If you are in charge of driving 3 other people to the gym, you are less likely to stay home and skipping your workout. If you don&rsquo;t have junk food laying around the house, you are less likely to drive all the way to the grocery store to satisfy a craving. If you use an <a href="http://selfcontrolapp.com/">app</a> to block your access to time-wasting websites, you are less likely to spend the next hour browsing around the news feeds.</p>
+
+<p>Next time you know you will be tempted to avoid doing something, arrange it so there will be a price to pay for doing so. Eventually, your brain gets so used to this thought pattern that holding off temptation no longer requires a huge amount of effort.</p>
+
+<h2>Crafting an epic narrative</h2>
+
+<p>We can cajole our brains into finishing a report before a looming deadline, or into practicing a speech before we&rsquo;re due on stage, but we need a different bag of tricks when the goal lacks a clear deadline.</p>
+
+<p>You won&rsquo;t have a heart attack if you don&rsquo;t lose 30 pounds before the end of the year, nobody is going to kill you if you don&rsquo;t write a novel in the next three months, and you will not be publicly shamed if you don&rsquo;t publish a Nature paper before your next Thesis Committee meeting. You know this because your brain knows this. But you can still jolt your brain into action by coming up with an epic narrative.</p>
+
+<p>Stories shape the way we live our life. This is exhilarating and scary. Exhilarating because the right stories will help us get through whatever hurdles we face. Scary because, often, other people are choosing the stories for us.</p>
+
+<p>Sometime in the past, you might have snuggled up with the belief that you are not good at math, or that you will never be extroverted, no matter what you do. These are not Truths, they are Stories. You could have just as easily embraced the notion that you are awesome at math when it is <a href="https://www.youtube.com/user/Vihart">better</a> <a href="http://betterexplained.com/">explained</a>, or that your fear of being judged would go away if you practiced approaching interesting strangers.</p>
+
+<p>I am still researching why some stories connect with our brain better than others, so if you have any strong opinions, <a href="mailto:nachocab@gmail.com">tell me</a>. So far, I believe that good stories must be written down (to make them concrete), <a href="http://reasoniamhere.com/2013/09/07/im-starting-a-30-day-challenge-to-get-back-to-blogging/">shared with others</a> (to make you accountable), and revisited (to make them relevant).</p>
+
+<p>Invest time crafting a story that will prevent rainy days, tiredness, and lack of inspiration from sabotaging your ultimate goal.</p>
+
+        ]]></description>
+      </item>
+    
+      <item>
+        <title>Advice to Me from the Past</title>
+        <link>http://reasoniamhere.com/2013/09/15/advice-to-me-from-the-past</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2013-09-15T00:00:00-04:00</pubDate>
+        <guid>http://reasoniamhere.com/2013/09/15/advice-to-me-from-the-past</guid>
+        <description><![CDATA[
+           <p><img src="https://lh4.googleusercontent.com/zLhbTgmF7N85eYvgMQx9YRASObCSCeqcaUfPSmeNo0s=w1024" alt="Me from the past"></p>
+
+<p>Dear me from the past,</p>
+
+<p>You&rsquo;ll be glad to know that in a few years, high school will be over. You will go out drinking with your friends every weekend, you will travel to twenty different countries, and the number of women that are willing to kiss you will increase by an order of magnitude.</p>
+
+<!--excerpt-->
+
+<h2>Work on projects you&rsquo;d be willing to do for free</h2>
+
+<p>You&rsquo;ll be offered a string of entry level jobs in international corporations, which will seem sexy and exciting, but you will also find out that a job is a place where your boss tells you what to do, and the minutes ticks by very slowly. If you want to have the freedom to work on interesting problems that let you use your creativity, you need to find a career.</p>
+
+<p>You have a limited amount of time, energy and brain cells; invest them on work you love. If salary is the main reason why you are accepting that position selling enterprise storage solutions to small and medium business over the phone, don&rsquo;t do it. Eventually you&rsquo;ll stop thinking about the money, and you&rsquo;ll start thinking about why you have to get up in the morning. Find something you&rsquo;d be willing to do for free (it doesn&rsquo;t hurt if you also get paid for it).</p>
+
+<h2>What other people think of you is irrelevant</h2>
+
+<p>I hate to break it to you, but not everybody is going to like you. As long as you are not hurting anybody, what people think of you pales in comparison to what <em>you</em> think of you. Anyway, if everybody likes you, you&rsquo;re probably doing something wrong. Everyone who has ever lived a remarkable life has been criticized at some point, because of their personality, their beliefs, or their work.</p>
+
+<p>Never let the fear of being judged or looking like an idiot stop you from doing the things you want. If an opportunity to travel comes up and your friends can&rsquo;t make it, go by yourself. If you see a cute girl you want to meet, go up and talk to her. If you have to speak to a room full of people, feel the fear, and do it anyway.</p>
+
+<p>Good luck.</p>
+
+        ]]></description>
+      </item>
+    
+      <item>
+        <title>Twitter is Full of Interesting Strangers</title>
+        <link>http://reasoniamhere.com/2013/09/14/twitter-is-full-of-interesting-strangers</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2013-09-14T00:00:00-04:00</pubDate>
+        <guid>http://reasoniamhere.com/2013/09/14/twitter-is-full-of-interesting-strangers</guid>
+        <description><![CDATA[
+           <p><img src="https://lh3.googleusercontent.com/-rq6qrUqPQlw/UjTDtDxWnaI/AAAAAAAAEF0/fitQJCPPdik/w1024/IMG_20130914_161213.jpg" alt="Twitter"></p>
+
+<p>I signed up for a Twitter sometime in 2007, but it wasn&rsquo;t until a few years ago that I understood its utility. Now, I use it to discover interesting strangers and share ideas that I am passionate about.</p>
+
+<!--excerpt-->
+
+<h2>Twitter lets me discover people I would want to meet in person</h2>
+
+<p>I was on Twitter last week, trying to figure out if I knew anyone who was coming to an Illumina event I was attending a few days later, and ran across this tweet by Jaime Heather:</p>
+
+<blockquote class="twitter-tweet"><p>Odd intensity profile on my current <a href="https://twitter.com/search?q=%23MiSeq&amp;src=hash">#MiSeq</a> run, peaks ~180. Anyone seen this before?<a href="https://twitter.com/illumina">@illumina</a> <a href="https://twitter.com/pathogenomenick">@pathogenomenick</a> <a href="https://twitter.com/Scalene">@Scalene</a> <a href="http://t.co/gyLWdbWH">pic.twitter.com/gyLWdbWH</a></p>&mdash; Jamie Heather (@jamimmunology) <a href="https://twitter.com/jamimmunology/statuses/273803307246563328">November 28, 2012</a></blockquote>
+
+<p>That led me to his <a href="http://jamimmunology.blogspot.com">his blog</a>, and after reading a few entries I realized that we share an interest in bioinformatics and immunology. A complete stranger, turned into someone <a href="https://twitter.com/nachocaballero/status/376386140812480512">worth grabbing a beer with</a>. The encounter made me realize that I wasn&rsquo;t giving people the opportunity to randomly come to the same conclusion about me, so I started blogging again. I can&rsquo;t think of any other social platform that would have made that interaction possible.</p>
+
+<p>Twitter provides a direct line of communication to whoever you might be interested in: <a href="https://twitter.com/ProfBrianCox">rockstar scientists</a>, <a href="https://twitter.com/GordonRamsay">master chefs</a>, <a href="https://twitter.com/realjohngreen">best-selling authors</a>, and further down the long tail of Twitter stardom, where the real connections happen—those that live in your city and that also think salsa is more interesting than baseball, or the ones who, like you, are flying to Rio de Janeiro a week before the conference and want to meet fellow attendees.</p>
+
+<h2>Twitter lets me share what I&rsquo;m passionate about</h2>
+
+<p>You don&rsquo;t have to wait until The New York Times offers you a front-page column to tell others what you&rsquo;re interested in. There is a ton of people out there with a legitimate interest in how you see the world. You just haven&rsquo;t met them yet, and Twitter is the perfect platform for that.</p>
+
+<blockquote>
+<p>A <strong>tribe</strong> is any group of people, large or small, who are connected to one another, a leader, and an idea—<a href="http://sethgodin.typepad.com/">Seth Godin</a></p>
+</blockquote>
+
+<p>I belong to the tribe of people interested in biology and programming. I also happen to work at that intersection, but your tribe is not defined by your job. You might be more interested in connecting with people who share your political views, or those who spend their weekends haggling at flea markets, or those who like to organize hiking expeditions.</p>
+
+<p>Celebrities, marketers and political pundits are used to reaching audiences every day, but most of us can&rsquo;t help feeling a pang of guilt at the though of publicly sharing our interests. What if people find me boring? Of course, some  won&rsquo;t have any interest in what you have to say, others won&rsquo;t be able to get enough of you.</p>
+
+<h2>You won&rsquo;t know if you like it until you try it</h2>
+
+<p>If you think Twitter is stupid, you haven&rsquo;t really tried it. If you think it&rsquo;s a waste of time, that only depends on how you use it. I check my Twitter stream once in a blue moon, I click on a few links, I read messages that mention me. Whenever I want to know what an interesting stranger is working on, I check out their Twitter profile. Total time invested: 5 minutes a day.</p>
+
+<p><a href="http://twitter.com">Signing up</a> is good enough. If you don&rsquo;t feel like tweeting, follow a few people you find interesting, and don&rsquo;t worry about it. You might pick it up two months later and discover that the guy that was sitting beside you at the last Meetup you attended is having lunch with your future boss. Tweet.</p>
+
+        ]]></description>
+      </item>
+    
+      <item>
+        <title>Good Presentations Begin on Paper</title>
+        <link>http://reasoniamhere.com/2013/09/09/good-presentations-begin-on-paper</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2013-09-09T00:00:00-04:00</pubDate>
+        <guid>http://reasoniamhere.com/2013/09/09/good-presentations-begin-on-paper</guid>
+        <description><![CDATA[
+           <p><img src="https://lh4.googleusercontent.com/H_oJqA1ue4Gb3HBzpbXqX9-Yv7MNju-i2zHiUls3Veg=w700" alt="Before after"></p>
+
+<p>Designing presentations on paper lets you apply a magnifying glass of common sense to the logical flow of your ideas, making your inconsistencies go up in flames, like tiny ants.</p>
+
+<p>If you are excited about what you are going to present that you don&rsquo;t know where to start, picking up a paper will help you sort through the jumble of thoughts running around your head and hone in those that can tell your story most effectively.</p>
+
+<p>Avoid the impulse to start with Powerpoint and give your ideas a chance to fight it out and compete for your attention on paper. Doodling prevents early weak ideas from taking the place of more clever ideas that needed a bit more time to pop the surface of your subconscious.</p>
+
+<p>Next time you have to give a presentation, draw it out on paper first. Use as many emphatic curvy arrows and triple underscores as you want.</p>
+
+        ]]></description>
+      </item>
+    
+  </channel>
+</rss>

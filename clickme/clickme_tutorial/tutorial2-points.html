@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <base target="_blank"> <!-- open all links on a new tab -->
+
+    <title>Points</title>
+
+    <link href="clickme_assets/clickme.css" rel="stylesheet">
+<link href="clickme_assets/tooltip.css" rel="stylesheet">
+<link href="clickme_assets/Points/points.css" rel="stylesheet">
+<script src="clickme_assets/d3.v3.2.7.js"></script>
+<script src="clickme_assets/jquery.v1.8.3.min.js"></script>
+<script src="clickme_assets/bootstrap-tooltip.v2.3.0.js"></script>
+<script src="clickme_assets/d3_aux.js"></script>
+  </head>
+
+  <body>
+    <div class="g-search">
+        <input type="text" placeholder="Search…">
+        <button style="display:none;" class="g-search-clear">X</button>
+    </div>
+    <script type="text/javascript">
+    (function() {
+      var clip, color_legend_counts, color_scale, color_title, data, distance_between_show_names_and_color_groups, g_color_group_keys, g_points, g_toggle_names, keyuped, mouseout, mouseover, opacity, plot, point_names, points, radius, redraw, search, search_clear, search_input, sidebar, toggle_names, toggle_points, transform;
+
+      data = [{"x":4.00437625022375,"y":1.66365568276128,"point_name":"MOCOS","Probe":"A_23_P67042","color_group":"Significant"},
+{"x":4.01583033254004,"y":1.47625777359398,"point_name":"C22ORF34","Probe":"A_33_P3380793","color_group":"Significant"},
+{"x":4.01583033254004,"y":-1.09961696937142,"point_name":"ZNF770","Probe":"A_23_P65733","color_group":"Significant"},
+{"x":4.02451519549816,"y":0.624107807369934,"point_name":"C17ORF62","Probe":"A_23_P118406","color_group":"Significant"},
+{"x":4.02451519549816,"y":1.65674516335955,"point_name":"MOCOS","Probe":"A_23_P67042","color_group":"Significant"},
+{"x":4.02629969723051,"y":-1.33925887128468,"point_name":"C1ORF21","Probe":"A_23_P113161","color_group":"Significant"},
+{"x":4.0403405861352,"y":-0.829071080915879,"point_name":"ING3","Probe":"A_23_P111811","color_group":"Significant"},
+{"x":4.04100435410325,"y":1.8158002917965,"point_name":"SAMD4A","Probe":"A_24_P383523","color_group":"Significant"},
+{"x":4.04100435410325,"y":0.625923889564277,"point_name":"C17ORF62","Probe":"A_23_P118406","color_group":"Significant"},
+{"x":4.04864589151197,"y":-1.03463793817436,"point_name":"ZNF326","Probe":"A_23_P85969","color_group":"Significant"},
+{"x":4.04864589151197,"y":1.51312664417307,"point_name":"STAT1","Probe":"A_24_P274270","color_group":"Significant"},
+{"x":4.04864589151197,"y":1.21479588869364,"point_name":"APOL4","Probe":"A_23_P380857","color_group":"Significant"},
+{"x":4.06392526860846,"y":-1.05358614804821,"point_name":"MAPK6","Probe":"A_23_P3204","color_group":"Significant"},
+{"x":4.07641931156402,"y":-0.88049700953212,"point_name":"KRAS","Probe":"A_23_P306507","color_group":"Significant"},
+{"x":4.07641931156402,"y":-0.94922389217124,"point_name":"ZNF518A","Probe":"A_23_P35576","color_group":"Significant"},
+{"x":4.07858959939365,"y":-0.847470430944126,"point_name":"STK17B","Probe":"A_33_P3342957","color_group":"Significant"},
+{"x":4.08260320104887,"y":1.64057898213648,"point_name":"MOCOS","Probe":"A_23_P67042","color_group":"Significant"},
+{"x":4.08828193408927,"y":0.617278589920188,"point_name":"C17ORF62","Probe":"A_23_P118406","color_group":"Significant"},
+{"x":4.09516109663369,"y":-1.22455392410152,"point_name":"UFL1","Probe":"A_23_P30956","color_group":"Significant"},
+{"x":4.0963676826598,"y":1.63720469126248,"point_name":"MOCOS","Probe":"A_23_P67042","color_group":"Significant"},
+{"x":4.11262609747957,"y":1.66888679949284,"point_name":"MOCOS","Probe":"A_23_P67042","color_group":"Significant"},
+{"x":4.11262609747957,"y":1.79423081223505,"point_name":"TNFSF10","Probe":"A_23_P121253","color_group":"Significant"},
+{"x":4.11588935793554,"y":1.49761253501112,"point_name":"STAT1","Probe":"A_24_P274270","color_group":"Significant"},
+{"x":4.12804942662653,"y":2.16597696864724,"point_name":"EPSTI1","Probe":"A_23_P105794","color_group":"Significant"},
+{"x":4.12993008156595,"y":1.06825492797681,"point_name":"LAP3","Probe":"A_23_P18604","color_group":"Significant"},
+{"x":4.1344595786831,"y":1.76818742323948,"point_name":"TNFSF10","Probe":"A_23_P121253","color_group":"Significant"},
+{"x":4.13669598870509,"y":1.65339419435604,"point_name":"MOCOS","Probe":"A_23_P67042","color_group":"Significant"},
+{"x":4.13987241319751,"y":0.627889395347815,"point_name":"C17ORF62","Probe":"A_23_P118406","color_group":"Significant"},
+{"x":4.16512621618194,"y":-0.999102395712474,"point_name":"MIA3","Probe":"A_33_P3236642","color_group":"Significant"},
+{"x":4.16512621618194,"y":1.72669963436787,"point_name":"SAMD4A","Probe":"A_33_P3264926","color_group":"Significant"},
+{"x":4.17610758521063,"y":1.49248556809332,"point_name":"STAT1","Probe":"A_24_P274270","color_group":"Significant"},
+{"x":4.17650046807777,"y":1.48614847914801,"point_name":"STAT1","Probe":"A_24_P274270","color_group":"Significant"},
+{"x":4.17650046807777,"y":-0.870979698719461,"point_name":"DNTTIP2","Probe":"A_23_P97584","color_group":"Significant"},
+{"x":4.22733387432248,"y":2.39969462865521,"point_name":"IFI44","Probe":"A_23_P23074","color_group":"Significant"},
+{"x":4.22733387432248,"y":1.26413282992734,"point_name":"EHD4","Probe":"A_23_P163458","color_group":"Significant"},
+{"x":4.22733387432248,"y":2.2615911630703,"point_name":"EPSTI1","Probe":"A_23_P105794","color_group":"Significant"},
+{"x":4.22733387432248,"y":1.16966478069966,"point_name":"FBXO6","Probe":"A_23_P97064","color_group":"Significant"},
+{"x":4.22788273195112,"y":-0.946128757594753,"point_name":"AMD1","Probe":"A_24_P371962","color_group":"Significant"},
+{"x":4.23232605296437,"y":1.52124753615135,"point_name":"STAT1","Probe":"A_24_P274270","color_group":"Significant"},
+{"x":4.24829777218325,"y":1.51559857598803,"point_name":"STAT1","Probe":"A_24_P274270","color_group":"Significant"},
+{"x":4.24829777218325,"y":1.76015362932982,"point_name":"TNFSF10","Probe":"A_23_P121253","color_group":"Significant"},
+{"x":4.24829777218325,"y":0.649349258424698,"point_name":"C17ORF62","Probe":"A_23_P118406","color_group":"Significant"},
+{"x":4.25460253254145,"y":-1.37095081967116,"point_name":"LUC7L3","Probe":"A_33_P3291569","color_group":"Significant"},
+{"x":4.25460253254145,"y":1.66686466447542,"point_name":"MOCOS","Probe":"A_23_P67042","color_group":"Significant"},
+{"x":4.25460253254145,"y":1.5118182053604,"point_name":"STAT1","Probe":"A_24_P274270","color_group":"Significant"},
+{"x":4.25735764769637,"y":1.52957237872842,"point_name":"STAT1","Probe":"A_24_P274270","color_group":"Significant"},
+{"x":4.25735764769637,"y":2.17487340782901,"point_name":"EPSTI1","Probe":"A_23_P105794","color_group":"Significant"},
+{"x":4.25782052042069,"y":1.80015517145778,"point_name":"TNFSF10","Probe":"A_23_P121253","color_group":"Significant"},
+{"x":4.25782052042069,"y":-0.881186853480074,"point_name":"DNTTIP2","Probe":"A_23_P97584","color_group":"Significant"},
+{"x":4.25782052042069,"y":-0.925826986641126,"point_name":"TRPS1","Probe":"A_33_P3361746","color_group":"Significant"},
+{"x":4.25782052042069,"y":-1.24932124505722,"point_name":"RALGAPA1","Probe":"A_24_P918843","color_group":"Significant"},
+{"x":4.27098743147894,"y":-0.922275623814761,"point_name":"PNISR","Probe":"A_23_P122615","color_group":"Significant"},
+{"x":4.27098743147894,"y":1.00325327664047,"point_name":"KAT2A","Probe":"A_23_P66608","color_group":"Significant"},
+{"x":4.27098743147894,"y":-1.12793263608341,"point_name":"HBS1L","Probe":"A_23_P429092","color_group":"Significant"},
+{"x":4.27584416011298,"y":1.68068319740937,"point_name":"MOCOS","Probe":"A_23_P67042","color_group":"Significant"},
+{"x":4.29905014369513,"y":1.64726243971158,"point_name":"RAB44","Probe":"A_33_P3424328","color_group":"Significant"},
+{"x":4.29905014369513,"y":-0.948492999500351,"point_name":"KIF5B","Probe":"A_33_P3292337","color_group":"Significant"},
+{"x":4.29936563595386,"y":-0.88329798265081,"point_name":"ROCK1","Probe":"A_23_P130429","color_group":"Significant"},
+{"x":4.32685960834928,"y":-1.47519310940155,"point_name":"KLF6","Probe":"A_33_P3367615","color_group":"Significant"},
+{"x":4.32819643795877,"y":-0.845647044419969,"point_name":"ING3","Probe":"A_23_P111811","color_group":"Significant"},
+{"x":4.33309537999251,"y":-1.13346817104491,"point_name":"VPS13C","Probe":"A_33_P3333537","color_group":"Significant"},
+{"x":4.33735620443113,"y":0.958672398328402,"point_name":"SEC24D","Probe":"A_23_P159382","color_group":"Significant"},
+{"x":4.34453193555486,"y":-1.28790672125168,"point_name":"UTRN","Probe":"A_33_P3234859","color_group":"Significant"},
+{"x":4.35958904011893,"y":-0.882753590935362,"point_name":"DNTTIP2","Probe":"A_23_P97584","color_group":"Significant"},
+{"x":4.36214297365924,"y":1.66747809925182,"point_name":"OAS3","Probe":"A_33_P3402489","color_group":"Significant"},
+{"x":4.36214297365924,"y":-1.15219484000549,"point_name":"HNRNPK","Probe":"A_33_P3362727","color_group":"Significant"},
+{"x":4.39467533165803,"y":0.837961661650809,"point_name":"RNF114","Probe":"A_24_P82957","color_group":"Significant"},
+{"x":4.40574072807502,"y":-1.26821981907318,"point_name":"C1ORF21","Probe":"A_23_P113161","color_group":"Significant"},
+{"x":4.40574072807502,"y":1.14557556269285,"point_name":"UBE2L6","Probe":"A_23_P75741","color_group":"Significant"},
+{"x":4.40887620287596,"y":1.46063062927675,"point_name":"PARP14","Probe":"A_24_P161018","color_group":"Significant"},
+{"x":4.41494278299791,"y":-0.928912626500638,"point_name":"PNISR","Probe":"A_23_P122615","color_group":"Significant"},
+{"x":4.41494278299791,"y":-0.893026652223039,"point_name":"DNTTIP2","Probe":"A_23_P97584","color_group":"Significant"},
+{"x":4.42006548265696,"y":0.879435520800267,"point_name":"C19ORF66","Probe":"A_33_P3641714","color_group":"Significant"},
+{"x":4.42423141170785,"y":2.14318883748037,"point_name":"EPSTI1","Probe":"A_23_P105794","color_group":"Significant"},
+{"x":4.46830417795966,"y":-0.869499420829643,"point_name":"DNTTIP2","Probe":"A_23_P97584","color_group":"Significant"},
+{"x":4.47093591851369,"y":2.31547930318308,"point_name":"GBP1","Probe":"A_23_P62890","color_group":"Significant"},
+{"x":4.48152131694418,"y":-1.48550600903899,"point_name":"MALAT1","Probe":"A_24_P873659","color_group":"Significant"},
+{"x":4.51090405667742,"y":-0.727921502907283,"point_name":"RNF141","Probe":"A_24_P372625","color_group":"Significant"},
+{"x":4.51328771609927,"y":-0.873090386307181,"point_name":"DNTTIP2","Probe":"A_23_P97584","color_group":"Significant"},
+{"x":4.51328771609927,"y":2.25262767743955,"point_name":"EPSTI1","Probe":"A_23_P105794","color_group":"Significant"},
+{"x":4.54775001031586,"y":-0.886779229991906,"point_name":"DNTTIP2","Probe":"A_23_P97584","color_group":"Significant"},
+{"x":4.5523791711198,"y":2.05484906299473,"point_name":"HRASLS2","Probe":"A_23_P105012","color_group":"Significant"},
+{"x":4.55594651708378,"y":-0.9004890399396,"point_name":"DNTTIP2","Probe":"A_23_P97584","color_group":"Significant"},
+{"x":4.55594651708378,"y":-0.891392400183667,"point_name":"DNTTIP2","Probe":"A_23_P97584","color_group":"Significant"},
+{"x":4.58721360174375,"y":1.13293532557609,"point_name":"BAALC","Probe":"A_33_P3282973","color_group":"Significant"},
+{"x":4.58965482095048,"y":1.28048606069048,"point_name":"FTSJD2","Probe":"A_23_P374149","color_group":"Significant"},
+{"x":4.60550153833316,"y":-1.31208929212987,"point_name":"PTP4A1","Probe":"A_24_P252043","color_group":"Significant"},
+{"x":4.60550153833316,"y":-0.95368143164967,"point_name":"PNISR","Probe":"A_23_P122615","color_group":"Significant"},
+{"x":4.60779922210248,"y":2.26238123036404,"point_name":"EPSTI1","Probe":"A_23_P105794","color_group":"Significant"},
+{"x":4.61201002090154,"y":-0.964820794138433,"point_name":"PNISR","Probe":"A_23_P122615","color_group":"Significant"},
+{"x":4.61201002090154,"y":-0.974268087634246,"point_name":"PNISR","Probe":"A_23_P122615","color_group":"Significant"},
+{"x":4.62487586597669,"y":-0.907077975012523,"point_name":"DNTTIP2","Probe":"A_23_P97584","color_group":"Significant"},
+{"x":4.64666459975463,"y":-0.747196957288318,"point_name":"SCYL2","Probe":"A_23_P204550","color_group":"Significant"},
+{"x":4.64984948172014,"y":-0.979161005581961,"point_name":"PNISR","Probe":"A_23_P122615","color_group":"Significant"},
+{"x":4.66932355321112,"y":-1.01748926923398,"point_name":"RBM27","Probe":"A_23_P92786","color_group":"Significant"},
+{"x":4.67282400595356,"y":2.22061160480476,"point_name":"EPSTI1","Probe":"A_23_P105794","color_group":"Significant"},
+{"x":4.67638665137646,"y":-0.968556162829041,"point_name":"PNISR","Probe":"A_23_P122615","color_group":"Significant"},
+{"x":4.67638665137646,"y":2.0129752071729,"point_name":"HRASLS2","Probe":"A_23_P105012","color_group":"Significant"},
+{"x":4.70592049918546,"y":2.24890245585234,"point_name":"OASL","Probe":"A_23_P139786","color_group":"Significant"},
+{"x":4.73621272403975,"y":1.19996493027659,"point_name":"HERC6","Probe":"A_33_P3315779","color_group":"Significant"},
+{"x":4.74792230049457,"y":-1.13844814583228,"point_name":"ZNF326","Probe":"A_24_P83437","color_group":"Significant"},
+{"x":4.7625115947779,"y":-0.986455735414821,"point_name":"HSPA13","Probe":"A_24_P134392","color_group":"Significant"},
+{"x":4.76970455803737,"y":1.03771033085408,"point_name":"ABHD6","Probe":"A_23_P211850","color_group":"Significant"},
+{"x":4.77964011379635,"y":-1.26567674513563,"point_name":"TOB1","Probe":"A_23_P164179","color_group":"Significant"},
+{"x":4.77964011379635,"y":-1.43149217467458,"point_name":"MAP3K2","Probe":"A_33_P3415440","color_group":"Significant"},
+{"x":4.78649473002809,"y":-0.950435773904184,"point_name":"ZNF800","Probe":"A_33_P3380932","color_group":"Significant"},
+{"x":4.79619327674678,"y":-0.941975512293754,"point_name":"PNISR","Probe":"A_23_P122615","color_group":"Significant"},
+{"x":4.80789590092381,"y":0.971584401101943,"point_name":"PHF11","Probe":"A_23_P65174","color_group":"Significant"},
+{"x":4.80877959174797,"y":-0.990410312473129,"point_name":"ZNF644","Probe":"A_23_P200772","color_group":"Significant"},
+{"x":4.85991020938917,"y":-0.990586048764736,"point_name":"PNISR","Probe":"A_23_P122615","color_group":"Significant"},
+{"x":4.85991020938917,"y":0.730460913772956,"point_name":"PARP10","Probe":"A_33_P3398448","color_group":"Significant"},
+{"x":4.90453102843696,"y":1.56067069902391,"point_name":"TOR1B","Probe":"A_23_P94703","color_group":"Significant"},
+{"x":4.9683567699402,"y":-1.01798672647547,"point_name":"PNISR","Probe":"A_23_P122615","color_group":"Significant"},
+{"x":5.0058812001486,"y":1.5173157810957,"point_name":"IFIH1","Probe":"A_23_P68155","color_group":"Significant"},
+{"x":5.0058812001486,"y":-1.25249777675582,"point_name":"OTUD6B","Probe":"A_23_P111929","color_group":"Significant"},
+{"x":5.02422159597379,"y":2.25894386277671,"point_name":"EPSTI1","Probe":"A_23_P105794","color_group":"Significant"},
+{"x":5.02422159597379,"y":1.48580461650181,"point_name":"PML","Probe":"A_23_P334664","color_group":"Significant"},
+{"x":5.02817984270448,"y":3.11388132046832,"point_name":"CXCL10","Probe":"A_24_P303091","color_group":"Significant"},
+{"x":5.02817984270448,"y":-0.774051359056738,"point_name":"CDC73","Probe":"A_33_P3219770","color_group":"Significant"},
+{"x":5.0463745108388,"y":3.62907326734639,"point_name":"OAS1","Probe":"A_23_P64828","color_group":"Significant"},
+{"x":5.0463745108388,"y":1.90841485358545,"point_name":"GCH1","Probe":"A_24_P167642","color_group":"Significant"},
+{"x":5.04739287074939,"y":2.21436113932164,"point_name":"EPSTI1","Probe":"A_23_P105794","color_group":"Significant"},
+{"x":5.06500895261493,"y":-1.19590522284806,"point_name":"SNX13","Probe":"A_24_P200848","color_group":"Significant"},
+{"x":5.08139590770281,"y":1.48076908198873,"point_name":"STAT2","Probe":"A_33_P3213064","color_group":"Significant"},
+{"x":5.09482483646818,"y":0.818333879299905,"point_name":"SHC1","Probe":"A_23_P200443","color_group":"Significant"},
+{"x":5.09712769351778,"y":2.29331826407218,"point_name":"GCH1","Probe":"A_33_P3311439","color_group":"Significant"},
+{"x":5.12524210536113,"y":2.35367825571375,"point_name":"USP41","Probe":"A_32_P54553","color_group":"Significant"},
+{"x":5.13750268450293,"y":1.87954195511111,"point_name":"DDX60","Probe":"A_23_P41470","color_group":"Significant"},
+{"x":5.23356968568863,"y":0.82111893736762,"point_name":"SHC1","Probe":"A_23_P200443","color_group":"Significant"},
+{"x":5.25592276560444,"y":1.11008096173344,"point_name":"TRIM14","Probe":"A_33_P3424367","color_group":"Significant"},
+{"x":5.32386435452553,"y":1.17393204200983,"point_name":"IL15RA","Probe":"A_23_P138680","color_group":"Significant"},
+{"x":5.33464103011315,"y":-1.22968944603616,"point_name":"OTUD6B","Probe":"A_23_P111929","color_group":"Significant"},
+{"x":5.33464103011315,"y":0.937586258207244,"point_name":"C22ORF28","Probe":"A_23_P68892","color_group":"Significant"},
+{"x":5.33464103011315,"y":0.820533787979797,"point_name":"SHC1","Probe":"A_23_P200443","color_group":"Significant"},
+{"x":5.34661871878956,"y":-1.44651972771798,"point_name":"BRCC3","Probe":"A_33_P3385453","color_group":"Significant"},
+{"x":5.34661871878956,"y":2.12811433594314,"point_name":"HRASLS2","Probe":"A_23_P105012","color_group":"Significant"},
+{"x":5.3654057805887,"y":0.83538216029877,"point_name":"SHC1","Probe":"A_23_P200443","color_group":"Significant"},
+{"x":5.37931569708036,"y":2.2478148357123,"point_name":"HRASLS2","Probe":"A_23_P105012","color_group":"Significant"},
+{"x":5.47996802352516,"y":1.1368588637348,"point_name":"TAP1","Probe":"A_23_P59005","color_group":"Significant"},
+{"x":5.48098265850702,"y":-1.16687645566923,"point_name":"OTUD6B","Probe":"A_23_P111929","color_group":"Significant"},
+{"x":5.50034201903933,"y":1.28229010493721,"point_name":"PARP12","Probe":"A_23_P111804","color_group":"Significant"},
+{"x":5.56290018553661,"y":-1.22352617076186,"point_name":"ZFX","Probe":"A_23_P125639","color_group":"Significant"},
+{"x":5.6139912271198,"y":1.62837020888735,"point_name":"BARD1","Probe":"A_23_P67771","color_group":"Significant"},
+{"x":5.63597823589826,"y":-0.968169435868233,"point_name":"TAB3","Probe":"A_23_P305033","color_group":"Significant"},
+{"x":5.63901782779219,"y":1.27151372903983,"point_name":"PARP12","Probe":"A_23_P111804","color_group":"Significant"},
+{"x":5.64861308424057,"y":1.61543662075962,"point_name":"TRIM14","Probe":"A_24_P197964","color_group":"Significant"},
+{"x":5.64861308424057,"y":0.842615993293211,"point_name":"SHC1","Probe":"A_23_P200443","color_group":"Significant"},
+{"x":5.64861308424057,"y":-1.33848261568829,"point_name":"MAPK8","Probe":"A_33_P3250289","color_group":"Significant"},
+{"x":5.69384793256242,"y":2.16214173396598,"point_name":"HRASLS2","Probe":"A_23_P105012","color_group":"Significant"},
+{"x":5.7160857132558,"y":0.855173254356016,"point_name":"SHC1","Probe":"A_23_P200443","color_group":"Significant"},
+{"x":5.71779379577617,"y":2.12360679411171,"point_name":"HRASLS2","Probe":"A_23_P105012","color_group":"Significant"},
+{"x":5.71779379577617,"y":1.15720217190385,"point_name":"BST2","Probe":"A_23_P39465","color_group":"Significant"},
+{"x":5.71779379577617,"y":2.15871271184862,"point_name":"HRASLS2","Probe":"A_23_P105012","color_group":"Significant"},
+{"x":5.71779379577617,"y":-1.17851005595664,"point_name":"RPRD1A","Probe":"A_33_P3291349","color_group":"Significant"},
+{"x":5.71779379577617,"y":2.23283954432084,"point_name":"HRASLS2","Probe":"A_23_P105012","color_group":"Significant"},
+{"x":5.76534900125102,"y":1.55329575382811,"point_name":"HSH2D","Probe":"A_23_P153372","color_group":"Significant"},
+{"x":5.81016050300572,"y":1.48478807581873,"point_name":"EIF2AK2","Probe":"A_23_P142750","color_group":"Significant"},
+{"x":5.82969789585343,"y":0.848841041386642,"point_name":"SHC1","Probe":"A_23_P200443","color_group":"Significant"},
+{"x":5.82969789585343,"y":1.26846564702339,"point_name":"PARP12","Probe":"A_23_P111804","color_group":"Significant"},
+{"x":5.82969789585343,"y":3.34628218897669,"point_name":"IFI44L","Probe":"A_23_P45871","color_group":"Significant"},
+{"x":5.82969789585343,"y":0.821270885285432,"point_name":"SHC1","Probe":"A_23_P200443","color_group":"Significant"},
+{"x":5.82969789585343,"y":1.25657632577668,"point_name":"PARP12","Probe":"A_23_P111804","color_group":"Significant"},
+{"x":5.82969789585343,"y":1.271139030746,"point_name":"PARP12","Probe":"A_23_P111804","color_group":"Significant"},
+{"x":5.82969789585343,"y":-1.26855011859012,"point_name":"OTUD6B","Probe":"A_23_P111929","color_group":"Significant"},
+{"x":5.82969789585343,"y":0.831361678226868,"point_name":"SHC1","Probe":"A_23_P200443","color_group":"Significant"},
+{"x":5.83187538086992,"y":2.16416413859701,"point_name":"HRASLS2","Probe":"A_23_P105012","color_group":"Significant"},
+{"x":5.88296344516785,"y":2.76275004911792,"point_name":"IFIT3","Probe":"A_33_P3283611","color_group":"Significant"},
+{"x":5.88296344516785,"y":-1.66694849611181,"point_name":"RANBP2","Probe":"A_33_P3308740","color_group":"Significant"},
+{"x":5.9330611514055,"y":1.26038241059318,"point_name":"PARP12","Probe":"A_23_P111804","color_group":"Significant"},
+{"x":5.94427663520355,"y":1.24151325704182,"point_name":"PARP12","Probe":"A_23_P111804","color_group":"Significant"},
+{"x":6.01694900259296,"y":-1.24509464912036,"point_name":"MBNL2","Probe":"A_24_P56317","color_group":"Significant"},
+{"x":6.01694900259296,"y":0.821348509770929,"point_name":"SHC1","Probe":"A_23_P200443","color_group":"Significant"},
+{"x":6.07978174072242,"y":1.24658556949144,"point_name":"PARP12","Probe":"A_23_P111804","color_group":"Significant"},
+{"x":6.08613337135255,"y":2.24993074202803,"point_name":"MX2","Probe":"A_23_P6263","color_group":"Significant"},
+{"x":6.11291865952297,"y":2.27288724712715,"point_name":"HRASLS2","Probe":"A_23_P105012","color_group":"Significant"},
+{"x":6.11291865952297,"y":-0.917144772630847,"point_name":"PPP1CB","Probe":"A_24_P396720","color_group":"Significant"},
+{"x":6.11291865952297,"y":4.15498046837023,"point_name":"MX1","Probe":"A_23_P17663","color_group":"Significant"},
+{"x":6.11291865952297,"y":1.26218061648822,"point_name":"PARP12","Probe":"A_23_P111804","color_group":"Significant"},
+{"x":6.24022195157475,"y":1.22847920384949,"point_name":"CHRNB1","Probe":"A_23_P207106","color_group":"Significant"},
+{"x":6.25859731049462,"y":0.958392221298487,"point_name":"ATP13A1","Probe":"A_23_P5163","color_group":"Significant"},
+{"x":6.29319190005509,"y":2.244555282951,"point_name":"XAF1","Probe":"A_33_P3258346","color_group":"Significant"},
+{"x":6.36830694884273,"y":3.17281572996153,"point_name":"USP18","Probe":"A_23_P132159","color_group":"Significant"},
+{"x":6.40720333993835,"y":1.2451912585978,"point_name":"PARP12","Probe":"A_23_P111804","color_group":"Significant"},
+{"x":6.46531919227743,"y":3.7100659565823,"point_name":"CXCL10","Probe":"A_33_P3343175","color_group":"Significant"},
+{"x":6.54189012444172,"y":1.02288726205335,"point_name":"CNP","Probe":"A_23_P21838","color_group":"Significant"},
+{"x":6.70958977415057,"y":2.65566855496227,"point_name":"DDX58","Probe":"A_33_P3418170","color_group":"Significant"},
+{"x":6.88882821929254,"y":2.50095987704575,"point_name":"OAS2","Probe":"A_33_P3225512","color_group":"Significant"},
+{"x":7.01282222060921,"y":-1.70112774638332,"point_name":"KLF6","Probe":"A_24_P128308","color_group":"Significant"},
+{"x":7.16277836224523,"y":3.53975770335132,"point_name":"IFIT2","Probe":"A_23_P24004","color_group":"Significant"},
+{"x":7.16277836224523,"y":2.19820095769651,"point_name":"IRF7","Probe":"A_24_P378019","color_group":"Significant"},
+{"x":7.16277836224523,"y":3.56283141981629,"point_name":"IFIT1","Probe":"A_23_P52266","color_group":"Significant"},
+{"x":7.65143614753972,"y":1.32943675850706,"point_name":"HELZ2","Probe":"A_33_P3400374","color_group":"Significant"},
+{"x":7.65143614753972,"y":1.87716522728843,"point_name":"PARP9","Probe":"A_23_P69383","color_group":"Significant"},
+{"x":7.66959282766761,"y":1.35598790785479,"point_name":"DTX3L","Probe":"A_24_P941912","color_group":"Significant"},
+{"x":7.75424384887781,"y":1.81641375708879,"point_name":"DHX58","Probe":"A_23_P38346","color_group":"Significant"},
+{"x":7.80508874191553,"y":2.1739288560018,"point_name":"APOL6","Probe":"A_24_P941167","color_group":"Significant"},
+{"x":7.82773947030864,"y":3.22281071228733,"point_name":"SIGLEC1","Probe":"A_23_P17481","color_group":"Significant"},
+{"x":7.88978703825442,"y":3.89294459263379,"point_name":"PCDH20","Probe":"A_23_P204885","color_group":"Significant"},
+{"x":7.91514117947807,"y":0.905933086336229,"point_name":"RNF31","Probe":"A_23_P99632","color_group":"Significant"},
+{"x":8.01085134178857,"y":4.61327645595984,"point_name":"CCDC162P","Probe":"A_33_P3333232","color_group":"Significant"},
+{"x":8.26323259730154,"y":3.57099085537644,"point_name":"KCTD14","Probe":"A_23_P162165","color_group":"Significant"},
+{"x":8.45608497471586,"y":3.09142829886398,"point_name":"IFIT2","Probe":"A_24_P304071","color_group":"Significant"},
+{"x":9.1823222361734,"y":2.15718699677512,"point_name":"TRIM14","Probe":"A_23_P216655","color_group":"Significant"},
+{"x":9.27535060741656,"y":3.91507121369608,"point_name":"HERC5","Probe":"A_23_P110196","color_group":"Significant"},
+{"x":9.4657835429524,"y":3.91588411651933,"point_name":"HERC5","Probe":"A_23_P110196","color_group":"Significant"},
+{"x":9.55712851532699,"y":3.98330791197187,"point_name":"HERC5","Probe":"A_23_P110196","color_group":"Significant"},
+{"x":9.56389596166177,"y":3.94257628606183,"point_name":"HERC5","Probe":"A_23_P110196","color_group":"Significant"},
+{"x":9.56389596166177,"y":3.92805924378169,"point_name":"HERC5","Probe":"A_23_P110196","color_group":"Significant"},
+{"x":9.58874903581584,"y":3.94284867842603,"point_name":"HERC5","Probe":"A_23_P110196","color_group":"Significant"},
+{"x":9.58874903581584,"y":3.89365408303787,"point_name":"HERC5","Probe":"A_23_P110196","color_group":"Significant"},
+{"x":9.58874903581584,"y":2.96125455487564,"point_name":"HERC6","Probe":"A_23_P250358","color_group":"Significant"},
+{"x":9.66141166362712,"y":1.96097478495267,"point_name":"PML","Probe":"A_24_P207139","color_group":"Significant"},
+{"x":9.66141166362712,"y":3.90174894274596,"point_name":"HERC5","Probe":"A_23_P110196","color_group":"Significant"},
+{"x":9.66141166362712,"y":3.89834490549783,"point_name":"HERC5","Probe":"A_23_P110196","color_group":"Significant"},
+{"x":9.66141166362712,"y":3.92040977294627,"point_name":"HERC5","Probe":"A_23_P110196","color_group":"Significant"},
+{"x":9.79082414762414,"y":4.11153181148699,"point_name":"CMPK2","Probe":"A_33_P3401826","color_group":"Significant"},
+{"x":9.84475521216323,"y":2.30114925547106,"point_name":"OAS3","Probe":"A_24_P335305","color_group":"Significant"},
+{"x":10.0536746590792,"y":4.75722144650887,"point_name":"RSAD2","Probe":"A_24_P28722","color_group":"Significant"},
+{"x":10.6934070498175,"y":2.07566731816544,"point_name":"PML","Probe":"A_23_P358944","color_group":"Significant"},
+{"x":10.6934070498175,"y":3.60145889505274,"point_name":"OAS2","Probe":"A_23_P204087","color_group":"Significant"},
+{"x":12.3912657863054,"y":3.87047770940599,"point_name":"ISG15","Probe":"A_23_P819","color_group":"Significant"},
+{"x":3.05820829115793,"y":0.517801900786184,"point_name":"KDELR1","Probe":"A_23_P4919","color_group":"Noise"},
+{"x":3.05829457358917,"y":-1.25682421239854,"point_name":"CENPF","Probe":"A_24_P96780","color_group":"Noise"},
+{"x":3.05889345511624,"y":-0.946481236478194,"point_name":"VAV3","Probe":"A_23_P201551","color_group":"Noise"},
+{"x":3.06178189424251,"y":0.86642275378433,"point_name":"A_33_P3293237","Probe":"A_33_P3293237","color_group":"Noise"},
+{"x":3.06358483877417,"y":0.582521251292912,"point_name":"KIAA1967","Probe":"A_23_P31686","color_group":"Noise"},
+{"x":3.06453512733075,"y":-0.905097513900627,"point_name":"PPM1A","Probe":"A_24_P407323","color_group":"Noise"},
+{"x":3.06701809578949,"y":-0.734943353071344,"point_name":"CDK19","Probe":"A_33_P3328026","color_group":"Noise"},
+{"x":3.06701809578949,"y":-0.692160103343597,"point_name":"UPF2","Probe":"A_33_P3218768","color_group":"Noise"},
+{"x":3.06701809578949,"y":0.912246201098935,"point_name":"TMEM106A","Probe":"A_23_P435521","color_group":"Noise"},
+{"x":3.06930485202855,"y":-0.714757864679432,"point_name":"RBM39","Probe":"A_23_P109254","color_group":"Noise"},
+{"x":3.07141894910483,"y":1.56884427554029,"point_name":"SDC3","Probe":"A_33_P3241884","color_group":"Noise"},
+{"x":3.07141894910483,"y":-0.755007002787657,"point_name":"PDE8A","Probe":"A_33_P3244951","color_group":"Noise"},
+{"x":3.07515713281949,"y":0.542764572254047,"point_name":"C7ORF26","Probe":"A_23_P168541","color_group":"Noise"},
+{"x":3.07686068014239,"y":0.536288826678042,"point_name":"TBRG1","Probe":"A_24_P21752","color_group":"Noise"},
+{"x":3.08158921136289,"y":-0.643350670715054,"point_name":"NAB1","Probe":"A_23_P209805","color_group":"Noise"},
+{"x":3.08595474601972,"y":-1.0801073022315,"point_name":"FSD1L","Probe":"A_33_P3241541","color_group":"Noise"},
+{"x":3.09032766548087,"y":-0.894611753757737,"point_name":"CFL2","Probe":"A_24_P373152","color_group":"Noise"},
+{"x":3.09593845270815,"y":-0.767647901294189,"point_name":"BCLAF1","Probe":"A_23_P111343","color_group":"Noise"},
+{"x":3.09593845270815,"y":1.02113370711424,"point_name":"IRF2","Probe":"A_23_P125082","color_group":"Noise"},
+{"x":3.09608513789217,"y":-0.840907596159394,"point_name":"LOC286161","Probe":"A_33_P3841368","color_group":"Noise"},
+{"x":3.09743095158959,"y":1.02740562336575,"point_name":"SPTBN4","Probe":"A_24_P293114","color_group":"Noise"},
+{"x":3.09781786096199,"y":-1.14431757162616,"point_name":"C1ORF21","Probe":"A_23_P113161","color_group":"Noise"},
+{"x":3.09781786096199,"y":0.771723381069733,"point_name":"MOV10","Probe":"A_23_P161125","color_group":"Noise"},
+{"x":3.09781786096199,"y":0.72042936519047,"point_name":"SLC38A5","Probe":"A_23_P84929","color_group":"Noise"},
+{"x":3.09997773557584,"y":1.03650973997813,"point_name":"TRIM25","Probe":"A_33_P3331366","color_group":"Noise"},
+{"x":3.10223752655141,"y":0.526758143732409,"point_name":"LRRC41","Probe":"A_33_P3289222","color_group":"Noise"},
+{"x":3.10515259586761,"y":-1.07210194075549,"point_name":"ZC3H11A","Probe":"A_33_P3315060","color_group":"Noise"},
+{"x":3.10570299217666,"y":-0.70554033294427,"point_name":"RBM39","Probe":"A_23_P109254","color_group":"Noise"},
+{"x":3.10672896736642,"y":-1.12119132879293,"point_name":"C1ORF21","Probe":"A_23_P113161","color_group":"Noise"},
+{"x":3.10850428737431,"y":-0.680017437046911,"point_name":"NAA50","Probe":"A_33_P3424257","color_group":"Noise"},
+{"x":3.10863283986269,"y":-0.911804167592361,"point_name":"SPRTN","Probe":"A_24_P15292","color_group":"Noise"},
+{"x":3.11326025127688,"y":-0.877467197454889,"point_name":"ATP2B4","Probe":"A_23_P11841","color_group":"Noise"},
+{"x":3.11783750646422,"y":-0.919287665968702,"point_name":"DENND1B","Probe":"A_23_P201605","color_group":"Noise"},
+{"x":3.11783750646422,"y":-0.796387245790406,"point_name":"MBNL2","Probe":"A_33_P3391076","color_group":"Noise"},
+{"x":3.12294715740708,"y":-1.10217325103152,"point_name":"SLC16A7","Probe":"A_32_P130630","color_group":"Noise"},
+{"x":3.12523268566379,"y":-1.32339484500111,"point_name":"KLHL28","Probe":"A_33_P3304107","color_group":"Noise"},
+{"x":3.12764374927428,"y":0.673730441516561,"point_name":"GNL3LP1","Probe":"A_33_P3651994","color_group":"Noise"},
+{"x":3.14037395419725,"y":0.683607028917761,"point_name":"TRIM68","Probe":"A_23_P2097","color_group":"Noise"},
+{"x":3.14874390854306,"y":-1.31561937900528,"point_name":"CKAP2","Probe":"A_23_P151405","color_group":"Noise"},
+{"x":3.14874390854306,"y":-0.980192831509496,"point_name":"ATXN7","Probe":"A_33_P3320782","color_group":"Noise"},
+{"x":3.15170752979129,"y":0.788758138199289,"point_name":"HCCS","Probe":"A_23_P257945","color_group":"Noise"},
+{"x":3.16168524655224,"y":-0.755829049388474,"point_name":"RBM39","Probe":"A_23_P109254","color_group":"Noise"},
+{"x":3.16655772752817,"y":-0.791478466002931,"point_name":"PRKACB","Probe":"A_33_P3772996","color_group":"Noise"},
+{"x":3.17895545507816,"y":-1.30559962398218,"point_name":"C1ORF21","Probe":"A_23_P113161","color_group":"Noise"},
+{"x":3.19417657584776,"y":-1.09243527656477,"point_name":"SENP7","Probe":"A_24_P265856","color_group":"Noise"},
+{"x":3.20105516774452,"y":-0.926804654123374,"point_name":"PIK3R1","Probe":"A_24_P29401","color_group":"Noise"},
+{"x":3.20105516774452,"y":1.39412955368844,"point_name":"MED17","Probe":"A_24_P218587","color_group":"Noise"},
+{"x":3.20105516774452,"y":0.666391597746715,"point_name":"ZBTB45","Probe":"A_23_P164623","color_group":"Noise"},
+{"x":3.20269578969273,"y":-0.596451045454733,"point_name":"SLMAP","Probe":"A_24_P942773","color_group":"Noise"},
+{"x":3.20269578969273,"y":0.717760010184294,"point_name":"AHDC1","Probe":"A_23_P115331","color_group":"Noise"},
+{"x":3.20269578969273,"y":-0.99286365408968,"point_name":"SLC38A1","Probe":"A_23_P363399","color_group":"Noise"},
+{"x":3.20334019996563,"y":-0.766022188294487,"point_name":"AGPS","Probe":"A_23_P368645","color_group":"Noise"},
+{"x":3.21643000262072,"y":1.30807942171783,"point_name":"TREX1","Probe":"A_33_P3383866","color_group":"Noise"},
+{"x":3.22849635175871,"y":-1.41049312509408,"point_name":"TET2","Probe":"A_33_P3266719","color_group":"Noise"},
+{"x":3.2289597369787,"y":-0.678959114168931,"point_name":"AKT3","Probe":"A_23_P160354","color_group":"Noise"},
+{"x":3.2289597369787,"y":-0.83976191828806,"point_name":"HNRNPA3","Probe":"A_33_P3422170","color_group":"Noise"},
+{"x":3.22947746110804,"y":0.579892178916421,"point_name":"PPP1R10","Probe":"A_23_P156667","color_group":"Noise"},
+{"x":3.23403958091629,"y":0.545767599466123,"point_name":"MAD2L1BP","Probe":"A_24_P43588","color_group":"Noise"},
+{"x":3.23403958091629,"y":-1.2070361545235,"point_name":"TMTC3","Probe":"A_24_P944222","color_group":"Noise"},
+{"x":3.23719368887504,"y":-0.673793423510977,"point_name":"ANKRD44","Probe":"A_23_P209347","color_group":"Noise"},
+{"x":3.24396745414557,"y":-1.05493003820389,"point_name":"OTUD6B","Probe":"A_23_P111929","color_group":"Noise"},
+{"x":3.2456852267531,"y":0.903512939300073,"point_name":"C9ORF69","Probe":"A_23_P398372","color_group":"Noise"},
+{"x":3.25097985123763,"y":0.673033516172195,"point_name":"FNTB","Probe":"A_23_P25835","color_group":"Noise"},
+{"x":3.25392906667363,"y":0.92002509023789,"point_name":"UNC93B1","Probe":"A_33_P3404470","color_group":"Noise"},
+{"x":3.26106426963384,"y":-0.74154299914389,"point_name":"RBM39","Probe":"A_23_P109254","color_group":"Noise"},
+{"x":3.26286704595339,"y":-0.859267128397081,"point_name":"LOC100132672","Probe":"A_33_P3244369","color_group":"Noise"},
+{"x":3.26699437519776,"y":-1.01704589755818,"point_name":"WNK1","Probe":"A_33_P3510335","color_group":"Noise"},
+{"x":3.26760062499162,"y":-0.577160126860064,"point_name":"TMOD3","Probe":"A_23_P65674","color_group":"Noise"},
+{"x":3.27078914683997,"y":0.68424481722536,"point_name":"TMEM187","Probe":"A_23_P85180","color_group":"Noise"},
+{"x":3.2708409194294,"y":-0.703978906635829,"point_name":"ZNF326","Probe":"A_33_P3301689","color_group":"Noise"},
+{"x":3.27440126067162,"y":-0.921555366079909,"point_name":"ZNF468","Probe":"A_32_P29615","color_group":"Noise"},
+{"x":3.27513998815487,"y":-1.40986657330508,"point_name":"MAPK8","Probe":"A_23_P356152","color_group":"Noise"},
+{"x":3.27557780062826,"y":-1.12557034716839,"point_name":"GCC2","Probe":"A_33_P3247933","color_group":"Noise"},
+{"x":3.2785257955881,"y":-1.3012646680435,"point_name":"ZDBF2","Probe":"A_32_P68504","color_group":"Noise"},
+{"x":3.2785257955881,"y":-0.734075701482895,"point_name":"RBM39","Probe":"A_23_P109254","color_group":"Noise"},
+{"x":3.28189000184075,"y":0.878480216104431,"point_name":"A_33_P3366179","Probe":"A_33_P3366179","color_group":"Noise"},
+{"x":3.28519127067963,"y":0.509498928954406,"point_name":"BABAM1","Probe":"A_23_P119714","color_group":"Noise"},
+{"x":3.29697797947078,"y":0.526642325832257,"point_name":"CTNNBL1","Probe":"A_33_P3272361","color_group":"Noise"},
+{"x":3.30044816074486,"y":-1.07761406408124,"point_name":"LOC647979","Probe":"A_33_P3331726","color_group":"Noise"},
+{"x":3.30132084702506,"y":-0.768641046869091,"point_name":"SSB","Probe":"A_32_P35512","color_group":"Noise"},
+{"x":3.30243176936308,"y":-1.08721496095932,"point_name":"FLJ46875","Probe":"A_33_P3630129","color_group":"Noise"},
+{"x":3.30814935804114,"y":1.24335206102874,"point_name":"TMEM110","Probe":"A_33_P3303577","color_group":"Noise"},
+{"x":3.30851659298396,"y":-0.667552369980106,"point_name":"USP1","Probe":"A_23_P11652","color_group":"Noise"},
+{"x":3.32815515917148,"y":-0.658536227030013,"point_name":"CEP350","Probe":"A_33_P3244863","color_group":"Noise"},
+{"x":3.32902305419628,"y":-1.14286598406186,"point_name":"C1ORF21","Probe":"A_23_P113161","color_group":"Noise"},
+{"x":3.32902305419628,"y":1.42273340003466,"point_name":"BATF2","Probe":"A_23_P370682","color_group":"Noise"},
+{"x":3.32970980305053,"y":0.754651131597097,"point_name":"PRR12","Probe":"A_23_P55948","color_group":"Noise"},
+{"x":3.33652097155457,"y":-1.23398663857311,"point_name":"C1ORF21","Probe":"A_23_P113161","color_group":"Noise"},
+{"x":3.34512278258219,"y":-0.965766953855524,"point_name":"ATRX","Probe":"A_33_P3319943","color_group":"Noise"},
+{"x":3.34766775149043,"y":1.19300629405534,"point_name":"DBF4B","Probe":"A_24_P253780","color_group":"Noise"},
+{"x":3.34985206557987,"y":-1.07876532738526,"point_name":"BCLAF1","Probe":"A_24_P89512","color_group":"Noise"},
+{"x":3.35269515641144,"y":-0.553707852774093,"point_name":"FXR1","Probe":"A_33_P3387300","color_group":"Noise"},
+{"x":3.35274642316594,"y":-0.775426090857348,"point_name":"CDC14C","Probe":"A_33_P3280421","color_group":"Noise"},
+{"x":3.35274642316594,"y":-0.773502493250453,"point_name":"ING3","Probe":"A_23_P111811","color_group":"Noise"},
+{"x":3.35274642316594,"y":1.01894486098743,"point_name":"ZNFX1","Probe":"A_24_P23034","color_group":"Noise"},
+{"x":3.36054982071072,"y":-1.11907847697994,"point_name":"KIF3A","Probe":"A_33_P3465247","color_group":"Noise"},
+{"x":3.36206346998963,"y":0.604270884682113,"point_name":"LIN37","Probe":"A_23_P165186","color_group":"Noise"},
+{"x":3.36206346998963,"y":-0.71029537980046,"point_name":"ZNF24","Probe":"A_24_P113221","color_group":"Noise"},
+{"x":3.36206346998963,"y":-1.02420473289777,"point_name":"THOC1","Probe":"A_23_P78372","color_group":"Noise"},
+{"x":3.36206346998963,"y":-0.885084460690728,"point_name":"LOC389765","Probe":"A_23_P9280","color_group":"Noise"},
+{"x":3.36989755445042,"y":-0.707917036898518,"point_name":"AGPS","Probe":"A_33_P3397693","color_group":"Noise"},
+{"x":3.36989755445042,"y":1.01063191858166,"point_name":"TRIM21","Probe":"A_23_P47691","color_group":"Noise"},
+{"x":3.37071204302568,"y":-1.10007377560956,"point_name":"PAXBP1","Probe":"A_23_P211064","color_group":"Noise"},
+{"x":3.38104664483186,"y":1.26404881899416,"point_name":"TRIM5","Probe":"A_23_P356526","color_group":"Noise"},
+{"x":3.38192248804069,"y":2.18167828954561,"point_name":"EPSTI1","Probe":"A_23_P105794","color_group":"Noise"},
+{"x":3.3861307668994,"y":-0.750025169013846,"point_name":"ING3","Probe":"A_23_P111811","color_group":"Noise"},
+{"x":3.38808441252508,"y":0.879619631648116,"point_name":"TRAFD1","Probe":"A_33_P3372124","color_group":"Noise"},
+{"x":3.39336532230427,"y":0.823471097595597,"point_name":"ENST00000394512","Probe":"A_33_P3355014","color_group":"Noise"},
+{"x":3.39384573607564,"y":-0.862033461214194,"point_name":"ERP44","Probe":"A_23_P373927","color_group":"Noise"},
+{"x":3.40052216024426,"y":1.21482832052621,"point_name":"TRIM14","Probe":"A_23_P425752","color_group":"Noise"},
+{"x":3.40052216024426,"y":-1.14096639578924,"point_name":"HNRNPU-AS1","Probe":"A_33_P3416483","color_group":"Noise"},
+{"x":3.40272952033207,"y":0.637079322574067,"point_name":"SPHK2","Probe":"A_23_P303181","color_group":"Noise"},
+{"x":3.40329572399203,"y":2.41501012215832,"point_name":"APOBEC3B","Probe":"A_24_P66027","color_group":"Noise"},
+{"x":3.40329572399203,"y":-0.655687051429187,"point_name":"USP1","Probe":"A_23_P11652","color_group":"Noise"},
+{"x":3.40689551661501,"y":-1.05346089193488,"point_name":"HIPK3","Probe":"A_33_P3279545","color_group":"Noise"},
+{"x":3.4152125449719,"y":-1.06606899923802,"point_name":"OTUD6B","Probe":"A_23_P111929","color_group":"Noise"},
+{"x":3.41812111544987,"y":-1.19676838728804,"point_name":"GCC2","Probe":"A_24_P290502","color_group":"Noise"},
+{"x":3.418318101162,"y":-0.788979592699591,"point_name":"HNRNPA3","Probe":"A_24_P269895","color_group":"Noise"},
+{"x":3.42143742475137,"y":0.616484687177644,"point_name":"MTA2","Probe":"A_23_P203420","color_group":"Noise"},
+{"x":3.44220945444189,"y":0.690165788197575,"point_name":"LSM2","Probe":"A_33_P3261625","color_group":"Noise"},
+{"x":3.44220945444189,"y":-0.654995346527317,"point_name":"USP1","Probe":"A_23_P11652","color_group":"Noise"},
+{"x":3.44721553956453,"y":-0.956892601470252,"point_name":"THAP5","Probe":"A_24_P23522","color_group":"Noise"},
+{"x":3.45918882210476,"y":-0.761663731407369,"point_name":"CUL3","Probe":"A_33_P3321150","color_group":"Noise"},
+{"x":3.45994471084114,"y":-1.01136198099238,"point_name":"NUFIP2","Probe":"A_24_P791829","color_group":"Noise"},
+{"x":3.45994471084114,"y":1.2016255391356,"point_name":"MKNK1","Probe":"A_23_P200126","color_group":"Noise"},
+{"x":3.46261393162981,"y":-0.701663267521524,"point_name":"KRAS","Probe":"A_33_P3317815","color_group":"Noise"},
+{"x":3.46335329685666,"y":0.541421641755634,"point_name":"WDR81","Probe":"A_23_P354208","color_group":"Noise"},
+{"x":3.46387636781862,"y":0.785532160287127,"point_name":"ARHGEF3","Probe":"A_23_P143885","color_group":"Noise"},
+{"x":3.47970377294151,"y":-0.799975302042523,"point_name":"CCDC75","Probe":"A_24_P358425","color_group":"Noise"},
+{"x":3.47970377294151,"y":-0.643314406916344,"point_name":"USP1","Probe":"A_23_P11652","color_group":"Noise"},
+{"x":3.4811947668519,"y":-0.755023850964664,"point_name":"FOXN2","Probe":"A_32_P140898","color_group":"Noise"},
+{"x":3.4832855538111,"y":-0.675298593331463,"point_name":"USP1","Probe":"A_23_P11652","color_group":"Noise"},
+{"x":3.4837576884484,"y":-0.856052844849468,"point_name":"PHF20L1","Probe":"A_33_P3546070","color_group":"Noise"},
+{"x":3.48825334970089,"y":1.50172245460267,"point_name":"NLRC5","Probe":"A_23_P26583","color_group":"Noise"},
+{"x":3.49289684443483,"y":2.45169880889491,"point_name":"KLHDC7B","Probe":"A_23_P6535","color_group":"Noise"},
+{"x":3.50908898937509,"y":-0.945817428850963,"point_name":"SUCO","Probe":"A_23_P104054","color_group":"Noise"},
+{"x":3.50908898937509,"y":2.03178791043593,"point_name":"RP11-468E2.4","Probe":"A_23_P354547","color_group":"Noise"},
+{"x":3.51244859505029,"y":-0.957625888882139,"point_name":"SUCO","Probe":"A_23_P104054","color_group":"Noise"},
+{"x":3.51307535985156,"y":1.52732397975465,"point_name":"RGL1","Probe":"A_33_P3240532","color_group":"Noise"},
+{"x":3.51314550358909,"y":-0.920528635350062,"point_name":"BRWD1","Probe":"A_24_P190541","color_group":"Noise"},
+{"x":3.52210275093524,"y":-1.3623086695756,"point_name":"PHIP","Probe":"A_23_P145437","color_group":"Noise"},
+{"x":3.52251749340019,"y":-1.21336835628849,"point_name":"C1ORF21","Probe":"A_23_P113161","color_group":"Noise"},
+{"x":3.5367806238689,"y":-1.24764452525571,"point_name":"JMY","Probe":"A_33_P3217689","color_group":"Noise"},
+{"x":3.54046365789731,"y":-0.963334245739024,"point_name":"OTUD6B","Probe":"A_23_P111929","color_group":"Noise"},
+{"x":3.55536552521526,"y":0.880371766276066,"point_name":"ADAR","Probe":"A_24_P362317","color_group":"Noise"},
+{"x":3.55792225072713,"y":-0.939103923748304,"point_name":"DNAJB4","Probe":"A_24_P393958","color_group":"Noise"},
+{"x":3.56423113174954,"y":-0.881791914287065,"point_name":"NEK7","Probe":"A_23_P353574","color_group":"Noise"},
+{"x":3.56516217792671,"y":-1.08135480727057,"point_name":"ATRX","Probe":"A_33_P3612589","color_group":"Noise"},
+{"x":3.56516217792671,"y":-0.662582881202144,"point_name":"USP1","Probe":"A_23_P11652","color_group":"Noise"},
+{"x":3.56516217792671,"y":-1.02230474403105,"point_name":"REV3L","Probe":"A_23_P214139","color_group":"Noise"},
+{"x":3.56516217792671,"y":0.562346552731014,"point_name":"C17ORF62","Probe":"A_23_P118406","color_group":"Noise"},
+{"x":3.56516217792671,"y":-0.988985238840717,"point_name":"SUCO","Probe":"A_23_P104054","color_group":"Noise"},
+{"x":3.56860002466342,"y":-0.955129888457522,"point_name":"SUCO","Probe":"A_23_P104054","color_group":"Noise"},
+{"x":3.56902254945581,"y":-1.27016281399109,"point_name":"JMY","Probe":"A_32_P176550","color_group":"Noise"},
+{"x":3.57386600355858,"y":0.6086433674791,"point_name":"RAD9A","Probe":"A_24_P21715","color_group":"Noise"},
+{"x":3.57413738876717,"y":-1.17617217235332,"point_name":"AKAP9","Probe":"A_23_P309261","color_group":"Noise"},
+{"x":3.57413738876717,"y":0.904556554730863,"point_name":"WIPF3","Probe":"A_32_P3914","color_group":"Noise"},
+{"x":3.57901310375257,"y":-0.72263984922402,"point_name":"TWF1","Probe":"A_23_P48166","color_group":"Noise"},
+{"x":3.58280556889676,"y":0.794380522121655,"point_name":"MVP","Probe":"A_33_P3294608","color_group":"Noise"},
+{"x":3.58280556889676,"y":-0.986561389443695,"point_name":"ZNF486","Probe":"A_24_P100016","color_group":"Noise"},
+{"x":3.58571224241619,"y":-0.776924123414261,"point_name":"CWC22","Probe":"A_23_P373799","color_group":"Noise"},
+{"x":3.59227446093382,"y":1.49015958441495,"point_name":"PPM1J","Probe":"A_23_P201939","color_group":"Noise"},
+{"x":3.59446636526728,"y":2.20662656761596,"point_name":"ENST00000355623","Probe":"A_33_P3349912","color_group":"Noise"},
+{"x":3.5950907783687,"y":-0.865709405686283,"point_name":"ZRANB2","Probe":"A_24_P242299","color_group":"Noise"},
+{"x":3.60323040898047,"y":-0.920178728733066,"point_name":"PIK3C2A","Probe":"A_33_P3231878","color_group":"Noise"},
+{"x":3.60323040898047,"y":-0.748990925395246,"point_name":"ING3","Probe":"A_23_P111811","color_group":"Noise"},
+{"x":3.60516806688735,"y":2.42208425381143,"point_name":"PLA2G4C","Probe":"A_23_P50508","color_group":"Noise"},
+{"x":3.60970814592444,"y":0.86481022339697,"point_name":"BAK1","Probe":"A_23_P145357","color_group":"Noise"},
+{"x":3.61327710416992,"y":2.20674473058438,"point_name":"IL27","Probe":"A_33_P3284933","color_group":"Noise"},
+{"x":3.61446480751661,"y":-0.764469712874404,"point_name":"HNRNPH3","Probe":"A_23_P115824","color_group":"Noise"},
+{"x":3.61446480751661,"y":-0.95121153804492,"point_name":"SUCO","Probe":"A_23_P104054","color_group":"Noise"},
+{"x":3.62242190918029,"y":-1.82091237064788,"point_name":"CEP85L","Probe":"A_33_P3407339","color_group":"Noise"},
+{"x":3.62242190918029,"y":-0.723256249143639,"point_name":"INSIG2","Probe":"A_33_P3321342","color_group":"Noise"},
+{"x":3.62242190918029,"y":1.19156800340904,"point_name":"PELI3","Probe":"A_23_P104692","color_group":"Noise"},
+{"x":3.62353145081523,"y":-0.627981566255971,"point_name":"PUM2","Probe":"A_24_P71439","color_group":"Noise"},
+{"x":3.62778228289079,"y":-1.25814924709692,"point_name":"TLE4","Probe":"A_33_P3302676","color_group":"Noise"},
+{"x":3.6321278364432,"y":-1.11113443849274,"point_name":"MIER3","Probe":"A_33_P3375527","color_group":"Noise"},
+{"x":3.6321278364432,"y":-0.695463706312043,"point_name":"USP1","Probe":"A_23_P11652","color_group":"Noise"},
+{"x":3.63467436791662,"y":0.72739677197415,"point_name":"PRPF3","Probe":"A_23_P97573","color_group":"Noise"},
+{"x":3.6403729403171,"y":-0.77058129189678,"point_name":"ZNF518B","Probe":"A_32_P144421","color_group":"Noise"},
+{"x":3.65070065307891,"y":1.63830110964116,"point_name":"IRF9","Probe":"A_23_P65442","color_group":"Noise"},
+{"x":3.65492985747006,"y":-1.22064225373364,"point_name":"AKAP9","Probe":"A_33_P3380211","color_group":"Noise"},
+{"x":3.65968630831707,"y":1.12753714468594,"point_name":"LOC100131864","Probe":"A_33_P3241591","color_group":"Noise"},
+{"x":3.65968630831707,"y":-0.991597660714043,"point_name":"SUCO","Probe":"A_23_P104054","color_group":"Noise"},
+{"x":3.65968630831707,"y":-1.18092268472867,"point_name":"C1ORF21","Probe":"A_23_P113161","color_group":"Noise"},
+{"x":3.66369185428606,"y":-0.778006028164255,"point_name":"HNRNPH3","Probe":"A_23_P115824","color_group":"Noise"},
+{"x":3.67279028937051,"y":-1.28056277914849,"point_name":"CSGALNACT2","Probe":"A_33_P3402526","color_group":"Noise"},
+{"x":3.67307931124655,"y":-0.934568790988783,"point_name":"SUCO","Probe":"A_23_P104054","color_group":"Noise"},
+{"x":3.67307931124655,"y":-0.929275880097824,"point_name":"REST","Probe":"A_23_P167081","color_group":"Noise"},
+{"x":3.6743996898855,"y":-0.850864269356959,"point_name":"OTUD6B","Probe":"A_33_P3358312","color_group":"Noise"},
+{"x":3.67614555457894,"y":-0.782537167463715,"point_name":"HNRNPH3","Probe":"A_23_P115824","color_group":"Noise"},
+{"x":3.67844182335585,"y":-0.70494156958039,"point_name":"A_33_P3264955","Probe":"A_33_P3264955","color_group":"Noise"},
+{"x":3.69324891130329,"y":-0.657129918579246,"point_name":"DCUN1D1","Probe":"A_33_P3290328","color_group":"Noise"},
+{"x":3.69324891130329,"y":-1.35280379735339,"point_name":"PRKACB","Probe":"A_33_P3215317","color_group":"Noise"},
+{"x":3.69324891130329,"y":-0.955962471993088,"point_name":"SESN3","Probe":"A_23_P361448","color_group":"Noise"},
+{"x":3.69324891130329,"y":-0.754839897937902,"point_name":"PAPOLA","Probe":"A_23_P376239","color_group":"Noise"},
+{"x":3.69549503128354,"y":-0.943331113406688,"point_name":"CLK4","Probe":"A_23_P61674","color_group":"Noise"},
+{"x":3.69773877048796,"y":-0.98522211820513,"point_name":"SUCO","Probe":"A_23_P104054","color_group":"Noise"},
+{"x":3.69773877048796,"y":0.98206206040889,"point_name":"CACNA1A","Probe":"A_33_P3275846","color_group":"Noise"},
+{"x":3.69773877048796,"y":-0.780784361226677,"point_name":"HNRNPH3","Probe":"A_23_P115824","color_group":"Noise"},
+{"x":3.69773877048796,"y":-1.05327452317196,"point_name":"PGGT1B","Probe":"A_24_P605190","color_group":"Noise"},
+{"x":3.69773877048796,"y":0.889332421879238,"point_name":"EXT1","Probe":"A_23_P43273","color_group":"Noise"},
+{"x":3.70543921127768,"y":1.71288645958571,"point_name":"A_33_P3254580","Probe":"A_33_P3254580","color_group":"Noise"},
+{"x":3.71009616021959,"y":-0.968334431628578,"point_name":"SUCO","Probe":"A_23_P104054","color_group":"Noise"},
+{"x":3.71183737654976,"y":-1.01577950667666,"point_name":"YTHDF3","Probe":"A_33_P3264419","color_group":"Noise"},
+{"x":3.72055610842687,"y":0.611104674488182,"point_name":"MED20","Probe":"A_24_P273865","color_group":"Noise"},
+{"x":3.72221499933421,"y":-0.81230072160477,"point_name":"CCDC75","Probe":"A_23_P339633","color_group":"Noise"},
+{"x":3.72861772266014,"y":-0.903583667336387,"point_name":"CCNL1","Probe":"A_24_P337058","color_group":"Noise"},
+{"x":3.75017393856903,"y":-0.748664525530526,"point_name":"PURB","Probe":"A_24_P286465","color_group":"Noise"},
+{"x":3.75335233056324,"y":-0.769320472828423,"point_name":"HNRNPH3","Probe":"A_23_P115824","color_group":"Noise"},
+{"x":3.75335233056324,"y":-1.0641264033331,"point_name":"A_33_P3354067","Probe":"A_33_P3354067","color_group":"Noise"},
+{"x":3.76695218880056,"y":1.25751360193833,"point_name":"PI4K2B","Probe":"A_23_P18598","color_group":"Noise"},
+{"x":3.76695218880056,"y":-1.05680409099937,"point_name":"RORA","Probe":"A_23_P26124","color_group":"Noise"},
+{"x":3.76695218880056,"y":-1.10167947757934,"point_name":"OTUD6B","Probe":"A_23_P111929","color_group":"Noise"},
+{"x":3.76920381722244,"y":0.604167170335795,"point_name":"SP2","Probe":"A_23_P381449","color_group":"Noise"},
+{"x":3.77774540337554,"y":-1.1363805540972,"point_name":"JRKL","Probe":"A_33_P3382538","color_group":"Noise"},
+{"x":3.77774540337554,"y":0.701158891967174,"point_name":"ZNF777","Probe":"A_33_P3215134","color_group":"Noise"},
+{"x":3.77774540337554,"y":-0.934311977675302,"point_name":"FBXW7","Probe":"A_24_P174613","color_group":"Noise"},
+{"x":3.77774540337554,"y":-1.42983048782246,"point_name":"ITGA1","Probe":"A_33_P3353791","color_group":"Noise"},
+{"x":3.78434153969977,"y":1.1024303307254,"point_name":"ASPHD2","Probe":"A_24_P245815","color_group":"Noise"},
+{"x":3.78452730662397,"y":-0.93642177653306,"point_name":"PANK3","Probe":"A_33_P3211423","color_group":"Noise"},
+{"x":3.78452730662397,"y":-0.786042525131347,"point_name":"ING3","Probe":"A_23_P111811","color_group":"Noise"},
+{"x":3.79265426888417,"y":0.714576641781562,"point_name":"USP21","Probe":"A_23_P126689","color_group":"Noise"},
+{"x":3.79342344706294,"y":-0.833728802934745,"point_name":"ZC3H11A","Probe":"A_33_P3273969","color_group":"Noise"},
+{"x":3.79406081706672,"y":-1.13548109595103,"point_name":"LYST","Probe":"A_23_P354074","color_group":"Noise"},
+{"x":3.79406081706672,"y":-0.951108613129714,"point_name":"SUCO","Probe":"A_23_P104054","color_group":"Noise"},
+{"x":3.79713963061639,"y":-1.18462636032197,"point_name":"IPO7","Probe":"A_32_P186226","color_group":"Noise"},
+{"x":3.79713963061639,"y":0.886813707154775,"point_name":"BST2","Probe":"A_33_P3220911","color_group":"Noise"},
+{"x":3.79713963061639,"y":0.974028014208841,"point_name":"A_33_P3265205","Probe":"A_33_P3265205","color_group":"Noise"},
+{"x":3.79844426294119,"y":-0.778402358488986,"point_name":"ING3","Probe":"A_23_P111811","color_group":"Noise"},
+{"x":3.79844426294119,"y":-0.791093985547266,"point_name":"HNRNPH3","Probe":"A_23_P115824","color_group":"Noise"},
+{"x":3.80094221772163,"y":1.64299416794357,"point_name":"MOCOS","Probe":"A_23_P67042","color_group":"Noise"},
+{"x":3.81309753419941,"y":-0.69399966152159,"point_name":"COPS2","Probe":"A_23_P26021","color_group":"Noise"},
+{"x":3.81983492950961,"y":-1.00798234650863,"point_name":"BTG3","Probe":"A_23_P80068","color_group":"Noise"},
+{"x":3.81983492950961,"y":0.563951575437668,"point_name":"DAXX","Probe":"A_23_P122579","color_group":"Noise"},
+{"x":3.82167808789111,"y":1.27101869695653,"point_name":"LOC100128267","Probe":"A_33_P3413514","color_group":"Noise"},
+{"x":3.83155021774685,"y":1.71842718849928,"point_name":"TNFSF10","Probe":"A_23_P121253","color_group":"Noise"},
+{"x":3.83155021774685,"y":-1.3598966454577,"point_name":"TMEM2","Probe":"A_33_P3390708","color_group":"Noise"},
+{"x":3.84318118743375,"y":0.814366424600335,"point_name":"GM2A","Probe":"A_33_P3405334","color_group":"Noise"},
+{"x":3.84624113331461,"y":-0.815950773815616,"point_name":"ING3","Probe":"A_23_P111811","color_group":"Noise"},
+{"x":3.84799906847574,"y":-1.03965052882953,"point_name":"RGPD5","Probe":"A_23_P357985","color_group":"Noise"},
+{"x":3.85261684547073,"y":1.08144411814497,"point_name":"NAGK","Probe":"A_23_P154208","color_group":"Noise"},
+{"x":3.85797816359118,"y":-0.867010972793227,"point_name":"ARGLU1","Probe":"A_33_P3343101","color_group":"Noise"},
+{"x":3.85797816359118,"y":1.73859389536355,"point_name":"TNFSF10","Probe":"A_23_P121253","color_group":"Noise"},
+{"x":3.85797816359118,"y":1.05228093732116,"point_name":"SIDT1","Probe":"A_23_P132515","color_group":"Noise"},
+{"x":3.85797816359118,"y":-0.974972891476569,"point_name":"C2CD3","Probe":"A_24_P927325","color_group":"Noise"},
+{"x":3.8702443549646,"y":0.65277567745201,"point_name":"C17ORF62","Probe":"A_23_P118406","color_group":"Noise"},
+{"x":3.8702443549646,"y":-0.793416375151194,"point_name":"HNRNPH3","Probe":"A_23_P115824","color_group":"Noise"},
+{"x":3.8702443549646,"y":-0.786727007305599,"point_name":"ING3","Probe":"A_23_P111811","color_group":"Noise"},
+{"x":3.8702443549646,"y":-0.638744362509548,"point_name":"NIN","Probe":"A_24_P412512","color_group":"Noise"},
+{"x":3.8702443549646,"y":-1.01210447238463,"point_name":"ANKRD42","Probe":"A_33_P3224135","color_group":"Noise"},
+{"x":3.87507369903421,"y":-1.10060538767698,"point_name":"OTUD6B","Probe":"A_23_P111929","color_group":"Noise"},
+{"x":3.87507369903421,"y":-0.807650171988764,"point_name":"ING3","Probe":"A_23_P111811","color_group":"Noise"},
+{"x":3.88006026182757,"y":1.48261157644068,"point_name":"STAT1","Probe":"A_24_P274270","color_group":"Noise"},
+{"x":3.88512916979821,"y":-0.669926305428186,"point_name":"USP1","Probe":"A_23_P11652","color_group":"Noise"},
+{"x":3.88512916979821,"y":1.47998104701374,"point_name":"STAT1","Probe":"A_24_P274270","color_group":"Noise"},
+{"x":3.892100913466,"y":-0.74309930068483,"point_name":"RNMT","Probe":"A_23_P55515","color_group":"Noise"},
+{"x":3.892100913466,"y":1.74979887963388,"point_name":"TNFSF10","Probe":"A_23_P121253","color_group":"Noise"},
+{"x":3.892100913466,"y":1.64916620529253,"point_name":"MOCOS","Probe":"A_23_P67042","color_group":"Noise"},
+{"x":3.89981958204663,"y":0.606969196264668,"point_name":"TMEM39B","Probe":"A_23_P34496","color_group":"Noise"},
+{"x":3.91700492724085,"y":0.626035798283308,"point_name":"C17ORF62","Probe":"A_23_P118406","color_group":"Noise"},
+{"x":3.91700492724085,"y":-0.711332005948933,"point_name":"USP1","Probe":"A_23_P11652","color_group":"Noise"},
+{"x":3.91700492724085,"y":-0.948763332806617,"point_name":"KLF12","Probe":"A_23_P354805","color_group":"Noise"},
+{"x":3.91943823250436,"y":0.605020946940358,"point_name":"C17ORF62","Probe":"A_23_P118406","color_group":"Noise"},
+{"x":3.9378633725584,"y":-0.806911727110703,"point_name":"HNRNPH3","Probe":"A_23_P115824","color_group":"Noise"},
+{"x":3.94674077580815,"y":2.31697271698553,"point_name":"RIN2","Probe":"A_24_P305570","color_group":"Noise"},
+{"x":3.94761551636953,"y":-1.15529592926443,"point_name":"SLC5A3","Probe":"A_33_P3277110","color_group":"Noise"},
+{"x":3.95913499727801,"y":-0.819932522792696,"point_name":"HNRNPH3","Probe":"A_23_P115824","color_group":"Noise"},
+{"x":3.96951452717841,"y":-1.0731938850893,"point_name":"CCNL1","Probe":"A_33_P3347928","color_group":"Noise"},
+{"x":3.98373002554591,"y":1.30424817799265,"point_name":"MB21D1","Probe":"A_32_P1173","color_group":"Noise"},
+{"x":3.98373002554591,"y":-1.24426457330431,"point_name":"ING3","Probe":"A_33_P3356711","color_group":"Noise"},
+{"x":3.98373002554591,"y":0.637841614574627,"point_name":"C17ORF62","Probe":"A_23_P118406","color_group":"Noise"},
+{"x":3.99206594218517,"y":1.73409043170346,"point_name":"TNFSF10","Probe":"A_23_P121253","color_group":"Noise"},
+{"x":3.99206594218517,"y":-1.04986486453465,"point_name":"MIER3","Probe":"A_33_P3375528","color_group":"Noise"},
+{"x":3.99349699587052,"y":1.76133263749259,"point_name":"TNFSF10","Probe":"A_23_P121253","color_group":"Noise"},
+{"x":3.99349699587052,"y":-0.851149598006445,"point_name":"MIER3","Probe":"A_33_P3227320","color_group":"Noise"},
+{"x":3.99697801549509,"y":1.75086833553357,"point_name":"TNFSF10","Probe":"A_23_P121253","color_group":"Noise"},
+{"x":3.99697801549509,"y":-0.788425810512593,"point_name":"HNRNPH3","Probe":"A_23_P115824","color_group":"Noise"},
+{"x":3.99911136073354,"y":-1.58352920183001,"point_name":"ATP2B1","Probe":"A_33_P3267185","color_group":"Noise"}];
+
+      radius = 5;
+
+      color_scale = d3.scale.ordinal().range(["#d62728","#24A5F9"]);;
+
+      opacity = null;
+
+      color_title = "Group";
+
+      color_legend_counts = {"Noise":279,"Significant":221};
+
+      distance_between_show_names_and_color_groups = 80;
+
+      plot = new_plot({
+        width: 500,
+        height: 500,
+        padding: {"top":150,"right":400,"bottom":70,"left":100},
+        title: "Gene Expression",
+        subtitle: null,
+        xlab: "Significance (-log10)",
+        ylab: "Fold-change (log2)",
+        rotate_label: {
+          y: true
+        },
+        box: false,
+        xlim: null,
+        ylim: null,
+        data_ranges: {
+          x: [3.05820829115793,12.3912657863054],
+          y: [-1.82091237064788,4.75722144650887]
+        },
+        categorical_domains: {
+          x: null,
+          y: null
+        },
+        jitter: 0,
+        hide_x_tick_labels: false,
+        ordinal_scale_padding: 1,
+        linear_scale_padding: 40
+      });
+
+      plot.center.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
+        "width": plot.width,
+        "height": plot.height
+      });
+
+      clip = plot.center.append("g").attr("clip-path", "url(#clip)");
+
+      if (plot.zoom) {
+        clip.append("rect").style({
+          "cursor": "move"
+        }).attr({
+          "class": "overlay",
+          "width": plot.width,
+          "height": plot.height,
+          "fill": "none",
+          "pointer-events": "all"
+        }).call(d3.behavior.zoom().x(plot.scales.x).y(plot.scales.y).scaleExtent([1, Infinity]).on("zoom", function() {
+          return redraw();
+        }));
+        redraw = function() {
+          plot.select(".x.axis").call(plot.axes.x);
+          plot.select(".y.axis").call(plot.axes.y);
+          return g_points.attr("transform", transform);
+        };
+      }
+
+      transform = function(d) {
+        return "translate(" + (plot.scales.x(d.x) + plot.jitters.x()) + ", " + (plot.scales.y(d.y) + plot.jitters.y()) + ")";
+      };
+
+      g_points = clip.selectAll(".point").data(data).enter().append("g").attr({
+        "class": "point",
+        "transform": transform
+      });
+
+      points = g_points.append("svg:circle").attr({
+        "r": radius,
+        "fill": function(d) {
+          return color_scale(d.color_group);
+        },
+        "opacity": function(d, i) {
+          return opacity;
+        },
+        "title": function(d) {
+          return "<table><tr><td colspan='2' class='tooltip-title'>" + d.point_name + "</td></tr><tr class='tooltip-metric'><td class='tooltip-metric-name'>Significance (-log10)</td><td class='tooltip-metric-value'>" + d3.format('.2f')(d.x) + "</td></tr><tr class='tooltip-metric'><td class='tooltip-metric-name'>Fold-change (log2)</td><td class='tooltip-metric-value'>" + d3.format('.2f')(d.y) + "</td></tr><tr class='tooltip-metric'><td class='tooltip-metric-name'>Probe</td><td class='tooltip-metric-value'>" + d.color_group + "</td></tr><tr class='tooltip-metric'><td class='tooltip-metric-name'>Group</td><td class='tooltip-metric-value'>" + d['Probe'] + "</td></tr></table>";
+        }
+      });
+
+      $(".point circle").tooltip({
+        html: true,
+        container: "body",
+        placement: "top"
+      });
+
+      point_names = g_points.append("text").text(function(d) {
+        return d.point_name;
+      }).attr({
+        "dy": ".32em",
+        "dx": 8,
+        "text-anchor": "left",
+        "display": "none"
+      }).style({
+        "fill": function(d) {
+          return color_scale(d.color_group);
+        },
+        "font-size": "22px"
+      });
+
+      if (true) {
+        sidebar = plot.right_margin.append("g").attr("transform", "translate(60,0)");
+        g_toggle_names = sidebar.append("g").style("cursor", "pointer").style("font-size", "22px").on("click", function() {
+          return toggle_names();
+        });
+        g_toggle_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr("fill", "white");
+        g_toggle_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').text("Show names (" + data.length + ")");
+        toggle_names = function() {
+          var showing_point_names;
+          showing_point_names = g_toggle_names.classed("show_names");
+          point_names.attr("display", function() {
+            if (showing_point_names) {
+              return "none";
+            } else {
+              return "inline";
+            }
+          });
+          return g_toggle_names.attr("class", function() {
+            if (showing_point_names) {
+              return "";
+            } else {
+              return "show_names";
+            }
+          }).select("circle").attr("fill", function() {
+            if (showing_point_names) {
+              return "white";
+            } else {
+              return "black";
+            }
+          });
+        };
+        if (color_scale.range().length > 1) {
+          sidebar.append("text").attr({
+            "class": "color_title",
+            "x": -radius,
+            "y": distance_between_show_names_and_color_groups,
+            "dy": ".35em"
+          }).style({
+            "font-size": "16px",
+            "font-weight": "bold"
+          }).text(color_title);
+          g_color_group_keys = sidebar.selectAll(".color_group_key").data(color_scale.domain().reverse()).enter().append("g").attr({
+            "transform": function(d, i) {
+              return "translate(0, " + (i * (radius * 2 + 15) + distance_between_show_names_and_color_groups + 30) + ")";
+            },
+            "class": "color_group_key"
+          }).style("cursor", "pointer");
+          g_color_group_keys.append("circle").attr({
+            "r": radius,
+            "fill": color_scale
+          }).on("click", function(d) {
+            return toggle_points(d);
+          });
+          g_color_group_keys.append("text").attr({
+            "x": radius + 10,
+            "y": 0,
+            "dy": ".35em"
+          }).text(function(d) {
+            return "" + d + " (" + color_legend_counts[d] + ")";
+          }).on("click", function(d) {
+            return toggle_points(d);
+          });
+        }
+      }
+
+      toggle_points = function(category) {
+        g_points.filter(function(d) {
+          return d.color_group === category;
+        }).classed("hide", function() {
+          return !d3.select(this).classed("hide");
+        });
+        g_color_group_keys.filter(function(d) {
+          return d === category;
+        }).classed("hide", function() {
+          return !d3.select(this).classed("hide");
+        });
+        if (g_points.filter(":not(.hide)")[0].length === 0) {
+          g_color_group_keys.classed("hide", false);
+          return g_points.classed("hide", false);
+        }
+      };
+
+      d3.select(".g-search").style({
+        "top": "" + (g_toggle_names.node().getBoundingClientRect().top + distance_between_show_names_and_color_groups / 2) + "px",
+        "left": "" + (g_toggle_names.node().getBoundingClientRect().left) + "px"
+      });
+
+      keyuped = function() {
+        if (d3.event.keyCode === 27) {
+          this.value = "";
+        }
+        return search(this.value.trim());
+      };
+
+      search = function(value) {
+        var matches, re;
+        if (value) {
+          console.log(d3.requote(value));
+          re = new RegExp("" + (d3.requote(value)), "i");
+          clip.classed("g-searching", true);
+          if (sidebar.selectAll(".color_group_key").size() > 0) {
+            g_color_group_keys.classed("hide", false);
+            g_points.classed("hide", false);
+          }
+          g_points.classed("g-match", function(d) {
+            return re.test(d.point_name);
+          });
+          matches = d3.selectAll(".g-match");
+          if (matches[0].length === 1) {
+            mouseover(matches.datum());
+          } else {
+            mouseout();
+          }
+          return search_clear.style("display", null);
+        } else {
+          mouseout();
+          clip.classed("g-searching", false);
+          g_points.classed("g-match", false);
+          return search_clear.style("display", "none");
+        }
+      };
+
+      mouseover = function(d) {
+        points.filter(function(c) {
+          return c === d;
+        }).classed("g-active", true);
+        return $(".g-active").tooltip("show");
+      };
+
+      mouseout = function() {
+        $(".g-active").tooltip("hide");
+        return points.filter(".g-active").classed("g-active", false);
+      };
+
+      search_input = d3.select(".g-search input").on("keyup", keyuped);
+
+      search_clear = d3.select(".g-search .g-search-clear").on("click", function() {
+        search_input.property("value", "");
+        return search();
+      });
+
+    }).call(this);
+
+    </script>
+  </body>
+</html>

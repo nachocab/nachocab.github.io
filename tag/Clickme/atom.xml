@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+   
+    <title>reasoniamhere.com - Tag: Clickme</title>
+   
+   <link>http://reasoniamhere.com</link>
+   <description>I am a Spanish-born bioinformatics PhD student living in Boston</description>
+   <language>en-us</language>
+   <managingEditor>Nacho Caballero</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+
+    
+      <item>
+        <title>An Update to Clickme: Interactive Visualizations in R</title>
+        <link>http://reasoniamhere.com/2013/09/13/an-update-to-clickme-interactive-visualizations-in-r</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2013-09-13T00:00:00-04:00</pubDate>
+        <guid>http://reasoniamhere.com/2013/09/13/an-update-to-clickme-interactive-visualizations-in-r</guid>
+        <description><![CDATA[
+           <p>I just released an <a href="https://github.com/nachocab/clickme/releases/tag/0.3.1">update</a> that makes it easy to hide all the color groups in a scatterplot except one. Simply click on &ldquo;Show one&rdquo;. This is very useful to carry out exploratory analyses when there are many color groups. You can zoom around the plot by scrolling up and down with the mouse wheel.</p>
+
+<!--excerpt-->
+
+<iframe width = "1000" height = "840" src="/clickme/iris_mds.html"> </iframe>
+
+<p>I think these types of plots are much more usable than the static ones that R generates by default:</p>
+
+<p><img src="/assets/plain_iris.png" alt="Plain Iris"></p>
+
+<p>You can read more about Clickme at <a href="http://rclickme.com">rclickme.com</a>. To install (or update to) the latest version, run the following in R:</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">install.packages<span class="p">(</span><span class="s">&quot;devtools&quot;</span><span class="p">)</span>
+
+<span class="kn">library</span><span class="p">(</span>devtools<span class="p">)</span>
+install_github<span class="p">(</span><span class="s">&quot;clickme&quot;</span><span class="p">,</span> <span class="s">&quot;nachocab&quot;</span><span class="p">)</span>
+
+<span class="kn">library</span><span class="p">(</span>clickme<span class="p">)</span>
+clickme<span class="p">(</span>points<span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span>
+</code></pre></div>
+        ]]></description>
+      </item>
+    
+  </channel>
+</rss>

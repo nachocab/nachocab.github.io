@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <base target="_blank"> <!-- open all links on a new tab -->
+
+    <title>Points</title>
+
+    <link href="clickme_assets/bootstrap-tooltip.css" rel="stylesheet">
+<link href="clickme_assets/clickme.css" rel="stylesheet">
+<script src="clickme_assets/d3.v3.js"></script>
+<script src="clickme_assets/d3_aux.js"></script>
+<script src="clickme_assets/jquery.min.js"></script>
+<script src="clickme_assets/bootstrap-tooltip.v2_3.js"></script>
+
+  </head>
+
+  <body>
+    <script type="text/javascript">
+    (function() {
+      var clip, color_legend_counts, color_scale, color_title, data, g_color_legend, g_points, g_toggle_names, plot, point_names, points, radius, redraw, sidebar, toggle_names, transform;
+    
+      data = [{"x":"a","y":-0.620366677224124,"point_name":"1","some other field":0.961696633380712},
+{"x":"a","y":0.0421158731442352,"point_name":"2","some other field":-0.60442573385444},
+{"x":"a","y":-0.910921648552446,"point_name":"3","some other field":-0.752877279362913},
+{"x":"a","y":0.158028772404075,"point_name":"4","some other field":-1.55561159254425},
+{"x":"a","y":-0.654584643918818,"point_name":"5","some other field":-1.45389373800106},
+{"x":"a","y":1.76728726937265,"point_name":"6","some other field":0.0563318360544103},
+{"x":"a","y":0.716707476017206,"point_name":"7","some other field":0.509369406673892},
+{"x":"a","y":0.910174229495227,"point_name":"8","some other field":-2.0978829597843},
+{"x":"a","y":0.384185357826345,"point_name":"9","some other field":-1.00436197944933},
+{"x":"a","y":1.68217608051942,"point_name":"10","some other field":0.535771722252592},
+{"x":"a","y":-0.635736453948977,"point_name":"11","some other field":-0.453037084649918},
+{"x":"a","y":-0.461644730360566,"point_name":"12","some other field":2.16536850181726},
+{"x":"a","y":1.43228223854166,"point_name":"13","some other field":1.24574667274811},
+{"x":"a","y":-0.650696353310367,"point_name":"14","some other field":0.595498034069596},
+{"x":"a","y":-0.207380743601965,"point_name":"15","some other field":0.0048844495381889},
+{"x":"a","y":-0.392807929441984,"point_name":"16","some other field":0.279360782055259},
+{"x":"a","y":-0.319992868548507,"point_name":"17","some other field":-0.705906125267626},
+{"x":"a","y":-0.279113302976559,"point_name":"18","some other field":0.628017152957251},
+{"x":"a","y":0.494188331267827,"point_name":"19","some other field":1.4802139600857},
+{"x":"a","y":-0.177330482269606,"point_name":"20","some other field":1.08342991008328},
+{"x":"a","y":-0.505957462114257,"point_name":"21","some other field":-0.813244256664091},
+{"x":"b","y":1.34303882517041,"point_name":"22","some other field":-1.61887684922359},
+{"x":"b","y":-0.214579408546869,"point_name":"23","some other field":-0.109655699488241},
+{"x":"b","y":-0.179556530043387,"point_name":"24","some other field":0.440889370916978},
+{"x":"b","y":-0.100190741213562,"point_name":"25","some other field":1.3509939798086},
+{"x":"b","y":0.712666307051405,"point_name":"26","some other field":-1.31860948453356},
+{"x":"b","y":-0.0735644041263263,"point_name":"27","some other field":0.364384592607448},
+{"x":"b","y":-0.0376341714670479,"point_name":"28","some other field":0.233499835088518},
+{"x":"b","y":-0.681660478755657,"point_name":"29","some other field":1.19395526125905},
+{"x":"b","y":-0.324270272246319,"point_name":"30","some other field":-0.0279099721295774},
+{"x":"b","y":0.0601604404345152,"point_name":"31","some other field":-0.357298854504253},
+{"x":"b","y":-0.588894486259664,"point_name":"32","some other field":-1.14681413611837},
+{"x":"b","y":0.531496192632572,"point_name":"33","some other field":-0.517420483593623},
+{"x":"b","y":-1.51839408178679,"point_name":"34","some other field":-0.362123772578272},
+{"x":"b","y":0.306557860789766,"point_name":"35","some other field":2.35055432578911},
+{"x":"b","y":-1.53644982353759,"point_name":"36","some other field":2.44653137569996},
+{"x":"b","y":-0.300976126836611,"point_name":"37","some other field":-0.166703279484276},
+{"x":"b","y":-0.528279904445006,"point_name":"38","some other field":-1.04366743906189},
+{"x":"b","y":-0.652094780680999,"point_name":"39","some other field":-1.97293493407467},
+{"x":"b","y":-0.0568967778473925,"point_name":"40","some other field":0.514671633438029},
+{"x":"b","y":-1.91435942568001,"point_name":"41","some other field":-1.09057358373486},
+{"x":"b","y":1.17658331201856,"point_name":"42","some other field":2.28465932554436},
+{"x":"b","y":-1.664972436212,"point_name":"43","some other field":-0.885617572657959},
+{"x":"b","y":-0.463530401472386,"point_name":"44","some other field":0.111106429745722},
+{"x":"b","y":-1.11592010504285,"point_name":"45","some other field":3.81027668071067},
+{"x":"b","y":-0.750819001193448,"point_name":"46","some other field":-1.10890999794325},
+{"x":"c","y":2.08716654562835,"point_name":"47","some other field":0.307566624421454},
+{"x":"c","y":0.0173956196932517,"point_name":"48","some other field":-1.10689447222516},
+{"x":"c","y":-1.28630053043433,"point_name":"49","some other field":0.34765364882196},
+{"x":"c","y":-1.64060553441858,"point_name":"50","some other field":-0.873264535062044},
+{"x":"c","y":0.450187101272656,"point_name":"51","some other field":0.0773031227369236},
+{"x":"c","y":-0.018559832714638,"point_name":"52","some other field":-0.296868642156621},
+{"x":"c","y":-0.318068374543844,"point_name":"53","some other field":-1.18324224043267},
+{"x":"c","y":-0.929362147453702,"point_name":"54","some other field":0.0112926884238996},
+{"x":"c","y":-1.48746031014148,"point_name":"55","some other field":0.991601036059367},
+{"x":"c","y":-1.07519229661568,"point_name":"56","some other field":1.59396745390374},
+{"x":"c","y":1.00002880371391,"point_name":"57","some other field":-1.37271127092917},
+{"x":"c","y":-0.621266694796823,"point_name":"58","some other field":-0.249610933042319},
+{"x":"c","y":-1.38442684738449,"point_name":"59","some other field":1.15942452685555},
+{"x":"c","y":1.86929062242358,"point_name":"60","some other field":-1.1142223478436},
+{"x":"c","y":0.425100377372448,"point_name":"61","some other field":-2.52850068885039},
+{"x":"d","y":-0.238647100913033,"point_name":"62","some other field":-0.935902558513312},
+{"x":"d","y":1.05848304870902,"point_name":"63","some other field":-0.967239457935565},
+{"x":"d","y":0.886422651374936,"point_name":"64","some other field":0.0474885923277959},
+{"x":"d","y":-0.619243048231147,"point_name":"65","some other field":-0.403736793498034},
+{"x":"d","y":2.20610246454047,"point_name":"66","some other field":0.231496128244633},
+{"x":"d","y":-0.255027030141015,"point_name":"67","some other field":-0.422372407926746},
+{"x":"d","y":-1.42449465021281,"point_name":"68","some other field":0.374118394695298},
+{"x":"d","y":-0.144399601954219,"point_name":"69","some other field":-0.366005774997015},
+{"x":"d","y":0.207538339232345,"point_name":"70","some other field":1.19010144652106},
+{"x":"d","y":2.30797839905936,"point_name":"71","some other field":-0.737327525257229},
+{"x":"d","y":0.105802367893711,"point_name":"72","some other field":0.290666645439266},
+{"x":"d","y":0.456998805423414,"point_name":"73","some other field":-0.884849568284455},
+{"x":"d","y":-0.077152935356531,"point_name":"74","some other field":0.208006478870832},
+{"x":"d","y":-0.334000842366544,"point_name":"75","some other field":-0.0477301724785263},
+{"x":"d","y":-0.0347260283112762,"point_name":"76","some other field":-1.68452064613859},
+{"x":"d","y":0.787639605630162,"point_name":"77","some other field":-0.144226556618951},
+{"x":"d","y":2.07524500865228,"point_name":"78","some other field":1.18021366550265},
+{"x":"e","y":1.02739243876377,"point_name":"79","some other field":0.681399923199504},
+{"x":"e","y":1.2079083983867,"point_name":"80","some other field":0.143247630887551},
+{"x":"e","y":-1.23132342155804,"point_name":"81","some other field":-1.19231644371292},
+{"x":"e","y":0.983895570053379,"point_name":"82","some other field":1.16922865278909},
+{"x":"e","y":0.219924803660651,"point_name":"83","some other field":0.0792017089453723},
+{"x":"e","y":-1.46725002909224,"point_name":"84","some other field":-0.451773752768677},
+{"x":"e","y":0.521022742648139,"point_name":"85","some other field":1.64202821280077},
+{"x":"e","y":-0.158754604716016,"point_name":"86","some other field":-0.769592321599518},
+{"x":"e","y":1.4645873119698,"point_name":"87","some other field":0.303360960757848},
+{"x":"e","y":-0.766081999604665,"point_name":"88","some other field":1.28173742118351},
+{"x":"e","y":-0.430211753928547,"point_name":"89","some other field":0.602222795170429},
+{"x":"e","y":-0.926109497377437,"point_name":"90","some other field":-0.307022264536836},
+{"x":"e","y":-0.17710396143654,"point_name":"91","some other field":-0.418418103422641},
+{"x":"e","y":0.402011779486338,"point_name":"92","some other field":0.355135530046085},
+{"x":"e","y":-0.731748173119606,"point_name":"93","some other field":0.513481114599557},
+{"x":"e","y":0.830373167981674,"point_name":"94","some other field":0.01860740032874},
+{"x":"e","y":-1.20808278630446,"point_name":"95","some other field":1.31844897225668},
+{"x":"e","y":-1.04798441280774,"point_name":"96","some other field":-0.065831999838153},
+{"x":"e","y":1.44115770684428,"point_name":"97","some other field":-0.700296078317704},
+{"x":"e","y":-1.01584746530465,"point_name":"98","some other field":0.537326131521341},
+{"x":"e","y":0.411974712317515,"point_name":"99","some other field":-2.20178232235392},
+{"x":"e","y":-0.38107605110892,"point_name":"100","some other field":0.391973743798411}];
+    
+      radius = 5;
+    
+      color_scale = d3.scale.ordinal().range(["#000"]);;
+    
+      color_title = null;
+    
+      color_legend_counts = [];
+    
+      plot = new_plot({
+        width: 500,
+        height: 500,
+        padding: {"top":100,"right":400,"bottom":100,"left":100},
+        xlab: "Letter",
+        ylab: "y",
+        rotate_label: {
+          y: true
+        },
+        title: "Points",
+        box: false,
+        xlim: null,
+        ylim: null,
+        data_ranges: {
+          x: ["a","b","c","d","e"],
+          y: [-1.91435942568001,2.30797839905936]
+        },
+        categorical_domains: {
+          x: ["a","b","c","d","e"],
+          y: null
+        },
+        jitter: 0.2,
+        ordinal_scale_padding: 1,
+        linear_scale_padding: 40
+      });
+    
+      plot.tooltip_text = function(d) {
+        return "<strong>" + d.point_name + "</strong>" + "<br>" + "y: " + format_property(d.y) + "<br>" + "Letter: " + format_property(d.x) + "<br>" + "some other field: " + format_property(d["some other field"]);
+      };
+    
+      plot.center.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
+        "width": plot.width,
+        "height": plot.height
+      });
+    
+      clip = plot.center.append("g").attr("clip-path", "url(#clip)");
+    
+      if (plot.zoom) {
+        clip.append("rect").style({
+          "cursor": "move"
+        }).attr({
+          "class": "overlay",
+          "width": plot.width,
+          "height": plot.height,
+          "fill": "none",
+          "pointer-events": "all"
+        }).call(d3.behavior.zoom().x(plot.scales.x).y(plot.scales.y).scaleExtent([1, Infinity]).on("zoom", function() {
+          return redraw();
+        }));
+        redraw = function() {
+          plot.select(".x.axis").call(plot.axes.x);
+          plot.select(".y.axis").call(plot.axes.y);
+          return g_points.attr("transform", transform);
+        };
+      }
+    
+      transform = function(d) {
+        return "translate(" + (plot.scales.x(d.x) + plot.jitters.x()) + ", " + (plot.scales.y(d.y) + plot.jitters.y()) + ")";
+      };
+    
+      g_points = clip.selectAll(".point").data(data).enter().append("g").attr({
+        "class": "point",
+        "transform": transform
+      });
+    
+      points = g_points.append("svg:circle").attr({
+        "class": "point_tooltip",
+        "r": radius,
+        "fill": function(d) {
+          return color_scale(d.group);
+        },
+        "title": function(d) {
+          return plot.tooltip_text(d);
+        }
+      });
+    
+      $(".point_tooltip").tooltip({
+        html: true,
+        container: "body",
+        placement: "top"
+      });
+    
+      point_names = g_points.append("text").text(function(d) {
+        return d.point_name;
+      }).attr({
+        "dy": ".32em",
+        "dx": 8,
+        "text-anchor": "left",
+        "display": "none"
+      }).style({
+        "fill": function(d) {
+          return color_scale(d.group);
+        },
+        "font-size": "22px"
+      });
+    
+      if (true) {
+        sidebar = plot.right_margin.append("g").attr("transform", "translate(60,0)");
+        g_toggle_names = sidebar.append("g").style("cursor", "pointer").style("font-size", "22px").on("click", function() {
+          return toggle_names();
+        });
+        g_toggle_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr("fill", "white");
+        g_toggle_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').text("Show names (" + data.length + ")");
+        toggle_names = function() {
+          var showing_point_names;
+          showing_point_names = g_toggle_names.classed("show_names");
+          point_names.attr("display", function() {
+            if (showing_point_names) {
+              return "none";
+            } else {
+              return "inline";
+            }
+          });
+          return g_toggle_names.attr("class", function() {
+            if (showing_point_names) {
+              return "";
+            } else {
+              return "show_names";
+            }
+          }).select("circle").attr("fill", function() {
+            if (showing_point_names) {
+              return "white";
+            } else {
+              return "black";
+            }
+          });
+        };
+        if (color_scale.range().length > 1) {
+          sidebar.append("text").attr({
+            "class": "color_title",
+            "x": -radius,
+            "y": 45,
+            "dy": ".35em"
+          }).style({
+            "font-size": "16px",
+            "font-weight": "bold"
+          }).text(color_title);
+          g_color_legend = sidebar.selectAll(".key").data(color_scale.domain().reverse()).enter().append("g").attr({
+            "transform": function(d, i) {
+              return "translate(0, " + (i * (radius * 2 + 15) + 70) + ")";
+            },
+            "class": "key"
+          });
+          g_color_legend.append("circle").attr({
+            "r": radius,
+            "fill": color_scale
+          });
+          g_color_legend.append("text").attr({
+            "x": radius + 10,
+            "y": 0,
+            "dy": ".35em"
+          }).text(function(d) {
+            return "" + d + " (" + color_legend_counts[d] + ")";
+          });
+        }
+      }
+    
+    }).call(this);
+
+    </script>
+    <div class = "code">
+        Code:<br><br>clickme("points", x, y, jitter = 0.2, extra = list(`some other field` = rnorm(100)), xlab = "Letter")
+    </div>
+  </body>
+</html>

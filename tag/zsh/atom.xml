@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+   
+    <title>reasoniamhere.com - Tag: zsh</title>
+   
+   <link>http://reasoniamhere.com</link>
+   <description>I am a Spanish-born bioinformatics PhD student living in Boston</description>
+   <language>en-us</language>
+   <managingEditor>Nacho Caballero</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+
+    
+      <item>
+        <title>Master Your Z Shell with These Outrageously Useful Tips</title>
+        <link>http://reasoniamhere.com/2014/01/11/outrageously-useful-tips-to-master-your-z-shell</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2014-01-11T00:00:00-05:00</pubDate>
+        <guid>http://reasoniamhere.com/2014/01/11/outrageously-useful-tips-to-master-your-z-shell</guid>
+        <description><![CDATA[
+           <p>If you had previously installed Zsh but never got around to exploring all of its magic features, this post is for you.</p>
+
+<p>If you never thought of using a different shell than the one that came by default when you got your computer, I recommend you go out and check the Z shell. Here are some <a href="http://blog.coolaj86.com/articles/zsh-is-to-bash-as-vim-is-to-vi.html">Linux</a> <a href="http://linuxg.net/how-to-install-zsh-shell-how-to-set-it-as-a-default-login-shell/">guides</a> that explain how to install it and set it as your default shell. You probably have Zsh installed you are on a Mac, but there&rsquo;s nothing like the warm fuzzy feeling of running the latest version (here&rsquo;s <a href="http://zanshin.net/2013/09/03/how-to-use-homebrew-zsh-instead-of-max-os-x-default/">a way to upgrade</a> using Homebrew).</p>
+
+<p>While you&rsquo;re at it, you should also get <strong>oh-my-zsh</strong>, a framework that makes Zsh easier to configure. It&rsquo;s pretty easy to install, just run this:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh <span class="p">|</span> sh
+
+<span class="nb">echo</span> <span class="nv">$0</span>
+<span class="c"># if you don&#39;t see /bin/zsh you might need</span>
+<span class="c"># to open up a new window, or manually run: zsh</span>
+</code></pre></div>
+<p><hr></p>
+
+<p>The Zsh manual is a daunting beast. Just the <a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html">chapter on expansions</a> has 32 subsections. Forget about memorizing this madness in one sitting. Instead, we&rsquo;ll focus on understanding a few useful concepts, and referencing the manual for additional help.</p>
+
+<p>The three main sections of this post are <strong>file picking</strong>, <strong>variable transformations</strong>, and <strong>magic tabbing</strong>. If you&rsquo;re pressed for time, read the beginning of each one, and come back later to soak up the details (make sure you stick around for the bonus tips at the end).</p>
+
+<!--excerpt-->
+
+<h2>You only learn by doing</h2>
+
+<p>Reading this post will only take you 10% of the way into Zsh paradise; to really grok what it&rsquo;s all about, you need to run the commands yourself. I&rsquo;m giving you everything you need to create the file structure that we&rsquo;ll be using for the entire post. Simply copy and paste this into your Zsh window:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># run me to get the party started</span>
+
+<span class="c"># create the folder structure</span>
+mkdir -p zsh_demo/<span class="o">{</span>data,calculations<span class="o">}</span>/africa/<span class="o">{</span>kenya,malawi<span class="o">}</span>/ zsh_demo/<span class="o">{</span>data,calculations<span class="o">}</span>/europe/<span class="o">{</span>malta,poland<span class="o">}</span>/ zsh_demo/<span class="o">{</span>data,calculations<span class="o">}</span>/asia/<span class="o">{</span>nepal,laos<span class="o">}</span>/
+
+<span class="c"># create dummy files inside the data folder</span>
+<span class="k">for</span> country_folder in zsh_demo/data/*/*<span class="p">;</span> <span class="k">do</span>
+    dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span><span class="s2">&quot;${country_folder}/population.txt&quot;</span> <span class="nv">bs</span><span class="o">=</span><span class="m">1024</span> <span class="nv">count</span><span class="o">=</span>1
+    dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span><span class="s2">&quot;${country_folder}/income.txt&quot;</span> <span class="nv">bs</span><span class="o">=</span><span class="m">2048</span> <span class="nv">count</span><span class="o">=</span>1
+    dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span><span class="s2">&quot;${country_folder}/literacy.txt&quot;</span> <span class="nv">bs</span><span class="o">=</span><span class="m">4096</span> <span class="nv">count</span><span class="o">=</span>1
+    <span class="c"># we say these are dummy files because they don&#39;t have any content,</span>
+    <span class="c"># but we are making them occupy disk space</span>
+<span class="k">done</span>
+
+<span class="c"># create dummy files inside the calculations folder</span>
+<span class="k">for</span> country_folder in zsh_demo/calculations/*/*<span class="p">;</span> <span class="k">do</span>
+    touch <span class="s2">&quot;${country_folder}/population_by_province.txt&quot;</span>    <span class="c"># this file is empty</span>
+    dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span><span class="s2">&quot;${country_folder}/median_income.txt&quot;</span> <span class="nv">bs</span><span class="o">=</span><span class="m">2048</span> <span class="nv">count</span><span class="o">=</span>1
+    dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span><span class="s2">&quot;${country_folder}/literacy_index.txt&quot;</span> <span class="nv">bs</span><span class="o">=</span><span class="m">4096</span> <span class="nv">count</span><span class="o">=</span>1
+<span class="k">done</span>
+
+<span class="c"># because all the files are nested within the zsh_demo folder you will</span>
+<span class="c"># be able to easily delete them by running:</span>
+<span class="c"># rm -r zsh_demo</span>
+</code></pre></div>
+<p>Your file structure should look like this <code>zsh_demo/{data,calculations}/{continent}{/country}/{file}.txt</code>:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">zsh_demo
+├── data
+│   ├── africa
+│   │   ├── kenya
+│   │   │   ├── literacy.txt
+│   │   │   ├── income.txt
+│   │   │   └── population.txt
+│   │   └── ...
+│   ├── asia
+│   │   ├── ...
+│   └── europe
+│       ├── ...
+└── data
+    ├── africa
+    │   ├── kenya
+    │   │   ├── literacy_index.txt
+    │   │   ├── median_income.txt
+    │   │   └── population_by_province.txt
+    │   └── ...
+    ├── ...
+</code></pre></div>
+<p>Although you might not initially care about continents and countries, try to relate the examples we&rsquo;ll be looking at with the type of file structure you usually work with.</p>
+
+<h2>1. File picking</h2>
+
+<p>Warning for purists: some of the features I talk about are not exclusive to Zsh, but I have explain them anyway before we can move on to sexier commands.</p>
+
+<p>First off, <strong>globbing</strong>! A glob is a short expression that lets you select a bunch of files. 99% of the time, there&rsquo;s an asterisk involved.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># run me please</span>
+
+ls zsh_demo/**/*.txt <span class="c"># &lt;= this is a glob</span>
+</code></pre></div>
+<p>Globs get replaced by the names of the files that match the glob expression. For example, the glob  above lists every text file located anywhere in the <code>zsh_demo</code> folder. Let&rsquo;s break it down to see what each part is doing:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># list every file directly below the zsh_demo folder</span>
+ls zsh_demo
+
+<span class="c"># list every file in the folders directly below the zsh_demo folder</span>
+ls zsh_demo/*
+
+<span class="c"># list every file in every folder two levels below the zsh_demo folder</span>
+ls zsh_demo/*/*
+
+<span class="c"># list every file anywhere below the zsh_demo folder</span>
+ls zsh_demo/**/*
+
+<span class="c"># list every file that ends in .txt in every folder at any level below the zsh_demo folder</span>
+ls zsh_demo/**/*.txt
+</code></pre></div>
+<p>We already used a glob when we specified the location of each file:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">for</span> country_folder in zsh_demo/data/*/*<span class="p">;</span> <span class="k">do</span>
+    <span class="c"># create data files for each country</span>
+<span class="k">done</span>
+</code></pre></div>
+<p>This loop runs six times. See for yourself:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">print -l zsh_demo/data/*/*
+<span class="c"># zsh_demo/africa/kenya</span>
+<span class="c"># zsh_demo/africa/malawi</span>
+<span class="c"># zsh_demo/asia/laos</span>
+<span class="c"># zsh_demo/asia/nepal</span>
+<span class="c"># zsh_demo/europe/malta</span>
+<span class="c"># zsh_demo/europe/poland</span>
+
+<span class="c"># you could use echo instead of print -l, but the folders would be</span>
+<span class="c"># separated by spaces instead of newlines</span>
+</code></pre></div>
+<h3>Glob operators</h3>
+
+<p>So, what else can you stick inside a glob besides asterisks? Glance at section <a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Generation">14.8.1 of the manual</a> if you want to know all the options. Here are the ones that I find most useful:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># list text files that end in a number from 1 to 10</span>
+ls -l zsh_demo/**/*&lt;1-10&gt;.txt
+
+<span class="c"># list text files that start with the letter a</span>
+ls -l zsh_demo/**/<span class="o">[</span>a<span class="o">]</span>*.txt
+
+<span class="c"># list text files that start with either ab or bc</span>
+ls -l zsh_demo/**/<span class="o">(</span>ab<span class="p">|</span>bc<span class="o">)</span>*.txt
+
+<span class="c"># list text files that don&#39;t start with a lower or uppercase c</span>
+ls -l zsh_demo/**/<span class="o">[</span>^cC<span class="o">]</span>*.txt
+</code></pre></div>
+<h3>Glob qualifiers</h3>
+
+<p>Now that we got the basic stuff out of the way, let&rsquo;s dive a little deeper. We previously mentioned this glob: <code>zsh_demo/**/*</code>, which lists every file anywhere below the <code>zsh_demo</code> folder. But, what if we only want to list folders and not regular files, or vice versa? What if we only want to list files bigger than 3 KB? Or maybe, just the last modified file? You can do all that in Zsh using <strong>glob qualifiers</strong>:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># show only directories</span>
+print -l zsh_demo/**/*<span class="o">(</span>/<span class="o">)</span>
+
+<span class="c"># show only regular files</span>
+print -l zsh_demo/**/*<span class="o">(</span>.<span class="o">)</span>
+
+<span class="c"># show empty files</span>
+ls -l zsh_demo/**/*<span class="o">(</span>L0<span class="o">)</span>
+
+<span class="c"># show files greater than 3 KB</span>
+ls -l zsh_demo/**/*<span class="o">(</span>Lk+3<span class="o">)</span>
+
+<span class="c"># show files modified in the last hour</span>
+print -l zsh_demo/**/*<span class="o">(</span>mh-1<span class="o">)</span>
+
+<span class="c"># sort files from most to least recently modified and show the last 3</span>
+ls -l zsh_demo/**/*<span class="o">(</span>om<span class="o">[</span>1,3<span class="o">])</span>
+</code></pre></div>
+<p>Glob qualifiers are surrounded in parentheses <code>()</code>, and appear at the end of a glob to make it more stringent. Globs filter files by their name, and glob qualifiers filter by any other attribute (file type, size, modification date). They can be a bit confusing if you don&rsquo;t know the syntax. Consider this glob qualifier:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">ls -l zsh_demo/**/*<span class="o">(</span>.Lm-2mh-1om<span class="o">[</span>1,3<span class="o">])</span>
+<span class="c"># you won&#39;t typically write at this level of obfuscation</span>
+
+ls -l zsh_demo/**/*<span class="o">(</span>. Lm-2 mh-1 om <span class="o">[</span>1,3<span class="o">])</span>
+<span class="c"># this is more parseable, but unfortunately Zsh doesn&#39;t allow spaces</span>
+<span class="c"># between qualifiers, so you&#39;ll get an error</span>
+</code></pre></div>
+<p>You need to be familiar with the individual options to make sense of this madness. Five different things are going on at the same time:</p>
+
+<ol>
+<li>The <code>.</code> tells the glob to only show <strong>regular files</strong> (no directories, symbolic links, or other types of files).</li>
+<li>The <code>Lm-2</code> tells the glob to show files smaller than 2 MB.
+
+<ul>
+<li>Use <code>-</code> for smaller, and <code>+</code> for greater; don&rsquo;t use anything if you want to specify the exact size (<code>Lm2</code>).</li>
+<li>Use <code>m</code> for megabytes, <code>k</code> for kilobytes, or nothing for just bytes (notice that these letters must appear <strong>before</strong> the sign).</li>
+</ul></li>
+<li>The <code>mh-1</code> tells the glob to show files modified in the last hour
+
+<ul>
+<li>Use <code>-</code> if you want files modified within the last X units of time, and <code>+</code> for files modified more than X units of time ago.</li>
+<li>Use <code>M</code> for Months, <code>w</code> for weeks, <code>h</code> for hours, <code>m</code> for minutes, and <code>s</code> for seconds (notice that these leters must appear <strong>before</strong> the sign).</li>
+</ul></li>
+<li>The <code>om</code> tells the glob to sort the remaining files by their modification date.
+
+<ul>
+<li>A lowercase <code>o</code> sorts by most recent first, to use the reverse order, make it uppercase <code>O</code>.</li>
+<li>Use <code>m</code> to sort by modification date, and <code>L</code> to sort by size (<code>oL</code>).</li>
+</ul></li>
+<li>The <code>[1,3]</code> tells the glob to show the first 3 files (since we just sorted the files, these will be the most recently modified ones).
+
+<ul>
+<li>You can also show a single file (for example, the second one <code>[2]</code>)</li>
+</ul></li>
+</ol>
+
+<p>Syntax is a trade-off between terseness and obscurity. To people that are familiar with the Zsh jargon, the ability to combine five different filters by only typing a few characters is an awesome feature; to everybody else, it&rsquo;s incomprehensible mumbo-jumbo. Fortunately, useful shortcuts get used more often, and they become easier to remember.</p>
+
+<p>Head over to <a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Filename-Generation">section 14.8.7 of the manual</a> if you&rsquo;d like to be showered in details.</p>
+
+<p><strong>Pro Tip</strong></p>
+
+<p>Here&rsquo;s a cool tip for all you advanced devils (feel free to skip to section 2 if you&rsquo;ve had enough file pickin&rsquo; for a day). How can we select folders that don&rsquo;t contain a given file? In the manual you&rsquo;ll find information about a qualifier called <code>estring</code>, which runs the code specified by the string, and only keeps the file names that return <em>true</em>. For example:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># show every continent that doesn&#39;t contain a country named malta</span>
+print -l zsh_demo/*/*<span class="o">(</span>e:<span class="s1">&#39;[[ ! -e $REPLY/malta ]]&#39;</span>:<span class="o">)</span>
+<span class="c"># zsh_demo/calculations/africa</span>
+<span class="c"># zsh_demo/calculations/asia</span>
+<span class="c"># zsh_demo/data/africa</span>
+<span class="c"># zsh_demo/data/asia</span>
+</code></pre></div>
+<p>Let&rsquo;s parse this magic:</p>
+
+<ul>
+<li>After the <code>e</code>, the <code>string</code> has to be delimited by a convenient character (in this case, a colon <code>:</code>), and the code must be surrounded by single quotes <code>&#39;</code>, so the actual command is just <code>[[ ! -e $REPLY/malta ]]</code>.</li>
+<li>The <code>$REPLY</code> variable contains every file name of the ones specified by the glob <code>zsh_demo/*/*</code> in turn, but only a single file at a time.</li>
+<li><code>[[ -e file ]]</code> is a <a href="http://zsh.sourceforge.net/Doc/Release/Conditional-Expressions.html#Conditional-Expressions">conditional expression</a> that returns <em>true</em> if the file exists. We want it to return <em>true</em> when the file called <code>malta</code> <em>doesn&rsquo;t</em> exist, so we reverse it with <code>!</code>.</li>
+<li>When the code is executed, the <code>$REPLY</code> variable takes the value of the next file and the code is executed again.</li>
+</ul>
+
+<h2>2. Variable transformations</h2>
+
+<h3>Modifiers</h3>
+
+<p>To complicate things even further (or to make them more awesome, depending on your perspective), you can stick one more thing inside the parentheses at the end of your globs: <strong>modifiers</strong>.</p>
+
+<p>Each modifiers is preceded by a colon <code>:</code>, which makes them easily distinguishable from qualifiers.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># A plain old glob</span>
+print -l zsh_demo/data/europe/poland/*.txt
+
+<span class="c"># Return the file name (t stands for tail)</span>
+print -l zsh_demo/data/europe/poland/*.txt<span class="o">(</span>:t<span class="o">)</span>
+
+<span class="c"># Return the file name without the extension (r stands for remove_extension, I think)</span>
+print -l zsh_demo/data/europe/poland/*.txt<span class="o">(</span>:t:r<span class="o">)</span>
+
+<span class="c"># Return the extension</span>
+print -l zsh_demo/data/europe/poland/*.txt<span class="o">(</span>:e<span class="o">)</span>
+
+<span class="c"># Return the parent folder of the file (h stands for head)</span>
+print -l zsh_demo/data/europe/poland/*.txt<span class="o">(</span>:h<span class="o">)</span>
+
+<span class="c"># Return the parent folder of the parent</span>
+print -l zsh_demo/data/europe/poland/*.txt<span class="o">(</span>:h:h<span class="o">)</span>
+
+<span class="c"># Return the parent folder of the first file</span>
+print -l zsh_demo/data/europe/poland/*.txt<span class="o">([</span>1<span class="o">]</span>:h<span class="o">)</span>
+<span class="c"># Remember you can combine qualifiers and modifiers.</span>
+</code></pre></div>
+<p>Modifiers are not only for globs, you can also use them with variables (the technical term is <a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion">parameter expansion</a>):</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># run me, you&#39;ll like it</span>
+
+<span class="nv">my_file</span><span class="o">=(</span>zsh_demo/data/europe/poland/*.txt<span class="o">([</span>1<span class="o">]))</span>
+<span class="c"># If you want to store a glob in a variable, you must use parentheses</span>
+
+print -l <span class="nv">$my_file</span>
+print -l <span class="nv">$my_file</span><span class="o">(</span>:h<span class="o">)</span>    <span class="c"># this is the syntax we saw before</span>
+print -l <span class="k">${</span><span class="nv">my_file</span><span class="p">:</span><span class="nv">h</span><span class="k">}</span>    <span class="c"># I find this syntax more convenient</span>
+print -l <span class="k">${</span><span class="nv">my_file</span><span class="p">(:</span><span class="nv">h</span><span class="p">)</span><span class="k">}</span>  <span class="c"># don&#39;t mix the two, or you&#39;ll get an error</span>
+
+print -l <span class="k">${</span><span class="nv">my_file</span><span class="p">:</span><span class="nv">u</span><span class="k">}</span>    <span class="c"># the :u modifier makes the text uppercase</span>
+</code></pre></div>
+<p>Let&rsquo;s say we wanted to calculate the maximum income for each country, and store it in a file named <code>{country}_max_income.txt</code> in the corresponding calculations folder. We can do this easily using my favorite modifier (<code>:s</code>):</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># run me if you like to run things</span>
+
+<span class="k">for</span> file in zsh_demo/data/**/income.txt <span class="p">;</span> <span class="k">do</span>
+    <span class="nv">output_dir</span><span class="o">=</span><span class="k">${</span><span class="nv">file</span><span class="p">:</span><span class="nv">h</span><span class="p">:</span><span class="nv">s</span><span class="p">/data/calculations/</span><span class="k">}</span>
+    <span class="nv">country</span><span class="o">=</span><span class="k">${</span><span class="nv">output_dir</span><span class="p">:</span><span class="nv">t</span><span class="k">}</span>
+    <span class="nv">output_file</span><span class="o">=</span><span class="s2">&quot;${output_dir}/${country}_max_income.txt&quot;</span>
+    <span class="nb">echo</span> <span class="s2">&quot;The max salary is $RANDOM dollars&quot;</span> &gt; <span class="nv">$output_file</span>
+<span class="k">done</span>
+
+<span class="c"># let&#39;s see what we just did</span>
+grep <span class="s2">&quot;&quot;</span> zsh_demo/calculations/**/*_max_income.txt
+</code></pre></div>
+<p>Note: The <code>grep &quot;&quot; bunch_of_files</code> command is a quick-and-dirty way to show the name of each file and its contents (we could have also used <code>head bunch_of_files</code>, try it).</p>
+
+<p>So, what&rsquo;s going on here?</p>
+
+<ul>
+<li>Each time the <strong>for loop</strong> runs, the <code>$file</code> variable is set to a different income file: <code>zsh_demo/data/africa/kenya/income.txt</code>.</li>
+<li>We use the <code>:h</code> modifier to get rid of the file name: <code>zsh_demo/data/africa/kenya/</code>,</li>
+<li>and then we use the <code>:s</code> modifier to substitute <code>data</code> with <code>calculations</code>: <code>zsh_demo/calculations/africa/kenya/</code>,</li>
+<li>then we store that substituted path in the <code>$output_dir</code> variable.</li>
+<li>We use the <code>:t</code> modifier to get the name of the country (<code>kenya</code>) and we store it in the <code>$country</code> variable</li>
+<li>Then we stick a slash <code>/</code> between the <code>$output_dir</code> and <code>$country</code> variables, and append <code>_max_income.txt</code> to get our output file path: <code>zsh_demo/calculations/africa/kenya/kenya_max_income.txt</code></li>
+<li>The <code>$RANDOM</code> variable gives you a random number every time you call it (it&rsquo;s just a quick way of generating some content).</li>
+<li>The right arrow <code>&gt;</code> saves the calculation to the output file.</li>
+</ul>
+
+<p><hr></p>
+
+<p>A few more things about the <code>:s</code> modifier:</p>
+
+<ul>
+<li>You can use any character to separate the <code>:s</code> and the strings:</li>
+</ul>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># run me and see for yourself</span>
+
+<span class="nv">my_variable</span><span class="o">=</span><span class="s2">&quot;path/abcd&quot;</span>
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">my_variable</span><span class="p">:</span><span class="nv">s</span><span class="p">/bc/BC/</span><span class="k">}</span> <span class="c"># path/aBCd</span>
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">my_variable</span><span class="p">:</span><span class="nv">s_bc_BC_</span><span class="k">}</span> <span class="c"># path/aBCd</span>
+
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">my_variable</span><span class="p">:</span><span class="nv">s</span><span class="p">/\//./</span><span class="k">}</span> <span class="c"># path.abcd (escaping the slash \/)</span>
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">my_variable</span><span class="p">:</span><span class="nv">s_</span><span class="p">/_._</span><span class="k">}</span>  <span class="c"># path.abcd (slightly more readable)</span>
+<span class="c"># this is useful when you want to substitute the slash (/)</span>
+<span class="c"># without having to escape it with a backslash (\)</span>
+</code></pre></div>
+<ul>
+<li>The <code>:s</code> modifier only performs one substitution, if you want to do more, use the <code>:gs</code> modifier (g stands for global)</li>
+</ul>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># run me just for fun</span>
+
+<span class="nv">my_variable</span><span class="o">=</span><span class="s2">&quot;aaa&quot;</span>
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">my_variable</span><span class="p">:</span><span class="nv">s</span><span class="p">/a/A/</span><span class="k">}</span> <span class="c"># Aaa</span>
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">my_variable</span><span class="p">:</span><span class="nv">gs</span><span class="p">/a/A/</span><span class="k">}</span> <span class="c"># AAA</span>
+</code></pre></div>
+<h3>Expansion flags</h3>
+
+<p>Now that you&rsquo;ve learned all about glob operators, glob qualifiers, and modifiers, let&rsquo;s add one more spice to the pot: <strong>expansion flags</strong>.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># run me, it&#39;s free</span>
+
+<span class="c"># Let&#39;s say somebody gave you these updated files</span>
+<span class="c"># and told you to replace the old ones</span>
+<span class="nb">echo</span> <span class="nv">$RANDOM</span> &gt; zsh_demo/africa_malawi_population_2014.txt
+<span class="nb">echo</span> <span class="nv">$RANDOM</span> &gt; zsh_demo/asia_nepal_income_2014.txt
+<span class="nb">echo</span> <span class="nv">$RANDOM</span> &gt; zsh_demo/europe_malta_literacy_2014.txt
+
+<span class="c"># How would you move them to their appropriate folders?</span>
+
+<span class="c"># Try this wizardry</span>
+<span class="k">for</span> file in zsh_demo/*.txt<span class="p">;</span> <span class="k">do</span>
+    <span class="nv">file_info</span><span class="o">=(</span><span class="k">${</span><span class="p">(s._.)file:</span><span class="nv">t</span><span class="k">}</span><span class="o">)</span>
+    <span class="nv">continent</span><span class="o">=</span><span class="nv">$file_info</span><span class="o">[</span>1<span class="o">]</span>
+    <span class="nv">country</span><span class="o">=</span><span class="nv">$file_info</span><span class="o">[</span>2<span class="o">]</span>
+    <span class="nv">data</span><span class="o">=</span><span class="nv">$file_info</span><span class="o">[</span>3<span class="o">]</span>
+
+    mv -f <span class="nv">$file</span> zsh_demo/data/<span class="k">${</span><span class="nv">continent</span><span class="k">}</span>/<span class="k">${</span><span class="nv">country</span><span class="k">}</span>/<span class="k">${</span><span class="nv">data</span><span class="k">}</span>.txt
+<span class="k">done</span>
+
+<span class="c"># Check the contents of the files (.) modified (m) in the last</span>
+<span class="c"># 5 minutes (m-5) to see what you just did</span>
+grep <span class="s2">&quot;&quot;</span> zsh_demo/**/*<span class="o">(</span>.mm-5<span class="o">)</span>
+</code></pre></div>
+<p>Let&rsquo;s tear down the example to understand what&rsquo;s going on.</p>
+
+<ul>
+<li>We are using a <strong>for loop</strong> to cycle through the new text files, and we&rsquo;re storing each file name in the <code>$file</code> variable.</li>
+</ul>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="nv">$file</span>
+<span class="c"># zsh_demo/europe_malta_literacy_2014.txt</span>
+</code></pre></div>
+<ul>
+<li>We don&rsquo;t want the whole path, so we use the <code>:t</code> modifier to get rid of everything to the left of the first slash <code>/</code>.</li>
+</ul>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="k">${</span><span class="nv">file</span><span class="p">:</span><span class="nv">t</span><span class="k">}</span>
+<span class="c"># europe_malta_literacy_2014.txt</span>
+</code></pre></div>
+<ul>
+<li>We use the <code>(s)</code> expansion flag to split the file name at each underscore <code>_</code>.</li>
+</ul>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="k">${</span><span class="p">(s._.)file:</span><span class="nv">t</span><span class="k">}</span>
+<span class="c"># europe malta literacy 2014.txt</span>
+</code></pre></div>
+<ul>
+<li>We surround everything with parentheses so we can save it into an array variable.</li>
+</ul>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">file_info</span><span class="o">=</span><span class="k">${</span><span class="p">(s._.)file:</span><span class="nv">t</span><span class="k">}</span>
+<span class="nb">echo</span> <span class="nv">$file_info</span>
+<span class="c"># the parentheses are missing, file_info contains the wrong information:</span>
+<span class="c"># europe_malta_literacy_2014.txt</span>
+
+<span class="nv">file_info</span><span class="o">=(</span><span class="k">${</span><span class="p">(s._.)file:</span><span class="nv">t</span><span class="k">}</span><span class="o">)</span>
+<span class="nb">echo</span> <span class="nv">$file_info</span>
+<span class="c"># with parentheses, it works:</span>
+<span class="c"># europe malta literacy 2014.txt</span>
+</code></pre></div>
+<ul>
+<li>We use an auxiliary variable for continent, country, and data. Since <code>$file_info</code> is now an array, we can refer to its elements by using a numeric index.</li>
+</ul>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="k">${</span><span class="nv">file_info</span><span class="p">[3]</span><span class="k">}</span>
+<span class="c"># literacy</span>
+</code></pre></div>
+<ul>
+<li>We use the auxiliary variables to specify the path where we want to move the new files <code>zsh_demo/data/${continent}/${country}/${data}.txt</code>.</li>
+</ul>
+
+<p>There are a bunch of other flags described in the <a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#Parameter-Expansion">14.3.1 section of the manual</a>. Check them out if you&rsquo;re curious. We have already covered the split expansion flag <code>(s)</code>; the only other one I use is the join expansion flag <code>(j)</code>, which does the opposite of the split flag.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">my_array</span><span class="o">=(</span>a b c d<span class="o">)</span>
+<span class="nb">echo</span> <span class="k">${</span><span class="p">(j.-.)my_array</span><span class="k">}</span>
+<span class="c"># a-b-c-d</span>
+
+<span class="c"># Since we are joining using dots (.), it makes more sense to</span>
+<span class="c"># use underscores (_) to separate the dots and the j</span>
+<span class="nb">echo</span> <span class="k">${</span><span class="p">(j_._)my_array</span><span class="k">}</span>
+<span class="c"># a.b.c.d</span>
+</code></pre></div>
+<h2>3. Magic tabbing</h2>
+
+<h3>Event designators</h3>
+
+<p>Let&rsquo;s introduce the last member of our Zsh jargon family: after glob operators and qualifiers, modifiers and expansion flags, I give you <strong>event designators</strong>.</p>
+
+<p>An event designator references one of the commands that we have previously entered. They always start with a bang <code>!</code>:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># show the previous command</span>
+<span class="nb">echo </span>a b c
+!! <span class="c"># instead of pressing &lt;Enter&gt;, press &lt;Tab&gt;, then press &lt;Enter&gt;</span>
+
+<span class="c"># show two commands ago</span>
+<span class="nb">echo </span>d e f
+<span class="nb">echo </span>g h i
+!-2 <span class="c"># press &lt;Tab&gt;, then press &lt;Enter&gt;</span>
+</code></pre></div>
+<p>Note: If you press <code>&lt;Enter&gt;</code> instead of <code>&lt;Tab&gt;</code>, the event designator will also get replaced, but you&rsquo;ll still have to press <code>&lt;Enter&gt;</code> one more time to run it.</p>
+
+<p>I find that these designators are not super useful by themselves because pressing the up arrow key is all we need to do to pull up the previous command (use <code>Control R</code> if you get tired of pressing). When they really come in handy is to add previous arguments to our current command.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># add the last argument</span>
+ls zsh_demo/data/asia/laos/population.txt
+ls -l !!1 <span class="c"># press &lt;Tab&gt;, then press &lt;Enter&gt;</span>
+
+<span class="c"># add all the previous arguments</span>
+<span class="nb">echo </span>a b c
+print -l !!* <span class="c"># press &lt;Tab&gt;, then press &lt;Enter&gt;</span>
+</code></pre></div>
+<p>So, we reference previous arguments in two steps:</p>
+
+<ol>
+<li>Specify which command you are interested in
+
+<ul>
+<li>The previous command <code>!!</code> is the one you&rsquo;ll use most often.</li>
+<li>If you want to go back farther, use the minus sign <code>-</code> and a number: <code>!-2</code>, <code>!-3</code>.</li>
+<li>You can also use the current command <code>!#</code></li>
+</ul></li>
+<li>Pick what arguments you want to reuse
+
+<ul>
+<li>To pick an argument from the previous command, just add a number <code>!!1</code>, <code>!!2</code>. Use <code>!!$</code> for the last argument.</li>
+<li>To pick an argument from two or more commands ago, add a colon <code>:</code> before the number <code>!-2:1</code> (because<code>!-21</code> means something else).</li>
+<li>If you want to reference all the arguments, use an asterisk <code>*</code> <code>!!*</code> <code>!-2:*</code>.</li>
+<li>If you want skip all the arguments except the first one or two, add a number before the asterisk <code>!!2*</code>, <code>!-2:2*</code>.</li>
+</ul></li>
+</ol>
+
+<p>Some useful examples</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">mv zsh_demo/data/asia/laos/population.txt !#1
+<span class="c"># press &lt;Tab&gt;</span>
+<span class="c"># now you can easily change the second argument</span>
+<span class="c"># (use Control W to delete every up to the first slash)</span>
+
+ls zsh_demo/data/europe/malta/literacy.txt
+awk <span class="s1">&#39;$1 &gt; 3&#39;</span> !<span class="err">$</span>
+<span class="c"># press &lt;Tab&gt;</span>
+<span class="c"># !$ is a shortcut for !!$</span>
+
+ls zsh_demo/*/*/nepal/literacy.txt
+ls zsh_demo/*/*/malta/literacy.txt
+ls -l !-2:1
+<span class="c"># press &lt;Tab&gt;</span>
+<span class="c"># now you can see the details of the nepal file</span>
+</code></pre></div>
+<p>If you don&rsquo;t believe there is such a thing as being <em>too productive</em>, check out the <a href="http://zsh.sourceforge.net/Doc/Release/Expansion.html#History-Expansion">history expansion section of the manual</a> for additional shortcuts.</p>
+
+<p>Pressing <code>&lt;Tab&gt;</code> lets you expand not only old commands, but globs, variables (when they use the <code>${}</code> syntax), and even lazily-typed paths!</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">ls zsh_demo/*/*/nepal/literacy.txt
+<span class="c"># press &lt;Tab&gt;</span>
+
+<span class="nv">my_var</span><span class="o">=</span><span class="s2">&quot;1 2 3&quot;</span>
+<span class="nb">echo</span> <span class="k">${</span><span class="nv">my_var</span><span class="k">}</span>
+<span class="c"># press &lt;Tab&gt;</span>
+
+
+ls z/d/a/l
+<span class="c"># press &lt;Tab&gt;</span>
+<span class="c"># Mind blown!</span>
+</code></pre></div>
+<h2>Bonus tips</h2>
+
+<p>There is a ton of stuff we haven&rsquo;t covered, but I can point you to other people&rsquo;s awesome tips. They are all totally worth it:</p>
+
+<ul>
+<li><p>Andrew Hays encourages us to <a href="http://www.andrewhays.net/2012/11/29/love-your-terminal.html">love our terminal</a> by installing the elegant <a href="http://ethanschoonover.com/solarized">Solarized color scheme</a>, and customizing our prompt. Follow his instructions and make all those hours in front of your terminal a more enjoyable experience.</p></li>
+<li><p>Danilo Petrozzi over at Zsh Wiki shares a powerful alternative to global aliases. If you find yourself typing stuff like <code>| head | column -t | less -S</code> at the end of your commands, <a href="http://zshwiki.org/home/examples/zleiab">check out his method</a> to turn any sequence of characters into a convenient snippet.</p></li>
+<li><p>Also at <a href="http://zshwiki.org/home/builtin/functions/zmv">Zsh Wiki</a>, learn about a way to rename multiple files by using the <code>zmv</code> command. It&rsquo;s extremely convenient for replacing spaces with underscores, changing file extensions, and renaming files located in a nested folder structure. <strong>Always</strong> run <code>zmv</code> using the <code>-n</code> option once, so you are know what the command will actually do.</p></li>
+<li><p>We used brace expansion multiple times in this tutorial, but we didn&rsquo;t cover all of its features. Tomasz Muras wrote <a href="http://jmuras.com/blog/2012/brace-expansion-in-bash-and-zsh/">a nice post</a> about it.</p></li>
+<li><p>I wasn&rsquo;t able to find a blog post explaining <a href="http://zsh.sourceforge.net/Doc/Release/Parameters.html#Array-Parameters">associative arrays</a>, but I&rsquo;ve found them incredibly useful to deal with sets of parameters. If there&rsquo;s interest, I might go into them in a future post.</p></li>
+</ul>
+
+<h2>Parting thoughts</h2>
+
+<p>I&rsquo;ve you read this entire thing in one sitting your brain is probably melting. Don&rsquo;t fret about remembering every little detail. What&rsquo;s important is to realize that there are easy ways of doing a lot of things that you didn&rsquo;t know could be done, and recalling where to go for additional information.</p>
+
+<p>I have a file where I keep all my Zsh snippets. Every time I have to look up the syntax for a command, I open up the file and I write it down. I recommend you do the same. It&rsquo;s the act of progressively improving this file that will help you achieve mastery.</p>
+
+<p>Feel free to leave a comment if you&rsquo;d like to share a tip.</p>
+
+        ]]></description>
+      </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,508 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AWK GTF! How to Analyze a Transcriptome Like a Pro - Part 1 - Blog - Reason I Am Here - Nacho Caballero</title>
+    
+    <meta name="author" content="Nacho Caballero">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/css/mailchimp.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!--highlight-->
+    <link rel="stylesheet" href="/assets/themes/twitter/highlight.js/styles/tomorrow-night-eighties.css">
+
+    <link href="/assets/themes/twitter/css/nacho.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <script src="/assets/themes/twitter/highlight.js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+    <script src="/assets/themes/twitter/jquery/jquery-1.11.1.min.js"></script>
+    <script src="/assets/themes/twitter/jquery/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(function() {
+          $("img.lazy").show().lazyload({
+            effect: "fadeIn",
+            threshold : 200
+          });
+        });
+    </script>
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">Reason I am here</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">Nacho Caballero</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Article Index</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+        
+
+<div class="page-header">
+  <h1>AWK GTF! How to Analyze a Transcriptome Like a Pro - Part 1 </h1>
+</div>
+
+<div class="row-fluid post-full">
+  <div class="span12">
+      <span class="date">16 September 2013</span>
+    <div class="content">
+      <p>This post belongs to a 3-part series on AWK: <strong>Part 1</strong> - <a href="http://reasoniamhere.com/2013/09/17/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-2">Part 2</a> - <a href="http://reasoniamhere.com/2013/09/18/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-3">Part 3</a></p>
+
+<p>The goal of this tutorial is to show a few of the cool things that the Unix tool AWK can do with tabular data. We will focus on extracting useful information from a <a href="https://en.wikipedia.org/wiki/Transcriptome">transcriptome</a>—because bioinformatics is cool—, but AWK can do its wonders with any kind of text file.</p>
+
+<p>The tutorial has been carefully designed to make it easy for you to play along. So feel free to copy and paste the commands in your Unix terminal.</p>
+
+<!--excerpt-->
+
+<h2>Get the data</h2>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># I recommend using this smaller file...</span>
+wget https://raw.github.com/nachocab/nachocab.github.io/master/assets/transcriptome.gtf
+
+<span class="c"># ...but if you&#39;re feeling bold, go ahead and download the whole enchilada</span>
+wget ftp://ftp.sanger.ac.uk/pub/gencode/release_18/gencode.v18.annotation.gtf.gz
+gzip -dc gencode.v18.annotation.gtf.gz &gt; transcriptome.gtf
+</code></pre></div>
+<p>Let&rsquo;s see what the file we just downloaded looks like.</p>
+
+<pre><code class="wrap">head transcriptome.gtf
+
+##description: evidence-based annotation of the human genome (GRCh37), version 18 (Ensembl 73)
+##provider: GENCODE
+##contact: gencode@sanger.ac.uk
+##format: gtf
+##date: 2013-09-02
+chr1    HAVANA  gene    11869   14412   .   +   .   gene_id "ENSG00000223972.4"; transcript_id "ENSG00000223972.4"; gene_type "pseudogene"; gene_status "KNOWN"; gene_name "DDX11L1"; transcript_type "pseudogene"; transcript_status "KNOWN"; transcript_name "DDX11L1"; level 2; havana_gene "OTTHUMG00000000961.2";
+chr1    HAVANA  transcript  11869   14409   .   +   .   gene_id "ENSG00000223972.4"; transcript_id "ENST00000456328.2"; gene_type "pseudogene"; gene_status "KNOWN"; gene_name "DDX11L1"; transcript_type "processed_transcript"; transcript_status "KNOWN"; transcript_name "DDX11L1-002"; level 2; tag "basic"; havana_gene "OTTHUMG00000000961.2"; havana_transcript "OTTHUMT00000362751.1";
+chr1    HAVANA  exon    11869   12227   .   +   .   gene_id "ENSG00000223972.4"; transcript_id "ENST00000456328.2"; gene_type "pseudogene"; gene_status "KNOWN"; gene_name "DDX11L1"; transcript_type "processed_transcript"; transcript_status "KNOWN"; transcript_name "DDX11L1-002"; exon_number 1;  exon_id "ENSE00002234944.1";  level 2; tag "basic"; havana_gene "OTTHUMG00000000961.2"; havana_transcript "OTTHUMT00000362751.1";
+</code></pre>
+
+<p>Holy smokes. Who wrote that and why does he hate me?</p>
+
+<p>That, my friend, is <a href="http://www.gencodegenes.org/releases/18.html">Gencode</a>&rsquo;s human transcriptome. It will seem less intimidating if we look at it one screen at a time</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">less -S transcriptome.gtf
+
+<span class="c">##description: evidence-based annotation of the human genome (GRCh37), version 18 (Ensembl 73)</span>
+<span class="c">##provider: GENCODE</span>
+<span class="c">##contact: gencode@sanger.ac.uk</span>
+<span class="c">##format: gtf</span>
+<span class="c">##date: 2013-09-02</span>
+chr1    HAVANA  gene    <span class="m">11869</span>   <span class="m">14412</span>   .   +   .   gene_id <span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000961.2&quot;</span><span class="p">;</span>
+chr1    HAVANA  transcript  <span class="m">11869</span>   <span class="m">14409</span>   .   +   .   gene_id <span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000456328.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;processed_transcript&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;DDX11L1-002&quot;</span><span class="p">;</span> level 2<span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000961.2&quot;</span><span class="p">;</span> havana_transcript <span class="s2">&quot;OTTHUMT00000362751.1&quot;</span><span class="p">;</span>
+chr1    HAVANA  exon    <span class="m">11869</span>   <span class="m">12227</span>   .   +   .   gene_id <span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENST00000456328.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;processed_transcript&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;DDX11L1-002&quot;</span><span class="p">;</span> exon_number 1<span class="p">;</span>  exon_id <span class="s2">&quot;ENSE00002234944.1&quot;</span><span class="p">;</span>  level 2<span class="p">;</span> tag <span class="s2">&quot;basic&quot;</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000961.2&quot;</span><span class="p">;</span> havana_transcript <span class="s2">&quot;OTTHUMT00000362751.1&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>After calling <code>less</code>, you can move up, down, left and right by using the arrow keys. Type <code>shift g</code> to go to the end of the file, and <code>gg</code> to get back. Type <code>q</code> when you&rsquo;re done looking around.</p>
+
+<p>The transcriptome has 9 columns. The first 8 are separated by tabs and look reasonable (chromosome, annotation source, feature type, start, end, score, strand, and phase), the last one is kind of hairy: it is made up of key-value pairs separated by semicolons, some fields are mandatory and others are optional, and the values are surrounded in double quotes. That&rsquo;s no way to live a decent life.</p>
+
+<h2>Ask a question</h2>
+
+<p>Imagine you wanted to get the list of all the protein-coding genes that only have one exon. How would you do it?</p>
+
+<p>You could go learn Perl, or Python and write up a slow, 100-line-long script, but there is an easier way: use AWK. I <em>love</em> AWK. It is fast as a bullet, concise, and incredibly powerful. I couldn&rsquo;t live without it.</p>
+
+<p>To use AWK, you need to understand three key ideas:</p>
+
+<ol>
+<li>AWK reads files <strong>one line at a time</strong></li>
+<li>You can specify which lines should be read and which ones should be skipped by using a <strong>rule</strong></li>
+<li>Once a line has been read, you can <strong>print text</strong> or <strong>do nothing</strong>.</li>
+</ol>
+
+<p>Let&rsquo;s try it with our example. Our first rule will make sure that column 3 is a gene:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk <span class="s1">&#39;$3 == &quot;gene&quot;&#39;</span> transcriptome.gtf <span class="p">|</span> head <span class="p">|</span> less -S
+
+chr1    HAVANA  gene    <span class="m">11869</span>   <span class="m">14412</span>   .   +   .   gene_id <span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000961.2&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">14363</span>   <span class="m">29806</span>   .   -   .   gene_id <span class="s2">&quot;ENSG00000227232.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000227232.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;WASH7P&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;WASH7P&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000958.1&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">29554</span>   <span class="m">31109</span>   .   +   .   gene_id <span class="s2">&quot;ENSG00000243485.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000243485.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;MIR1302-11&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;MIR1302-11&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000959.2&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">34554</span>   <span class="m">36081</span>   .   -   .   gene_id <span class="s2">&quot;ENSG00000237613.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000237613.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;FAM138A&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;FAM138A&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000960.1&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">52473</span>   <span class="m">54936</span>   .   +   .   gene_id <span class="s2">&quot;ENSG00000268020.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000268020.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4G4P&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4G4P&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000185779.1&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">62948</span>   <span class="m">63887</span>   .   +   .   gene_id <span class="s2">&quot;ENSG00000240361.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000240361.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4G11P&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4G11P&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001095.2&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">69091</span>   <span class="m">70008</span>   .   +   .   gene_id <span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001094.1&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">89295</span>   <span class="m">133566</span>  .   -   .   gene_id <span class="s2">&quot;ENSG00000238009.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000238009.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;RP11-34P13.7&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;RP11-34P13.7&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001096.2&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">89551</span>   <span class="m">91105</span>   .   -   .   gene_id <span class="s2">&quot;ENSG00000239945.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000239945.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;RP11-34P13.8&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;RP11-34P13.8&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001097.2&quot;</span><span class="p">;</span>
+chr1    HAVANA  gene    <span class="m">131025</span>  <span class="m">134836</span>  .   +   .   gene_id <span class="s2">&quot;ENSG00000233750.3&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000233750.3&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;CICP27&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;CICP27&quot;</span><span class="p">;</span> level 1<span class="p">;</span> tag <span class="s2">&quot;pseudo_consens&quot;</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001257.3&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>Rules go between single quotes. Numbers after the dollar sign specify a column, so <code>$3</code> refers to column 3. The only exception is <code>$0</code>, which specifies the entire line.</p>
+
+<p>The double equals sign <code>==</code> is how computer people write equality, it drives the math people crazy.</p>
+
+<p>Character strings, like the word &ldquo;gene&rdquo;, must be surrounded by double quotes.</p>
+
+<p>The vertical line <code>|</code> is called a pipe. It connects the command on the left of the pipe with the command on the right. This tells the output generated by the command at the left to become the input of the command on the right.</p>
+
+<p>Now that we have used column 3 to filter, we don&rsquo;t really care about any of the information in columns 1 through 8, so we can get rid of it by only printing column 9.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk <span class="s1">&#39;$3 == &quot;gene&quot; { print $9 }&#39;</span> transcriptome.gtf <span class="p">|</span> head <span class="p">|</span> less -S
+
+gene_id
+gene_id
+gene_id
+gene_id
+gene_id
+gene_id
+gene_id
+gene_id
+gene_id
+gene_id
+</code></pre></div>
+<p>It worked, sort of. We used the stuff that comes before the braces to select the lines that we care about, and the stuff that goes inside the braces <code>{ }</code> to tell AWK what we want it to do with that line—in this case, print column 9—, but only <code>gene_id</code> showed up. What happened to the rest?</p>
+
+<h2>What is a column?</h2>
+
+<p>By default, AWK uses whitespace as the delimiter between columns but there are two types of whitespace: spaces and tabs. Check this out:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&quot;a b c&quot;</span> <span class="p">|</span> awk <span class="s1">&#39;{ print $2 }&#39;</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;a\tb\tc&quot;</span> <span class="p">|</span> awk <span class="s1">&#39;{ print $2 }&#39;</span>
+</code></pre></div>
+<p>Both commands return a <code>b</code>. We are using <code>echo</code> to send AWK a line of text (instead of reading from a file), and telling AWK to print the second column. In the second example we are separating the columns by tabs (<code>\t</code> is the special character for tabs) instead of spaces. We can tell AWK to treat spaces and tabs differently by using the <code>-F</code> option followed by a space and a character in double quotes.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&quot;a,b,c&quot;</span> <span class="p">|</span> awk -F <span class="s2">&quot;,&quot;</span> <span class="s1">&#39;{ print $2 }&#39;</span> <span class="c"># separate by commas, returns b</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;a b c&quot;</span> <span class="p">|</span> awk -F <span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;{ print $2 }&#39;</span> <span class="c"># separate by tabs, returns nothing</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;a\tb\tc&quot;</span> <span class="p">|</span> awk -F <span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;{ print $2 }&#39;</span> <span class="c"># separate by tabs, returns b</span>
+</code></pre></div>
+<p>It&rsquo;s not very intuitive that <code>-F</code> would define what the separator should be, and everybody forgets when they start learning AWK. Luckily, it&rsquo;s easy to find help.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">man awk
+</code></pre></div>
+<p>This takes you to the Unix manual page on AWK, which behaves in a similar way as <code>less</code>. You can use the arrows to move around and you can search for words using the slash <code>/</code> followed by whatever you are looking for. Type <code>/-F</code> and press <code>Enter</code>. The screen will advance to the usage line:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk <span class="o">[</span> -F fs <span class="o">]</span> <span class="o">[</span> -v <span class="nv">var</span><span class="o">=</span>value <span class="o">]</span> <span class="o">[</span> <span class="s1">&#39;prog&#39;</span> <span class="p">|</span> -f progfile <span class="o">]</span> <span class="o">[</span> file ...  <span class="o">]</span>
+</code></pre></div>
+<p>which contains <code>-F</code>, to move to the next occurrence, press <code>n</code>:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">The -F fs option defines the input field separator to be the regular expression fs.
+</code></pre></div>
+<p>Bingo. You can go back to the previous occurrence by pressing <code>shift n</code>. Press <code>q</code> to leave.</p>
+
+<p>AWK didn&rsquo;t return anything back in the <code>echo &quot;a b c&quot;</code> example, why? Because it didn&rsquo;t find any tabs, so it only saw one column, which means that there was no second column to print. See for yourself:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&quot;a b c&quot;</span> <span class="p">|</span> awk -F <span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;{ print $1 }&#39;</span> <span class="c"># a b c</span>
+</code></pre></div>
+<p>Back to the genes.</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">awk -F <span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;$3 == &quot;gene&quot; { print $9 }&#39;</span> transcriptome.gtf <span class="p">|</span> head <span class="p">|</span> less -S
+
+gene_id <span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000223972.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;DDX11L1&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000961.2&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000227232.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000227232.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;WASH7P&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;WASH7P&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000958.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000243485.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000243485.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;MIR1302-11&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;MIR1302-11&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000959.2&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000237613.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000237613.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;FAM138A&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;FAM138A&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000000960.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000268020.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000268020.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4G4P&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4G4P&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000185779.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000240361.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000240361.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4G11P&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4G11P&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001095.2&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000186092.4&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;protein_coding&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;OR4F5&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001094.1&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000238009.2&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000238009.2&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;RP11-34P13.7&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;RP11-34P13.7&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001096.2&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000239945.1&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000239945.1&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;RP11-34P13.8&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;lincRNA&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;NOVEL&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;RP11-34P13.8&quot;</span><span class="p">;</span> level 2<span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001097.2&quot;</span><span class="p">;</span>
+gene_id <span class="s2">&quot;ENSG00000233750.3&quot;</span><span class="p">;</span> transcript_id <span class="s2">&quot;ENSG00000233750.3&quot;</span><span class="p">;</span> gene_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> gene_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> gene_name <span class="s2">&quot;CICP27&quot;</span><span class="p">;</span> transcript_type <span class="s2">&quot;pseudogene&quot;</span><span class="p">;</span> transcript_status <span class="s2">&quot;KNOWN&quot;</span><span class="p">;</span> transcript_name <span class="s2">&quot;CICP27&quot;</span><span class="p">;</span> level 1<span class="p">;</span> tag <span class="s2">&quot;pseudo_consens&quot;</span><span class="p">;</span> havana_gene <span class="s2">&quot;OTTHUMG00000001257.3&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>Now we have all the genes, but how do we filter for protein-coding genes? The answer, in <a href="http://reasoniamhere.com/2013/09/17/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-2">Part 2</a>.</p>
+
+    </div>
+
+   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+   <!-- cilantro -->
+   <ins class="adsbygoogle"
+        style="display:inline-block;width:300px;height:250px"
+        data-ad-client="ca-pub-9441199102473745"
+        data-ad-slot="6108086510"></ins>
+   <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+   </script>
+
+  
+
+  
+    <hr>
+
+    <div class="related">
+      <h3>Related posts</h3>
+      <ul>
+        
+          <li><a href="/2013/09/18/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-3">AWK GTF! How to Analyze a Transcriptome Like a Pro - Part 3</a></li>
+        
+          <li><a href="/2013/09/17/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-2">AWK GTF! How to Analyze a Transcriptome Like a Pro - Part 2</a></li>
+        
+          <li><a href="/2013/11/14/a-hackers-approach-to-understanding-french-spelling">A Hacker's Approach to Understanding French Spelling</a></li>
+        
+          <li><a href="/2014/01/11/outrageously-useful-tips-to-master-your-z-shell">Master Your Z Shell with These Outrageously Useful Tips</a></li>
+        
+          <li><a href="/2013/09/26/switching-between-long-and-wide-formats-in-r">Switching Between Long and Wide Formats in R</a></li>
+        
+      </ul>
+    </div>
+  
+
+  <hr>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="icon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#tutorial-ref">tutorial <span>5</span></a></li>
+     
+    	<li><a href="/tags.html#bioinformatics-ref">bioinformatics <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#awk-ref">awk <span>4</span></a></li>
+    
+  
+
+
+
+    </ul>
+  
+
+  
+  </div>
+</div>
+
+
+
+
+      </div>
+
+      <footer>
+        <p class="copyright">&copy; 2015 Nacho Caballero</p>
+        <p>
+          <a href="http://feeds.feedburner.com/TheReasonIAmHere">RSS</a> •
+          <a href="https://twitter.com/nachocaballero">Twitter</a> •
+          <a href="http://reasoniamhere.com/about.html">About</a>
+        </p>
+      </footer>
+
+    </div>
+    <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42664204-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+  </body>
+</html>
+

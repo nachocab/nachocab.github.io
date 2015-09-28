@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <base target="_blank"> <!-- open all links on a new tab -->
+
+    <title>Iris Multidimensional Scaling</title>
+
+    <link href="clickme_assets/clickme.css" rel="stylesheet">
+<link href="clickme_assets/tooltip.css" rel="stylesheet">
+<link href="clickme_assets/Points/points.css" rel="stylesheet">
+<script src="clickme_assets/d3.v3.2.7.js"></script>
+<script src="clickme_assets/jquery.v1.8.3.min.js"></script>
+<script src="clickme_assets/bootstrap-tooltip.v2.3.0.js"></script>
+<script src="clickme_assets/d3_aux.js"></script>
+
+    <style>
+        text{
+            font-family: Rockwell, Helvetica, Arial, sans;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="g-search">
+        <input type="text" placeholder="Search…">
+        <button style="display:none;" class="g-search-clear">X</button>
+    </div>
+    <script type="text/javascript">
+(function() {
+  var clip, color_legend_counts, color_scale, color_title, data, deselect_color_groups, distance_between_show_names_and_color_groups, g_color_group_keys, g_color_title, g_points, g_toggle_names, keyuped, mouseout, mouseover, opacity, plot, point_names, points, redraw, search, search_clear, search_input, show_all_colors, sidebar, single_group, static_radius, toggle_names, toggle_points, transform;
+
+  data = [{"x":0.695094430973957,"y":-0.141330468995274,"point_name":"150","radius":5,"color_group":"virginica"},
+{"x":0.950470807109212,"y":0.0583139792560124,"point_name":"149","radius":5,"color_group":"virginica"},
+{"x":0.882172858522215,"y":0.0394294272592383,"point_name":"148","radius":5,"color_group":"virginica"},
+{"x":0.763583307407259,"y":-0.187658491290244,"point_name":"147","radius":5,"color_group":"virginica"},
+{"x":0.972054897273484,"y":0.093766151400303,"point_name":"146","radius":5,"color_group":"virginica"},
+{"x":1.20937309136641,"y":0.152399098927346,"point_name":"145","radius":5,"color_group":"virginica"},
+{"x":1.28150668753874,"y":0.138931301464597,"point_name":"144","radius":5,"color_group":"virginica"},
+{"x":0.707617938351951,"y":-0.287458173773244,"point_name":"143","radius":5,"color_group":"virginica"},
+{"x":0.961133900451301,"y":0.204601733408032,"point_name":"142","radius":5,"color_group":"virginica"},
+{"x":1.1570773526178,"y":0.09182563958451,"point_name":"141","radius":5,"color_group":"virginica"},
+{"x":1.05380557162862,"y":0.186143935980399,"point_name":"140","radius":5,"color_group":"virginica"},
+{"x":0.58466316967075,"y":-0.0824951310115542,"point_name":"139","radius":5,"color_group":"virginica"},
+{"x":0.952549074407039,"y":0.0246502630065155,"point_name":"138","radius":5,"color_group":"virginica"},
+{"x":1.07212165715104,"y":0.0700321005448953,"point_name":"137","radius":5,"color_group":"virginica"},
+{"x":1.53824996584359,"y":0.344042838785588,"point_name":"136","radius":5,"color_group":"virginica"},
+{"x":0.890647405022556,"y":-0.249950840539067,"point_name":"135","radius":5,"color_group":"virginica"},
+{"x":0.722080621164756,"y":-0.0717067052287898,"point_name":"134","radius":5,"color_group":"virginica"},
+{"x":1.07971882124453,"y":-0.108638789334524,"point_name":"133","radius":5,"color_group":"virginica"},
+{"x":1.61533683071605,"y":0.687082543396523,"point_name":"132","radius":5,"color_group":"virginica"},
+{"x":1.42083638905194,"y":0.187634583597552,"point_name":"131","radius":5,"color_group":"virginica"},
+{"x":1.19400150800173,"y":0.232319902354368,"point_name":"130","radius":5,"color_group":"virginica"},
+{"x":1.06180436138695,"y":-0.104864738338651,"point_name":"129","radius":5,"color_group":"virginica"},
+{"x":0.645566029557511,"y":-0.0583343255870052,"point_name":"128","radius":5,"color_group":"virginica"},
+{"x":0.629254080255745,"y":-0.0898523973613727,"point_name":"127","radius":5,"color_group":"virginica"},
+{"x":1.30704523690542,"y":0.280450677561539,"point_name":"126","radius":5,"color_group":"virginica"},
+{"x":1.1377152519361,"y":0.167495302910839,"point_name":"125","radius":5,"color_group":"virginica"},
+{"x":0.694383065845733,"y":-0.102199663676075,"point_name":"124","radius":5,"color_group":"virginica"},
+{"x":1.74996001946227,"y":0.230337049455947,"point_name":"123","radius":5,"color_group":"virginica"},
+{"x":0.599500552732782,"y":-0.303045763878964,"point_name":"122","radius":5,"color_group":"virginica"},
+{"x":1.21390895653302,"y":0.189098006308525,"point_name":"121","radius":5,"color_group":"virginica"},
+{"x":0.650395856318829,"y":-0.38057481821753,"point_name":"120","radius":5,"color_group":"virginica"},
+{"x":1.89782271103644,"y":0.128661486710239,"point_name":"119","radius":5,"color_group":"virginica"},
+{"x":1.74352768214514,"y":0.587869664856715,"point_name":"118","radius":5,"color_group":"virginica"},
+{"x":0.974844529699535,"y":0.0209716298316061,"point_name":"117","radius":5,"color_group":"virginica"},
+{"x":0.952228187396714,"y":0.0596253460459868,"point_name":"116","radius":5,"color_group":"virginica"},
+{"x":0.792964111936612,"y":-0.269820357013358,"point_name":"115","radius":5,"color_group":"virginica"},
+{"x":0.673081789729226,"y":-0.388409173672168,"point_name":"114","radius":5,"color_group":"virginica"},
+{"x":1.08279589804007,"y":0.108137792537013,"point_name":"113","radius":5,"color_group":"virginica"},
+{"x":0.901700976482546,"y":-0.107818808666777,"point_name":"112","radius":5,"color_group":"virginica"},
+{"x":0.830887076818266,"y":0.121114203877534,"point_name":"111","radius":5,"color_group":"virginica"},
+{"x":1.45837548339304,"y":0.391395974407639,"point_name":"110","radius":5,"color_group":"virginica"},
+{"x":1.16061440828669,"y":-0.121915751155345,"point_name":"109","radius":5,"color_group":"virginica"},
+{"x":1.46629353449684,"y":0.177750001488748,"point_name":"108","radius":5,"color_group":"virginica"},
+{"x":0.260616121954888,"y":-0.596379363500321,"point_name":"107","radius":5,"color_group":"virginica"},
+{"x":1.69851936802663,"y":0.275418336514028,"point_name":"106","radius":5,"color_group":"virginica"},
+{"x":1.17500296002232,"y":-0.0201304735712651,"point_name":"105","radius":5,"color_group":"virginica"},
+{"x":0.985765526521718,"y":-0.0898639521761214,"point_name":"104","radius":5,"color_group":"virginica"},
+{"x":1.30833800799784,"y":0.171951575670868,"point_name":"103","radius":5,"color_group":"virginica"},
+{"x":0.707617938351951,"y":-0.287458173773244,"point_name":"102","radius":5,"color_group":"virginica"},
+{"x":1.26559636390181,"y":-0.00492455474940022,"point_name":"101","radius":5,"color_group":"virginica"},
+{"x":0.149500420939073,"y":-0.174448903225167,"point_name":"100","radius":5,"color_group":"versicolor"},
+{"x":-0.453234932474416,"y":-0.378046683299506,"point_name":"99","radius":5,"color_group":"versicolor"},
+{"x":0.32128800377717,"y":0.0088690950562087,"point_name":"98","radius":5,"color_group":"versicolor"},
+{"x":0.188107825533336,"y":-0.146609464625709,"point_name":"97","radius":5,"color_group":"versicolor"},
+{"x":0.165967239972531,"y":-0.106327341890584,"point_name":"96","radius":5,"color_group":"versicolor"},
+{"x":0.178490747350525,"y":-0.252455046668553,"point_name":"95","radius":5,"color_group":"versicolor"},
+{"x":-0.35226587962233,"y":-0.506124113765856,"point_name":"94","radius":5,"color_group":"versicolor"},
+{"x":0.115274011779729,"y":-0.202192924003662,"point_name":"93","radius":5,"color_group":"versicolor"},
+{"x":0.445407599234726,"y":-0.0172322221841338,"point_name":"92","radius":5,"color_group":"versicolor"},
+{"x":0.232400144201891,"y":-0.335355772255859,"point_name":"91","radius":5,"color_group":"versicolor"},
+{"x":0.0832066085727297,"y":-0.340963362431812,"point_name":"90","radius":5,"color_group":"versicolor"},
+{"x":0.122978839943348,"y":-0.134262198311007,"point_name":"89","radius":5,"color_group":"versicolor"},
+{"x":0.407547617883301,"y":-0.18601852995475,"point_name":"88","radius":5,"color_group":"versicolor"},
+{"x":0.610345441222177,"y":0.203809796805504,"point_name":"87","radius":5,"color_group":"versicolor"},
+{"x":0.403429156250207,"y":0.0970911573565758,"point_name":"86","radius":5,"color_group":"versicolor"},
+{"x":0.294003221669933,"y":-0.242143709990608,"point_name":"85","radius":5,"color_group":"versicolor"},
+{"x":0.690013217957757,"y":-0.21047714365694,"point_name":"84","radius":5,"color_group":"versicolor"},
+{"x":0.0682143557790088,"y":-0.157016219124618,"point_name":"83","radius":5,"color_group":"versicolor"},
+{"x":-0.0948112361892495,"y":-0.340143381764065,"point_name":"82","radius":5,"color_group":"versicolor"},
+{"x":-0.0340632460341803,"y":-0.352586065899732,"point_name":"81","radius":5,"color_group":"versicolor"},
+{"x":-0.152791889012153,"y":-0.184131094877293,"point_name":"80","radius":5,"color_group":"versicolor"},
+{"x":0.406645324908772,"y":-0.0816751503438072,"point_name":"79","radius":5,"color_group":"versicolor"},
+{"x":0.778901077533036,"y":0.133747723655128,"point_name":"78","radius":5,"color_group":"versicolor"},
+{"x":0.666012218361045,"y":0.122220438008172,"point_name":"77","radius":5,"color_group":"versicolor"},
+{"x":0.450087186586085,"y":0.164252236917162,"point_name":"76","radius":5,"color_group":"versicolor"},
+{"x":0.357426662955707,"y":0.0745279721848928,"point_name":"75","radius":5,"color_group":"versicolor"},
+{"x":0.46086446122352,"y":-0.091368896810683,"point_name":"74","radius":5,"color_group":"versicolor"},
+{"x":0.649091937679458,"y":-0.163893654166958,"point_name":"73","radius":5,"color_group":"versicolor"},
+{"x":0.178944208998655,"y":-0.0344625158280061,"point_name":"72","radius":5,"color_group":"versicolor"},
+{"x":0.558141588675026,"y":-0.0423084260973936,"point_name":"71","radius":5,"color_group":"versicolor"},
+{"x":0.0226134881493514,"y":-0.291917188735931,"point_name":"70","radius":5,"color_group":"versicolor"},
+{"x":0.472366864009908,"y":-0.271572775389882,"point_name":"69","radius":5,"color_group":"versicolor"},
+{"x":0.118052496658837,"y":-0.166805383412457,"point_name":"68","radius":5,"color_group":"versicolor"},
+{"x":0.33014188084847,"y":-0.176484832861924,"point_name":"67","radius":5,"color_group":"versicolor"},
+{"x":0.463930390472125,"y":0.233589747220756,"point_name":"66","radius":5,"color_group":"versicolor"},
+{"x":-0.0869626858408826,"y":-0.127427104351294,"point_name":"65","radius":5,"color_group":"versicolor"},
+{"x":0.492467255235446,"y":-0.0624089270631781,"point_name":"64","radius":5,"color_group":"versicolor"},
+{"x":0.132488254056025,"y":-0.275018231840236,"point_name":"63","radius":5,"color_group":"versicolor"},
+{"x":0.2558492787238,"y":-0.0519906177495193,"point_name":"62","radius":5,"color_group":"versicolor"},
+{"x":-0.253920441917661,"y":-0.632985595263195,"point_name":"61","radius":5,"color_group":"versicolor"},
+{"x":-0.0043727020414467,"y":-0.361540952502416,"point_name":"60","radius":5,"color_group":"versicolor"},
+{"x":0.522065913026718,"y":0.114180949894198,"point_name":"59","radius":5,"color_group":"versicolor"},
+{"x":-0.374561334914827,"y":-0.502445480590946,"point_name":"58","radius":5,"color_group":"versicolor"},
+{"x":0.547530331316224,"y":0.141734135030765,"point_name":"57","radius":5,"color_group":"versicolor"},
+{"x":0.32083454212904,"y":-0.209123435784338,"point_name":"56","radius":5,"color_group":"versicolor"},
+{"x":0.544051628855834,"y":0.0372953375988587,"point_name":"55","radius":5,"color_group":"versicolor"},
+{"x":0.0916588599791866,"y":-0.413979505910315,"point_name":"54","radius":5,"color_group":"versicolor"},
+{"x":0.732151160995697,"y":0.252131407654603,"point_name":"53","radius":5,"color_group":"versicolor"},
+{"x":0.46624426615616,"y":0.159166819131314,"point_name":"52","radius":5,"color_group":"versicolor"},
+{"x":0.642412844429176,"y":0.342580235233654,"point_name":"51","radius":5,"color_group":"versicolor"},
+{"x":-1.35167989116758,"y":0.0538530412497068,"point_name":"50","radius":5,"color_group":"setosa"},
+{"x":-1.27154287491519,"y":0.289705010759945,"point_name":"49","radius":5,"color_group":"setosa"},
+{"x":-1.41973108382142,"y":-0.113972784746913,"point_name":"48","radius":5,"color_group":"setosa"},
+{"x":-1.26907412949947,"y":0.251885572230719,"point_name":"47","radius":5,"color_group":"setosa"},
+{"x":-1.35722571337885,"y":-0.125104102092605,"point_name":"46","radius":5,"color_group":"setosa"},
+{"x":-1.10474461889184,"y":0.218331570819594,"point_name":"45","radius":5,"color_group":"setosa"},
+{"x":-1.20280724254874,"y":0.094435714465131,"point_name":"44","radius":5,"color_group":"setosa"},
+{"x":-1.49870327329745,"y":-0.170963028735803,"point_name":"43","radius":5,"color_group":"setosa"},
+{"x":-1.42468435252155,"y":-0.470480286820597,"point_name":"42","radius":5,"color_group":"setosa"},
+{"x":-1.38505121301395,"y":0.131763766872128,"point_name":"41","radius":5,"color_group":"setosa"},
+{"x":-1.29500315698405,"y":0.114521918413507,"point_name":"40","radius":5,"color_group":"setosa"},
+{"x":-1.490251021891,"y":-0.243979172214307,"point_name":"39","radius":5,"color_group":"setosa"},
+{"x":-1.40034205772411,"y":0.134321868898992,"point_name":"38","radius":5,"color_group":"setosa"},
+{"x":-1.31261902492518,"y":0.299685010689713,"point_name":"37","radius":5,"color_group":"setosa"},
+{"x":-1.43312082605933,"y":0.0346822357900412,"point_name":"36","radius":5,"color_group":"setosa"},
+{"x":-1.3184634390529,"y":-0.0606611739329308,"point_name":"35","radius":5,"color_group":"setosa"},
+{"x":-1.29936837455029,"y":0.546572879724678,"point_name":"34","radius":5,"color_group":"setosa"},
+{"x":-1.32443116717495,"y":0.406681910148481,"point_name":"33","radius":5,"color_group":"setosa"},
+{"x":-1.20496624850108,"y":0.205462132114787,"point_name":"32","radius":5,"color_group":"setosa"},
+{"x":-1.29369923834467,"y":-0.102159245637066,"point_name":"31","radius":5,"color_group":"setosa"},
+{"x":-1.31599469363717,"y":-0.0984806124621562,"point_name":"30","radius":5,"color_group":"setosa"},
+{"x":-1.31976735769227,"y":0.156019990117642,"point_name":"29","radius":5,"color_group":"setosa"},
+{"x":-1.28115995309801,"y":0.1838594287171,"point_name":"28","radius":5,"color_group":"setosa"},
+{"x":-1.23441003656067,"y":0.0654757447176254,"point_name":"27","radius":5,"color_group":"setosa"},
+{"x":-1.25333445346291,"y":-0.0730084402476332,"point_name":"26","radius":5,"color_group":"setosa"},
+{"x":-1.17787702456188,"y":-0.0186409298386901,"point_name":"25","radius":5,"color_group":"setosa"},
+{"x":-1.1513665911131,"y":0.0493544274070504,"point_name":"24","radius":5,"color_group":"setosa"},
+{"x":-1.6079697078243,"y":0.0667340347692638,"point_name":"23","radius":5,"color_group":"setosa"},
+{"x":-1.27185261437858,"y":0.216498031639514,"point_name":"22","radius":5,"color_group":"setosa"},
+{"x":-1.15512810762126,"y":0.195672967826948,"point_name":"21","radius":5,"color_group":"setosa"},
+{"x":-1.29399319993938,"y":0.256780154374639,"point_name":"20","radius":5,"color_group":"setosa"},
+{"x":-1.09991016180879,"y":0.436419519481106,"point_name":"19","radius":5,"color_group":"setosa"},
+{"x":-1.32414835312719,"y":0.155924572296678,"point_name":"18","radius":5,"color_group":"setosa"},
+{"x":-1.31176393761221,"y":0.405339757090629,"point_name":"17","radius":5,"color_group":"setosa"},
+{"x":-1.19301951676556,"y":0.669031165200326,"point_name":"16","radius":5,"color_group":"setosa"},
+{"x":-1.32237519497101,"y":0.589382318218788,"point_name":"15","radius":5,"color_group":"setosa"},
+{"x":-1.61190187193282,"y":-0.25569729350319,"point_name":"14","radius":5,"color_group":"setosa"},
+{"x":-1.39305463309401,"y":-0.117556000100858,"point_name":"13","radius":5,"color_group":"setosa"},
+{"x":-1.30637761545436,"y":0.00736496958068821,"point_name":"12","radius":5,"color_group":"setosa"},
+{"x":-1.25347354532593,"y":0.322534449324287,"point_name":"11","radius":5,"color_group":"setosa"},
+{"x":-1.33637789891047,"y":-0.0568871229370577,"point_name":"10","radius":5,"color_group":"setosa"},
+{"x":-1.44319136589027,"y":-0.289155877093351,"point_name":"9","radius":5,"color_group":"setosa"},
+{"x":-1.31307248657331,"y":0.0816924798491643,"point_name":"8","radius":5,"color_group":"setosa"},
+{"x":-1.4102688753703,"y":-0.0447306922642839,"point_name":"7","radius":5,"color_group":"setosa"},
+{"x":-1.14042981642224,"y":0.370665224531458,"point_name":"6","radius":5,"color_group":"setosa"},
+{"x":-1.36435826827726,"y":0.163377256467459,"point_name":"5","radius":5,"color_group":"setosa"},
+{"x":-1.3726714278207,"y":-0.159149489625957,"point_name":"4","radius":5,"color_group":"setosa"},
+{"x":-1.44449528452965,"y":-0.0724747130427774,"point_name":"3","radius":5,"color_group":"setosa"},
+{"x":-1.35707084364717,"y":-0.0885006125323913,"point_name":"2","radius":5,"color_group":"setosa"},
+{"x":-1.34206281298477,"y":0.159698623292551,"point_name":"1","radius":5,"color_group":"setosa"}];
+
+  color_scale = d3.scale.ordinal().range(["#ff7f0e","#d62728","#24A5F9"]);
+
+  static_radius = 5;
+
+  opacity = 1;
+
+  color_title = "Groups";
+
+  color_legend_counts = {"setosa":50,"versicolor":50,"virginica":50};
+
+  distance_between_show_names_and_color_groups = 80;
+
+  plot = new_plot({
+    width: 500,
+    height: 500,
+    padding: {"top":150,"right":400,"bottom":70,"left":100},
+    title: "Iris Multidimensional Scaling",
+    subtitle: null,
+    xlab: "Dimension 1",
+    ylab: "Dimension 2",
+    rotate_label: {
+      y: true
+    },
+    xlim: null,
+    ylim: null,
+    data_ranges: {
+          x: [-1.61190187193282,1.89782271103644],
+          y: [-0.632985595263195,0.687082543396523]
+        },
+    categorical_domains: {
+          x: null,
+          y: null
+        },
+    jitter: 0,
+    hide_x_tick_labels: false,
+    ordinal_scale_padding: 1,
+    linear_scale_padding: 40
+  });
+
+  plot.center.append("defs").append("clipPath").attr("id", "clip").append("rect").attr({
+    "width": plot.width,
+    "height": plot.height
+  });
+
+  clip = plot.center.append("g").attr("clip-path", "url(#clip)");
+
+  if (plot.zoom) {
+    clip.append("rect").style({
+      "cursor": "move"
+    }).attr({
+      "class": "overlay",
+      "width": plot.width,
+      "height": plot.height,
+      "fill": "none",
+      "pointer-events": "all"
+    }).call(d3.behavior.zoom().x(plot.scales.x).y(plot.scales.y).scaleExtent([1, Infinity]).on("zoom", function() {
+      return redraw();
+    }));
+    redraw = function() {
+      plot.select(".x.axis").call(plot.axes.x);
+      plot.select(".y.axis").call(plot.axes.y);
+      return g_points.attr("transform", transform);
+    };
+  }
+
+  transform = function(d) {
+    return "translate(" + (plot.scales.x(d.x) + plot.jitters.x()) + ", " + (plot.scales.y(d.y) + plot.jitters.y()) + ")";
+  };
+
+  g_points = clip.selectAll(".point").data(data).enter().append("g").attr({
+    "class": "point",
+    "transform": transform
+  });
+
+  points = g_points.append("svg:circle").attr({
+    "r": function(d) {
+      return d.radius;
+    },
+    "fill": function(d) {
+      return color_scale(d.color_group);
+    },
+    "opacity": function(d, i) {
+      return opacity;
+    },
+    "title": function(d) {
+      return "<table><tr><td colspan='2' class='tooltip-title'>" + d.point_name + "</td></tr><tr class='tooltip-metric'><td class='tooltip-metric-name'>Dimension 1</td><td class='tooltip-metric-value'>" + d3.format('.2f')(d['x']) + "</td></tr><tr class='tooltip-metric'><td class='tooltip-metric-name'>Dimension 2</td><td class='tooltip-metric-value'>" + d3.format('.2f')(d['y']) + "</td></tr><tr class='tooltip-metric'><td class='tooltip-metric-name'>Groups</td><td class='tooltip-metric-value'>" + d['color_group'] + "</td></tr><tr><td colspan='2' class='tooltip-title'>" + d.point_name + "</td></tr></table>";
+    }
+  });
+
+  $(".point circle").tooltip({
+    html: true,
+    container: "body",
+    placement: "top"
+  });
+
+  point_names = g_points.append("text").text(function(d) {
+    return d.point_name;
+  }).attr({
+    "dy": ".32em",
+    "dx": 8,
+    "text-anchor": "left",
+    "display": "none"
+  }).style({
+    "fill": function(d) {
+      return color_scale(d.color_group);
+    },
+    "font-size": "22px"
+  });
+
+  if (true) {
+    sidebar = plot.right_margin.append("g").attr("transform", "translate(60,0)");
+    g_toggle_names = sidebar.append("g").style("cursor", "pointer").style("font-size", "22px").on("click", function() {
+      return toggle_names();
+    });
+    g_toggle_names.append("circle").attr("r", 7).attr("stroke", "black").attr("stroke-width", 2).attr("fill", "white");
+    g_toggle_names.append("text").attr('text-anchor', 'start').attr('dy', '.32em').attr('dx', '12').text("Show names (" + data.length + ")");
+    toggle_names = function() {
+      var showing_point_names;
+      showing_point_names = g_toggle_names.classed("show_names");
+      point_names.attr("display", function() {
+        if (showing_point_names) {
+          return "none";
+        } else {
+          return "inline";
+        }
+      });
+      return g_toggle_names.attr("class", function() {
+        if (showing_point_names) {
+          return "";
+        } else {
+          return "show_names";
+        }
+      }).select("circle").attr("fill", function() {
+        if (showing_point_names) {
+          return "white";
+        } else {
+          return "black";
+        }
+      });
+    };
+    if (color_scale.range().length > 1) {
+      g_color_title = sidebar.append("text").attr({
+        "x": -static_radius,
+        "y": distance_between_show_names_and_color_groups,
+        "dy": ".35em"
+      });
+      g_color_title.append("tspan").style({
+        "font-size": "16px",
+        "font-weight": "bold"
+      }).text(color_title);
+      if (color_scale.range().length > 2) {
+        single_group = g_color_title.append("tspan").attr({
+          "fill": "#949494",
+          "dx": "20px"
+        }).style({
+          "font-size": "16px",
+          "font-weight": "bold"
+        }).text("Show one").on("click", function() {
+          return deselect_color_groups();
+        });
+      }
+      g_color_group_keys = sidebar.selectAll(".color_group_key").data(color_scale.domain().reverse()).enter().append("g").attr({
+        "transform": function(d, i) {
+          return "translate(0, " + (i * (static_radius * 2 + 15) + distance_between_show_names_and_color_groups + 30) + ")";
+        },
+        "class": "color_group_key"
+      }).style("cursor", "pointer");
+      g_color_group_keys.append("circle").attr({
+        "r": static_radius,
+        "fill": color_scale
+      }).on("click", function(d) {
+        return toggle_points(d);
+      });
+      g_color_group_keys.append("text").attr({
+        "x": static_radius + 10,
+        "y": 0,
+        "dy": ".35em"
+      }).text(function(d) {
+        return "" + d + " (" + color_legend_counts[d] + ")";
+      }).on("click", function(d) {
+        return toggle_points(d);
+      });
+    }
+  }
+
+  show_all_colors = function() {
+    g_points.classed("hide", false);
+    g_color_group_keys.classed("hide", false);
+    return single_group.text("Show one");
+  };
+
+  toggle_points = function(category) {
+    var categories;
+    g_points.filter(function(d) {
+      return d.color_group === category;
+    }).classed("hide", function() {
+      return !d3.select(this).classed("hide");
+    });
+    g_color_group_keys.filter(function(d) {
+      return d === category;
+    }).classed("hide", function() {
+      return !d3.select(this).classed("hide");
+    });
+    categories = g_points.filter(":not(.hide)").data().map(function(d) {
+      return d.color_group;
+    }).unique();
+    if (categories.length === 0) {
+      return show_all_colors();
+    } else if (categories.length === 1) {
+      return single_group.text("Show all");
+    } else {
+      return single_group.text("Show one");
+    }
+  };
+
+  deselect_color_groups = function() {
+    var categories, visible_category, visible_points;
+    visible_points = g_points.filter(":not(.hide)");
+    categories = visible_points.data().map(function(d) {
+      return d.color_group;
+    }).unique();
+    if (single_group.text() === "Show one") {
+      visible_category = categories.reverse()[0];
+      g_points.filter(function(d) {
+        return d.color_group !== visible_category;
+      }).classed("hide", true);
+      g_color_group_keys.filter(function(d) {
+        return d !== visible_category;
+      }).classed("hide", true);
+      return single_group.text("Show all");
+    } else {
+      return show_all_colors();
+    }
+  };
+
+  d3.select(".g-search").style({
+    "top": "" + (g_toggle_names.node().getBoundingClientRect().top + distance_between_show_names_and_color_groups / 2) + "px",
+    "left": "" + (g_toggle_names.node().getBoundingClientRect().left) + "px"
+  });
+
+  keyuped = function() {
+    if (d3.event.keyCode === 27) {
+      this.value = "";
+    }
+    return search(this.value.trim());
+  };
+
+  search = function(value) {
+    var matches, re;
+    if (value) {
+      console.log(d3.requote(value));
+      re = new RegExp("" + (d3.requote(value)), "i");
+      clip.classed("g-searching", true);
+      if (sidebar.selectAll(".color_group_key").size() > 0) {
+        g_color_group_keys.classed("hide", false);
+        g_points.classed("hide", false);
+      }
+      g_points.classed("g-match", function(d) {
+        return re.test(d.point_name);
+      });
+      matches = d3.selectAll(".g-match");
+      if (matches[0].length === 1) {
+        mouseover(matches.datum());
+      } else {
+        mouseout();
+      }
+      return search_clear.style("display", null);
+    } else {
+      mouseout();
+      clip.classed("g-searching", false);
+      g_points.classed("g-match", false);
+      return search_clear.style("display", "none");
+    }
+  };
+
+  mouseover = function(d) {
+    points.filter(function(c) {
+      return c === d;
+    }).classed("g-active", true);
+    return $(".g-active").tooltip("show");
+  };
+
+  mouseout = function() {
+    $(".g-active").tooltip("hide");
+    return points.filter(".g-active").classed("g-active", false);
+  };
+
+  search_input = d3.select(".g-search input").on("keyup", keyuped);
+
+  search_clear = d3.select(".g-search .g-search-clear").on("click", function() {
+    search_input.property("value", "");
+    return search();
+  });
+
+}).call(this);
+
+
+    </script>
+  </body>
+</html>

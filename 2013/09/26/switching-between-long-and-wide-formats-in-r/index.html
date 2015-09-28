@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Switching Between Long and Wide Formats in R - Blog - Reason I Am Here - Nacho Caballero</title>
+    
+    <meta name="author" content="Nacho Caballero">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/css/mailchimp.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!--highlight-->
+    <link rel="stylesheet" href="/assets/themes/twitter/highlight.js/styles/tomorrow-night-eighties.css">
+
+    <link href="/assets/themes/twitter/css/nacho.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <script src="/assets/themes/twitter/highlight.js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+    <script src="/assets/themes/twitter/jquery/jquery-1.11.1.min.js"></script>
+    <script src="/assets/themes/twitter/jquery/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(function() {
+          $("img.lazy").show().lazyload({
+            effect: "fadeIn",
+            threshold : 200
+          });
+        });
+    </script>
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">Reason I am here</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">Nacho Caballero</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Article Index</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+        
+
+<div class="page-header">
+  <h1>Switching Between Long and Wide Formats in R </h1>
+</div>
+
+<div class="row-fluid post-full">
+  <div class="span12">
+      <span class="date">26 September 2013</span>
+    <div class="content">
+      <p>This is a basic tutorial in R for switching between the two most common data formats: wide and long. The example dataset we will use is made up of <a href="https://en.wikipedia.org/wiki/Rt_pcr">RT-PCR</a> threshold cycle (Ct) values under two conditions (A and B), with two replicates each.</p>
+
+<!--excerpt-->
+
+<p>Download the file by running this in your command line:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">wget https://raw.github.com/nachocab/nachocab.github.io/master/assets/pcr.txt
+</code></pre></div>
+<p>Once you have the file, open up an R session and load it in a variable. Instead of creating multiple variables, we will be proactive and create a list variable <code>d</code> that will hold them all. This makes them much easier to manage.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">d <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">()</span>
+d<span class="o">$</span>wide <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;pcr.txt&quot;</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&quot;\t&quot;</span><span class="p">)</span> <span class="c1"># columns are separated by tabs</span>
+d<span class="o">$</span>wide
+<span class="c1">#       gene    A1    A2    B1    B2</span>
+<span class="c1"># 1   GENE_1 35.41 36.60 29.96 29.73</span>
+<span class="c1"># 2   GENE_2 36.60 23.45 24.39 24.74</span>
+<span class="c1"># 3   GENE_3 29.96 23.30 32.17 25.94</span>
+<span class="c1"># 4   GENE_4 29.73 22.84 31.66 26.22</span>
+<span class="c1"># 5   GENE_5 34.46 22.79 31.39 24.75</span>
+<span class="c1"># 6   GENE_6 35.66 21.37 31.34 24.72</span>
+<span class="c1"># 7   GENE_7 33.28 21.74 31.10 25.39</span>
+<span class="c1"># 8   GENE_8 33.03 22.96 30.90 25.65</span>
+<span class="c1"># 9   GENE_9 26.58 22.87 31.14 30.57</span>
+<span class="c1"># 10 GENE_10 26.05 25.18 31.03 29.99</span>
+<span class="c1"># 11 CONTROL 26.60 25.60 26.03 25.79</span>
+</code></pre></div>
+<p>This variable is formatted in the typical style used in spreadsheets (it is known as <em>wide format</em> because each data group corresponds to a different column), but for some calculations it is easier to use a more redundant format called a <em>long format</em> because each data item corresponds to a different row.</p>
+
+<p>The easiest way to convert from wide to long is to use the <code>reshape2</code> package.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Install the package</span>
+install.packages<span class="p">(</span><span class="s">&quot;reshape2&quot;</span><span class="p">)</span>
+
+<span class="c1"># And use it</span>
+<span class="kn">library</span><span class="p">(</span>reshape2<span class="p">)</span>
+d<span class="o">$</span>long <span class="o">&lt;-</span> melt<span class="p">(</span>d<span class="o">$</span>wide<span class="p">)</span> <span class="c1"># Using gene as id variables</span>
+<span class="c1"># rename the columns</span>
+<span class="kp">colnames</span><span class="p">(</span>d<span class="o">$</span>long<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;gene&quot;</span><span class="p">,</span> <span class="s">&quot;sample_id&quot;</span><span class="p">,</span> <span class="s">&quot;ct_value&quot;</span><span class="p">)</span>
+
+d<span class="o">$</span>long
+<span class="c1">#       gene sample_id ct_value</span>
+<span class="c1"># 1   GENE_1        A1    35.41</span>
+<span class="c1"># 2   GENE_2        A1    36.60</span>
+<span class="c1"># 3   GENE_3        A1    29.96</span>
+<span class="c1"># 4   GENE_4        A1    29.73</span>
+<span class="c1"># 5   GENE_5        A1    34.46</span>
+<span class="c1"># 6   GENE_6        A1    35.66</span>
+<span class="c1"># 7   GENE_7        A1    33.28</span>
+<span class="c1"># 8   GENE_8        A1    33.03</span>
+<span class="c1"># 9   GENE_9        A1    26.58</span>
+<span class="c1"># 10 GENE_10        A1    26.05</span>
+<span class="c1"># 11 CONTROL        A1    26.60</span>
+<span class="c1"># 12  GENE_1        A2    36.60</span>
+<span class="c1"># 13  GENE_2        A2    23.45</span>
+<span class="c1"># 14  GENE_3        A2    23.30</span>
+<span class="c1"># 15  GENE_4        A2    22.84</span>
+<span class="c1"># 16  GENE_5        A2    22.79</span>
+<span class="c1"># 17  GENE_6        A2    21.37</span>
+<span class="c1"># 18  GENE_7        A2    21.74</span>
+<span class="c1"># 19  GENE_8        A2    22.96</span>
+<span class="c1"># 20  GENE_9        A2    22.87</span>
+<span class="c1"># 21 GENE_10        A2    25.18</span>
+<span class="c1"># ...</span>
+</code></pre></div>
+<p>The long format makes it easy to perform operations on subsets of the data. For example, say we want to calculate the mean of the A samples for each gene. First we will need an extra variable to distinguish between the sample groups. We can create it by simply removing the numbers from <code>sample_id</code>.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># The `gsub` function has three arguments: the pattern, the replacement and the input. Run ?gsub for more info.</span>
+d<span class="o">$</span>long<span class="o">$</span>sample_group <span class="o">&lt;-</span> <span class="kp">gsub</span><span class="p">(</span><span class="s">&quot;\\d&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> d<span class="o">$</span>long<span class="o">$</span>sample_id<span class="p">)</span>
+d<span class="o">$</span>long
+
+<span class="c1">#       gene sample_id ct_value sample_group</span>
+<span class="c1"># ...</span>
+<span class="c1"># 19  GENE_8        A2    22.96            A</span>
+<span class="c1"># 20  GENE_9        A2    22.87            A</span>
+<span class="c1"># 21 GENE_10        A2    25.18            A</span>
+<span class="c1"># 22 CONTROL        A2    25.60            A</span>
+<span class="c1"># 23  GENE_1        B1    29.96            B</span>
+<span class="c1"># 24  GENE_2        B1    24.39            B</span>
+<span class="c1"># 25  GENE_3        B1    32.17            B</span>
+<span class="c1"># 26  GENE_4        B1    31.66            B</span>
+<span class="c1"># 27  GENE_5        B1    31.39            B</span>
+<span class="c1"># ...</span>
+</code></pre></div>
+<p><em>NOTE</em>: In R, backslashes <code>\</code> in <a href="http://www.regular-expressions.info/quickstart.html">regular expressions</a> must be escaped with an extra backslash (for example, <code>\\d</code>).</p>
+
+<p>Now we can use the <code>aggregate</code> function to calculate the mean Ct value and standard deviation for each gene under each condition.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">d<span class="o">$</span>long_by_group <span class="o">&lt;-</span> aggregate<span class="p">(</span>ct_value <span class="o">~</span> sample_group <span class="o">+</span> gene<span class="p">,</span> data <span class="o">=</span> d<span class="o">$</span>long<span class="p">,</span> <span class="kp">mean</span><span class="p">)</span>
+<span class="kp">colnames</span><span class="p">(</span>d<span class="o">$</span>long_by_group<span class="p">)[</span><span class="m">3</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;mean_ct_value&quot;</span>
+d<span class="o">$</span>long_by_group<span class="o">$</span>sd <span class="o">&lt;-</span> aggregate<span class="p">(</span>ct_value <span class="o">~</span> sample_group <span class="o">+</span> gene<span class="p">,</span> data <span class="o">=</span> d<span class="o">$</span>long<span class="p">,</span> sd<span class="p">)[,</span><span class="m">3</span><span class="p">]</span>
+
+d<span class="o">$</span>long_by_group
+<span class="c1">#    sample_group    gene mean_ct_value        sd</span>
+<span class="c1"># 1             A CONTROL        26.100  0.707107</span>
+<span class="c1"># 2             B CONTROL        25.910  0.169706</span>
+<span class="c1"># 3             A  GENE_1        36.005  0.841457</span>
+<span class="c1"># 4             B  GENE_1        29.845  0.162635</span>
+<span class="c1"># 5             A GENE_10        25.615  0.615183</span>
+<span class="c1"># 6             B GENE_10        30.510  0.735391</span>
+<span class="c1"># ...</span>
+</code></pre></div>
+<p>This function is a bit unwieldy (for example, it reorders the rows and changes the column names), so it&rsquo;s worth to pay attention to what the output looks like. The tilde <code>~</code> expression is called a formula, you can read more about it <a href="http://ww2.coastal.edu/kingw/statistics/R-tutorials/formulae.html">here</a>.</p>
+
+<p>Now that we have calculated the mean and standard deviation for each gene-sample_group pair, it is easy to convert them back to wide format using <code>dcast</code>, a function from the <code>reshape2</code> package.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">d<span class="o">$</span>wide_mean_by_group <span class="o">&lt;-</span> dcast<span class="p">(</span>d<span class="o">$</span>long_by_group<span class="p">,</span> gene <span class="o">~</span> sample_group<span class="p">,</span> value.var <span class="o">=</span> <span class="s">&quot;mean_ct_value&quot;</span><span class="p">)</span>
+
+d<span class="o">$</span>wide_mean_by_group
+<span class="c1">#       gene      A      B</span>
+<span class="c1"># 1  CONTROL 26.100 25.910</span>
+<span class="c1"># 2   GENE_1 36.005 29.845</span>
+<span class="c1"># 3  GENE_10 25.615 30.510</span>
+<span class="c1"># 4   GENE_2 30.025 24.565</span>
+<span class="c1"># 5   GENE_3 26.630 29.055</span>
+<span class="c1"># 6   GENE_4 26.285 28.940</span>
+<span class="c1"># 7   GENE_5 28.625 28.070</span>
+<span class="c1"># 8   GENE_6 28.515 28.030</span>
+<span class="c1"># 9   GENE_7 27.510 28.245</span>
+<span class="c1"># 10  GENE_8 27.995 28.275</span>
+<span class="c1"># 11  GENE_9 24.725 30.855</span>
+
+d<span class="o">$</span>wide_sd_by_group <span class="o">&lt;-</span> dcast<span class="p">(</span>d<span class="o">$</span>long_by_group<span class="p">,</span> gene <span class="o">~</span> sample_group<span class="p">,</span> value.var <span class="o">=</span> <span class="s">&quot;sd&quot;</span><span class="p">)</span>
+
+d<span class="o">$</span>wide_sd_by_group
+<span class="c1">#       gene         A        B</span>
+<span class="c1"># 1  CONTROL  0.707107 0.169706</span>
+<span class="c1"># 2   GENE_1  0.841457 0.162635</span>
+<span class="c1"># 3  GENE_10  0.615183 0.735391</span>
+<span class="c1"># 4   GENE_2  9.298454 0.247487</span>
+<span class="c1"># 5   GENE_3  4.709331 4.405275</span>
+<span class="c1"># 6   GENE_4  4.871966 3.846661</span>
+<span class="c1"># 7   GENE_5  8.251936 4.695189</span>
+<span class="c1"># 8   GENE_6 10.104556 4.681047</span>
+<span class="c1"># 9   GENE_7  8.160012 4.037580</span>
+<span class="c1"># 10  GENE_8  7.120565 3.712311</span>
+<span class="c1"># 11  GENE_9  2.623366 0.403051</span>
+</code></pre></div>
+<p>An easy way to remember how to use the formula in <code>dcast</code> is to think <code>row ~ column</code>. In our case, we have a row for each gene, and a column for each sample group.</p>
+
+    </div>
+
+   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+   <!-- cilantro -->
+   <ins class="adsbygoogle"
+        style="display:inline-block;width:300px;height:250px"
+        data-ad-client="ca-pub-9441199102473745"
+        data-ad-slot="6108086510"></ins>
+   <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+   </script>
+
+  
+
+  
+    <hr>
+
+    <div class="related">
+      <h3>Related posts</h3>
+      <ul>
+        
+          <li><a href="/2013/09/23/7-r-tips-rescued-from-the-vault">7 R Tips Rescued from the Vault</a></li>
+        
+          <li><a href="/2013/09/13/an-update-to-clickme-interactive-visualizations-in-r">An Update to Clickme: Interactive Visualizations in R</a></li>
+        
+          <li><a href="/2012/12/27/Bioinformaticians-need-lab-notebooks-too">Bioinformaticians need lab notebooks too</a></li>
+        
+          <li><a href="/2014/01/11/outrageously-useful-tips-to-master-your-z-shell">Master Your Z Shell with These Outrageously Useful Tips</a></li>
+        
+          <li><a href="/2013/09/18/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-3">AWK GTF! How to Analyze a Transcriptome Like a Pro - Part 3</a></li>
+        
+      </ul>
+    </div>
+  
+
+  <hr>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="icon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#R-ref">R <span>4</span></a></li>
+     
+    	<li><a href="/tags.html#tutorial-ref">tutorial <span>5</span></a></li>
+    
+  
+
+
+
+    </ul>
+  
+
+  
+  </div>
+</div>
+
+
+
+
+      </div>
+
+      <footer>
+        <p class="copyright">&copy; 2015 Nacho Caballero</p>
+        <p>
+          <a href="http://feeds.feedburner.com/TheReasonIAmHere">RSS</a> •
+          <a href="https://twitter.com/nachocaballero">Twitter</a> •
+          <a href="http://reasoniamhere.com/about.html">About</a>
+        </p>
+      </footer>
+
+    </div>
+    <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42664204-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+  </body>
+</html>
+

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+   
+    <title>reasoniamhere.com - Tag: R</title>
+   
+   <link>http://reasoniamhere.com</link>
+   <description>I am a Spanish-born bioinformatics PhD student living in Boston</description>
+   <language>en-us</language>
+   <managingEditor>Nacho Caballero</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+
+    
+      <item>
+        <title>Switching Between Long and Wide Formats in R</title>
+        <link>http://reasoniamhere.com/2013/09/26/switching-between-long-and-wide-formats-in-r</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2013-09-26T00:00:00-04:00</pubDate>
+        <guid>http://reasoniamhere.com/2013/09/26/switching-between-long-and-wide-formats-in-r</guid>
+        <description><![CDATA[
+           <p>This is a basic tutorial in R for switching between the two most common data formats: wide and long. The example dataset we will use is made up of <a href="https://en.wikipedia.org/wiki/Rt_pcr">RT-PCR</a> threshold cycle (Ct) values under two conditions (A and B), with two replicates each.</p>
+
+<!--excerpt-->
+
+<p>Download the file by running this in your command line:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">wget https://raw.github.com/nachocab/nachocab.github.io/master/assets/pcr.txt
+</code></pre></div>
+<p>Once you have the file, open up an R session and load it in a variable. Instead of creating multiple variables, we will be proactive and create a list variable <code>d</code> that will hold them all. This makes them much easier to manage.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">d <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">()</span>
+d<span class="o">$</span>wide <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;pcr.txt&quot;</span><span class="p">,</span> sep <span class="o">=</span> <span class="s">&quot;\t&quot;</span><span class="p">)</span> <span class="c1"># columns are separated by tabs</span>
+d<span class="o">$</span>wide
+<span class="c1">#       gene    A1    A2    B1    B2</span>
+<span class="c1"># 1   GENE_1 35.41 36.60 29.96 29.73</span>
+<span class="c1"># 2   GENE_2 36.60 23.45 24.39 24.74</span>
+<span class="c1"># 3   GENE_3 29.96 23.30 32.17 25.94</span>
+<span class="c1"># 4   GENE_4 29.73 22.84 31.66 26.22</span>
+<span class="c1"># 5   GENE_5 34.46 22.79 31.39 24.75</span>
+<span class="c1"># 6   GENE_6 35.66 21.37 31.34 24.72</span>
+<span class="c1"># 7   GENE_7 33.28 21.74 31.10 25.39</span>
+<span class="c1"># 8   GENE_8 33.03 22.96 30.90 25.65</span>
+<span class="c1"># 9   GENE_9 26.58 22.87 31.14 30.57</span>
+<span class="c1"># 10 GENE_10 26.05 25.18 31.03 29.99</span>
+<span class="c1"># 11 CONTROL 26.60 25.60 26.03 25.79</span>
+</code></pre></div>
+<p>This variable is formatted in the typical style used in spreadsheets (it is known as <em>wide format</em> because each data group corresponds to a different column), but for some calculations it is easier to use a more redundant format called a <em>long format</em> because each data item corresponds to a different row.</p>
+
+<p>The easiest way to convert from wide to long is to use the <code>reshape2</code> package.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Install the package</span>
+install.packages<span class="p">(</span><span class="s">&quot;reshape2&quot;</span><span class="p">)</span>
+
+<span class="c1"># And use it</span>
+<span class="kn">library</span><span class="p">(</span>reshape2<span class="p">)</span>
+d<span class="o">$</span>long <span class="o">&lt;-</span> melt<span class="p">(</span>d<span class="o">$</span>wide<span class="p">)</span> <span class="c1"># Using gene as id variables</span>
+<span class="c1"># rename the columns</span>
+<span class="kp">colnames</span><span class="p">(</span>d<span class="o">$</span>long<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;gene&quot;</span><span class="p">,</span> <span class="s">&quot;sample_id&quot;</span><span class="p">,</span> <span class="s">&quot;ct_value&quot;</span><span class="p">)</span>
+
+d<span class="o">$</span>long
+<span class="c1">#       gene sample_id ct_value</span>
+<span class="c1"># 1   GENE_1        A1    35.41</span>
+<span class="c1"># 2   GENE_2        A1    36.60</span>
+<span class="c1"># 3   GENE_3        A1    29.96</span>
+<span class="c1"># 4   GENE_4        A1    29.73</span>
+<span class="c1"># 5   GENE_5        A1    34.46</span>
+<span class="c1"># 6   GENE_6        A1    35.66</span>
+<span class="c1"># 7   GENE_7        A1    33.28</span>
+<span class="c1"># 8   GENE_8        A1    33.03</span>
+<span class="c1"># 9   GENE_9        A1    26.58</span>
+<span class="c1"># 10 GENE_10        A1    26.05</span>
+<span class="c1"># 11 CONTROL        A1    26.60</span>
+<span class="c1"># 12  GENE_1        A2    36.60</span>
+<span class="c1"># 13  GENE_2        A2    23.45</span>
+<span class="c1"># 14  GENE_3        A2    23.30</span>
+<span class="c1"># 15  GENE_4        A2    22.84</span>
+<span class="c1"># 16  GENE_5        A2    22.79</span>
+<span class="c1"># 17  GENE_6        A2    21.37</span>
+<span class="c1"># 18  GENE_7        A2    21.74</span>
+<span class="c1"># 19  GENE_8        A2    22.96</span>
+<span class="c1"># 20  GENE_9        A2    22.87</span>
+<span class="c1"># 21 GENE_10        A2    25.18</span>
+<span class="c1"># ...</span>
+</code></pre></div>
+<p>The long format makes it easy to perform operations on subsets of the data. For example, say we want to calculate the mean of the A samples for each gene. First we will need an extra variable to distinguish between the sample groups. We can create it by simply removing the numbers from <code>sample_id</code>.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># The `gsub` function has three arguments: the pattern, the replacement and the input. Run ?gsub for more info.</span>
+d<span class="o">$</span>long<span class="o">$</span>sample_group <span class="o">&lt;-</span> <span class="kp">gsub</span><span class="p">(</span><span class="s">&quot;\\d&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> d<span class="o">$</span>long<span class="o">$</span>sample_id<span class="p">)</span>
+d<span class="o">$</span>long
+
+<span class="c1">#       gene sample_id ct_value sample_group</span>
+<span class="c1"># ...</span>
+<span class="c1"># 19  GENE_8        A2    22.96            A</span>
+<span class="c1"># 20  GENE_9        A2    22.87            A</span>
+<span class="c1"># 21 GENE_10        A2    25.18            A</span>
+<span class="c1"># 22 CONTROL        A2    25.60            A</span>
+<span class="c1"># 23  GENE_1        B1    29.96            B</span>
+<span class="c1"># 24  GENE_2        B1    24.39            B</span>
+<span class="c1"># 25  GENE_3        B1    32.17            B</span>
+<span class="c1"># 26  GENE_4        B1    31.66            B</span>
+<span class="c1"># 27  GENE_5        B1    31.39            B</span>
+<span class="c1"># ...</span>
+</code></pre></div>
+<p><em>NOTE</em>: In R, backslashes <code>\</code> in <a href="http://www.regular-expressions.info/quickstart.html">regular expressions</a> must be escaped with an extra backslash (for example, <code>\\d</code>).</p>
+
+<p>Now we can use the <code>aggregate</code> function to calculate the mean Ct value and standard deviation for each gene under each condition.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">d<span class="o">$</span>long_by_group <span class="o">&lt;-</span> aggregate<span class="p">(</span>ct_value <span class="o">~</span> sample_group <span class="o">+</span> gene<span class="p">,</span> data <span class="o">=</span> d<span class="o">$</span>long<span class="p">,</span> <span class="kp">mean</span><span class="p">)</span>
+<span class="kp">colnames</span><span class="p">(</span>d<span class="o">$</span>long_by_group<span class="p">)[</span><span class="m">3</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;mean_ct_value&quot;</span>
+d<span class="o">$</span>long_by_group<span class="o">$</span>sd <span class="o">&lt;-</span> aggregate<span class="p">(</span>ct_value <span class="o">~</span> sample_group <span class="o">+</span> gene<span class="p">,</span> data <span class="o">=</span> d<span class="o">$</span>long<span class="p">,</span> sd<span class="p">)[,</span><span class="m">3</span><span class="p">]</span>
+
+d<span class="o">$</span>long_by_group
+<span class="c1">#    sample_group    gene mean_ct_value        sd</span>
+<span class="c1"># 1             A CONTROL        26.100  0.707107</span>
+<span class="c1"># 2             B CONTROL        25.910  0.169706</span>
+<span class="c1"># 3             A  GENE_1        36.005  0.841457</span>
+<span class="c1"># 4             B  GENE_1        29.845  0.162635</span>
+<span class="c1"># 5             A GENE_10        25.615  0.615183</span>
+<span class="c1"># 6             B GENE_10        30.510  0.735391</span>
+<span class="c1"># ...</span>
+</code></pre></div>
+<p>This function is a bit unwieldy (for example, it reorders the rows and changes the column names), so it&rsquo;s worth to pay attention to what the output looks like. The tilde <code>~</code> expression is called a formula, you can read more about it <a href="http://ww2.coastal.edu/kingw/statistics/R-tutorials/formulae.html">here</a>.</p>
+
+<p>Now that we have calculated the mean and standard deviation for each gene-sample_group pair, it is easy to convert them back to wide format using <code>dcast</code>, a function from the <code>reshape2</code> package.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">d<span class="o">$</span>wide_mean_by_group <span class="o">&lt;-</span> dcast<span class="p">(</span>d<span class="o">$</span>long_by_group<span class="p">,</span> gene <span class="o">~</span> sample_group<span class="p">,</span> value.var <span class="o">=</span> <span class="s">&quot;mean_ct_value&quot;</span><span class="p">)</span>
+
+d<span class="o">$</span>wide_mean_by_group
+<span class="c1">#       gene      A      B</span>
+<span class="c1"># 1  CONTROL 26.100 25.910</span>
+<span class="c1"># 2   GENE_1 36.005 29.845</span>
+<span class="c1"># 3  GENE_10 25.615 30.510</span>
+<span class="c1"># 4   GENE_2 30.025 24.565</span>
+<span class="c1"># 5   GENE_3 26.630 29.055</span>
+<span class="c1"># 6   GENE_4 26.285 28.940</span>
+<span class="c1"># 7   GENE_5 28.625 28.070</span>
+<span class="c1"># 8   GENE_6 28.515 28.030</span>
+<span class="c1"># 9   GENE_7 27.510 28.245</span>
+<span class="c1"># 10  GENE_8 27.995 28.275</span>
+<span class="c1"># 11  GENE_9 24.725 30.855</span>
+
+d<span class="o">$</span>wide_sd_by_group <span class="o">&lt;-</span> dcast<span class="p">(</span>d<span class="o">$</span>long_by_group<span class="p">,</span> gene <span class="o">~</span> sample_group<span class="p">,</span> value.var <span class="o">=</span> <span class="s">&quot;sd&quot;</span><span class="p">)</span>
+
+d<span class="o">$</span>wide_sd_by_group
+<span class="c1">#       gene         A        B</span>
+<span class="c1"># 1  CONTROL  0.707107 0.169706</span>
+<span class="c1"># 2   GENE_1  0.841457 0.162635</span>
+<span class="c1"># 3  GENE_10  0.615183 0.735391</span>
+<span class="c1"># 4   GENE_2  9.298454 0.247487</span>
+<span class="c1"># 5   GENE_3  4.709331 4.405275</span>
+<span class="c1"># 6   GENE_4  4.871966 3.846661</span>
+<span class="c1"># 7   GENE_5  8.251936 4.695189</span>
+<span class="c1"># 8   GENE_6 10.104556 4.681047</span>
+<span class="c1"># 9   GENE_7  8.160012 4.037580</span>
+<span class="c1"># 10  GENE_8  7.120565 3.712311</span>
+<span class="c1"># 11  GENE_9  2.623366 0.403051</span>
+</code></pre></div>
+<p>An easy way to remember how to use the formula in <code>dcast</code> is to think <code>row ~ column</code>. In our case, we have a row for each gene, and a column for each sample group.</p>
+
+        ]]></description>
+      </item>
+    
+      <item>
+        <title>7 R Tips Rescued from the Vault</title>
+        <link>http://reasoniamhere.com/2013/09/23/7-r-tips-rescued-from-the-vault</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2013-09-23T00:00:00-04:00</pubDate>
+        <guid>http://reasoniamhere.com/2013/09/23/7-r-tips-rescued-from-the-vault</guid>
+        <description><![CDATA[
+           <p>I keep a 2000-lines long <a href="https://github.com/nachocab/tips_and_tricks/blob/master/R_tricks.R">file</a> full of R commands that I considered worthy of remembering at some point during the past 5 years. Life is too short, so here are 7 tips that don&rsquo;t get enough publicity, ranked from most to least awesome.</p>
+
+<!--excerpt-->
+
+<h2>Use &ldquo;.&rdquo; to repeat the last returned value</h2>
+
+<p>This one is so useful, it should come enabled by default in every R installation. Stick this line in your <code>~/.Rprofile</code></p>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">makeActiveBinding</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="kr">function</span><span class="p">()</span> <span class="m">.L</span>ast.value<span class="p">,</span> <span class="m">.</span>GlobalEnv<span class="p">)</span>
+</code></pre></div>
+<p>Now open a new R console, and type:</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># let&#39;s say you forgot to save some calculation in a variable.</span>
+rnorm<span class="p">(</span><span class="m">20</span><span class="p">)</span>
+
+<span class="c1"># Now you can just use &quot;.&quot;</span>
+a <span class="o">&lt;-</span> <span class="m">.</span>
+
+<span class="kp">length</span><span class="p">(</span>a<span class="p">)</span> <span class="c1"># 20</span>
+</code></pre></div>
+<h2>Save objects into variables</h2>
+
+<p>Use <code>saveRDS</code> and <code>readRDS</code> instead of <code>save</code> and <code>load</code>, so you can read from, and write to, objects with different names.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">a <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">1e5</span><span class="p">)</span>
+<span class="kp">saveRDS</span><span class="p">(</span>a<span class="p">,</span> file<span class="o">=</span><span class="s">&quot;my_object.rds&quot;</span><span class="p">)</span>
+
+b <span class="o">&lt;-</span> <span class="kp">readRDS</span><span class="p">(</span><span class="s">&quot;my_object.rds&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2>Get the arguments used by a function</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># I used to do this to quickly look up the usage of a function</span>
+<span class="kp">head</span><span class="p">(</span>read.csv<span class="p">)</span>
+
+<span class="c1"># but this is better</span>
+<span class="kp">args</span><span class="p">(</span>read.csv<span class="p">)</span>
+<span class="c1"># function (file, header = TRUE, sep = &quot;,&quot;, quote = &quot;\&quot;&quot;, dec = &quot;.&quot;,</span>
+<span class="c1">#     fill = TRUE, comment.char = &quot;&quot;, ...)</span>
+<span class="c1"># NULL</span>
+</code></pre></div>
+<h2>Add names to a vector in one step</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># instead of</span>
+tmp <span class="o">&lt;-</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span>
+<span class="kp">names</span><span class="p">(</span>tmp<span class="p">)</span> <span class="o">&lt;-</span>  <span class="kt">c</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">,</span> <span class="s">&quot;baz&quot;</span><span class="p">)</span>
+
+<span class="c1"># use setNames()</span>
+tmp <span class="o">&lt;-</span> setNames<span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">,</span> <span class="s">&quot;baz&quot;</span><span class="p">))</span>
+</code></pre></div>
+<h2>Store meta information using attributes</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r">a <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>x <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> y <span class="o">=</span> <span class="m">4</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>
+<span class="kp">attr</span><span class="p">(</span>a<span class="p">,</span> <span class="s">&quot;experiment_id&quot;</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="s">&quot;exp_1&quot;</span>
+
+<span class="c1"># you can still use the object like you normally would</span>
+a
+<span class="c1"># but you can also easily access is related information</span>
+<span class="kp">attr</span><span class="p">(</span>a<span class="p">,</span> <span class="s">&quot;experiment_id&quot;</span><span class="p">)</span> <span class="c1"># exp_1</span>
+
+<span class="c1"># you can also initialize multiple attributes at once</span>
+<span class="c1"># but realize that it overwrites whatever arguments you had previously set</span>
+<span class="kp">attributes</span><span class="p">(</span>a<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">(</span>sample_number <span class="o">=</span> <span class="m">1</span><span class="p">,</span> sample_id <span class="o">=</span> <span class="s">&quot;ABC&quot;</span><span class="p">)</span>
+
+<span class="kp">attributes</span><span class="p">(</span>a<span class="p">)</span>
+<span class="c1"># $sample_number</span>
+<span class="c1">#  [1] 1</span>
+<span class="c1"># $sample_id</span>
+<span class="c1">#  [1] &quot;ABC&quot;</span>
+</code></pre></div>
+<h2>Paginate long objects or files</h2>
+
+<p>It works just like Unix&rsquo;s <code>less</code> command, so you can move up and down with the arrow keys, the space bar, <code>shift g</code> and <code>gg</code> to advance a move line by line, screen by screen, go to the end, or back to the beginning, respectively.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">page<span class="p">(</span>rnorm<span class="p">(</span><span class="m">1e5</span><span class="p">))</span>
+</code></pre></div>
+<h2>Ensure that functions only accept a limited set of arguments</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Only &quot;A&quot; and &quot;B&quot; are allowed</span>
+a <span class="o">&lt;-</span><span class="kr">function</span><span class="p">(</span>x<span class="p">,</span> y <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">)){</span>
+  y <span class="o">&lt;-</span> <span class="kp">match.arg</span><span class="p">(</span>y<span class="p">)</span>
+  y
+<span class="p">}</span>
+a<span class="p">()</span> <span class="c1"># y equals &quot;A&quot;</span>
+a<span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="s">&quot;A&quot;</span><span class="p">)</span> <span class="c1"># y equals &quot;A&quot;</span>
+a<span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">)</span> <span class="c1"># y equals &quot;B&quot;</span>
+a<span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="s">&quot;C&quot;</span><span class="p">)</span> <span class="c1"># Error in match.arg(y) : &#39;arg&#39; should be one of “A”, “B”</span>
+</code></pre></div>
+        ]]></description>
+      </item>
+    
+      <item>
+        <title>An Update to Clickme: Interactive Visualizations in R</title>
+        <link>http://reasoniamhere.com/2013/09/13/an-update-to-clickme-interactive-visualizations-in-r</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2013-09-13T00:00:00-04:00</pubDate>
+        <guid>http://reasoniamhere.com/2013/09/13/an-update-to-clickme-interactive-visualizations-in-r</guid>
+        <description><![CDATA[
+           <p>I just released an <a href="https://github.com/nachocab/clickme/releases/tag/0.3.1">update</a> that makes it easy to hide all the color groups in a scatterplot except one. Simply click on &ldquo;Show one&rdquo;. This is very useful to carry out exploratory analyses when there are many color groups. You can zoom around the plot by scrolling up and down with the mouse wheel.</p>
+
+<!--excerpt-->
+
+<iframe width = "1000" height = "840" src="/clickme/iris_mds.html"> </iframe>
+
+<p>I think these types of plots are much more usable than the static ones that R generates by default:</p>
+
+<p><img src="/assets/plain_iris.png" alt="Plain Iris"></p>
+
+<p>You can read more about Clickme at <a href="http://rclickme.com">rclickme.com</a>. To install (or update to) the latest version, run the following in R:</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">install.packages<span class="p">(</span><span class="s">&quot;devtools&quot;</span><span class="p">)</span>
+
+<span class="kn">library</span><span class="p">(</span>devtools<span class="p">)</span>
+install_github<span class="p">(</span><span class="s">&quot;clickme&quot;</span><span class="p">,</span> <span class="s">&quot;nachocab&quot;</span><span class="p">)</span>
+
+<span class="kn">library</span><span class="p">(</span>clickme<span class="p">)</span>
+clickme<span class="p">(</span>points<span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span>
+</code></pre></div>
+        ]]></description>
+      </item>
+    
+      <item>
+        <title>Bioinformaticians need lab notebooks too</title>
+        <link>http://reasoniamhere.com/2012/12/27/Bioinformaticians-need-lab-notebooks-too</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2012-12-27T00:00:00-05:00</pubDate>
+        <guid>http://reasoniamhere.com/2012/12/27/Bioinformaticians-need-lab-notebooks-too</guid>
+        <description><![CDATA[
+           <p>Biologists preach to their undergrads: &ldquo;Write down everything you do in your lab notebook or in six months you will not remember why you did it&rdquo;. Quite true. I have tried to embrace this philosophy several times with pitiful results—probably because every time my subconscious convinced me that it wasn&rsquo;t worth the pain of implementing it; my code is in some file in my computer, so why bother?—Luckily, one day I discovered <a href="http://yihui.name/knitr/">knitr</a> and became a lab notebook fanatic.</p>
+
+<!--excerpt-->
+
+<p>Read Jeromy Anglim&rsquo;s <a href="http://jeromyanglim.blogspot.com.es/2012/05/getting-started-with-r-markdown-knitr.html">great tutorial</a> to get started with knitr and Markdown, or watch Yihui Xie&rsquo;s <a href="http://www.screenr.com/qcv8">video tutorial</a>. Now that knitr has taken center stage in my research, instead of hacking away at a problem, I create a knitr report and I intersperse my thought process with the code that I am writing, along with whatever figures and results get generated. It allows me to investigate different aspects of a problem to see which direction is more promising without losing sight of the big picture. I can also go back months later to know why I did something, or what my figures looked like. <a href="http://htmlpreview.github.com/?https://github.com/nachocab/knitr_reports/blob/master/example_reports/sample_report.html">This</a> is what one of my reports looks like, and <a href="https://github.com/nachocab/knitr_reports/blob/master/example_reports/sample_report.Rmd">this</a> is the code that I used to generate it.</p>
+
+<p>I know a lot of people love RStudio, but I prefer to code in the text editor I know and love, <a href="http://www.sublimetext.com/">Sublime Text</a>. I have shared the <a href="https://github.com/nachocab/knitr_reports">snippets and commands</a> I use to generate knitr reports, for those who are interested. It doesn&rsquo;t matter what tools you use, the point is to stop analyzing data in a having-a-bunch-of-scripts mindset and transition into a everything-is-explained-in-my-lab-notebook mindset.</p>
+
+<h2>knitr is awesome at</h2>
+
+<ul>
+<li>Sharing your results with your colleagues and advisors, at any stage of the analysis, without having to copy and paste images into a Word document.</li>
+<li>Modifying all your figures in a single step (for example, if you want to rename the axes of all your figures).</li>
+<li>Keeping track of code written in different languages (knitr supports R, Ruby, Bash, Perl, Python, Awk, among others)</li>
+<li>Documenting command line workflows (for example, what arguments you used to call TopHat, Samtools and HTSeq in your RNA-Seq pipeline).</li>
+<li>Coming up with easily modifiable examples to grok difficult statistical or machine learning concepts.</li>
+</ul>
+
+<h2>knitr best practices</h2>
+
+<ul>
+<li>Give meaningful names to your chunks. This ensures that generated images also get meaningful names. Chunk names must be unique to each report.</li>
+<li>Save functions in an regular R file and call them inside your knitr report. This allows you to reuse your code and produces cleaner reports.</li>
+<li>Use <code>opts_chunk$set</code> to set global chunk options, use local chunk options when needed.</li>
+<li>Each report should have all its generated images in its own folder.</li>
+</ul>
+
+<p>The list goes on. If you have comments about how knitr has helped you with your research, please share.</p>
+
+<h2>Links to learn more</h2>
+
+<ul>
+<li><a href="https://github.com/yihui/knitr-examples">Yihui&rsquo;s examples on Github</a></li>
+<li><a href="http://stackoverflow.com/questions/tagged/knitr">Questions about knitr in Stack Overflow</a></li>
+<li>Neil Saunders&rsquo;s <a href="https://nsaunders.wordpress.com/2012/08/27/custom-css-for-html-generated-using-rstudio/">great tutorial</a> on using knitr with custom CSS in RStudio.</li>
+</ul>
+
+        ]]></description>
+      </item>
+    
+  </channel>
+</rss>

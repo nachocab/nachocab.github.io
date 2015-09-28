@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+   
+    <title>reasoniamhere.com - Tag: art</title>
+   
+   <link>http://reasoniamhere.com</link>
+   <description>I am a Spanish-born bioinformatics PhD student living in Boston</description>
+   <language>en-us</language>
+   <managingEditor>Nacho Caballero</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+
+    
+      <item>
+        <title>Seth Godin On Being an Artist</title>
+        <link>http://reasoniamhere.com/2013/10/07/seth-godin-on-being-an-artist</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2013-10-07T00:00:00-04:00</pubDate>
+        <guid>http://reasoniamhere.com/2013/10/07/seth-godin-on-being-an-artist</guid>
+        <description><![CDATA[
+           <p><a href="http://sethgodin.typepad.com/">Seth Godin</a> says that you don&rsquo;t need a paintbrush to be an artist. Your tools can just as easily be a spreadsheet, a text editor, or a pipette. Art is an expression of your creativity, your passion, and your personality, regardless of the medium you use to convey it.</p>
+
+<p>I love this definition. I wish it was taught in schools. Imagine kids figuring out how the Pythagorean theorem <a href="https://www.khanacademy.org/math/recreational-math/vi-hart/vi-cool-stuff/v/what-was-up-with-pythagoras">works</a> instead of memorizing the formula. Or kids that don&rsquo;t ask &ldquo;when am I ever going to use this?&rdquo; because they have to spend time grappling with the <a href="http://reasoniamhere.com/2013/09/27/teach-ignorance">questions</a> before they are given the answers.</p>
+
+<p><a href="http://www.goodreads.com/work/quotes/7421862-linchpin-are-you-indispensable">Here</a> are some of the jucier quotes from Seth&rsquo;s book <a href="http://www.amazon.com/Linchpin-Indispensable-career-remarkable-ebook/dp/B00354Y9ZU/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1381186407&amp;sr=1-1&amp;keywords=linchpin">Linchpin: Are You Indispensable?</a>. This is the kind of book that will make your highlighter run out of ink.</p>
+
+        ]]></description>
+      </item>
+    
+  </channel>
+</rss>

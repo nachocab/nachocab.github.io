@@ -1,0 +1,435 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>7 R Tips Rescued from the Vault - Blog - Reason I Am Here - Nacho Caballero</title>
+    
+    <meta name="author" content="Nacho Caballero">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/css/mailchimp.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!--highlight-->
+    <link rel="stylesheet" href="/assets/themes/twitter/highlight.js/styles/tomorrow-night-eighties.css">
+
+    <link href="/assets/themes/twitter/css/nacho.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <script src="/assets/themes/twitter/highlight.js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+    <script src="/assets/themes/twitter/jquery/jquery-1.11.1.min.js"></script>
+    <script src="/assets/themes/twitter/jquery/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(function() {
+          $("img.lazy").show().lazyload({
+            effect: "fadeIn",
+            threshold : 200
+          });
+        });
+    </script>
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">Reason I am here</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">Nacho Caballero</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Article Index</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+        
+
+<div class="page-header">
+  <h1>7 R Tips Rescued from the Vault </h1>
+</div>
+
+<div class="row-fluid post-full">
+  <div class="span12">
+      <span class="date">23 September 2013</span>
+    <div class="content">
+      <p>I keep a 2000-lines long <a href="https://github.com/nachocab/tips_and_tricks/blob/master/R_tricks.R">file</a> full of R commands that I considered worthy of remembering at some point during the past 5 years. Life is too short, so here are 7 tips that don&rsquo;t get enough publicity, ranked from most to least awesome.</p>
+
+<!--excerpt-->
+
+<h2>Use &ldquo;.&rdquo; to repeat the last returned value</h2>
+
+<p>This one is so useful, it should come enabled by default in every R installation. Stick this line in your <code>~/.Rprofile</code></p>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">makeActiveBinding</span><span class="p">(</span><span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="kr">function</span><span class="p">()</span> <span class="m">.L</span>ast.value<span class="p">,</span> <span class="m">.</span>GlobalEnv<span class="p">)</span>
+</code></pre></div>
+<p>Now open a new R console, and type:</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># let&#39;s say you forgot to save some calculation in a variable.</span>
+rnorm<span class="p">(</span><span class="m">20</span><span class="p">)</span>
+
+<span class="c1"># Now you can just use &quot;.&quot;</span>
+a <span class="o">&lt;-</span> <span class="m">.</span>
+
+<span class="kp">length</span><span class="p">(</span>a<span class="p">)</span> <span class="c1"># 20</span>
+</code></pre></div>
+<h2>Save objects into variables</h2>
+
+<p>Use <code>saveRDS</code> and <code>readRDS</code> instead of <code>save</code> and <code>load</code>, so you can read from, and write to, objects with different names.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">a <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">1e5</span><span class="p">)</span>
+<span class="kp">saveRDS</span><span class="p">(</span>a<span class="p">,</span> file<span class="o">=</span><span class="s">&quot;my_object.rds&quot;</span><span class="p">)</span>
+
+b <span class="o">&lt;-</span> <span class="kp">readRDS</span><span class="p">(</span><span class="s">&quot;my_object.rds&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h2>Get the arguments used by a function</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># I used to do this to quickly look up the usage of a function</span>
+<span class="kp">head</span><span class="p">(</span>read.csv<span class="p">)</span>
+
+<span class="c1"># but this is better</span>
+<span class="kp">args</span><span class="p">(</span>read.csv<span class="p">)</span>
+<span class="c1"># function (file, header = TRUE, sep = &quot;,&quot;, quote = &quot;\&quot;&quot;, dec = &quot;.&quot;,</span>
+<span class="c1">#     fill = TRUE, comment.char = &quot;&quot;, ...)</span>
+<span class="c1"># NULL</span>
+</code></pre></div>
+<h2>Add names to a vector in one step</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># instead of</span>
+tmp <span class="o">&lt;-</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span>
+<span class="kp">names</span><span class="p">(</span>tmp<span class="p">)</span> <span class="o">&lt;-</span>  <span class="kt">c</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">,</span> <span class="s">&quot;baz&quot;</span><span class="p">)</span>
+
+<span class="c1"># use setNames()</span>
+tmp <span class="o">&lt;-</span> setNames<span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">,</span> <span class="s">&quot;baz&quot;</span><span class="p">))</span>
+</code></pre></div>
+<h2>Store meta information using attributes</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r">a <span class="o">&lt;-</span> <span class="kt">data.frame</span><span class="p">(</span>x <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> y <span class="o">=</span> <span class="m">4</span><span class="o">:</span><span class="m">6</span><span class="p">)</span>
+<span class="kp">attr</span><span class="p">(</span>a<span class="p">,</span> <span class="s">&quot;experiment_id&quot;</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="s">&quot;exp_1&quot;</span>
+
+<span class="c1"># you can still use the object like you normally would</span>
+a
+<span class="c1"># but you can also easily access is related information</span>
+<span class="kp">attr</span><span class="p">(</span>a<span class="p">,</span> <span class="s">&quot;experiment_id&quot;</span><span class="p">)</span> <span class="c1"># exp_1</span>
+
+<span class="c1"># you can also initialize multiple attributes at once</span>
+<span class="c1"># but realize that it overwrites whatever arguments you had previously set</span>
+<span class="kp">attributes</span><span class="p">(</span>a<span class="p">)</span> <span class="o">&lt;-</span> <span class="kt">list</span><span class="p">(</span>sample_number <span class="o">=</span> <span class="m">1</span><span class="p">,</span> sample_id <span class="o">=</span> <span class="s">&quot;ABC&quot;</span><span class="p">)</span>
+
+<span class="kp">attributes</span><span class="p">(</span>a<span class="p">)</span>
+<span class="c1"># $sample_number</span>
+<span class="c1">#  [1] 1</span>
+<span class="c1"># $sample_id</span>
+<span class="c1">#  [1] &quot;ABC&quot;</span>
+</code></pre></div>
+<h2>Paginate long objects or files</h2>
+
+<p>It works just like Unix&rsquo;s <code>less</code> command, so you can move up and down with the arrow keys, the space bar, <code>shift g</code> and <code>gg</code> to advance a move line by line, screen by screen, go to the end, or back to the beginning, respectively.</p>
+<div class="highlight"><pre><code class="language-r" data-lang="r">page<span class="p">(</span>rnorm<span class="p">(</span><span class="m">1e5</span><span class="p">))</span>
+</code></pre></div>
+<h2>Ensure that functions only accept a limited set of arguments</h2>
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="c1"># Only &quot;A&quot; and &quot;B&quot; are allowed</span>
+a <span class="o">&lt;-</span><span class="kr">function</span><span class="p">(</span>x<span class="p">,</span> y <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">)){</span>
+  y <span class="o">&lt;-</span> <span class="kp">match.arg</span><span class="p">(</span>y<span class="p">)</span>
+  y
+<span class="p">}</span>
+a<span class="p">()</span> <span class="c1"># y equals &quot;A&quot;</span>
+a<span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="s">&quot;A&quot;</span><span class="p">)</span> <span class="c1"># y equals &quot;A&quot;</span>
+a<span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="s">&quot;B&quot;</span><span class="p">)</span> <span class="c1"># y equals &quot;B&quot;</span>
+a<span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="s">&quot;C&quot;</span><span class="p">)</span> <span class="c1"># Error in match.arg(y) : &#39;arg&#39; should be one of “A”, “B”</span>
+</code></pre></div>
+    </div>
+
+   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+   <!-- cilantro -->
+   <ins class="adsbygoogle"
+        style="display:inline-block;width:300px;height:250px"
+        data-ad-client="ca-pub-9441199102473745"
+        data-ad-slot="6108086510"></ins>
+   <script>
+   (adsbygoogle = window.adsbygoogle || []).push({});
+   </script>
+
+  
+
+  
+    <hr>
+
+    <div class="related">
+      <h3>Related posts</h3>
+      <ul>
+        
+          <li><a href="/2013/09/26/switching-between-long-and-wide-formats-in-r">Switching Between Long and Wide Formats in R</a></li>
+        
+          <li><a href="/2013/09/13/an-update-to-clickme-interactive-visualizations-in-r">An Update to Clickme: Interactive Visualizations in R</a></li>
+        
+          <li><a href="/2012/12/27/Bioinformaticians-need-lab-notebooks-too">Bioinformaticians need lab notebooks too</a></li>
+        
+      </ul>
+    </div>
+  
+
+  <hr>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="icon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#R-ref">R <span>4</span></a></li>
+    
+  
+
+
+
+    </ul>
+  
+
+  
+  </div>
+</div>
+
+
+
+
+      </div>
+
+      <footer>
+        <p class="copyright">&copy; 2015 Nacho Caballero</p>
+        <p>
+          <a href="http://feeds.feedburner.com/TheReasonIAmHere">RSS</a> •
+          <a href="https://twitter.com/nachocaballero">Twitter</a> •
+          <a href="http://reasoniamhere.com/about.html">About</a>
+        </p>
+      </footer>
+
+    </div>
+    <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42664204-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+  </body>
+</html>
+

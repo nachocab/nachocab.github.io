@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+   
+    <title>reasoniamhere.com - Tag: knitr</title>
+   
+   <link>http://reasoniamhere.com</link>
+   <description>I am a Spanish-born bioinformatics PhD student living in Boston</description>
+   <language>en-us</language>
+   <managingEditor>Nacho Caballero</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+
+    
+      <item>
+        <title>Bioinformaticians need lab notebooks too</title>
+        <link>http://reasoniamhere.com/2012/12/27/Bioinformaticians-need-lab-notebooks-too</link>
+        <author>Nacho Caballero</author>
+        <pubDate>2012-12-27T00:00:00-05:00</pubDate>
+        <guid>http://reasoniamhere.com/2012/12/27/Bioinformaticians-need-lab-notebooks-too</guid>
+        <description><![CDATA[
+           <p>Biologists preach to their undergrads: &ldquo;Write down everything you do in your lab notebook or in six months you will not remember why you did it&rdquo;. Quite true. I have tried to embrace this philosophy several times with pitiful results—probably because every time my subconscious convinced me that it wasn&rsquo;t worth the pain of implementing it; my code is in some file in my computer, so why bother?—Luckily, one day I discovered <a href="http://yihui.name/knitr/">knitr</a> and became a lab notebook fanatic.</p>
+
+<!--excerpt-->
+
+<p>Read Jeromy Anglim&rsquo;s <a href="http://jeromyanglim.blogspot.com.es/2012/05/getting-started-with-r-markdown-knitr.html">great tutorial</a> to get started with knitr and Markdown, or watch Yihui Xie&rsquo;s <a href="http://www.screenr.com/qcv8">video tutorial</a>. Now that knitr has taken center stage in my research, instead of hacking away at a problem, I create a knitr report and I intersperse my thought process with the code that I am writing, along with whatever figures and results get generated. It allows me to investigate different aspects of a problem to see which direction is more promising without losing sight of the big picture. I can also go back months later to know why I did something, or what my figures looked like. <a href="http://htmlpreview.github.com/?https://github.com/nachocab/knitr_reports/blob/master/example_reports/sample_report.html">This</a> is what one of my reports looks like, and <a href="https://github.com/nachocab/knitr_reports/blob/master/example_reports/sample_report.Rmd">this</a> is the code that I used to generate it.</p>
+
+<p>I know a lot of people love RStudio, but I prefer to code in the text editor I know and love, <a href="http://www.sublimetext.com/">Sublime Text</a>. I have shared the <a href="https://github.com/nachocab/knitr_reports">snippets and commands</a> I use to generate knitr reports, for those who are interested. It doesn&rsquo;t matter what tools you use, the point is to stop analyzing data in a having-a-bunch-of-scripts mindset and transition into a everything-is-explained-in-my-lab-notebook mindset.</p>
+
+<h2>knitr is awesome at</h2>
+
+<ul>
+<li>Sharing your results with your colleagues and advisors, at any stage of the analysis, without having to copy and paste images into a Word document.</li>
+<li>Modifying all your figures in a single step (for example, if you want to rename the axes of all your figures).</li>
+<li>Keeping track of code written in different languages (knitr supports R, Ruby, Bash, Perl, Python, Awk, among others)</li>
+<li>Documenting command line workflows (for example, what arguments you used to call TopHat, Samtools and HTSeq in your RNA-Seq pipeline).</li>
+<li>Coming up with easily modifiable examples to grok difficult statistical or machine learning concepts.</li>
+</ul>
+
+<h2>knitr best practices</h2>
+
+<ul>
+<li>Give meaningful names to your chunks. This ensures that generated images also get meaningful names. Chunk names must be unique to each report.</li>
+<li>Save functions in an regular R file and call them inside your knitr report. This allows you to reuse your code and produces cleaner reports.</li>
+<li>Use <code>opts_chunk$set</code> to set global chunk options, use local chunk options when needed.</li>
+<li>Each report should have all its generated images in its own folder.</li>
+</ul>
+
+<p>The list goes on. If you have comments about how knitr has helped you with your research, please share.</p>
+
+<h2>Links to learn more</h2>
+
+<ul>
+<li><a href="https://github.com/yihui/knitr-examples">Yihui&rsquo;s examples on Github</a></li>
+<li><a href="http://stackoverflow.com/questions/tagged/knitr">Questions about knitr in Stack Overflow</a></li>
+<li>Neil Saunders&rsquo;s <a href="https://nsaunders.wordpress.com/2012/08/27/custom-css-for-html-generated-using-rstudio/">great tutorial</a> on using knitr with custom CSS in RStudio.</li>
+</ul>
+
+        ]]></description>
+      </item>
+    
+  </channel>
+</rss>

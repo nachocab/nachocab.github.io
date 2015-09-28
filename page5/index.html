@@ -1,0 +1,505 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Blog - Reason I Am Here - Nacho Caballero</title>
+    
+    <meta name="author" content="Nacho Caballero">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="/assets/themes/twitter/css/mailchimp.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/twitter/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="/assets/themes/twitter/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!--highlight-->
+    <link rel="stylesheet" href="/assets/themes/twitter/highlight.js/styles/tomorrow-night-eighties.css">
+
+    <link href="/assets/themes/twitter/css/nacho.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <script src="/assets/themes/twitter/highlight.js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+    <script src="/assets/themes/twitter/jquery/jquery-1.11.1.min.js"></script>
+    <script src="/assets/themes/twitter/jquery/jquery.lazyload.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(function() {
+          $("img.lazy").show().lazyload({
+            effect: "fadeIn",
+            threshold : 200
+          });
+        });
+    </script>
+
+    <!-- Le fav and touch icons -->
+  <!-- Update these with your own images
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  -->
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="/">Reason I am here</a>
+          <ul class="nav">
+            
+            
+            
+
+
+  
+    
+      
+      	
+      	<li><a href="/about.html">Nacho Caballero</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive.html">Article Index</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags.html">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+        
+
+
+<div class="row-fluid">
+  <div class="span12">
+    <div id="home">
+  <ul class="posts">
+    
+    <h1><a href="/2013/09/16/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-1">AWK GTF! How to Analyze a Transcriptome Like a Pro - Part 1</a></h1>
+    <p class="author">
+        <span class="date">16 September 2013</span>
+    </p>
+    <div class="content">
+        <p>This post belongs to a 3-part series on AWK: <strong>Part 1</strong> - <a href="http://reasoniamhere.com/2013/09/17/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-2">Part 2</a> - <a href="http://reasoniamhere.com/2013/09/18/awk-gtf-how-to-analyze-a-transcriptome-like-a-pro-part-3">Part 3</a></p>
+
+<p>The goal of this tutorial is to show a few of the cool things that the Unix tool AWK can do with tabular data. We will focus on extracting useful information from a <a href="https://en.wikipedia.org/wiki/Transcriptome">transcriptome</a>—because bioinformatics is cool—, but AWK can do its wonders with any kind of text file.</p>
+
+<p>The tutorial has been carefully designed to make it easy for you to play along. So feel free to copy and paste the commands in your Unix terminal.</p>
+
+
+    </div>
+    <hr>
+    
+    <h1><a href="/2013/09/15/advice-to-me-from-the-past">Advice to Me from the Past</a></h1>
+    <p class="author">
+        <span class="date">15 September 2013</span>
+    </p>
+    <div class="content">
+        <p><img src="https://lh4.googleusercontent.com/zLhbTgmF7N85eYvgMQx9YRASObCSCeqcaUfPSmeNo0s=w1024" alt="Me from the past"></p>
+
+<p>Dear me from the past,</p>
+
+<p>You&rsquo;ll be glad to know that in a few years, high school will be over. You will go out drinking with your friends every weekend, you will travel to twenty different countries, and the number of women that are willing to kiss you will increase by an order of magnitude.</p>
+
+
+    </div>
+    <hr>
+    
+    <h1><a href="/2013/09/14/twitter-is-full-of-interesting-strangers">Twitter is Full of Interesting Strangers</a></h1>
+    <p class="author">
+        <span class="date">14 September 2013</span>
+    </p>
+    <div class="content">
+        <p><img src="https://lh3.googleusercontent.com/-rq6qrUqPQlw/UjTDtDxWnaI/AAAAAAAAEF0/fitQJCPPdik/w1024/IMG_20130914_161213.jpg" alt="Twitter"></p>
+
+<p>I signed up for a Twitter sometime in 2007, but it wasn&rsquo;t until a few years ago that I understood its utility. Now, I use it to discover interesting strangers and share ideas that I am passionate about.</p>
+
+
+    </div>
+    <hr>
+    
+    <h1><a href="/2013/09/13/an-update-to-clickme-interactive-visualizations-in-r">An Update to Clickme: Interactive Visualizations in R</a></h1>
+    <p class="author">
+        <span class="date">13 September 2013</span>
+    </p>
+    <div class="content">
+        <p>I just released an <a href="https://github.com/nachocab/clickme/releases/tag/0.3.1">update</a> that makes it easy to hide all the color groups in a scatterplot except one. Simply click on &ldquo;Show one&rdquo;. This is very useful to carry out exploratory analyses when there are many color groups. You can zoom around the plot by scrolling up and down with the mouse wheel.</p>
+
+
+    </div>
+    <hr>
+    
+    <h1><a href="/2013/09/12/turning-bacteria-into-genetic-circuits-without-them-noticing">Turning Bacteria into Genetic Circuits (Without Them Noticing)</a></h1>
+    <p class="author">
+        <span class="date">12 September 2013</span>
+    </p>
+    <div class="content">
+        <p>Lately I have been summarizing every paper I read on a single piece of paper. Before I started doing that I would invest a lot of time reading a paper, and two months later it would completely disappear from my brain. The only thing I would remember is if I had found it interesting or not (not the most important information when trying to compile a bibliography). Limiting myself to a single piece of paper ensures that I only record what is important, and the fact that the notes are handwritten lets me <a href="http://reasoniamhere.com/2013/09/09/good-presentations-begin-on-paper/">triple underscore and use all the curvy arrows</a> I need to make  important ideas stand out. My two-month recall is now pretty decent.</p>
+
+<p>I&rsquo;m going to a seminar tomorrow presented by Tim Lu, one of the authors of a Nature Biotechnology paper titled <a href="http://www.rle.mit.edu/sbg/wp-content/uploads/2013/03/synthetic-circuits-integrating-logic-and-memory-in-living-cells.pdf">Synthetic circuits integrating logic and memory in living cells</a>. I decided to read the paper and write up a quick summary.</p>
+
+<p><img src="/assets/synthetic_circuits.jpg" alt="Synthetic Circuits"></p>
+
+
+    </div>
+    <hr>
+    
+    <h1><a href="/2013/09/11/the-birthday-wish-technique-how-to-skip-the-temptation-to-procrastinate">The Birthday Wish Technique: How to Skip the Temptation to Procrastinate</a></h1>
+    <p class="author">
+        <span class="date">11 September 2013</span>
+    </p>
+    <div class="content">
+        <p><img src="/assets/birthday_wish_list.jpg" alt="My Birthday Wish List"></p>
+
+<p>I remember being six years old and crying in my bed one night. I was outraged about something, and wanted my parents to come check on me. Eventually my dad came and did something completely unexpected. He asked me what I wanted for my birthday.</p>
+
+<p>I immediately stopped crying. My birthday wasn&rsquo;t due in months. Was this some kind of ruse? Confused, I asked him if he planned to buy whatever I asked for. &ldquo;We will see&rdquo;, he said. So I told him, &ldquo;I want a skateboard&rdquo;, and went to sleep.</p>
+
+<p>My parents never bought me that skateboard, but I can still remember how fulfilling it felt to simply ask for it.</p>
+
+<p>Twenty four years later, crying is no longer an issue, but whining about not wanting to write a research article sometimes gets the best of me and leaves me procrastinating for hours. I usually love my work, and I love writing, but <a href="http://reasoniamhere.com/2013/09/08/writing-advice-for-scientists/">writing research papers is hard</a>. So I recently decided to apply the birthday wish technique that I learned back in my youth.</p>
+
+<h2>The Birthday Wish Technique</h2>
+
+<ol>
+<li><p>Grab a blank piece of paper and title it: <strong>When I&rsquo;m done working, I&rsquo;m going to:</strong></p></li>
+<li><p>Keep it beside you while you work. Proximity is crucial.</p></li>
+<li><p>Whenever you think of something you would rather be doing instead of working, write it down.</p></li>
+</ol>
+
+<h2>Why It Works</h2>
+
+<p>Writing about something you are planning to do feels, in a way, like you have already done it. Ask any travel guide fanatic. Sometimes thinking about doing something feels even <em>better</em> than actually doing it. Ask anyone that just ate at a McDonald&rsquo;s.</p>
+
+<p>The majority of the things that you write in your list will instantly lose their appeal the moment you finish working—they were part of the reality distortion field built by your brain to sabotage your attempts at accomplishing difficult tasks.</p>
+
+<p>Spending a few seconds writing down what you crave, and getting back to work, can mean the difference between spending hours browsing the newsfeeds and finishing that damn report in time for salsa class.</p>
+
+    </div>
+    <hr>
+    
+    <h1><a href="/2013/09/10/tearing-down-powerful-sentences">Tearing Down Powerful Sentences</a></h1>
+    <p class="author">
+        <span class="date">10 September 2013</span>
+    </p>
+    <div class="content">
+        <p>Crafting a sentence is just like solving a puzzle. Except that puzzles are solved by arranging every piece in the box until they form the picture that appears on the cover, and sentences are solved by fumbling with the limited set of words in your repertoire until the shifting idea in your head stops moving.</p>
+
+<p>When I read great sentences, I am always surprised at how graceful they seem and I imagine the hours the author spent crafting them to sound just right. So I decided to start with a sentence I liked and go backwards. Consider this one, written by Simon Winchester in his book <a href="http://www.amazon.com/Atlantic-Battles-Discoveries-Titanic-Million/dp/0061702625/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1378866077&amp;sr=1-1&amp;keywords=simon+winchester+atlantic">Atlantic</a>. It talks about the maritime paintings of a Dutch master:</p>
+
+<blockquote>
+<p>Even now, nearly five centuries on, these are paintings that grab the attention: invariably there is the hungry sea, its waves translucent green and white-capped, the troughs between them deep and dangerous and all providing a savage contrast to the distant comforts of cow-grazed meadows and church steeples.</p>
+</blockquote>
+
+<p>Now read a variation I won&rsquo;t publicly confess to having written:</p>
+
+<blockquote>
+<p>Even though these paintings are almost five centuries old, they are still striking. The sea is usually stormy and full of tall green waves. It seems very different from the calm meadow and the village that are usually in the background.</p>
+</blockquote>
+
+
+    </div>
+    <hr>
+    
+    <h1><a href="/2013/09/09/good-presentations-begin-on-paper">Good Presentations Begin on Paper</a></h1>
+    <p class="author">
+        <span class="date">09 September 2013</span>
+    </p>
+    <div class="content">
+        <p><img src="https://lh4.googleusercontent.com/H_oJqA1ue4Gb3HBzpbXqX9-Yv7MNju-i2zHiUls3Veg=w700" alt="Before after"></p>
+
+<p>Designing presentations on paper lets you apply a magnifying glass of common sense to the logical flow of your ideas, making your inconsistencies go up in flames, like tiny ants.</p>
+
+<p>If you are excited about what you are going to present that you don&rsquo;t know where to start, picking up a paper will help you sort through the jumble of thoughts running around your head and hone in those that can tell your story most effectively.</p>
+
+<p>Avoid the impulse to start with Powerpoint and give your ideas a chance to fight it out and compete for your attention on paper. Doodling prevents early weak ideas from taking the place of more clever ideas that needed a bit more time to pop the surface of your subconscious.</p>
+
+<p>Next time you have to give a presentation, draw it out on paper first. Use as many emphatic curvy arrows and triple underscores as you want.</p>
+
+    </div>
+    <hr>
+    
+    <h1><a href="/2013/09/08/writing-advice-for-scientists">Writing Advice for Scientists</a></h1>
+    <p class="author">
+        <span class="date">08 September 2013</span>
+    </p>
+    <div class="content">
+        <p>My appreciation for anyone who has ever written a research paper has skyrocketed during the past few weeks. I had to begin writing my own article to realize how mind-numbingly hard it is. Sometimes I feel like words refuse to leave my brain unless I force them with a corkscrew. Other times I stumble over booby-trapped paragraphs that kill whatever train of thought I had going.</p>
+
+<p>Whenever I manage to write something coherent is because I take it one paragraph at a time, and when that doesn&rsquo;t work, one sentence at a time. In his <a href="http://www.americanscientist.org/issues/id.877,y.0,no.,content.true,page.1,css.print/issue.aspx">article on scientific writing</a>, George Gopen and Judith Swan share some of the most eye-opening insights I have ever read for crafting understandable sentences. I have spent a couple of hours poring over it and distilled it into two main guidelines:</p>
+
+
+    </div>
+    <hr>
+    
+    <h1><a href="/2013/09/07/im-starting-a-30-day-challenge-to-get-back-to-blogging">I'm Starting a 30 Day Challenge to Get Back to Blogging</a></h1>
+    <p class="author">
+        <span class="date">07 September 2013</span>
+    </p>
+    <div class="content">
+        <p>I randomly found <a href="http://jamimmunology.blogspot.com/2012/11/deletor-T-cells-singh-immunology-journal-club.html">this</a> blog post about T cells. It&rsquo;s written by Jamie Heather, an immunology PhD student in London, who posts his science thoughts online. He posts a few times a month, but he has kept it up for a few years. I only had to read a couple of his <a href="http://jamimmunology.blogspot.com/2013/05/up-goer-five-phd-description.html">older</a> <a href="http://jamimmunology.blogspot.com/2013/08/Decombinator-TCR-repertoire-analysis.html">posts</a> to realize that <em>this is a guy I could grab a beer with</em>.</p>
+
+<p>Then I realized that the only content in my blog was four badly formatted posts with broken links, and that I hadn&rsquo;t posted anything new in two months. If browsing a few posts from a total stranger living in London made me think he was a cool guy, why am I not making it easy for other people to reach the same conclusion about me?</p>
+
+<p>So I&rsquo;m starting a <strong>30-day challenge</strong>:</p>
+
+<blockquote>
+<p>Every day, for the next 30 days, I will write something on my blog. It doesn&rsquo;t have to be earth-shatteringly interesting, funny or clever, just whatever I&rsquo;m thinking about that day. One paragraph is the minimum, two if I&rsquo;m feeling inspired.</p>
+</blockquote>
+
+<p>To find time to write I&rsquo;ve also decided to quit my morning news-reading routine, which usually lasts an hour. I&rsquo;ve deleted all the newsy links on my toolbar to make it harder to fall into temptation. I&rsquo;ve also set up filters on Gmail to automatically remove the newsletters I&rsquo;m subscribed to from my inbox, and to tag them with a special label so I can check them after I&rsquo;m done working for the day.</p>
+
+<p>With a bit of luck, 30 days will be enough to develop the writing habit, and I&rsquo;ll be ready to blog about my stay in French Guiana doing viral metagenomics. I should write a post about that soon.</p>
+
+<p>Until then, wish me luck.</p>
+
+    </div>
+    <hr>
+    
+
+    <div id="post-pagination" class="pagination">
+      
+        <p class="previous">
+          
+            <a href="/page4">« Previous</a>
+          
+        </p>
+      
+
+      
+        <p class="next">
+          <a href="/page6">Next »</a>
+        </p>
+      
+
+    </div>
+  </ul>
+</div>
+
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+      <footer>
+        <p class="copyright">&copy; 2015 Nacho Caballero</p>
+        <p>
+          <a href="http://feeds.feedburner.com/TheReasonIAmHere">RSS</a> •
+          <a href="https://twitter.com/nachocaballero">Twitter</a> •
+          <a href="http://reasoniamhere.com/about.html">About</a>
+        </p>
+      </footer>
+
+    </div>
+    <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42664204-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+  </body>
+</html>
+
